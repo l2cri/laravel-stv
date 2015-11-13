@@ -92,6 +92,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
 
+            /**
+             * TODO: Hack to enter SleepingOwl Admin
+             */
+
             \AdminAuth::login(\Auth::user());
 
             return $this->handleUserWasAuthenticated($request, $throttles);

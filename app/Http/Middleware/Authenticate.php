@@ -34,6 +34,15 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+//        var_dump($request->root());
+//        var_dump($request->url());
+//        var_dump($request->fullUrl());
+//        var_dump($request->path());
+//        var_dump($request->decodedPath());
+//        var_dump($this->auth->user());
+//        var_dump(\AdminAuth::user());
+
+        //die();
 
         if ($this->auth->guest()) {
             if ($request->ajax()) {
