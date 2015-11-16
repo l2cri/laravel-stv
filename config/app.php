@@ -138,18 +138,19 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Application Service Providers...
+         * Sleeping-Owl Admin
+         */
+        SleepingOwl\Admin\AdminServiceProvider::class,
+        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
+
+        /*
+         * Marketplace Providers
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /*
-         * Sleeping-Owl Admin
-         */
-        SleepingOwl\Admin\AdminServiceProvider::class,
-        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class
+        App\Providers\InfopageServiceProvider::class,
     ],
 
     /*
@@ -211,7 +212,6 @@ return [
         'AdminForm'     => 'SleepingOwl\Admin\Form\AdminForm',
         'AdminTemplate' => 'SleepingOwl\Admin\Templates\Facade\AdminTemplate',
         'FormItem'      => 'SleepingOwl\Admin\FormItems\FormItem',
-
 
     ],
 

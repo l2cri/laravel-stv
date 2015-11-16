@@ -40,3 +40,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/lk', function () {
     echo "закрытая страница";
 })->middleware(['auth']);
+
+/*
+ * Контент
+ */
+Route::get('info/{code}', 'InfopageController@byCode');
