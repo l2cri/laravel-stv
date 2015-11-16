@@ -19,6 +19,7 @@ Admin::model('App\User')->title('Users')->display(function ()
 	$form->items([
 		FormItem::text('name', 'Name')->required(),
 		FormItem::text('email', 'Email')->required()->unique(),
+		FormItem::password('password', 'Password'),
 	]);
 	return $form;
 });
