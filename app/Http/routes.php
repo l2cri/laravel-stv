@@ -14,6 +14,10 @@
 
 //$app['admin.auth'] = $app['auth'];
 
+Route::get('/test', function() {
+    $ts = \App\Models\Infopage::find(1);
+    var_dump($ts->created_at->timestamp);
+});
 
 
 Route::get('/', function () {

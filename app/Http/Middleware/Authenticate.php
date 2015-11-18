@@ -52,6 +52,8 @@ class Authenticate
             }
         }
 
+        \AdminAuth::login(\Auth::user());
+
         return $next($request);
     }
 }

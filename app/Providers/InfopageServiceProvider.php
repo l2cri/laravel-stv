@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Infopage;
+use App\Repo\Infopage\CacheDecorator;
 use App\Repo\Infopage\EloquentInfopage;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Cache\LaravelCache;
 
 class InfopageServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,8 @@ class InfopageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Repo\Infopage\InfopageInterface', function($app){
-            return new EloquentInfopage(new Infopage());
+            $infopage = new EloquentInfopage(new Infopage());
+            return new CacheDecorator($infopage, new LaravelCache($app['cache']));
         });
     }
 

@@ -2,6 +2,8 @@
 
 @section('content')
 
+    {{ var_dump($infopage) }}
+
     <div class="breadcrumb-box">
     <a href="#">Home</a>
     <a href="#">About Us</a>
