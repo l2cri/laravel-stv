@@ -32,7 +32,6 @@ class CacheDecorator extends AbstractInfopageDecorator
             return $this->cache->get($key); }
 
         $infopage = $this->nextInfopage->byCode($code);
-        $infopage->cached_at = time();
         $infopage->save();
 
         $this->cache->put($key, $infopage, $this->cacheTime);
