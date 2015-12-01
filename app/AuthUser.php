@@ -19,4 +19,18 @@ class AuthUser
 
         return false;
     }
+
+    public function can($action) {
+        $user = Auth::user()->with('roles.abilities')->first();
+        if ( !($user instanceof User) ) return false;
+
+        $actions = array();
+        foreach($user->roles as $role) {
+            foreach($role->abilities as $ability){
+                $actions[] = $ability->action;
+            }
+        }
+        if (in_array($action, $actions)) return true;
+        return false;
+    }
 }

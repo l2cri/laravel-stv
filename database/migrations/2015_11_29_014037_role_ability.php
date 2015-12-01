@@ -26,7 +26,6 @@ class RoleAbility extends Migration
             $table->string('name');
             $table->string('description')->default('');
             $table->string('action')->default('');
-            $table->string('path')->default('');
             $table->timestamps();
         });
 

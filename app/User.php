@@ -40,4 +40,19 @@ class User extends Model implements AuthenticatableContract,
     public function isAdmin() {
         return $this->attributes['admin'];
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    // мутатор для админки
+    public function setRolesAttribute($roles)
+    {
+        $this->roles()->detach();
+        if ( ! $roles) return;
+        if ( ! $this->exists) $this->save();
+
+        $this->roles()->attach($roles);
+    }
 }

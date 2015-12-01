@@ -2,14 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: ley
- * Date: 16.11.15
- * Time: 21:26
+ * Date: 01.12.15
+ * Time: 12:37
  */
 
-if (AuthUser::can('infopage_admin')) {
-    
-    Admin::model('App\Models\Infopage')
-        ->title('Информационные страницы')
+if (AuthUser::isAdmin()) {
+    Admin::model('App\Models\Ability')
+        ->title('Роли')
         ->display(function ()
         {
             $display = AdminDisplay::datatables();
@@ -17,7 +16,8 @@ if (AuthUser::can('infopage_admin')) {
             $display->columns([
                 Column::string('id')->label('ID'),
                 Column::string('name')->label('Название'),
-                Column::string('code')->label('Код в URL'),
+                Column::string('action')->label('Действие'),
+                Column::string('description')->label('Описание'),
             ]);
             return $display;
         })->createAndEdit(function ()
@@ -25,8 +25,8 @@ if (AuthUser::can('infopage_admin')) {
             $form = AdminForm::form();
             $form->items([
                 FormItem::text('name', 'Название'),
-                FormItem::text('code', 'Код в URL'),
-                FormItem::ckeditor('text', 'Описание'),
+                FormItem::text('action', 'Действие'),
+                FormItem::text('description', 'Описание'),
             ]);
             return $form;
         });
