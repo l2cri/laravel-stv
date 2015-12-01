@@ -52,7 +52,7 @@ class Authenticate
             }
         }
 
-        \AdminAuth::login(\Auth::user());
+        //\AdminAuth::login($this->auth->user());
 
         return $next($request);
     }
