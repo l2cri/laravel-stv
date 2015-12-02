@@ -24,6 +24,8 @@ class AuthUser
         $user = Auth::user();
         if ( !($user instanceof User) ) return false;
 
+        if ($user->isAdmin()) return true;
+
         $actions = array();
         foreach($user->roles as $role) {
             foreach($role->abilities as $ability){
