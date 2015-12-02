@@ -21,7 +21,7 @@ class AuthUser
     }
 
     public function can($action) {
-        $user = Auth::user()->with('roles.abilities')->first();
+        $user = Auth::user();
         if ( !($user instanceof User) ) return false;
 
         $actions = array();

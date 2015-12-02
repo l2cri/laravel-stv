@@ -7,7 +7,7 @@
  */
 
 if (AuthUser::can('infopage_admin')) {
-    
+
     Admin::model('App\Models\Infopage')
         ->title('Информационные страницы')
         ->display(function ()

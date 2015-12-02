@@ -25,19 +25,20 @@ class CacheDecorator extends AbstractInfopageDecorator
 
     public function byCode($code){
 
-        $key = md5(config('cachePrefixInfopage').$code);
+        $key = $this->key($code);
 
         if( $this->cache->has($key)) {
-            var_dump('CACHED!');
-            return $this->cache->get($key); }
+            return $this->cache->get($key);
+        }
 
         $infopage = $this->nextInfopage->byCode($code);
-        $infopage->save();
 
         $this->cache->put($key, $infopage, $this->cacheTime);
 
-        var_dump('NEW!');
-
         return $infopage;
+    }
+
+    private function key($indentifier){
+        return md5(config('cachePrefixInfopage').$indentifier);
     }
 }

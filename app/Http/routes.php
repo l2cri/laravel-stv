@@ -48,4 +48,4 @@ Route::get('/lk', function () {
 /*
  * Контент
  */
-Route::get('info/{code}', 'InfopageController@byCode');
+Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-9\-\_]+');

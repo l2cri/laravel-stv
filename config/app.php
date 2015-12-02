@@ -138,12 +138,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Sleeping-Owl Admin
-         */
-        SleepingOwl\Admin\AdminServiceProvider::class,
-        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
-
-        /*
          * Marketplace Providers
          */
         App\Providers\AppServiceProvider::class,
@@ -151,6 +145,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InfopageServiceProvider::class,
+
+        /*
+         * Sleeping-Owl Admin
+         */
+        SleepingOwl\Admin\AdminServiceProvider::class,
+        SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
     ],
 
     /*

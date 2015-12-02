@@ -35,4 +35,8 @@ class LaravelCache implements CacheInterface
     public function has($key){
         return $this->cache->has($key);
     }
+
+    public function forget($key){
+        return $this->cache->forget($key);
+    }
 }

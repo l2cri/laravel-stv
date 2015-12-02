@@ -14,4 +14,5 @@ interface CacheInterface
     public function get($key);
     public function put($key, $value, $minutes = null);
     public function has($key);
+    public function forget($key);
 }
