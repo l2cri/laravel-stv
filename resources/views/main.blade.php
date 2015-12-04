@@ -5,23 +5,23 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
     <!--[if IE 9]>
-    <link href="css/ie9.css" rel="stylesheet" type="text/css" />
+    <link href="/css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
-    <link rel="shortcut icon" href="img/favicon-2.ico" />
+    <link rel="shortcut icon" href="/img/favicon-2.ico" />
     <title>Mango - Everything</title>
 </head>
 <body class="style-2">
-
 <!-- LOADER -->
 <div id="loader-wrapper">
     <div class="bubbles">
-        <div class="title">loading</div>
+        <div class="title">Загрузки</div>
         <span></span>
         <span id="bubble2"></span>
         <span id="bubble3"></span>
@@ -34,23 +34,10 @@
         <!-- HEADER -->
         <div class="header-wrapper style-2">
             <header class="type-1">
+
                 <div class="header-top">
                     <div class="header-top-entry">
-                        <div class="title"><img src="img/flag-lang-1.png" alt="" />English<i class="fa fa-caret-down"></i></div>
-                        <div class="list">
-                            <a href="#" class="list-entry"><img src="img/flag-lang-2.png" alt="" />French</a>
-                            <a href="#" class="list-entry"><img src="img/flag-lang-3.png" alt="" />Spanish</a>
-                        </div>
-                    </div>
-                    <div class="header-top-entry">
-                        <div class="title"><b>Currency:</b> $ USD<i class="fa fa-caret-down"></i></div>
-                        <div class="list">
-                            <a href="#" class="list-entry">$ CAD</a>
-                            <a href="#" class="list-entry">&#8364; EUR</a>
-                        </div>
-                    </div>
-                    <div class="header-top-entry hidden-xs">
-                        <div class="title"><i class="fa fa-phone"></i>Any question? Call Us <a href="tel:+987123654"><b>+987 123 654</b></a></div>
+                        <div class="title"><i class="fa fa-phone"></i>Есть вопросы? Звоните нам  <a href="tel:+78652777777"><b>+7 (8652) 777 777</b></a></div>
                     </div>
                     <div class="socials-box">
                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -59,7 +46,7 @@
                         <a href="#"><i class="fa fa-youtube"></i></a>
                         <a href="#"><i class="fa fa-linkedin"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
                     </div>
                     <div class="menu-button responsive-menu-toggle-class"><i class="fa fa-reorder"></i></div>
                     <div class="clear"></div>
@@ -67,55 +54,72 @@
 
                 <div class="header-middle">
                     <div class="logo-wrapper">
-                        <a id="logo" href="#"><img src="img/logo-3.png" alt="" /></a>
-                    </div>
-
-                    <div class="middle-entry">
-                        <a class="icon-entry" href="#">
-                                <span class="image">
-                                    <i class="fa fa-phone"></i>
-                                </span>
-                                <span class="text">
-                                    <b>Contact Info</b> <br/> (+48) 500 700 600
-                                </span>
-                        </a>
-                        <a class="icon-entry" href="#">
-                                <span class="image">
-                                    <i class="fa fa-car"></i>
-                                </span>
-                                <span class="text">
-                                    <b>Free Shipping</b> <br/> on order over $200
-                                </span>
-                        </a>
+                        <a id="logo" href="#"><img src="/img/logo-main.png" alt="" /></a>
                     </div>
 
                     <div class="right-entries">
-                        <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a>
-                        <a class="header-functionality-entry" href="#"><i class="fa fa-copy"></i><span>Compare</span></a>
-                        <a class="header-functionality-entry" href="#"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
-                        <a class="header-functionality-entry open-cart-popup" href="#"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a>
+                        <a class="header-functionality-entry open-search-popup" href="#">
+                            <i class="fa fa-search"></i><span>Поиск</span>
+                        </a>
+
+                        <div class="drop-hover header-functionality-entry">
+                            <a class="">
+                                <span>Регистрация </span><i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="submenu"><h2>Test!</h2></div>
+                        </div>
+                        <div class="drop-hover header-functionality-entry">
+                            <a class="" href="#">
+                                <span>Авторизация </span><i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="submenu">
+                                <h3>Registered Customers</h3>
+                                <p>Lorem ipsum dolor amet, conse adipiscing, eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <form>
+                                    <label>Email Address</label>
+                                    <input type="text" value="" placeholder="Enter Email Address" class="simple-field">
+                                    <label>Password</label>
+                                    <input type="password" value="" placeholder="Enter Password" class="simple-field">
+                                    <div class="button style-10">Login Page<input type="submit" value=""></div>
+                                    <a class="forgot-password" href="#">Forgot password?</a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <a class="header-functionality-entry open-cart-popup" href="#">
+                            <i class="fa fa-shopping-cart"></i><span>Корзина</span> <b>255,99 руб</b>
+                        </a>
                     </div>
-
                 </div>
-
                 <div class="close-header-layer"></div>
+
                 <div class="navigation">
                     <div class="navigation-header responsive-menu-toggle-class">
-                        <div class="title">Navigation</div>
+                        <div class="title">Навигация</div>
                         <div class="close-menu"></div>
                     </div>
                     <div class="nav-overflow">
-                        <div class="sidebar-navigation-title">product categories</div>
+
+                        <div class="drop-hover">
+                            <div class="sidebar-navigation-title">
+                                Категории продуктов
+                                <i class="fa fa-angle-down"></i>
+                            </div>
+                            <div class="submenu">Tets</div>
+                        </div>
+
+
                         <div class="navigation-search-content">
-                            <div class="toggle-desktop-menu"><i class="fa fa-bars"></i><i class="fa fa-close"></i>menu</div>
+                            <div class="toggle-desktop-menu"><i class="fa fa-bars"></i><i class="fa fa-close"></i>меню</div>
                             <div class="search-box size-1">
                                 <form>
                                     <div class="search-button">
                                         <i class="fa fa-search"></i>
                                         <input type="submit" />
                                     </div>
+
                                     <div class="search-drop-down">
-                                        <div class="title"><span>All categories</span><i class="fa fa-angle-down"></i></div>
+                                        <div class="title"><span>Все категории</span><i class="fa fa-angle-down"></i></div>
                                         <div class="list">
                                             <div class="overflow">
                                                 <div class="category-entry">Category 1</div>
@@ -130,12 +134,14 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="search-field">
-                                        <input type="text" value="" placeholder="Search for product" />
+                                        <input type="text" value="" placeholder="Поиск..." />
                                     </div>
                                 </form>
                             </div>
                         </div>
+
                         <nav>
                             <ul>
                                 <li class="full-width">
@@ -152,7 +158,7 @@
                                                     <div class="menu-slider-entry">
                                                         <div class="product-slide-entry">
                                                             <div class="product-image">
-                                                                <img src="img/product-minimal-1.jpg" alt="" />
+                                                                <img src="/img/product-minimal-1.jpg" alt="" />
                                                                 <div class="bottom-line left-attached">
                                                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -170,7 +176,7 @@
                                                     <div class="menu-slider-entry">
                                                         <div class="product-slide-entry">
                                                             <div class="product-image">
-                                                                <img src="img/product-minimal-2.jpg" alt="" />
+                                                                <img src="/img/product-minimal-2.jpg" alt="" />
                                                                 <div class="bottom-line left-attached">
                                                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -188,7 +194,7 @@
                                                     <div class="menu-slider-entry">
                                                         <div class="product-slide-entry">
                                                             <div class="product-image">
-                                                                <img src="img/product-minimal-3.jpg" alt="" />
+                                                                <img src="/img/product-minimal-3.jpg" alt="" />
                                                                 <div class="bottom-line left-attached">
                                                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -206,7 +212,7 @@
                                                     <div class="menu-slider-entry">
                                                         <div class="product-slide-entry">
                                                             <div class="product-image">
-                                                                <img src="img/product-minimal-4.jpg" alt="" />
+                                                                <img src="/img/product-minimal-4.jpg" alt="" />
                                                                 <div class="bottom-line left-attached">
                                                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -224,7 +230,7 @@
                                                     <div class="menu-slider-entry">
                                                         <div class="product-slide-entry">
                                                             <div class="product-image">
-                                                                <img src="img/product-minimal-5.jpg" alt="" />
+                                                                <img src="/img/product-minimal-5.jpg" alt="" />
                                                                 <div class="bottom-line left-attached">
                                                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -295,7 +301,7 @@
                                     <a href="#">Pages</a><i class="fa fa-chevron-down"></i>
                                     <div class="submenu">
                                         <div class="product-column-entry">
-                                            <div class="image"><img alt="" src="img/product-menu-2.jpg"></div>
+                                            <div class="image"><img alt="" src="/img/product-menu-2.jpg"></div>
                                             <div class="submenu-list-title"><a href="contact.html">Contact Us</a><span class="toggle-list-button"></span></div>
                                             <div class="description toggle-list-container">
                                                 <ul class="list-type-1">
@@ -308,7 +314,7 @@
                                             <div class="hot-mark">hot</div>
                                         </div>
                                         <div class="product-column-entry">
-                                            <div class="image"><img alt="" src="img/product-menu-4.jpg"></div>
+                                            <div class="image"><img alt="" src="/img/product-menu-4.jpg"></div>
                                             <div class="submenu-list-title"><a href="about-1.html">About Us</a><span class="toggle-list-button"></span></div>
                                             <div class="description toggle-list-container">
                                                 <ul class="list-type-1">
@@ -322,7 +328,7 @@
                                             <div class="hot-mark yellow">sale</div>
                                         </div>
                                         <div class="product-column-entry">
-                                            <div class="image"><img alt="" src="img/product-menu-3.jpg"></div>
+                                            <div class="image"><img alt="" src="/img/product-menu-3.jpg"></div>
                                             <div class="submenu-list-title"><a href="cart.html">Cart</a><span class="toggle-list-button"></span></div>
                                             <div class="description toggle-list-container">
                                                 <ul class="list-type-1">
@@ -333,7 +339,7 @@
                                             </div>
                                         </div>
                                         <div class="product-column-entry">
-                                            <div class="image"><img alt="" src="img/product-menu-5.jpg"></div>
+                                            <div class="image"><img alt="" src="/img/product-menu-5.jpg"></div>
                                             <div class="submenu-list-title"><a href="teaser-background.html">Coming Soon</a><span class="toggle-list-button"></span></div>
                                             <div class="description toggle-list-container">
                                                 <ul class="list-type-1">
@@ -345,7 +351,7 @@
                                             <div class="hot-mark">hot</div>
                                         </div>
                                         <div class="product-column-entry">
-                                            <div class="image"><img alt="" src="img/product-menu-2.jpg"></div>
+                                            <div class="image"><img alt="" src="/img/product-menu-2.jpg"></div>
                                             <div class="submenu-list-title"><a href="shop.html">Products</a><span class="toggle-list-button"></span></div>
                                             <div class="description toggle-list-container">
                                                 <ul class="list-type-1">
@@ -383,7 +389,7 @@
                                     <a href="portfolio-default.html">Portfolio</a><i class="fa fa-chevron-down"></i>
                                     <div class="submenu">
                                         <div class="full-width-menu-items-left">
-                                            <img class="submenu-background" src="img/product-menu-7.jpg" alt="" />
+                                            <img class="submenu-background" src="/img/product-menu-7.jpg" alt="" />
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="submenu-list-title"><a href="portfolio-default.html">Our Portfolio</a><span class="toggle-list-button"></span></div>
@@ -412,7 +418,7 @@
                                     <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
                                     <div class="submenu">
                                         <div class="full-width-menu-items-left">
-                                            <img class="submenu-background" src="img/product-menu-8.jpg" alt="" />
+                                            <img class="submenu-background" src="/img/product-menu-8.jpg" alt="" />
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="submenu-list-title"><a href="blog.html">Blog <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
@@ -461,25 +467,16 @@
 
                             <div class="clear"></div>
 
-                            <a class="fixed-header-visible additional-header-logo"><img src="img/logo-3.png" alt=""/></a>
+                            <a class="fixed-header-visible additional-header-logo"><img src="/img/logo-3.png" alt=""/></a>
                         </nav>
-                        <div class="navigation-footer responsive-menu-toggle-class">
-                            <div class="socials-box">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-youtube"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="navigation-copyright">Created by <a href="#">8theme</a>. All rights reserved</div>
-                        </div>
+
                     </div>
                 </div>
+
             </header>
+
             <div class="clear"></div>
+
         </div>
 
         <div class="content-push">
@@ -487,13 +484,15 @@
             @yield('content')
 
             <!-- FOOTER -->
+
             <div class="footer-wrapper style-2">
                 <footer class="type-1">
                     <div class="footer-columns-entry">
                         <div class="row">
-                            <div class="col-md-3">
-                                <img class="footer-logo" src="img/logo-3.png" alt="" />
-                                <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
+                            <div class="col-md-4">
+                                <img class="footer-logo" src="/img/logo-small.png" alt="" />
+                                <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
+                                </div>
                                 <div class="footer-address">30 South Avenue San Francisco<br/>
                                     Phone: +78 123 456 789<br/>
                                     Email: <a href="mailto:Support@blanco.com">Support@blanco.com</a><br/>
@@ -501,6 +500,7 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
+
                             <div class="col-md-2 col-sm-4">
                                 <h3 class="column-title">Our Services</h3>
                                 <ul class="column">
@@ -514,7 +514,8 @@
                                 </ul>
                                 <div class="clear"></div>
                             </div>
-                            <div class="col-md-2 col-sm-4">
+
+                            <div class="col-md-3 col-sm-5">
                                 <h3 class="column-title">Our Services</h3>
                                 <ul class="column">
                                     <li><a href="#">About us</a></li>
@@ -527,21 +528,8 @@
                                 </ul>
                                 <div class="clear"></div>
                             </div>
-                            <div class="col-md-2 col-sm-4">
-                                <h3 class="column-title">Our Services</h3>
-                                <ul class="column">
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Order History</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Custom Service</a></li>
-                                    <li><a href="#">Terms &amp; Condition</a></li>
-                                    <li><a href="#">Order History</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="clearfix visible-sm-block"></div>
-                            <div class="col-md-3">
+
+                            <div class="col-md-3 col-sm-5">
                                 <h3 class="column-title">Company working hours</h3>
                                 <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
                                 <div class="footer-description">
@@ -554,25 +542,27 @@
                         </div>
                     </div>
                     <div class="footer-bottom-navigation">
-                        <div class="cell-view">
-                            <div class="footer-links">
-                                <a href="#">Site Map</a>
-                                <a href="#">Search</a>
-                                <a href="#">Terms</a>
-                                <a href="#">Advanced Search</a>
-                                <a href="#">Orders and Returns</a>
-                                <a href="#">Contact Us</a>
+                        <div class="footer-bottom-navigation">
+                            <div class="cell-view">
+                                <div class="footer-links">
+                                    <a href="#">Site Map</a>
+                                    <a href="#">Search</a>
+                                    <a href="#">Terms</a>
+                                    <a href="#">Advanced Search</a>
+                                    <a href="#">Orders and Returns</a>
+                                    <a href="#">Contact Us</a>
+                                </div>
+                                <div class="copyright">Created with by <a href="#">8theme</a>. All right reserved</div>
                             </div>
-                            <div class="copyright">Created with by <a href="#">8theme</a>. All right reserved</div>
-                        </div>
-                        <div class="cell-view">
-                            <div class="payment-methods">
-                                <a href="#"><img src="img/payment-method-1.png" alt="" /></a>
-                                <a href="#"><img src="img/payment-method-2.png" alt="" /></a>
-                                <a href="#"><img src="img/payment-method-3.png" alt="" /></a>
-                                <a href="#"><img src="img/payment-method-4.png" alt="" /></a>
-                                <a href="#"><img src="img/payment-method-5.png" alt="" /></a>
-                                <a href="#"><img src="img/payment-method-6.png" alt="" /></a>
+                            <div class="cell-view">
+                                <div class="payment-methods">
+                                    <a href="#"><img src="/img/payment-method-1.png" alt="" /></a>
+                                    <a href="#"><img src="/img/payment-method-2.png" alt="" /></a>
+                                    <a href="#"><img src="/img/payment-method-3.png" alt="" /></a>
+                                    <a href="#"><img src="/img/payment-method-4.png" alt="" /></a>
+                                    <a href="#"><img src="/img/payment-method-5.png" alt="" /></a>
+                                    <a href="#"><img src="/img/payment-method-6.png" alt="" /></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -581,174 +571,14 @@
         </div>
 
     </div>
-    <div class="clear"></div>
 
 </div>
 
-<div class="search-box popup">
-    <form>
-        <div class="search-button">
-            <i class="fa fa-search"></i>
-            <input type="submit" />
-        </div>
-        <div class="search-drop-down">
-            <div class="title"><span>All categories</span><i class="fa fa-angle-down"></i></div>
-            <div class="list">
-                <div class="overflow">
-                    <div class="category-entry">Category 1</div>
-                    <div class="category-entry">Category 2</div>
-                    <div class="category-entry">Category 2</div>
-                    <div class="category-entry">Category 4</div>
-                    <div class="category-entry">Category 5</div>
-                    <div class="category-entry">Lorem</div>
-                    <div class="category-entry">Ipsum</div>
-                    <div class="category-entry">Dollor</div>
-                    <div class="category-entry">Sit Amet</div>
-                </div>
-            </div>
-        </div>
-        <div class="search-field">
-            <input type="text" value="" placeholder="Search for product" />
-        </div>
-    </form>
-</div>
-<div id="product-popup" class="overlay-popup">
-    <div class="overflow">
-        <div class="table-view">
-            <div class="cell-view">
-                <div class="close-layer"></div>
-                <div class="popup-container">
 
-                    <div class="row">
-                        <div class="col-sm-6 information-entry">
-                            <div class="product-preview-box">
-                                <div class="swiper-container product-preview-swiper" data-autoplay="0" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="product-zoom-image">
-                                                <img src="img/product-main-1.jpg" alt="" data-zoom="img/product-main-1-zoom.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="product-zoom-image">
-                                                <img src="img/product-main-2.jpg" alt="" data-zoom="img/product-main-2-zoom.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="product-zoom-image">
-                                                <img src="img/product-main-3.jpg" alt="" data-zoom="img/product-main-3-zoom.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="product-zoom-image">
-                                                <img src="img/product-main-4.jpg" alt="" data-zoom="img/product-main-4-zoom.jpg" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pagination"></div>
-                                    <div class="product-zoom-container">
-                                        <div class="move-box">
-                                            <img class="default-image" src="img/product-main-1.jpg" alt="" />
-                                            <img class="zoomed-image" src="img/product-main-1-zoom.jpg" alt="" />
-                                        </div>
-                                        <div class="zoom-area"></div>
-                                    </div>
-                                </div>
-                                <div class="swiper-hidden-edges">
-                                    <div class="swiper-container product-thumbnails-swiper" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-int-slides="3" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide selected">
-                                                <div class="paddings-container">
-                                                    <img src="img/product-main-1.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="paddings-container">
-                                                    <img src="img/product-main-2.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="paddings-container">
-                                                    <img src="img/product-main-3.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="paddings-container">
-                                                    <img src="img/product-main-4.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 information-entry">
-                            <div class="product-detail-box">
-                                <h1 class="product-title">T-shirt Basic Stampata</h1>
-                                <h3 class="product-subtitle">Loremous Clothing</h3>
-                                <div class="rating-box">
-                                    <div class="star"><i class="fa fa-star"></i></div>
-                                    <div class="star"><i class="fa fa-star"></i></div>
-                                    <div class="star"><i class="fa fa-star"></i></div>
-                                    <div class="star"><i class="fa fa-star-o"></i></div>
-                                    <div class="star"><i class="fa fa-star-o"></i></div>
-                                    <div class="rating-number">25 Reviews</div>
-                                </div>
-                                <div class="product-description detail-info-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur.</div>
-                                <div class="price detail-info-entry">
-                                    <div class="prev">$90,00</div>
-                                    <div class="current">$70,00</div>
-                                </div>
-                                <div class="size-selector detail-info-entry">
-                                    <div class="detail-info-entry-title">Size</div>
-                                    <div class="entry active">xs</div>
-                                    <div class="entry">s</div>
-                                    <div class="entry">m</div>
-                                    <div class="entry">l</div>
-                                    <div class="entry">xl</div>
-                                    <div class="spacer"></div>
-                                </div>
-                                <div class="color-selector detail-info-entry">
-                                    <div class="detail-info-entry-title">Color</div>
-                                    <div class="entry active" style="background-color: #d23118;">&nbsp;</div>
-                                    <div class="entry" style="background-color: #2a84c9;">&nbsp;</div>
-                                    <div class="entry" style="background-color: #000;">&nbsp;</div>
-                                    <div class="entry" style="background-color: #d1d1d1;">&nbsp;</div>
-                                    <div class="spacer"></div>
-                                </div>
-                                <div class="quantity-selector detail-info-entry">
-                                    <div class="detail-info-entry-title">Quantity</div>
-                                    <div class="entry number-minus">&nbsp;</div>
-                                    <div class="entry number">10</div>
-                                    <div class="entry number-plus">&nbsp;</div>
-                                </div>
-                                <div class="detail-info-entry">
-                                    <a class="button style-10">Add to cart</a>
-                                    <a class="button style-11"><i class="fa fa-heart"></i> Add to Wishlist</a>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="tags-selector detail-info-entry">
-                                    <div class="detail-info-entry-title">Tags:</div>
-                                    <a href="#">bootstrap</a>/
-                                    <a href="#">collections</a>/
-                                    <a href="#">color/</a>
-                                    <a href="#">responsive</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="close-popup"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="cart-box popup">
     <div class="popup-container">
         <div class="cart-entry">
-            <a class="image"><img src="img/product-menu-1.jpg" alt="" /></a>
+            <a class="image"><img src="/img/product-menu-1.jpg" alt="" /></a>
             <div class="content">
                 <a class="title" href="#">Pullover Batwing Sleeve Zigzag</a>
                 <div class="quantity">Quantity: 4</div>
@@ -757,7 +587,7 @@
             <div class="button-x"><i class="fa fa-close"></i></div>
         </div>
         <div class="cart-entry">
-            <a class="image"><img src="img/product-menu-1_.jpg" alt="" /></a>
+            <a class="image"><img src="/img/product-menu-1_.jpg" alt="" /></a>
             <div class="content">
                 <a class="title" href="#">Pullover Batwing Sleeve Zigzag</a>
                 <div class="quantity">Quantity: 4</div>
@@ -783,12 +613,12 @@
     </div>
 </div>
 
-<script src="js/jquery-2.1.3.min.js"></script>
-<script src="js/idangerous.swiper.min.js"></script>
-<script src="js/global.js"></script>
+<script src="/js/jquery-2.1.3.min.js"></script>
+<script src="/js/idangerous.swiper.min.js"></script>
+<script src="/js/global.js"></script>
 
 <!-- custom scrollbar -->
-<script src="js/jquery.mousewheel.js"></script>
-<script src="js/jquery.jscrollpane.min.js"></script>
+<script src="/js/jquery.mousewheel.js"></script>
+<script src="/js/jquery.jscrollpane.min.js"></script>
 </body>
 </html>

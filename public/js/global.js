@@ -243,8 +243,29 @@ $(function() {
 		}
 	});
 
+	// drop-hover
+	$('.drop-hover').on('mouseover', function(){
+		if(!_isresponsive){
+			$(this).find('.submenu').stop().fadeIn(300);
+		}
+	});
+
+	$('.drop-hover').on('mouseleave', function(){
+		if(!_isresponsive){
+			$(this).find('.submenu').stop().fadeOut(300);
+		}
+	});
+
 	//responsive menu
 	$('nav li .fa').on('click', function(){
+		if(_isresponsive){
+			$(this).next('.submenu').slideToggle();
+			$(this).parent().toggleClass('opened');
+		}
+	});
+
+	// drop hover
+	$('.drop-hover .fa').on('click', function(){
 		if(_isresponsive){
 			$(this).next('.submenu').slideToggle();
 			$(this).parent().toggleClass('opened');

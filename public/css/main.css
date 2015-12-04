@@ -1,0 +1,114 @@
+/*** catalizator section list **/
+.catalizator-section {
+	padding: 13px 0;
+}
+.catalizator-section .title {
+	font-size: 14px;
+	line-height: 40px;
+	font-weight: bold;
+	background-color: #0f51a3;
+	text-align: right;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 0 42px;
+}
+.catalizator-section .row {
+	padding: 27px 15px;
+}
+
+.catalizator-section .row > div {
+	padding: 0;
+}
+
+.catalizator-section .row .wrap-icon{
+	border: 1px solid #c4c4c4;
+	height: 61px;
+	display: block;
+	padding: 10px;
+}
+.catalizator-section .row .wrap-icon:hover {
+	border: 1px solid #e8b61f
+}
+.catalizator-section .row .wrap-icon i {
+	float: left;
+}
+.catalizator-section .row .wrap-icon .section-name {
+	float: right;
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: bold;
+	color: #000;
+	width: 68%;
+	display: block;
+}
+
+/*Phones (<768px)*/
+@media (max-width: 767px) {
+	.catalizator-section .title {
+		text-align: left;		
+	}
+}
+
+@media (max-width: 390px) {
+	.catalizator-section .title {
+		font-size: 12px;
+		line-height: 32px;
+	}
+	.catalizator-section .row .wrap-icon .section-name {
+		display: none;
+	}
+	.catalizator-section .row .wrap-icon i {
+		margin: 0 auto;
+		float: none;
+	}
+}
+
+.catalizator-section .row .wrap-icon .iconsection-car+span{
+	padding-left: 10px;
+}
+
+/** section icon **/
+i[class^="iconsection-"], i[class*=" iconsection-"] {
+    background-image: url("../img/section-sprite.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 47px;
+    height: 37px;
+}
+
+.iconsection-dress		{ background-position:		0 0;}
+.iconsection-clock 		{ background-position: 	-50px 0;}
+.iconsection-child 		{ background-position: -100px 0;}
+.iconsection-sofa 		{ background-position: -150px 0;}
+.iconsection-car 		{ background-position: -200px 0;}
+.iconsection-bag 		{ background-position: -250px 0;}
+.iconsection-computer	{ background-position: -300px 0;}
+.iconsection-ring 		{ background-position: -350px 0;}
+.iconsection-sound 		{ background-position: -400px 0;}
+.iconsection-phone 		{ background-position: -450px 0;}
+.iconsection-short 		{ background-position: -500px 0;}
+.iconsection-parfum 	{ background-position: -550px 0;}
+.iconsection-tractor 	{ background-position: -600px 0;}
+.iconsection-chemistry 	{ background-position: -650px 0;}
+.iconsection-book 		{ background-position: -700px 0;}
+.iconsection-cook 		{ background-position: -750px 0;}
+.iconsection-fish 		{ background-position: -800px 0;}
+.iconsection-apple		{ background-position: -850px 0;}
+.iconsection-other 		{ background-position: -900px 0;}
+
+/** drop hover */
+.drop-hover {
+	position: relative;
+}
+.drop-hover.header-functionality-entry *{
+	color: #747474;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+.drop-hover .submenu {
+	background-color: #fff;
+	z-index: 2;
+	font-size: initial;
+}
