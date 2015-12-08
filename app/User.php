@@ -61,4 +61,12 @@ class User extends Model implements AuthenticatableContract,
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    /*
+     * Поставщики
+     */
+    public function suppliers()
+    {
+        return $this->hasMany('App\Models\Supplier');
+    }
 }

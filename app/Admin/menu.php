@@ -12,6 +12,7 @@ if (AuthUser::can('infopage_admin')) {
  * может редактировать только админ
  */
 if (AuthUser::isAdmin()){
-    Admin::menu('App\Model\Role')->icon('fa-info-circle')->label('Роли');
-    Admin::menu('App\Model\Ability')->icon('fa-info-circle')->label('Возможности');
+    Admin::menu('App\Model\Supplier')->icon('fa-users')->label('Поставщики');
+    Admin::menu('App\Model\Role')->icon('fa-male')->label('Роли');
+    Admin::menu('App\Model\Ability')->icon('fa-unlock')->label('Возможности');
 }

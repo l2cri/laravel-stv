@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ley
+ * Date: 08.12.15
+ * Time: 16:51
+ */
+
+if (AuthUser::isAdmin()) {
+    Admin::model('App\Models\Supplier')
+        ->title('Поставщики')
+        ->display(function ()
+        {
+            $display = AdminDisplay::datatables();
+            $display->order([[0, 'desc']]);
+            $display->columns([
+                Column::string('id')->label('ID'),
+                Column::string('name')->label('Название'),
+            ]);
+            return $display;
+        })->createAndEdit(function ()
+        {
+            $form = AdminForm::form();
+            $form->items([
+
+                // TODO: на будущее переделать на поиск по фио автокомплитом и выбор айдишника - как в битриксе
+                FormItem::select('user_id', 'Пользователь')->model('App\User')->display('name'),
+                FormItem::image('logo', 'Логотип'),
+                FormItem::text('color', 'Цвет шаблона'),
+                FormItem::text('name', 'Название'),
+                FormItem::ckeditor('description', 'Описание'),
+                FormItem::ckeditor('conditions', 'Оплата и Доставка'),
+                FormItem::ckeditor('responsibility', 'Гарантии'),
+                FormItem::text('whosale_order', 'Оптовый заказ от (руб)'),
+                FormItem::text('whosale_quantity', 'Кол-во товара для оптовой цены'),
+
+            ]);
+            return $form;
+        });
+}
