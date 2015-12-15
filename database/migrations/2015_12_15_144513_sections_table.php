@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SectionsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        //Категории в каталоге, отношение многи ко многим и таблицу-пивот добавим позже
+
+        Schema::create('sections', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable(); // если создано из админки, то user_id не нужен
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('parent_id')->nullable();
+            $table->string('name');
+            $table->string('code');
+            $table->text('description');
+            $table->string('icon');
+            $table->boolean('active')->default(true);
+            $table->boolean('moderated')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('sections');
+    }
+}

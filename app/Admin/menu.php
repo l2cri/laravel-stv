@@ -5,7 +5,11 @@ Admin::menu()->url('users')->label("User's list")->icon('fa-user');
 Admin::menu()->url('examples')->label("Examples db list")->icon('fa-th-list');
 
 if (AuthUser::can('infopage_admin')) {
-    Admin::menu('App\Model\Infopage')->icon('fa-info-circle')->label('Информация');
+    Admin::menu('App\Models\Infopage')->icon('fa-info-circle')->label('Информация');
+}
+
+if (AuthUser::can('section_admin')) {
+    Admin::menu('App\Model\Section')->icon('fa-folder')->label('Категории');
 }
 
 /*
