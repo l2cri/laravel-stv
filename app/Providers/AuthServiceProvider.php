@@ -13,9 +13,9 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-    ];
+//    protected $policies = [
+//        'App\Model' => 'App\Policies\ModelPolicy',
+//    ];
 
     public function register()
     {
@@ -32,8 +32,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate)
     {
-        parent::registerPolicies($gate);
+        $this->registerPolicies($gate);
 
-        //
+        $actions = allActions();
+
+        foreach ($actions as $action){
+            $gate->define($action, function ($user) use ($action) {
+                return $this->app['auth.user']->can($action);
+            });
+        }
     }
 }

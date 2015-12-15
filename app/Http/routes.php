@@ -38,11 +38,11 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 /*
- * Тестирование ЛК
+ * Панель
  */
 
-Route::get('/lk', function () {
-    echo "закрытая страница";
+Route::get('/panel', function () {
+    return view('panel.index');
 })->middleware(['auth']);
 
 /*
