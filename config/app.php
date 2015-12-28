@@ -145,6 +145,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InfopageServiceProvider::class,
+        App\Providers\SectionServiceProvider::class,
+
+        App\Services\Form\FormServiceProvider::class,
 
         /*
          * Sleeping-Owl Admin

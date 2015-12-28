@@ -20,7 +20,7 @@ class SectionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('parent_id')->nullable();
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->nullable(); // при создании категории из панели поставщика код не нужен
             $table->text('description');
             $table->string('icon');
             $table->boolean('active')->default(true);
