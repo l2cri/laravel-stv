@@ -44,4 +44,7 @@ class EloquentSection implements SectionInterface
     public function getTree($id) {
 
     }
+
+    public function byUser($userId){}
+    public function bySupplier($supplierId){}
 }

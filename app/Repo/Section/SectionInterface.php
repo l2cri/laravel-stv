@@ -27,4 +27,17 @@ interface SectionInterface
      * @return mixed Массив с деревом потомков
      */
     public function getTree($id);
+
+    /**
+     * @param $supplierId - айди поставщика
+     * @return mixed Массив категорий, в которых есть товары данного поставщика
+     * Для использования в панели Поставщика, в его Магазине
+     */
+    public function bySupplier($supplierId);
+
+    /**
+     * @param $userId - ID пользователя
+     * @return mixed - Массив категорий, добавленных этим пользователем. Для панели Поставщика
+     */
+    public function byUser($userId);
 }
