@@ -10,6 +10,7 @@ namespace App\Services\Form\Section;
 
 use App\Services\Validation\ValidableInterface;
 use App\Repo\Section\SectionInterface;
+use Auth;
 
 class SectionForm
 {
@@ -26,9 +27,7 @@ class SectionForm
 
         if ( ! $this->valid($input) ) return false;
 
-        var_dump(Auth::user()); die();
-
-        // TODO: откуда брать user_id и где его правильно добавить в массив данных
+        $input['user_id'] = (int) Auth::user()->id;
 
         return $this->section->create($input);
     }

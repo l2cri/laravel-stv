@@ -41,9 +41,14 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
  * Панель
  */
 
-Route::get('/panel', function () {
-    return view('panel.index');
-})->middleware(['auth']);
+Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
+    Route::get('/panel', function () {
+        return view('panel.index');
+    });
+
+    Route::get('/panel/supplier/sections', 'SectionController@index')->name('sections');
+    Route::post('/panel/supplier/sections/add', 'SectionController@store');
+});
 
 /*
  * Контент

@@ -1,4 +1,5 @@
-<a href="#">Моя компания</a>
-<a href="#">Категории</a>
-<a href="#">Товары</a>
-<a href="#">Заказы</a>
+<li class="menu-sub-title block-title">Поставщик</li>
+<li><a href="#">Моя компания</a></li>
+<li><a href="/panel/supplier/sections">Категории</a></li>
+<li><a href="#">Товары</a></li>
+<li><a href="#">Заказы</a></li>

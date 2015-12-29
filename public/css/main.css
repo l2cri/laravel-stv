@@ -112,3 +112,20 @@ i[class^="iconsection-"], i[class*=" iconsection-"] {
 	z-index: 2;
 	font-size: initial;
 }
+
+/* панель */
+/*.categories-list ul li.menu-sub-title {*/
+	/*background-color: #0f51a3;*/
+	/*border: 1px solid #fff;*/
+	/*color: #fff;*/
+	/*padding: 10px 0;*/
+	/*text-align: center;*/
+/*}*/
+
+.categories-list ul li.menu-sub-title {
+	border: 1px solid #fff;
+	color: #0f51a3;
+	margin-bottom: 5px;
+}
+
+select.simple-field option {padding: 10px 5px}

@@ -21,8 +21,8 @@ class SectionsTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->string('name');
             $table->string('code')->nullable(); // при создании категории из панели поставщика код не нужен
-            $table->text('description');
-            $table->string('icon');
+            $table->text('description')->nullable();
+            $table->string('icon')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('moderated')->default(false);
             $table->timestamps();

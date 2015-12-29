@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    protected $fillable = ['parent_id', 'name', 'description', 'icon', 'active', 'moderated'];
+    protected $fillable = ['parent_id', 'name', 'description', 'icon', 'active', 'moderated', 'user_id'];
 
     public function parent(){
         return $this->belongsTo('\App\Models\Section', 'parent_id');

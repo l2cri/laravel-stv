@@ -27,7 +27,6 @@ class EloquentSection implements SectionInterface
             'user_id' => $data['user_id'],
             'parent_id' => $data['parent_id'],
             'name' => $data['name'],
-            'description' => $data['description']
         ));
 
         if (!$section) return false;

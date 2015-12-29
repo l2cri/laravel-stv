@@ -15,7 +15,7 @@
     <link href="/css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
     <link rel="shortcut icon" href="/img/favicon-2.ico" />
-    <title>Mango - Everything</title>
+    <title>Маркетплейс</title>
 </head>
 <body class="style-2">
 <!-- LOADER -->
