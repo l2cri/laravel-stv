@@ -113,14 +113,7 @@ i[class^="iconsection-"], i[class*=" iconsection-"] {
 	font-size: initial;
 }
 
-/* панель */
-/*.categories-list ul li.menu-sub-title {*/
-	/*background-color: #0f51a3;*/
-	/*border: 1px solid #fff;*/
-	/*color: #fff;*/
-	/*padding: 10px 0;*/
-	/*text-align: center;*/
-/*}*/
+/*** панель ***/
 
 .categories-list ul li.menu-sub-title {
 	border: 1px solid #fff;
@@ -129,3 +122,6 @@ i[class^="iconsection-"], i[class*=" iconsection-"] {
 }
 
 select.simple-field option {padding: 10px 5px}
+
+.sections-panel .cart-table td{padding: 20px 15px; border-bottom: none}
+.sections-panel.information-blocks, .sections-panel .information-blocks {margin-bottom: 50px}

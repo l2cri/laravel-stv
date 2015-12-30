@@ -44,6 +44,8 @@ class EloquentSection implements SectionInterface
 
     }
 
-    public function byUser($userId){}
+    public function byUser($userId){
+        return $this->section->where('user_id', $userId)->get();
+    }
     public function bySupplier($supplierId){}
 }

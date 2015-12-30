@@ -17,4 +17,9 @@ class Section extends Model
     public function parent(){
         return $this->belongsTo('\App\Models\Section', 'parent_id');
     }
+
+    public function getUrlAttribute(){
+        $param = (!empty($this->code)) ? $this->code : $this->id;
+        return '/catalog/'.$param;
+    }
 }

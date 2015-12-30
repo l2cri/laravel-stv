@@ -2,7 +2,7 @@
 
 @section('panel_content')
 
-    <div class="table-responsive">
+    <div class="table-responsive information-blocks sections-panel">
 
         <form action="/panel/supplier/sections/add" method="post">
             {{ csrf_field() }}
@@ -31,7 +31,19 @@
         </form>
     </div>
 
-вывести добавленные категории
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="block-title">Мои категории</h3>
+
+            @foreach ($addedSections as $section)
+                <div class="row">
+                    <div class="col-md-6"><a href="{{ url($section->url) }}">{{$section->name}}</a></div>
+                    <div class="col-md-6"><a href="{{ route('panel::sections.delete', [$section->id]) }}"><i class="fa fa-times"></i></a></div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
 
 вывести категории, где есть товар этого поставщика
 @endsection

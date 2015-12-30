@@ -13,6 +13,7 @@ use App\Repo\Section\SectionInterface;
 use App\Services\Form\Section\SectionForm;
 use Redirect;
 use Input;
+use Auth;
 
 class SectionController extends Controller
 {
@@ -28,7 +29,8 @@ class SectionController extends Controller
      * GET panel/supplier/sections/ - здесь будут категории и возможность создать новую
      */
     public function index(){
-        return view('panel.supplier.sections');
+        $addedSections = $this->section->byUser(Auth::user()->id);
+        return view('panel.supplier.sections', compact('addedSections'));
     }
 
     /*
