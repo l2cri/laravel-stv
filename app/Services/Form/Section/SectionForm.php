@@ -25,6 +25,9 @@ class SectionForm
 
     public function save(array $input) {
 
+        // null можно добавлять в parent_id, пустое значение выдаст ошибку в валидаторе
+        $input['parent_id'] = (!empty($input['parent_id'])) ? $input['parent_id'] : null;
+
         if ( ! $this->valid($input) ) return false;
 
         $input['user_id'] = (int) Auth::user()->id;

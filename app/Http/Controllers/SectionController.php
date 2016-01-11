@@ -37,6 +37,7 @@ class SectionController extends Controller
      * POST panel/supplier/section/store - создать новую категорию
      */
     public function store(){
+
         if ($this->sectionForm->save(Input::all()) ){
             return Redirect::to( route('panel::sections') )->with('status', 'success');
         } else {
@@ -45,6 +46,11 @@ class SectionController extends Controller
                     ->with('status', 'error');
         }
 
+    }
+
+    public function delete($id){
+        $this->section->delete($id);
+        Redirect::back();
     }
 
     /*

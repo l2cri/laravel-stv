@@ -9,6 +9,7 @@
 namespace App\Repo\Section;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class EloquentSection implements SectionInterface
 {
@@ -22,7 +23,6 @@ class EloquentSection implements SectionInterface
     public function byCode($code){}
 
     public function create(array $data){
-
         $section = $this->section->create(array(
             'user_id' => $data['user_id'],
             'parent_id' => $data['parent_id'],
@@ -33,8 +33,17 @@ class EloquentSection implements SectionInterface
         return true;
     }
 
-    // TODO: учесть при удалении что user_id категории == user_id пользователя
-    public function delete($id){}
+    public function delete($id){
+
+        $section =  $this->section->find($id);
+
+        // проверяем, что она не отмодерирована
+        if ($section->moderated) return;
+
+        // проверяем, что категория создана пользователем
+        if ( Auth::user()->id == $section->user_id )
+            $this->section->destroy($id);
+    }
 
     public function getPath($id) {
 

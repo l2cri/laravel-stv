@@ -125,3 +125,5 @@ select.simple-field option {padding: 10px 5px}
 
 .sections-panel .cart-table td{padding: 20px 15px; border-bottom: none}
 .sections-panel.information-blocks, .sections-panel .information-blocks {margin-bottom: 50px}
+
+.padding-bottom-10 {padding-bottom: 10px}

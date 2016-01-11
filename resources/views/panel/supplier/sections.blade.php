@@ -16,7 +16,7 @@
                 <td>
                     <label>Родительская</label>
                     <select class="simple-field" name="parent_id">
-                        <option></option>
+                        <option value=0>&nbsp;</option>
                         <option>родительская</option>
                     </select>
                 </td>
@@ -31,19 +31,32 @@
         </form>
     </div>
 
-    <div class="row">
+    <div class="row information-blocks sections-panel">
         <div class="col-md-12">
-            <h3 class="block-title">Мои категории</h3>
+            <h3 class="block-title">Мои категории (добавленные мной)</h3>
 
             @foreach ($addedSections as $section)
-                <div class="row">
+                <div class="row padding-bottom-10">
                     <div class="col-md-6"><a href="{{ url($section->url) }}">{{$section->name}}</a></div>
-                    <div class="col-md-6"><a href="{{ route('panel::sections.delete', [$section->id]) }}"><i class="fa fa-times"></i></a></div>
+                    <div class="col-md-6">
+                        @if (!$section->moderated)
+                            <a href="{{ route('panel::sections.delete', [$section->id]) }}"><i class="fa fa-times"></i></a>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         </div>
     </div>
 
+    <div class="row information-blocks sections-panel">
+        <div class="col-md-12">
+            <h3 class="block-title">Мой магазин</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    вывести категории, где есть товар этого поставщика
+                </div>
+            </div>
+        </div>
+    </div>
 
-вывести категории, где есть товар этого поставщика
 @endsection
