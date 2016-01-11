@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "sleeping-owl/admin": "dev-development",
-        "sleeping-owl/admin-lte-template": "dev-master"
+        "sleeping-owl/admin-lte-template": "dev-master",
+        "kalnoy/nestedset": "3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

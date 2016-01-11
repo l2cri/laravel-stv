@@ -49,7 +49,7 @@ class EloquentSection implements SectionInterface
 
     }
 
-    public function getTree($id) {
+    public function getTree($id = null) {
 
     }
 

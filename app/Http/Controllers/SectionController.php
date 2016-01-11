@@ -30,7 +30,8 @@ class SectionController extends Controller
      */
     public function index(){
         $addedSections = $this->section->byUser(Auth::user()->id);
-        return view('panel.supplier.sections', compact('addedSections'));
+        $sectionTree = $this->section->getTree();
+        return view('panel.supplier.sections', compact('addedSections', 'sectionTree'));
     }
 
     /*
@@ -48,12 +49,11 @@ class SectionController extends Controller
 
     }
 
+    /*
+     * GET panel/supplier/section/delete/{id} - удаление категории, которая еще не промодерирована
+     */
     public function delete($id){
         $this->section->delete($id);
         Redirect::back();
     }
-
-    /*
-     * GET panel/supplier/section/delete/{id} - удаление категории, которая еще не промодерирована
-     */
 }

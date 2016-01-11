@@ -23,10 +23,10 @@ interface SectionInterface
     public function getPath($id);
 
     /**
-     * @param $id
+     * @param $id, если $id пусто, то возвращаем дерево целиком
      * @return mixed Массив с деревом потомков
      */
-    public function getTree($id);
+    public function getTree($id = null);
 
     /**
      * @param $supplierId - айди поставщика
