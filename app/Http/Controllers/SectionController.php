@@ -54,6 +54,6 @@ class SectionController extends Controller
      */
     public function delete($id){
         $this->section->delete($id);
-        Redirect::back();
+        return Redirect::back();
     }
 }

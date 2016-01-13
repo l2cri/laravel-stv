@@ -18,3 +18,18 @@ function allActions(){
     }
     return $actions;
 }
+
+/*
+ * возвращает символ для html деревьев
+ */
+
+function treeSymbol($q, $sign){
+
+    if (empty($q)) return '';
+
+    $str = '';
+    for($i = 0; $i < $q; $i++){
+        $str .= $sign;
+    }
+    return $str;
+}

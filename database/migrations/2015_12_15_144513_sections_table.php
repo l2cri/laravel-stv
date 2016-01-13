@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Kalnoy\Nestedset\NestedSet;
 
 class SectionsTable extends Migration
 {
@@ -18,7 +19,7 @@ class SectionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable(); // если создано из админки, то user_id не нужен
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('parent_id')->nullable();
+            //$table->integer('parent_id')->nullable();
             $table->string('name');
             $table->string('code')->nullable(); // при создании категории из панели поставщика код не нужен
             $table->text('description')->nullable();
@@ -26,6 +27,9 @@ class SectionsTable extends Migration
             $table->boolean('active')->default(true);
             $table->boolean('moderated')->default(false);
             $table->timestamps();
+
+
+            NestedSet::columns($table);
         });
     }
 

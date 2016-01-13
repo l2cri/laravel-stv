@@ -8,14 +8,14 @@
 
 namespace App\Repo\Section;
 
-use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Kalnoy\Nestedset\Node;
 
 class EloquentSection implements SectionInterface
 {
     protected $section;
 
-    public function __construct(Model $section) {
+    public function __construct(Node $section) {
         $this->section = $section;
     }
 
@@ -23,13 +23,20 @@ class EloquentSection implements SectionInterface
     public function byCode($code){}
 
     public function create(array $data){
+
         $section = $this->section->create(array(
             'user_id' => $data['user_id'],
-            'parent_id' => $data['parent_id'],
+            //'parent_id' => $data['parent_id'],
             'name' => $data['name'],
         ));
 
         if (!$section) return false;
+
+        if (!empty($data['parent_id'])) {
+            $parentNode = $this->section->find($data['parent_id']);
+            $parentNode->appendNode($section);
+        }
+
         return true;
     }
 
@@ -42,7 +49,7 @@ class EloquentSection implements SectionInterface
 
         // проверяем, что категория создана пользователем
         if ( Auth::user()->id == $section->user_id )
-            $this->section->destroy($id);
+            $section->delete(); // из Kalnoy\Nestedset\Node чтобы пересчитались тл др
     }
 
     public function getPath($id) {
@@ -50,11 +57,14 @@ class EloquentSection implements SectionInterface
     }
 
     public function getTree($id = null) {
+        $results = $this->section->withDepth()->defaultOrder()->get();
+        $results->linkNodes();
 
+        return $results;
     }
 
     public function byUser($userId){
-        return $this->section->where('user_id', $userId)->get();
+        return $this->section->where('user_id', $userId)->withDepth()->defaultOrder()->get();
     }
     public function bySupplier($supplierId){}
 }

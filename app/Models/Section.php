@@ -8,15 +8,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\Node;
 
-class Section extends Model
+class Section extends Node
 {
-    protected $fillable = ['parent_id', 'name', 'description', 'icon', 'active', 'moderated', 'user_id'];
+    protected $table = 'sections';
+    protected $fillable = ['name', 'description', 'icon', 'active', 'moderated', 'user_id'];
 
-    public function parent(){
-        return $this->belongsTo('\App\Models\Section', 'parent_id');
-    }
+//    public function parent(){
+//        return $this->belongsTo('\App\Models\Section', 'parent_id');
+//    }
 
     public function getUrlAttribute(){
         $param = (!empty($this->code)) ? $this->code : $this->id;
