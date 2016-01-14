@@ -55,3 +55,9 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
  * Контент
  */
 Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-9\-\_]+');
+
+/*
+ * Каталог
+ */
+
+Route::get('catalog/{code}', 'CatalogController@byCode')->where('code', '[A-Za-z0-9\-\_]+');
