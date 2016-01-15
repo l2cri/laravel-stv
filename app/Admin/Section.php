@@ -9,7 +9,7 @@
 if (AuthUser::can('section_admin')) {
 
     Admin::model('App\Models\Section')
-        ->title('Информационные страницы')
+        ->title('Категории')
         ->display(function ()
         {
             $display = AdminDisplay::datatables();

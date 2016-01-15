@@ -16,7 +16,6 @@
                 <td>
                     <label>Родительская</label>
                     <select class="simple-field" name="parent_id">
-                        <option value=0>&nbsp;</option>
                         @foreach($sectionTree as $section)
                             <option value={{ $section->id }}>
                                 {{ treeSymbol($section->depth*2, '&nbsp;') }}{{ $section->name }}
@@ -41,10 +40,11 @@
 
             @foreach ($addedSections as $section)
                 <div class="row padding-bottom-10">
-                    <div class="col-md-6"><a href="{{ url($section->url) }}">
-                            {{ treeSymbol($section->depth*2, '&nbsp;') }}{{$section->name}}
+                    <div class="col-md-8"><a href="{{ url($section->url) }}">
+                            {{ treeSymbol($section->depth*2, '&nbsp;') }}
+                            {{ $section->parent->name }} > {{$section->name}}
                         </a></div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         @if (!$section->moderated)
                             <a href="{{ route('panel::sections.delete', [$section->id]) }}"><i class="fa fa-times"></i></a>
                         @endif

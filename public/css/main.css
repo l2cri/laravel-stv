@@ -107,12 +107,6 @@ i[class^="iconsection-"], i[class*=" iconsection-"] {
     line-height: 15px;
 }
 
-.drop-hover .submenu {
-	background-color: #fff;
-	z-index: 2;
-	font-size: initial;
-}
-
 /*** панель ***/
 
 .categories-list ul li.menu-sub-title {
@@ -127,3 +121,8 @@ select.simple-field option {padding: 10px 5px}
 .sections-panel.information-blocks, .sections-panel .information-blocks {margin-bottom: 50px}
 
 .padding-bottom-10 {padding-bottom: 10px}
+
+#menusections {
+	max-width: 1310px;
+	padding: 50px 0;
+}

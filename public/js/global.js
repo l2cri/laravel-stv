@@ -598,4 +598,18 @@ $(function() {
     	$(this).closest('.simple-search-form').removeClass('active');
     });
 
+	// категории продуктов ховер
+	//desktop menu
+	$('.menu-drop-hover').on('mouseover', function () {
+		if (!_isresponsive) {
+			$('#menusections').stop().fadeIn(300);
+		}
+	});
+
+	$('.menu-drop-hover').on('mouseleave', function () {
+		if (!_isresponsive) {
+			$('#menusections').stop().fadeOut(300);
+		}
+	});
+
 });
