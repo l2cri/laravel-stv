@@ -57,7 +57,13 @@ class EloquentSection implements SectionInterface
     }
 
     public function getTree($id = null) {
-        $results = $this->section->withDepth()->defaultOrder()->get();
+
+        if (!empty($id)){
+            $results = $this->section->withDepth()->defaultOrder()->descendantsOf($id);
+        } else {
+            $results = $this->section->withDepth()->defaultOrder()->get();
+        }
+
         $results->linkNodes();
 
         return $results;

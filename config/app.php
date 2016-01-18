@@ -149,6 +149,8 @@ return [
 
         App\Services\Form\FormServiceProvider::class,
 
+        App\Providers\ComposerServiceProvider::class,
+
         /*
          * Sleeping-Owl Admin
          */
