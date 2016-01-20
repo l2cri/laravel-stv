@@ -46,9 +46,16 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
         return view('panel.index');
     });
 
+    // sections
+
     Route::get('/panel/supplier/sections', 'SectionController@index')->name('sections');
     Route::post('/panel/supplier/sections/add', 'SectionController@store');
     Route::get('/panel/supplier/sections/delete/{id}', 'SectionController@delete')->name('sections.delete');
+
+    // products
+
+    Route::get('/panel/supplier/products/add', 'ProductController@addform')->name('products.addform');
+    Route::post('/panel/supplier/products/add', 'ProductController@store')->name('products.store');
 });
 
 /*

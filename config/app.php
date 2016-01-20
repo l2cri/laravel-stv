@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\InfopageServiceProvider::class,
         App\Providers\SectionServiceProvider::class,
+        App\Providers\ProductServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 

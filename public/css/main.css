@@ -126,3 +126,10 @@ select.simple-field option {padding: 10px 5px}
 	max-width: 1310px;
 	padding: 50px 0;
 }
+
+.multiple-drop-down:after {
+	content: normal;}
+.multiple-drop-down, .multiple-drop-down.simple-field select {height: 175px; padding: 20px}
+
+.padding-top-30 {padding-top: 30px}
+.padding-right-40 {padding-right: 40px}

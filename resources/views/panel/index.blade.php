@@ -8,7 +8,7 @@
                 @include('errors')
                 @yield('panel_content')
             </div>
-            <div class="col-sm-3 col-sm-pull-9 blog-sidebar">
+            <div class="col-sm-3 col-sm-pull-9 blog-sidebar padding-right-40">
                 <div class="information-blocks">
                     <div class="categories-list account-links">
                         <ul>
