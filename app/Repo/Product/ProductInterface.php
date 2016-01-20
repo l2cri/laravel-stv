@@ -13,7 +13,7 @@ interface ProductInterface
 {
     public function byId($id);
     public function create(array $data);
-    public function update(array $data);
+    public function update(array $data, $id, $attribute="id");
     public function delete($id);
 
     public function bySupplier($supplierId);
