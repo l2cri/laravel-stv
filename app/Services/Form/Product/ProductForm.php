@@ -12,6 +12,7 @@ use App\Repo\Product\ProductInterface;
 use App\Services\Validation\ValidableInterface;
 use Auth;
 
+
 class ProductForm
 {
     protected $data;
@@ -25,16 +26,12 @@ class ProductForm
 
     public function save(array $input) {
 
-        var_dump($input); die();
-
-        // null можно добавлять в parent_id, пустое значение выдаст ошибку в валидаторе
-        $input['parent_id'] = (!empty($input['parent_id'])) ? $input['parent_id'] : null;
-
         if ( ! $this->valid($input) ) return false;
 
-        $input['user_id'] = (int) Auth::user()->id;
+        $input['regular_price'] = $input['price'];
+        $input['supplier_id'] = $this->getSupplierId();
 
-        return $this->section->create($input);
+        return $this->product->create($input);
     }
 
     public function errors() {

@@ -11,16 +11,21 @@ namespace App\Http\Controllers;
 
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
+use App\Services\Form\Product\ProductForm;
+use Input;
+use Redirect;
+use Auth;
 
 class ProductController extends Controller
 {
     protected $product;
     protected $section;
-    protected $productForm;
+    protected $form;
 
-    public function __construct(ProductInterface $product, SectionInterface $section){
+    public function __construct(ProductInterface $product, SectionInterface $section, ProductForm $form){
         $this->product = $product;
         $this->section = $section;
+        $this->form = $form;
     }
 
     /*
@@ -36,11 +41,11 @@ class ProductController extends Controller
      */
     public function store(){
 
-        if ($this->sectionForm->save(Input::all()) ){
+        if ($this->form->save( removeEmptyValues(Input::all()) ) ){
             return Redirect::to( route('panel::products') )->with('status', 'success');
         } else {
             return Redirect::to( route('panel::products.addform') )->withInput()
-                ->withErrors( $this->sectionForm->errors() )
+                ->withErrors( $this->form->errors() )
                 ->with('status', 'error');
         }
 

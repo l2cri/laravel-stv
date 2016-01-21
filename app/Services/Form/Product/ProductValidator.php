@@ -25,10 +25,6 @@ class ProductValidator extends AbstractLaravelValidator
         'whosale_quantity' => 'required_with:whosale_price|numeric',
         'preview' => 'string',
         'description' => 'string',
-
-        'parent_id' => 'exists:sections,id', // айди родительской категории должен быть в таблице sections
-        // обязательно поле - строка
-        'description' => 'string', // необязательное поле - текст
     );
 
     protected $messages = array(

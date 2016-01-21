@@ -33,3 +33,16 @@ function treeSymbol($q, $sign){
     }
     return $str;
 }
+
+/*
+ * почистить массив от пустых значений - для инпута
+ */
+
+function removeEmptyValues(array $array){
+
+    return array_filter($array, function($v, $k) {
+
+        if (is_array($v)) return count($v);
+        return strlen(trim($v));
+    }, ARRAY_FILTER_USE_BOTH);
+}

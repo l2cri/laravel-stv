@@ -29,18 +29,18 @@ class EloquentProduct implements ProductInterface
 
     // TODO: будет от формы зависеть как мы изменим массив $data
     public function create(array $data) {
-        return $this->model->create($data);
+        return $this->product->create($data);
     }
 
     public function update(array $data, $id, $attribute="id"){
-        return $this->model->where($attribute, '=', $id)->update($data);
+        return $this->product->where($attribute, '=', $id)->update($data);
     }
 
     public function delete($id){
 
         // TODO: удалять изображения
 
-        return $this->model->destroy($id);
+        return $this->product->destroy($id);
     }
 
     public function bySupplier($supplierId){
