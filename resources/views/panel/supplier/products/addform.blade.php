@@ -81,9 +81,9 @@
 
 
 
-                <label>Краткое описание <span>*</span></label>
+                <label>Краткое описание</label>
                 <textarea rows="2" class="simple-field" name="preview" style="height: 70px"></textarea>
-                <label>Полное описание <span>*</span></label>
+                <label>Полное описание</label>
                 <textarea class="simple-field" name="description"></textarea>
                 <div class="button style-10">Добавить<input type="submit" value=""></div>
             </div>
