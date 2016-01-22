@@ -10,13 +10,12 @@
     <div class="information-blocks">
         <div class="row">
             <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
+
                 <div class="page-selector">
                     <div class="pages-box hidden-xs">
-                        <a href="#" class="square-button active">1</a>
-                        <a href="#" class="square-button">2</a>
-                        <a href="#" class="square-button">3</a>
-                        <div class="divider">...</div>
-                        <a href="#" class="square-button"><i class="fa fa-angle-right"></i></a>
+
+                        @include('pagination.limit_links', ['paginator' => $products])
+
                     </div>
                     <div class="shop-grid-controls">
                         <div class="entry">
@@ -96,7 +95,7 @@
 
                 </div>
                 <div class="page-selector">
-                    <div class="description">Страницы: 1-3 of 16</div>
+                    <div class="description">Товары: 1-3 of 16</div>
                     <div class="pages-box">
                         <a href="#" class="square-button active">1</a>
                         <a href="#" class="square-button">2</a>
