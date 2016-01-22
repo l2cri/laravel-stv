@@ -15,6 +15,9 @@
     <link href="/css/ie9.css" rel="stylesheet" type="text/css" />
     <![endif]-->
     <link rel="shortcut icon" href="/img/favicon-2.ico" />
+
+    <script src="/js/jquery-2.1.3.min.js"></script>
+
     <title>Маркетплейс</title>
 </head>
 <body class="style-2">
@@ -469,7 +472,7 @@
     </div>
 </div>
 
-<script src="/js/jquery-2.1.3.min.js"></script>
+
 <script src="/js/idangerous.swiper.min.js"></script>
 <script src="/js/global.js"></script>
 

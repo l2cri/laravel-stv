@@ -5,7 +5,7 @@
 <div class="information-blocks">
     <h3 class="block-title main-heading">Добавить товар</h3>
 
-    <form method="post" action="{{ route('panel::products.store') }}">
+    <form method="post" action="{{ route('panel::products.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="row">
@@ -90,10 +90,22 @@
                 <textarea class="simple-field" name="description">
                     {{ Input::old('description') }}
                 </textarea>
+
+                <label>Фотографии</label>
+                <input type='file' name="photos[]" class="simple-field">
+
                 <div class="button style-10">Добавить<input type="submit" value=""></div>
             </div>
         </div>
     </form>
+
+    <script>
+        jQuery(function($) {
+            $('form').delegate('input[type=file]', 'change', function() {
+                $( "input[type=file]" ).last().after('<input type="file" name="photos[]" class="simple-field">');
+            });
+        });
+    </script>
 
 </div>
 

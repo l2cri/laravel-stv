@@ -135,3 +135,5 @@ select.simple-field option {padding: 10px 5px}
 .padding-right-40 {padding-right: 40px}
 
 .product-detail-box .price .whosale {letter-spacing: normal; font-size: 16px; color: #9c9c9c; font-weight: 400; vertical-align: middle; margin-right: 7px;}
+
+input[type="file"].simple-field {padding: 0px; border: none}

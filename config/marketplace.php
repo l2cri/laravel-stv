@@ -5,5 +5,8 @@ return [
 
     // id корневых категорий Промышленная и Потребительская
     'promSectionId' => 11,
-    'potrebSectionId' => 10
+    'potrebSectionId' => 10,
+
+    // товар
+    'productPhotoDir' => 'images/products'
 ];

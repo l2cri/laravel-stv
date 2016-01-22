@@ -15,6 +15,7 @@ use App\Services\Form\Product\ProductForm;
 use Input;
 use Redirect;
 use Auth;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -39,9 +40,14 @@ class ProductController extends Controller
     /*
      * POST panel/supplier/products/add - создать новую категорию
      */
-    public function store(){
+    public function store(Request $request){
 
-        if ($this->form->save( removeEmptyValues(Input::all()) ) ){
+        $input = removeEmptyValues($request->all());
+        if ($request->hasFile('photos')) {
+            $input['photos'] = $request->file('photos');
+        }
+
+        if ($this->form->save( $input ) ){
             return Redirect::to( route('panel::products') )->with('status', 'success');
         } else {
             return Redirect::to( route('panel::products.addform') )->withInput()

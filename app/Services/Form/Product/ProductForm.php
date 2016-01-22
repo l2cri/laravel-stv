@@ -11,6 +11,7 @@ namespace App\Services\Form\Product;
 use App\Repo\Product\ProductInterface;
 use App\Services\Validation\ValidableInterface;
 use Auth;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 class ProductForm
@@ -26,14 +27,43 @@ class ProductForm
 
     public function save(array $input) {
 
-        //var_dump($input); die();
-
         if ( ! $this->valid($input) ) return false;
 
         $input['regular_price'] = $input['price'];
         $input['supplier_id'] = $this->getSupplierId();
 
-        return $this->product->create($input)->sections()->attach($input['section_ids']);
+        $product = $this->product->create($input);
+        $product->sections()->attach($input['section_ids']);
+
+        if (array_key_exists('photos', $input)){
+
+            $files = $this->upload($input['photos']);
+            //  var_dump($files); die();
+            $product->photos()->createMany($files);
+        }
+
+        return $product;
+    }
+
+    // TODO: перенести функцию в хелпер какой-нибудь
+    protected function upload($photos){
+        $files = array();
+
+        foreach ($photos as $photo) {
+
+            if (is_null($photo)) continue;
+
+            $filename = md5(time() . $photo->getClientOriginalName()) . '.' . $photo->getClientOriginalExtension();
+            $path = config('marketplace.productPhotoDir');
+            $fullpath = public_path($path);
+            $photo->move($fullpath, $filename);
+            $value = $path . '/' . $filename;
+
+            $files[] = array(
+                'file' => $value
+            );
+        }
+        return $files;
     }
 
     public function errors() {

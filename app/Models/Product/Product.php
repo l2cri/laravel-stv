@@ -21,7 +21,7 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Section');
     }
 
-    public function images(){
+    public function photos(){
         return $this->hasMany('App\Models\Product\Photo');
     }
 
