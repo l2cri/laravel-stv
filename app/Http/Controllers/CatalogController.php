@@ -29,4 +29,9 @@ class CatalogController extends Controller
 
         return view('catalog.index', compact('products'));
     }
+
+    public function product($id){
+        $product = $this->product->byId($id);
+        return view('catalog.product', compact('product'));
+    }
 }

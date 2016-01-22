@@ -24,4 +24,9 @@ class Product extends Model
     public function images(){
         return $this->hasMany('App\Models\Product\Photo');
     }
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Models\Supplier');
+    }
 }
