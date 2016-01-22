@@ -9,9 +9,24 @@
 namespace App\Http\Controllers;
 
 
+use App\Repo\Product\ProductInterface;
+use App\Repo\Section\SectionInterface;
+
 class CatalogController extends Controller
 {
+    protected $product;
+    protected $section;
+
+    public function __construct(ProductInterface $product, SectionInterface $section){
+        $this->product = $product;
+        $this->section = $section;
+    }
+
     public function byCode($code){
-        return view('catalog.index');
+
+        $currentSection = $this->section->byCode($code);
+        $products = $this->product->bySection($currentSection->id);
+
+        return view('catalog.index', compact('products'));
     }
 }

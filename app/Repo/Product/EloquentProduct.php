@@ -60,7 +60,7 @@ class EloquentProduct implements ProductInterface
         // достаем товары которые есть в этих категориях, many to many relation
         $products = $this->product->whereHas('sections', function($q) use ($categories)
         {
-            $q->whereIn('category_id', $categories);
+            $q->whereIn('id', $categories);
         })->get();
 
         return $products;

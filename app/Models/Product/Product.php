@@ -15,7 +15,7 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = ['active', 'moderated', 'available', 'featured', 'name', 'articul', 'barcode', 'unit',
         'length', 'width', 'height', 'weight', 'volume', 'price', 'regular_price', 'action_price', 'whosale_price',
-        'whosale_quantity', 'preview', 'description', 'supplier_id'];
+        'whosale_quantity', 'preview', 'description', 'supplier_id', 'sections'];
 
     public function sections(){
         return $this->belongsToMany('App\Models\Section');

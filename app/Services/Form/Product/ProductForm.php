@@ -26,12 +26,14 @@ class ProductForm
 
     public function save(array $input) {
 
+        //var_dump($input); die();
+
         if ( ! $this->valid($input) ) return false;
 
         $input['regular_price'] = $input['price'];
         $input['supplier_id'] = $this->getSupplierId();
 
-        return $this->product->create($input);
+        return $this->product->create($input)->sections()->attach($input['section_ids']);
     }
 
     public function errors() {

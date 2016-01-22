@@ -68,4 +68,5 @@ Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-
  * Каталог
  */
 
-Route::get('catalog/{code}', 'CatalogController@byCode')->where('code', '[A-Za-z0-9\-\_]+');
+Route::get('catalog/{code}', 'CatalogController@byCode')->where('code', '[A-Za-z0-9\-\_]+')->name('section.page');
+Route::get('catalog/product/{id}', 'CatalogController@product')->where('id', '[0-9]+')->name('product.page');
