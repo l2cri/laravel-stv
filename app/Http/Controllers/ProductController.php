@@ -47,7 +47,8 @@ class ProductController extends Controller
             $input['photos'] = $request->file('photos');
         }
 
-        if ($this->form->save( $input ) ){
+        //if ($this->form->save( $input ) ){
+        if ($this->form->fakeSave( $input ) ){
             return Redirect::to( route('panel::products') )->with('status', 'success');
         } else {
             return Redirect::to( route('panel::products.addform') )->withInput()

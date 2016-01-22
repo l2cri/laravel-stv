@@ -2,8 +2,6 @@
 
 @section('content')
 
-{{ var_dump($product) }}
-
     <div class="breadcrumb-box">
         <a href="#">Home</a>
         <a href="#">Shop</a>
@@ -18,32 +16,21 @@
                 <div class="product-preview-box">
                     <div class="swiper-container product-preview-swiper" data-autoplay="0" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product-zoom-image">
-                                    <img src="{{ url('img/product-main-1.jpg') }}" alt="" data-zoom="{{ url('img/product-main-1-zoom.jpg') }}" />
+
+                            @foreach( $product->photos as $photo )
+                                <div class="swiper-slide">
+                                    <div class="product-zoom-image">
+                                        <img src="{{ url($photo->file) }}" alt="" data-zoom="{{ url($photo->file) }}" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-zoom-image">
-                                    <img src="{{ url('img/product-main-1.jpg') }}" alt="" data-zoom="img/product-main-2-zoom.jpg" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-zoom-image">
-                                    <img src="{{ url('img/product-main-1.jpg') }}" alt="" data-zoom="img/product-main-3-zoom.jpg" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product-zoom-image">
-                                    <img src="{{ url('img/product-main-1.jpg') }}" alt="" data-zoom="img/product-main-4-zoom.jpg" />
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div class="pagination"></div>
                         <div class="product-zoom-container">
                             <div class="move-box">
-                                <img class="default-image" src="{{ url('img/product-main-1.jpg') }}" alt="" />
-                                <img class="zoomed-image" src="{{ url('img/product-main-1-zoom.jpg') }}" alt="" />
+                                <img class="default-image" src="{{ url($product->photos[0]->file) }}" alt="" />
+                                <img class="zoomed-image" src="{{ url($product->photos[0]->file) }}" alt="" />
                             </div>
                             <div class="zoom-area"></div>
                         </div>
@@ -51,26 +38,17 @@
                     <div class="swiper-hidden-edges">
                         <div class="swiper-container product-thumbnails-swiper" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-int-slides="3" data-sm-slides="3" data-md-slides="4" data-lg-slides="4" data-add-slides="4">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide selected">
-                                    <div class="paddings-container">
-                                        <img src="{{ url('img/product-main-1.jpg') }}" alt="" />
+
+                                <?$i=0;?>
+                                @foreach( $product->photos as $photo )
+                                    <? $i++; ?>
+                                    <div class="swiper-slide" @if($i == 1) selected @endif>
+                                        <div class="paddings-container">
+                                            <img src="{{ url($photo->file) }}" alt="" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="paddings-container">
-                                        <img src="{{ url('img/product-main-1.jpg') }}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="paddings-container">
-                                        <img src="{{ url('img/product-main-2.jpg') }}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="paddings-container">
-                                        <img src="{{ url('img/product-main-3.jpg') }}" alt="" />
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div class="pagination"></div>
                         </div>
@@ -229,7 +207,7 @@
                             <div class="col-md-12 information-entry">
 
                                 <h4>Подзаголовок</h4>
-                                <p>{{ $product->description }}</p>
+                                <p>{!! $product->description !!}</p>
 
                                 <h4>5 причин заказать товар у нас</h4>
                                 <ul>

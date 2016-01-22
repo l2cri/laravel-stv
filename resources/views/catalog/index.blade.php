@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-    {{ var_dump($products) }}
-
     <div class="breadcrumb-box">
         <a href="#">Home</a>
         <a href="#">Bags &amp; Accessories</a>
@@ -62,8 +59,8 @@
                         <div class="col-md-3 col-sm-4 shop-grid-item">
                         <div class="product-slide-entry shift-image">
                             <div class="product-image">
-                                <img src="{{ url('img/product-minimal-1.jpg') }}" alt="" />
-                                <img src="{{ url('img/product-minimal-11.jpg') }}" alt="" />
+                                <img src="{{ @url($product->photos[0]->file) }}" alt="" />
+                                <img src="{{ @url($product->photos[1]->file) }}" alt="" />
                                 <div class="bottom-line left-attached">
                                     <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>

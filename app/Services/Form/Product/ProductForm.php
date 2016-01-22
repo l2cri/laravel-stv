@@ -38,11 +38,32 @@ class ProductForm
         if (array_key_exists('photos', $input)){
 
             $files = $this->upload($input['photos']);
-            //  var_dump($files); die();
             $product->photos()->createMany($files);
         }
 
         return $product;
+    }
+
+    public function fakeSave(array $input){
+
+        if ( ! $this->valid($input) ) return false;
+        $files = $this->upload($input['photos']);
+
+        for ($i = 1; $i <= 30; $i++){
+
+            $input['price'] = $input['price'] + $i*10;
+            $input['regular_price'] = $input['price'];
+            $input['supplier_id'] = $this->getSupplierId();
+
+            $input['name'] = $input['name'].$i;
+
+            $product = $this->product->create($input);
+            $product->sections()->attach($input['section_ids']);
+
+            $product->photos()->createMany($files);
+        }
+
+        return true;
     }
 
     // TODO: перенести функцию в хелпер какой-нибудь

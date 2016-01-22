@@ -7,4 +7,4 @@ Homestead.json
 test.php
 storage/database.sqlite
 test.html
-/images/products
+/public/images/products
