@@ -108,86 +108,41 @@
             </div>
             <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
                 <div class="information-blocks categories-border-wrapper">
-                    <div class="block-title size-3">Categories</div>
+                    <div class="block-title size-3">Каталог</div>
                     <div class="accordeon">
-                        <div class="accordeon-title">Bags &amp; Accessories</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordeon-title">Man's Products</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordeon-title">Woman's Products</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordeon-title">Top Brands</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordeon-title">Special Offer</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordeon-title">Leather's Products</div>
-                        <div class="accordeon-entry">
-                            <div class="article-container style-1">
-                                <ul>
-                                    <li><a href="#">Bags &amp; Accessories</a></li>
-                                    <li><a href="#">Man's Products</a></li>
-                                    <li><a href="#">Woman's Products</a></li>
-                                    <li><a href="#">Top Brands</a></li>
-                                    <li><a href="#">Special Offer</a></li>
-                                    <li><a href="#">Leather's Products</a></li>
-                                </ul>
-                            </div>
-                        </div>
+
+                        <? $opened = false; ?>
+                        @foreach($sections as $section)
+
+                            {{--первый уровень и есть потомки--}}
+                            @if( ($section->depth == 1) && ($previosDepth <= 1) )
+                                <? $opened = true; ?>
+                                @if (count($section->children) > 0)
+                                    <? $opened = true; ?>
+                                    <div class="accordeon-title">{{ $section->name }}</div>
+                                        <div class="accordeon-entry">
+                                            <div class="article-container style-1">
+                                                <ul>
+                                @else
+                                    <a href="{{ url($section->url) }}" class="nonaccordeon-title">{{ $section->name }}</a>
+                                @endif
+                            @endif
+
+                            {{--первый уроверь и предыдущая первый уровень, плюс открыто -  то есть закрываем--}}
+                            @if( ($section->depth == 1) && ($previosDepth > 1) && $opened )
+                                <?$opened = false;?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($section->depth == 2)
+                                <li><a href="{{ url($section->url) }}">{{ $section->name }}</a></li>
+                            @endif
+
+                            <? $previosDepth = $section->depth;?>
+                        @endforeach
+                            
                     </div>
                 </div>
 
