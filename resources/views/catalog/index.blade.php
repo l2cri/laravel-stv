@@ -97,11 +97,9 @@
                 <div class="page-selector">
                     <div class="description">Товары: 1-3 of 16</div>
                     <div class="pages-box">
-                        <a href="#" class="square-button active">1</a>
-                        <a href="#" class="square-button">2</a>
-                        <a href="#" class="square-button">3</a>
-                        <div class="divider">...</div>
-                        <a href="#" class="square-button"><i class="fa fa-angle-right"></i></a>
+
+                        @include('pagination.limit_links', ['paginator' => $products])
+                        
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -142,7 +140,7 @@
 
                             <? $previosDepth = $section->depth;?>
                         @endforeach
-                            
+
                     </div>
                 </div>
 

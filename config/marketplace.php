@@ -8,5 +8,6 @@ return [
     'potrebSectionId' => 10,
 
     // товар
-    'productPhotoDir' => 'images/products'
+    'productPhotoDir' => 'images/products',
+    'perpage' => 12,
 ];
