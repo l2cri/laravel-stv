@@ -55,10 +55,10 @@
 <div class="submenu-links-line">
     <div class="submenu-links-line-container">
         <div class="cell-view">
-            <div class="line-links"><b>Quicklinks:</b>  <a href="#">Blazers</a>, <a href="#">Jackets</a>, <a href="#">Shoes</a>, <a href="#">Bags</a>, <a href="#">Special offers</a>, <a href="#">Sales and discounts</a></div>
+            <div class="line-links"><b>Популярное:</b>  <a href="#">Курица</a>, <a href="#">Подшипники</a>, <a href="#">Туфли</a>, <a href="#">Шины</a>, <a href="#">Распродажа</a>, <a href="#">Яйца</a></div>
         </div>
         <div class="cell-view">
-            <div class="red-message"><b>-20% sale only this week. Don’t miss buy something!</b></div>
+            <div class="red-message"><b>-20% только на этой неделе. Спешите купить выгодно!</b></div>
         </div>
     </div>
 </div>
