@@ -12,15 +12,15 @@
                         <div class="swiper-container" data-autoplay="5000" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide active" data-val="0">
-                                    <div class="navigation-banner-wrapper align-1" style="background-image: url(/img/everything-1.jpg); background-color: #f5f1e2;">
+                                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/moloko.jpg') }}); background-color: #f5f1e2;">
                                         <div class="navigation-banner-content">
                                             <div class="cell-view">
-                                                <h2 class="subtitle">Check out juicer sales out</h2>
-                                                <h1 class="title">Zelmer ZJE1200G</h1>
-                                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                                <h2 class="subtitle">Распродажа 1</h2>
+                                                <h1 class="title">Молоко</h1>
+                                                <div class="description">Супер коровье.</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Shop Now</a>
-                                                    <a class="button style-1" href="#">Features</a>
+                                                    <a class="button style-1" href="#">Каталог</a>
+                                                    <a class="button style-1" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -28,15 +28,15 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide" data-val="1">
-                                    <div class="navigation-banner-wrapper align-2" style="background-image: url(/img/everything-2.jpg); background-color: #e8e8e8;">
+                                    <div class="navigation-banner-wrapper align-2" style="background-image: url({{ url('img/egg.jpg') }}); background-color: #e8e8e8;">
                                         <div class="navigation-banner-content">
                                             <div class="cell-view">
-                                                <h2 class="subtitle">Check out tv sales out!</h2>
-                                                <h1 class="title">Smart Hub 40'</h1>
-                                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing  elit, sed do eiusmod tempor incididunt.</div>
+                                                <h2 class="subtitle">Распродажа 2!</h2>
+                                                <h1 class="title">Яйца</h1>
+                                                <div class="description">Перепелиные</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Shop Now</a>
-                                                    <a class="button style-1" href="#">Features</a>
+                                                    <a class="button style-1" href="#">Каталог</a>
+                                                    <a class="button style-1" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,15 +44,15 @@
                                     </div>
                                 </div>
                                 <div class="swiper-slide" data-val="2">
-                                    <div class="navigation-banner-wrapper align-1" style="background-image: url(/img/everything-3.jpg); background-color: #f6e8d8;">
+                                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/velo.jpg') }}); background-color: #f6e8d8;">
                                         <div class="navigation-banner-content">
                                             <div class="cell-view">
-                                                <h2 class="subtitle">Check out phones sales out</h2>
-                                                <h1 class="title">Galaxy Note 5</h1>
-                                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                                <h2 class="subtitle">Распродажа 3</h2>
+                                                <h1 class="title">Велосипед Десна</h1>
+                                                <div class="description">Для детей и взрослых</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Shop Now</a>
-                                                    <a class="button style-1" href="#">Features</a>
+                                                    <a class="button style-1" href="#">Каталог</a>
+                                                    <a class="button style-1" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -73,55 +73,58 @@
         <div class="row">
             <div class="col-lg-12 col-md-4">
                 <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url(/img/everything-3.jpg); background-color: #f6e8d8;">
-                        <div class="">
+                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
+                        <div class="" style="height: 145px">
                             <div class="cell-view">
-                                <h2 class="subtitle">Check out phones sales out</h2>
-                                <h1 class="title">Galaxy Note 5</h1>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
+                                {{--<h1 class="title">распродажа 4</h1>--}}
+                                {{--<div class="description">Описание распродажа 4.</div>--}}
                                 <div class="info">
-                                    <a class="button style-1" href="#">Shop Now</a>
-                                    <a class="button style-1" href="#">Features</a>
+                                    <br><br><br><br><br><br><br>
+                                    <a class="button style-2" href="#">Купить</a>
+                                    <a class="button style-2" href="#">Подбробнее</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
+                        {{--<div class="clear"></div>--}}
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-4">
                 <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url(/img/everything-3.jpg); background-color: #f6e8d8;">
-                        <div class="">
+                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
+                        <div class="" style="height: 145px">
                             <div class="cell-view">
-                                <h2 class="subtitle">Check out phones sales out</h2>
-                                <h1 class="title">Galaxy Note 5</h1>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
+                                {{--<h1 class="title">распродажа 4</h1>--}}
+                                {{--<div class="description">Описание распродажа 4.</div>--}}
                                 <div class="info">
-                                    <a class="button style-1" href="#">Shop Now</a>
-                                    <a class="button style-1" href="#">Features</a>
+                                    <br><br><br><br><br><br><br>
+                                    <a class="button style-2" href="#">Купить</a>
+                                    <a class="button style-2" href="#">Подбробнее</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
+                        {{--<div class="clear"></div>--}}
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-4">
                 <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url(/img/everything-3.jpg); background-color: #f6e8d8;">
-                        <div class="">
+                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
+                        <div class="" style="height: 145px">
                             <div class="cell-view">
-                                <h2 class="subtitle">Check out phones sales out</h2>
-                                <h1 class="title">Galaxy Note 5</h1>
-                                <div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
+                                {{--<h1 class="title">распродажа 4</h1>--}}
+                                {{--<div class="description">Описание распродажа 4.</div>--}}
                                 <div class="info">
-                                    <a class="button style-1" href="#">Shop Now</a>
-                                    <a class="button style-1" href="#">Features</a>
+                                    <br><br><br><br><br><br><br>
+                                    <a class="button style-2" href="#">Купить</a>
+                                    <a class="button style-2" href="#">Подбробнее</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div>
+                        {{--<div class="clear"></div>--}}
                     </div>
                 </div>
             </div>
