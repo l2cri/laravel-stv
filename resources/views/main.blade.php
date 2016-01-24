@@ -57,7 +57,7 @@
 
                 <div class="header-middle">
                     <div class="logo-wrapper">
-                        <a id="logo" href="#"><img src="/img/logo-main.png" alt="" /></a>
+                        <a id="logo" href="{{ url('/') }}"><img src="/img/logo-main.png" alt="" /></a>
                     </div>
 
                     <div class="right-entries">
@@ -71,26 +71,11 @@
                             </a>
                             <div class="submenu"><h2>Test!</h2></div>
                         </div>
-                        <div class="drop-hover header-functionality-entry">
-                            <a class="" href="#">
-                                <span>Авторизация </span><i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="submenu">
-                                <h3>Registered Customers</h3>
-                                <p>Lorem ipsum dolor amet, conse adipiscing, eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <form>
-                                    <label>Email Address</label>
-                                    <input type="text" value="" placeholder="Enter Email Address" class="simple-field">
-                                    <label>Password</label>
-                                    <input type="password" value="" placeholder="Enter Password" class="simple-field">
-                                    <div class="button style-10">Login Page<input type="submit" value=""></div>
-                                    <a class="forgot-password" href="#">Forgot password?</a>
-                                </form>
-                            </div>
-                        </div>
+
+                        @include('common.loginform')
 
                         <a class="header-functionality-entry open-cart-popup" href="#">
-                            <i class="fa fa-shopping-cart"></i><span>Корзина</span> <b>255,99 руб</b>
+                            <i class="fa fa-shopping-cart"></i><span>Корзина</span> <b>255,99 <i class="fa fa-rub"></i></b>
                         </a>
                     </div>
                 </div>

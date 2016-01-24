@@ -612,4 +612,17 @@ $(function() {
 		}
 	});
 
+	// просто всплывашки
+	$('.drop-hover-div').on('mouseover', function () {
+		if (!_isresponsive) {
+			$(this).children('.dropped-div').stop().fadeIn(300);
+		}
+	});
+
+	$('.drop-hover-div').on('mouseleave', function () {
+		if (!_isresponsive) {
+			$(this).children('.dropped-div').stop().fadeOut(300);
+		}
+	});
+
 });

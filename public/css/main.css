@@ -150,3 +150,26 @@ input[type="file"].simple-field {padding: 0px; border: none}
 	text-transform: none;
 	display: block;
 }
+.drop-hover-div {
+	position: relative;
+	z-index: 1000;
+}
+.dropped-div{
+
+	padding: 30px;
+
+	/* Size & position */
+	position: absolute;
+	top: 100%;
+	left: -100px; /* Size */
+	right: -100px; /* Size */
+
+	/* Styles */
+	background: #fff;
+	font-weight: normal; /* Overwrites previous font-weight: bold; */
+
+	/* Hiding */
+	display: none;
+	/*opacity: 0;*/
+	/*pointer-events: none;*/
+}
