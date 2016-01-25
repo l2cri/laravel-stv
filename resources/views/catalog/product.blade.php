@@ -2,6 +2,10 @@
 
 @section('content')
 
+    <?
+            $unit = !empty($product->unit) ? $product->unit : 'шт';
+    ?>
+
     <div class="breadcrumb-box">
         <a href="#">Главная</a>
         <a href="#">Каталог</a>
@@ -71,25 +75,8 @@
                     <div class="price detail-info-entry">
                         <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
                         <div class="whosale">
-                            {{ $product->whosale_price }} <i class="fa fa-rub"></i> оптом от {{ $product->whosale_quantity }} шт.
+                            {{ $product->whosale_price }} <i class="fa fa-rub"></i> оптом от {{ $product->whosale_quantity }} {{ $unit }}.
                         </div>
-                    </div>
-                    <div class="size-selector detail-info-entry">
-                        <div class="detail-info-entry-title">Размер</div>
-                        <div class="entry active">xs</div>
-                        <div class="entry">s</div>
-                        <div class="entry">m</div>
-                        <div class="entry">l</div>
-                        <div class="entry">xl</div>
-                        <div class="spacer"></div>
-                    </div>
-                    <div class="color-selector detail-info-entry">
-                        <div class="detail-info-entry-title">Цвет</div>
-                        <div class="entry active" style="background-color: #d23118;">&nbsp;</div>
-                        <div class="entry" style="background-color: #2a84c9;">&nbsp;</div>
-                        <div class="entry" style="background-color: #000;">&nbsp;</div>
-                        <div class="entry" style="background-color: #d1d1d1;">&nbsp;</div>
-                        <div class="spacer"></div>
                     </div>
                     <div class="quantity-selector detail-info-entry">
                         <div class="detail-info-entry-title">Кол-во</div>
@@ -206,6 +193,14 @@
 
                                 <h4>Подзаголовок</h4>
                                 <p>{!! $product->description !!}</p>
+
+                                <h4>Габариты</h4>
+                                @if (!empty($product->weight)) <b>Вес:</b> {{ $product->weight }} грамм. <br>@endif
+                                @if (!empty($product->volume)) <b>Объем:</b> {{ $product->volume }} мл. <br>@endif
+                                @if (!empty($product->length)) <b>Длина:</b> {{ $product->length }} мм. <br>@endif
+                                @if (!empty($product->width)) <b>Ширина:</b> {{ $product->width }} мм. <br>@endif
+                                @if (!empty($product->height)) <b>Высота:</b> {{ $product->height }} мм. <br>@endif
+                                <br>
 
                                 <h4>5 причин заказать товар у нас</h4>
                                 <ul>
