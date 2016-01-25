@@ -48,7 +48,7 @@ class ProductController extends Controller
         }
 
         //if ($this->form->save( $input ) ){
-        if ($this->form->fake( $input ) ){
+        if ($this->form->save( $input ) ){
             return Redirect::to( route('panel::products') )->with('status', 'success');
         } else {
             return Redirect::to( route('panel::products.addform') )->withInput()

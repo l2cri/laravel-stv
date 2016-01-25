@@ -173,3 +173,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 	/*opacity: 0;*/
 	/*pointer-events: none;*/
 }
+
+.padding-bottom-30 {padding-bottom: 30px}

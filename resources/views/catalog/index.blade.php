@@ -107,13 +107,15 @@
                     <div class="block-title size-3">Каталог</div>
                     <div class="accordeon">
 
-                        <? $opened = false; ?>
+                        <? $opened = false;
+                           $previosDepth = 0;
+                        ?>
                         @foreach($sections as $section)
 
                             {{--первый уровень и есть потомки--}}
                             @if( ($section->depth == 1) && ($previosDepth <= 1) )
-                                <? $opened = true; ?>
-                                @if (count($section->children) > 0)
+
+                                @if (count($section->children) > 0 && !$opened)
                                     <? $opened = true; ?>
                                     <div class="accordeon-title">{{ $section->name }}</div>
                                         <div class="accordeon-entry">
@@ -125,7 +127,7 @@
                             @endif
 
                             {{--первый уроверь и предыдущая первый уровень, плюс открыто -  то есть закрываем--}}
-                            @if( ($section->depth == 1) && ($previosDepth > 1) && $opened )
+                            @if( ($section->depth == 1) && ($previosDepth == 2) && $opened )
                                 <?$opened = false;?>
                                         </ul>
                                     </div>
@@ -136,7 +138,9 @@
                                 <li><a href="{{ url($section->url) }}">{{ $section->name }}</a></li>
                             @endif
 
-                            <? $previosDepth = $section->depth;?>
+
+                            <? // избегаем нулевых больших категорий
+                                    $previosDepth = (int) ($section->depth > 0) ? $section->depth : $previosDepth;?>
                         @endforeach
 
                     </div>
@@ -156,17 +160,17 @@
                     </div>
                 </div>
 
-                <div class="information-blocks">
-                    <div class="block-title size-2">По размеру</div>
-                    <div class="size-selector">
-                        <div class="entry active">xs</div>
-                        <div class="entry">s</div>
-                        <div class="entry">m</div>
-                        <div class="entry">l</div>
-                        <div class="entry">xl</div>
-                        <div class="spacer"></div>
-                    </div>
-                </div>
+                {{--<div class="information-blocks">--}}
+                    {{--<div class="block-title size-2">По размеру</div>--}}
+                    {{--<div class="size-selector">--}}
+                        {{--<div class="entry active">xs</div>--}}
+                        {{--<div class="entry">s</div>--}}
+                        {{--<div class="entry">m</div>--}}
+                        {{--<div class="entry">l</div>--}}
+                        {{--<div class="entry">xl</div>--}}
+                        {{--<div class="spacer"></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="information-blocks">
                     <div class="block-title size-2">По производителю</div>
@@ -202,25 +206,26 @@
                     </div>
                 </div>
 
-                <div class="information-blocks">
-                    <div class="block-title size-2">По цвету</div>
-                    <div class="color-selector detail-info-entry">
-                        <div style="background-color: #cf5d5d;" class="entry active"></div>
-                        <div style="background-color: #c9459f;" class="entry"></div>
-                        <div style="background-color: #689dd4;" class="entry"></div>
-                        <div style="background-color: #68d4aa;" class="entry"></div>
-                        <div style="background-color: #a8d468;" class="entry"></div>
-                        <div style="background-color: #d4c368;" class="entry"></div>
-                        <div style="background-color: #c2c2c2;" class="entry"></div>
-                        <div style="background-color: #000000;" class="entry"></div>
-                        <div style="background-color: #f0f0f0;" class="entry"></div>
-                        <div class="spacer"></div>
-                    </div>
-                </div>
+                {{--<div class="information-blocks">--}}
+                    {{--<div class="block-title size-2">По цвету</div>--}}
+                    {{--<div class="color-selector detail-info-entry">--}}
+                        {{--<div style="background-color: #cf5d5d;" class="entry active"></div>--}}
+                        {{--<div style="background-color: #c9459f;" class="entry"></div>--}}
+                        {{--<div style="background-color: #689dd4;" class="entry"></div>--}}
+                        {{--<div style="background-color: #68d4aa;" class="entry"></div>--}}
+                        {{--<div style="background-color: #a8d468;" class="entry"></div>--}}
+                        {{--<div style="background-color: #d4c368;" class="entry"></div>--}}
+                        {{--<div style="background-color: #c2c2c2;" class="entry"></div>--}}
+                        {{--<div style="background-color: #000000;" class="entry"></div>--}}
+                        {{--<div style="background-color: #f0f0f0;" class="entry"></div>--}}
+                        {{--<div class="spacer"></div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
             </div>
         </div>
     </div>
+
 
     {{--<div class="information-blocks">--}}
         {{--<div class="row">--}}

@@ -55,6 +55,60 @@
 
             <div class="col-sm-12 padding-top-30">
 
+                <div class="row padding-bottom-30">
+                    <div class="col-md-4">
+                        <label>Длина</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">мм</span>
+                            <input class="form-control simple-field" type="text" name="length"
+                                   value="{{ Input::old('length') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Ширина</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">мм</span>
+                            <input class="form-control simple-field" type="text" name="width"
+                                   value="{{ Input::old('width') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Высота</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">мм</span>
+                            <input class="form-control simple-field" type="text" name="height"
+                                   value="{{ Input::old('height') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row padding-bottom-30">
+                    <div class="col-md-4">
+                        <label>Единицы измерения</label>
+                        <input type="text" value="{{ Input::old('unit') }}"
+                               class="simple-field"
+                               name="unit">
+                    </div>
+                    <div class="col-md-4">
+                        <label>Вес</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">грамм</span>
+                            <input class="form-control simple-field" type="text" name="weight"
+                                   value="{{ Input::old('weight') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Объем</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">мл</span>
+                            <input class="form-control simple-field" type="text" name="volume"
+                                   value="{{ Input::old('volume') }}">
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="row">
                     <div class="col-md-4">
                         <label>Цена <span>*</span></label>
