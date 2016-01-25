@@ -19,8 +19,8 @@
                                                 <h1 class="title">Молоко</h1>
                                                 <div class="description">Супер коровье.</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Каталог</a>
-                                                    <a class="button style-1" href="#">Подробнее</a>
+                                                    <a class="button style-2" href="#">Каталог</a>
+                                                    <a class="button style-2" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -35,8 +35,8 @@
                                                 <h1 class="title">Яйца</h1>
                                                 <div class="description">Перепелиные</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Каталог</a>
-                                                    <a class="button style-1" href="#">Подробнее</a>
+                                                    <a class="button style-2" href="#">Каталог</a>
+                                                    <a class="button style-2" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,8 +51,8 @@
                                                 <h1 class="title">Велосипед Десна</h1>
                                                 <div class="description">Для детей и взрослых</div>
                                                 <div class="info">
-                                                    <a class="button style-1" href="#">Каталог</a>
-                                                    <a class="button style-1" href="#">Подробнее</a>
+                                                    <a class="button style-2" href="#">Каталог</a>
+                                                    <a class="button style-2" href="#">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
