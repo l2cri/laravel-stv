@@ -30,7 +30,7 @@ class CatalogController extends Controller
         //TODO: переместить в композер инициализацию
         $sections = $this->section->getTree();
 
-        return view('catalog.index', compact('products', 'sections'));
+        return view('catalog.index', compact('products', 'sections', 'currentSection'));
     }
 
     public function product($id){
