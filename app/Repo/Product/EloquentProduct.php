@@ -76,7 +76,7 @@ class EloquentProduct implements ProductInterface
         $products = $this->product->whereHas('sections', function($q) use ($categories)
         {
             $q->whereIn('id', $categories);
-        })->paginate(config('marketplace.perpage'));
+        })->sortable()->paginate(config('marketplace.perpage'));
 
         return $products;
     }

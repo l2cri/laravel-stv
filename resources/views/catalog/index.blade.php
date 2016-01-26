@@ -19,15 +19,7 @@
                     </div>
                     <div class="shop-grid-controls">
                         <div class="entry">
-                            <div class="inline-text">Сортировать по</div>
-                            <div class="simple-drop-down">
-                                <select>
-                                    <option>Названию</option>
-                                    <option>Цене</option>
-                                    <option>Рейтингу</option>
-                                </select>
-                            </div>
-                            <div class="sort-button"></div>
+                            @include('catalog.sort')
                         </div>
                         <div class="entry">
                             <div class="view-button active grid"><i class="fa fa-th"></i></div>

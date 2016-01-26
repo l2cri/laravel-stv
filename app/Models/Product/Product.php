@@ -8,10 +8,13 @@
 
 namespace App\Models\Product;
 
+use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use SortableTrait;
+
     protected $table = 'products';
     protected $fillable = ['active', 'moderated', 'available', 'featured', 'name', 'articul', 'barcode', 'unit',
         'length', 'width', 'height', 'weight', 'volume', 'price', 'regular_price', 'action_price', 'whosale_price',
