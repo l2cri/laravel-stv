@@ -57,13 +57,7 @@ class EloquentProduct implements ProductInterface
             $categories = $category->descendants()->lists('id');
         $categories[] = $category->getKey();
 
-        // достаем товары которые есть в этих категориях, many to many relation
-        $products = $this->product->whereHas('sections', function($q) use ($categories)
-        {
-            $q->whereIn('id', $categories);
-        })->paginate(config('marketplace.perpage'));
-
-        return $products;
+        return $this->bySections($categories);
     }
 
     public function bySectionWithSupplier($sectionId, $supplierId, $includeSubsections = true){
@@ -76,5 +70,14 @@ class EloquentProduct implements ProductInterface
 
     public function findBy($field, $value, $columns = array('*')){
 
+    }
+
+    public function bySections($categories){
+        $products = $this->product->whereHas('sections', function($q) use ($categories)
+        {
+            $q->whereIn('id', $categories);
+        })->paginate(config('marketplace.perpage'));
+
+        return $products;
     }
 }

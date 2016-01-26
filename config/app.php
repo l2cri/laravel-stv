@@ -223,6 +223,7 @@ return [
          * Marketplace facades
          */
         'AuthUser'      => App\Facades\AuthUser::class,
+        'ProductRepo'   => App\Facades\ProductRepo::class,
 
     ],
 
