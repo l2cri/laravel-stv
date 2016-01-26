@@ -26,17 +26,7 @@
                             <div class="view-button list"><i class="fa fa-list"></i></div>
                         </div>
                         <div class="entry">
-                            <div class="inline-text">На странице</div>
-                            <div class="simple-drop-down" style="width: 75px;">
-                                <select>
-                                    <option>12</option>
-                                    <option>20</option>
-                                    <option>30</option>
-                                    <option>40</option>
-                                    <option>all</option>
-                                </select>
-                            </div>
-                            {{--<div class="inline-text">на странице</div>--}}
+                            @include('catalog.perpage')
                         </div>
                     </div>
                     <div class="clear"></div>

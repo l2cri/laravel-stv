@@ -64,3 +64,11 @@ function url_set_params($params){
     $query = implode('&', $params);
     return $current.'?'.$query;
 }
+
+function getPerPage(){
+    $limit = ( !empty(\Input::get('limit')) ) ? \Input::get('limit') : \Input::session()->get('limit', 12);
+    if ( !empty(\Input::get('limit')) ) {
+        \Input::session()->put('limit', \Input::get('limit'));
+    }
+    return $limit;
+}
