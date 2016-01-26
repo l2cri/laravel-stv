@@ -22,8 +22,8 @@ class EloquentSection implements SectionInterface
     public function byId($id){}
     public function byCode($code){
 
-        $section = $this->section->where('code', $code)->first();
-        if (is_null($section)) $section = $this->section->find($code);
+        $section = $this->section->where('code', $code)->withDepth()->first();
+        if (is_null($section)) $section = $this->section->withDepth()->find($code);
 
         return $section;
     }

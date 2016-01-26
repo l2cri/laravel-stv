@@ -28,7 +28,7 @@ class CatalogController extends Controller
         $products = $this->product->bySection($currentSection->id);
 
         //TODO: переместить в композер инициализацию
-        $sections = $this->section->getTree();
+        $sections = $this->section->getTree($currentSection->id);
 
         return view('catalog.index', compact('products', 'sections', 'currentSection'));
     }
