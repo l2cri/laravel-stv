@@ -3,6 +3,8 @@
     {{ csrf_field() }}
 
     <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
+    <input type="hidden" name="minprice" id="minPriceHidden">
+    <input type="hidden" name="maxprice" id="maxPriceHidden">
 
     <div class="information-blocks">
     <div class="block-title size-2">По цене</div>
@@ -52,6 +54,31 @@
     </div>
 </div>
 </form>
+
+<!-- range slider -->
+<script src="{{ url('js/jquery-ui.min.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        var minVal = parseInt($('.min-price span').text());
+        var maxVal = parseInt($('.max-price span').text());
+        $( "#prices-range" ).slider({
+            range: true,
+            min: minVal,
+            max: maxVal,
+            step: 5,
+            values: [ minVal, maxVal ],
+            slide: function( event, ui ) {
+
+                // set form hiddens
+                $('#minPriceHidden').val(ui.values[ 0 ]);
+                $('#maxPriceHidden').val(ui.values[ 1 ]);
+
+                $('.min-price span').text(ui.values[ 0 ]);
+                $('.max-price span').text(ui.values[ 1 ]);
+            }
+        });
+    });
+</script>
 
 <script>
     function submitFilterForm(){
