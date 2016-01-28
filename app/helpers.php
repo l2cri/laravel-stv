@@ -51,16 +51,20 @@ function removeEmptyValues(array $array){
  * @param $params - массив для query string
  *
  */
-function url_add_params($params){
-    $current = URL::full();
+function url_add_params($params, $current = null){
+
+    if (!$current) $current = URL::full();
+
     $query = implode('&', $params);
     if (stristr($current, '?')){
         return $current.'&'.$query;
     } else return $current.'?'.$query;
 }
 
-function url_set_params($params){
-    $current = URL::current();
+function url_set_params($params, $current = null){
+
+    if (!$current) $current = URL::current();
+
     $query = implode('&', $params);
     return $current.'?'.$query;
 }

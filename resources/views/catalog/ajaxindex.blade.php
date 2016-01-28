@@ -1,5 +1,5 @@
 <div class="page-selector">
-    <div class="pages-box hidden-xs">
+    <div class="pages-box hidden-xs">kuku
 
         @include('pagination.limit_links', ['paginator' => $products])
 

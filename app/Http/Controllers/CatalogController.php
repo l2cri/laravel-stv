@@ -36,7 +36,8 @@ class CatalogController extends Controller
 
     public function ajax(Request $request){
         $products = $this->product->bySection($request->input('sectionId'));
-        return view('catalog.ajaxindex', compact('products'));
+        $currentSection = $this->section->byCode($request->input('sectionId'));
+        return view('catalog.ajaxindex', compact('products', 'currentSection'));
     }
 
     public function product($id){
