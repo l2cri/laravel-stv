@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
+use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
@@ -31,6 +32,11 @@ class CatalogController extends Controller
         $sections = $this->section->getTree($currentSection->id);
 
         return view('catalog.index', compact('products', 'sections', 'currentSection'));
+    }
+
+    public function ajax(Request $request){
+        $products = $this->product->bySection($request->input('sectionId'));
+        return view('catalog.ajaxindex', compact('products'));
     }
 
     public function product($id){
