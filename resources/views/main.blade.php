@@ -16,7 +16,7 @@
     <![endif]-->
     <link rel="shortcut icon" href="/img/favicon-2.ico" />
 
-    <script src="/js/jquery-2.1.3.min.js"></script>
+    @include('jsheader')
 
     <title>Маркетплейс</title>
 </head>
@@ -451,12 +451,7 @@
     </div>
 </div>
 
+@include('jsfooter')
 
-<script src="/js/idangerous.swiper.min.js"></script>
-<script src="/js/global.js"></script>
-
-<!-- custom scrollbar -->
-<script src="/js/jquery.mousewheel.js"></script>
-<script src="/js/jquery.jscrollpane.min.js"></script>
 </body>
 </html>

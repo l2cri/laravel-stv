@@ -1,5 +1,7 @@
+@include('jsheader')
+
 <div class="page-selector">
-    <div class="pages-box hidden-xs">kuku
+    <div class="pages-box hidden-xs">
 
         @include('pagination.limit_links', ['paginator' => $products])
 
@@ -70,3 +72,5 @@
     </div>
     <div class="clear"></div>
 </div>
+
+@include('jsfooter')
