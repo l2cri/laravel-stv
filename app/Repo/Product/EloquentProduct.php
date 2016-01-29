@@ -9,38 +9,41 @@
 namespace App\Repo\Product;
 
 
+use App\Repo\Criteria\CriteriaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\Node;
 
 class EloquentProduct implements ProductInterface
 {
 
-    protected $product;
+    use CriteriaTrait;
+
+    protected $model;
     protected $section;
 
     public function __construct(Model $product, Node $section) {
-        $this->product = $product;
+        $this->model = $product;
         $this->section = $section;
     }
 
     public function byId($id) {
-        return $this->product->find($id);
+        return $this->model->find($id);
     }
 
     // TODO: будет от формы зависеть как мы изменим массив $data
     public function create(array $data) {
-        return $this->product->create($data);
+        return $this->model->create($data);
     }
 
     public function update(array $data, $id, $attribute="id"){
-        return $this->product->where($attribute, '=', $id)->update($data);
+        return $this->model->where($attribute, '=', $id)->update($data);
     }
 
     public function delete($id){
 
         // TODO: удалять изображения
 
-        return $this->product->destroy($id);
+        return $this->model->destroy($id);
     }
 
     public function bySupplier($supplierId){
@@ -73,7 +76,10 @@ class EloquentProduct implements ProductInterface
     }
 
     public function bySections($categories){
-        $products = $this->product->whereHas('sections', function($q) use ($categories)
+
+        $this->applyCriteria();
+
+        $products = $this->model->whereHas('sections', function($q) use ($categories)
         {
             $q->whereIn('id', $categories);
         })->sortable()->paginable();//paginate(config('marketplace.perpage'));

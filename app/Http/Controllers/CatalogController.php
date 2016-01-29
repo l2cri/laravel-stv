@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use Illuminate\Http\Request;
@@ -35,7 +36,10 @@ class CatalogController extends Controller
     }
 
     public function ajax(Request $request){
-        $products = $this->product->bySection($request->input('sectionId'));
+
+        $products = $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')))
+                                        ->bySection($request->input('sectionId'));
+
         $currentSection = $this->section->byCode($request->input('sectionId'));
         return view('catalog.ajaxindex', compact('products', 'currentSection'));
     }

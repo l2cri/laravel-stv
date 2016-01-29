@@ -3,8 +3,8 @@
     {{ csrf_field() }}
 
     <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
-    <input type="hidden" name="minprice" id="minPriceHidden">
-    <input type="hidden" name="maxprice" id="maxPriceHidden">
+    <input type="hidden" name="minprice" id="minPriceHidden" value="0">
+    <input type="hidden" name="maxprice" id="maxPriceHidden" value="200">
 
     <div class="information-blocks">
     <div class="block-title size-2">По цене</div>
