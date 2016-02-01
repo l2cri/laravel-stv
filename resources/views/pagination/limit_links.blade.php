@@ -3,12 +3,14 @@
 $link_limit = 7; // maximum number of links (a little bit inaccurate, but will be ok for now)
 $from = 0;
 $to = 0;
+
+$paginator->setPath($currentSection->url);
 ?>
 
 @if ($paginator->lastPage() > 1)
 
         @if($paginator->currentPage() !== 1)
-            <a class="square-button" href="{{ $paginator->url(1) }}"><i class="fa fa-angle-left"></i></a>
+            <a class="addFilterParams square-button" href="{{ $paginator->url(1) }}"><i class="fa fa-angle-left"></i></a>
         @endif
 
         <? $dividerFrom = false; ?>
@@ -31,7 +33,7 @@ $to = 0;
             @endif
 
             @if ($from < $i && $i < $to)
-                <a class="square-button {{ ($paginator->currentPage() == $i) ? ' active' : '' }}"
+                <a class="addFilterParams square-button {{ ($paginator->currentPage() == $i) ? ' active' : '' }}"
                        href="{{ $paginator->url($i) }}">{{ $i }}</a>
             @endif
         @endfor
@@ -42,7 +44,7 @@ $to = 0;
 
         @if ($paginator->currentPage() !== $paginator->lastPage())
 
-            <a class="square-button" href="{{ $paginator->url($paginator->lastPage()) }}">
+            <a class="addFilterParams square-button" href="{{ $paginator->url($paginator->lastPage()) }}">
                 <i class="fa fa-angle-right"></i>
             </a>
 
