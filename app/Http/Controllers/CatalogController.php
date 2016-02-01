@@ -28,11 +28,12 @@ class CatalogController extends Controller
 
         $currentSection = $this->section->byCode($code);
         $products = $this->product->bySection($currentSection->id);
+        $maxProductPrice = $this->product->maxProductPrice($currentSection->id);
 
         //TODO: переместить в композер инициализацию
         $sections = $this->section->getTree($currentSection->id);
 
-        return view('catalog.index', compact('products', 'sections', 'currentSection'));
+        return view('catalog.index', compact('products', 'sections', 'currentSection', 'maxProductPrice'));
     }
 
     public function ajax(Request $request){

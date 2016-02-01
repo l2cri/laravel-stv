@@ -4,7 +4,7 @@
 
     <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
     <input type="hidden" name="minprice" id="minPriceHidden" value="0">
-    <input type="hidden" name="maxprice" id="maxPriceHidden" value="200">
+    <input type="hidden" name="maxprice" id="maxPriceHidden" value="{{ $maxProductPrice }}">
 
     <div class="information-blocks">
     <div class="block-title size-2">По цене</div>
@@ -14,7 +14,7 @@
             Цена:
             <div class="min-price"><b><span>0</span> <i class="fa fa-rub"></i></b></div>
             <b>-</b>
-            <div class="max-price"><b><span>200</span> <i class="fa fa-rub"></i></b></div>
+            <div class="max-price"><b><span>{{ $maxProductPrice }}</span> <i class="fa fa-rub"></i></b></div>
         </div>
         <a class="button style-14" id="submitFilterForm">Фильтр</a>
     </div>
