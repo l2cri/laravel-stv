@@ -102,6 +102,13 @@
         });
     }
 
+    function proceedFilter(){
+        submitFilterForm().done(function(data) {
+            $("#catalogProducts").html(data);
+            addFilterParams();
+        });
+    }
+
     function addFilterParams(){
         $('a.addFilterParams').each(function() {
             var data = $( "#filterForm #srlz input" ).serialize();
@@ -141,13 +148,21 @@
             кнопка фильтра
          */
         var filterButton = $("#submitFilterForm");
-
         filterButton.on("click", function() {
 
-            submitFilterForm().done(function(data) {
-                $("#catalogProducts").html(data);
-                addFilterParams();
-            });
+            proceedFilter();
+//            submitFilterForm().done(function(data) {
+//                $("#catalogProducts").html(data);
+//                addFilterParams();
+//            });
+        });
+
+        /*
+        чекбоксы
+         */
+        var checkboxes = $('#filterForm input[type=checkbox]');
+        checkboxes.on('click', function(){
+           proceedFilter();
         });
 
     });
