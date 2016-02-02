@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
+use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -24,13 +25,17 @@ class CatalogController extends Controller
         $this->section = $section;
     }
 
-    public function byCode($code){
+    public function byCode($code, Request $request){
+
+        if ($request->has('minprice') && $request->has('maxprice')) {
+            $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
+        }
 
         $currentSection = $this->section->byCode($code);
         $products = $this->product->bySection($currentSection->id);
-        $maxProductPrice = $this->product->maxProductPrice($currentSection->id);
+        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
 
-        //TODO: переместить в композер инициализацию
+        //TODO: переместить в композер инициализацию?
         $sections = $this->section->getTree($currentSection->id);
 
         return view('catalog.index', compact('products', 'sections', 'currentSection', 'maxProductPrice'));

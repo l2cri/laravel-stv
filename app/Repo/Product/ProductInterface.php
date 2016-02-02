@@ -22,5 +22,5 @@ interface ProductInterface
 
     public function paginate();
     public function findBy($field, $value, $columns = array('*'));
-    public function maxProductPrice($sectionId);
+    public function allProductsFromLastRequest();
 }

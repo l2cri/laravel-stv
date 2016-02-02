@@ -21,6 +21,7 @@ class EloquentProduct implements ProductInterface
     protected $model;
     protected $section;
     protected $allSections;
+    protected $allProducts; // products query
 
     public function __construct(Model $product, Node $section) {
         $this->model = $product;
@@ -63,8 +64,12 @@ class EloquentProduct implements ProductInterface
         $categories[] = $category->getKey();
         $this->allSections = $categories;
 
-        $products = $this->bySections($categories);
+        // вытаскиваем все товары
+        $productsQuery = $this->bySections($categories);
+        $products = $productsQuery->sortable()->paginable();
 
+        $this->allProducts = $productsQuery->get();
+        
         return $products;
     }
 
@@ -80,6 +85,9 @@ class EloquentProduct implements ProductInterface
 
     }
 
+    /**
+     * return query
+     */
     public function bySections($categories){
 
         $this->applyCriteria();
@@ -87,17 +95,12 @@ class EloquentProduct implements ProductInterface
         $products = $this->model->whereHas('sections', function($q) use ($categories)
         {
             $q->whereIn('id', $categories);
-        })->sortable()->paginable();//paginate(config('marketplace.perpage'));
+        });//paginate(config('marketplace.perpage'));
 
         return $products;
     }
 
-    public function maxProductPrice($sectionId){
-        $categories = $this->allSections;
-        $max = $this->model->whereHas('sections', function($q) use ($categories)
-        {
-            $q->whereIn('id', $categories);
-        })->max('price');
-        return $max;
+    public function allProductsFromLastRequest(){
+        return $this->allProducts;
     }
 }
