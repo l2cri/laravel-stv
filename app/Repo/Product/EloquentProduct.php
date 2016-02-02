@@ -69,7 +69,7 @@ class EloquentProduct implements ProductInterface
         $products = $productsQuery->sortable()->paginable();
 
         $this->allProducts = $productsQuery->get();
-        
+
         return $products;
     }
 

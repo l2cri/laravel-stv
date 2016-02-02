@@ -110,7 +110,26 @@
         });
     }
 
+    function setParamsFromLocation(selectors, supplementUrl){
+        $(selectors).each(function(){
+            var href = this.href;
+            if (href.indexOf('?') != -1) {
+                href = href + '&' + supplementUrl;
+            }
+            else {
+                href = href + '?' + supplementUrl;
+            }
+            $(this).attr('href', href);
+        });
+    }
+
     $(function() {
+
+        {{--параметры для фильтрации из GET-запроса, формируем в контроллере и передаем в шаблон--}}
+        var supplementUrl = "{!! $supplementUrl !!}";
+        if (supplementUrl.length > 0) {
+            setParamsFromLocation('a.addFilterParams', supplementUrl);
+        }
 
         /*
             кнопка фильтра
@@ -125,35 +144,6 @@
             });
         });
 
-        //TODO: подумать как лучше сделать, возможно вставлять параметры в урл - да, в параметры url old input
-        //TODO: причем javascriptom добавлять в ссылки, где будет класс addFilterParams - на загрузку данных
-        // объектом $.Deffered добавлять серилизованные параметры формы - то есть можно попробовать в Промисе на .done()
-
-        // пример
-//        $("a.directions-link").each(function() {
-//            var _href = $(this).attr("href");
-//            $(this).attr("href", _href + '&saddr=50.1234567,-50.03452');
-//        });
-//        $('a').each(function() {
-//            var href = this.href;
-//            if (href.indexOf('?') != -1) {
-//                href = href + '&Hello=True';
-//            }
-//            else {
-//                href = href + '?Hello=True';
-//            }
-//            $(this).attr('href', href);
-//        });
-
-        /*
-            пагинатор на фильтре, чтобы работало по ajax
-         */
-//        var paginatorLink = $('.square-button');
-//        paginatorLink.on('click', function(e){
-//            e.preventDefault();
-//            alert($(this).attr('href'));
-//        });
-        //TODO: сделать тоже самое для сортировок и кол-ве товаров на странице - добавить поля hidden и действия
     });
 
 </script>

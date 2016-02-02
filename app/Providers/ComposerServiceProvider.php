@@ -24,6 +24,10 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             'common.menusections', 'App\Http\ViewComposers\MenuSectionsComposer'
         );
+
+        view()->composer(
+            'catalog.filter', 'App\Http\ViewComposers\FilterComposer'
+        );
     }
 
     /**
