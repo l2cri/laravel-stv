@@ -1,10 +1,10 @@
 <form id="filterForm" method="post">
 
     {{ csrf_field() }}
-
+    <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
+    
     {{--start serialize div--}}
     <div id="srlz">
-        <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
         <input type="hidden" name="minprice" id="minPriceHidden" value="0">
         <input type="hidden" name="maxprice" id="maxPriceHidden" value="{{ $maxProductPrice }}">
 

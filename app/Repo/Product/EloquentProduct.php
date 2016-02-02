@@ -66,9 +66,9 @@ class EloquentProduct implements ProductInterface
 
         // вытаскиваем все товары
         $productsQuery = $this->bySections($categories);
-        $products = $productsQuery->sortable()->paginable();
-
         $this->allProducts = $productsQuery->get();
+
+        $products = $productsQuery->sortable()->paginable();
 
         return $products;
     }
