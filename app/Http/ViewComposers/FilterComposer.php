@@ -24,9 +24,17 @@ class FilterComposer
 
         $urlArr = array();
 
+        // цены
         if ($this->request->has('minprice') && $this->request->has('maxprice')) {
             $urlArr[] = 'minprice='.$this->request->input('minprice');
             $urlArr[] = 'maxprice='.$this->request->input('maxprice');
+        }
+
+        // поставщики
+        if ($this->request->has('suppliers')) {
+            foreach ($this->request->input('suppliers') as $supplier){
+                if (!empty($supplier)) $urlArr[] = 'suppliers[]='.$supplier;
+            }
         }
 
         $supplementUrl = implode('&', $urlArr);

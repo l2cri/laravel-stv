@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Repo\Criteria\Product\MinMaxPrice;
+use App\Repo\Criteria\Product\SuppliersOnly;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
@@ -31,14 +32,26 @@ class CatalogController extends Controller
 
     public function byCode($code, Request $request){
 
+        $currentSection = $this->section->byCode($code);
+
+        //TODO: валидация входящих параметров
+        //TODO: убрать из формирования списка поставщиков зависимость от других поставщиков, чтобы
+        // в фильре всегда были все поставщики удовлетворяющие цене и категории и в будующем другим критериям
+
         if ($request->has('minprice') && $request->has('maxprice')) {
             $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
         }
 
-        $currentSection = $this->section->byCode($code);
-        $products = $this->product->bySection($currentSection->id);
-        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
+        $productsForSupplier = $this->product->bySection($currentSection->id);
         $suppliers = $this->supplier->byProducts($this->product->allProductsFromLastRequest());
+
+        if ($request->has('suppliers')) {
+            $this->product->pushCriteria( new SuppliersOnly($request->input('suppliers')) );
+        }
+
+        $products = $this->product->bySection($currentSection->id);
+
+        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
 
         //TODO: переместить в композер инициализацию мб?
         $sections = $this->section->getTree($currentSection->id);
@@ -49,9 +62,14 @@ class CatalogController extends Controller
 
     public function ajax(Request $request){
 
-        $products = $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')))
-                                        ->bySection($request->input('sectionId'));
+        if ($request->has('minprice') && $request->has('maxprice')) {
+            $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
+        }
 
+        if ($request->has('suppliers')) {
+            $this->product->pushCriteria( new SuppliersOnly($request->input('suppliers')) );
+        }
+        $products = $this->product->bySection($request->input('sectionId'));
         $currentSection = $this->section->byCode($request->input('sectionId'));
         return view('catalog.ajaxindex', compact('products', 'currentSection'));
     }

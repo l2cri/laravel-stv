@@ -23,9 +23,13 @@
         </div>
 
         <?
-
-        $evenOdd = evenOddArray($suppliers);
-
+            $evenOdd = array();
+            if (count($suppliers) > 1) {
+                $evenOdd = evenOddArray($suppliers);
+            } else {
+                $evenOdd['even'] = $suppliers;
+                $evenOdd['odd'] = array();
+            }
         ?>
 
         <div class="information-blocks">
