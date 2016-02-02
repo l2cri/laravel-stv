@@ -44,6 +44,7 @@ class CatalogController extends Controller
 
         $productsForSupplier = $this->product->bySection($currentSection->id);
         $suppliers = $this->supplier->byProducts($this->product->allProductsFromLastRequest());
+        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
 
         if ($request->has('suppliers')) {
             $this->product->pushCriteria( new SuppliersOnly($request->input('suppliers')) );
@@ -51,7 +52,7 @@ class CatalogController extends Controller
 
         $products = $this->product->bySection($currentSection->id);
 
-        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
+
 
         //TODO: переместить в композер инициализацию мб?
         $sections = $this->section->getTree($currentSection->id);
