@@ -76,3 +76,14 @@ function getPerPage(){
     }
     return $limit;
 }
+
+// разбивает массив на четный и нечетные по ключам, для таблиц в две колонки
+function evenOddArray($array){
+    $odd = $even = array();
+    for ($i = 0, $l = count($array); $i < $l;) { // Notice how we increment $i each time we use it below, by two in total
+        $even[] = $array[$i++];
+        $odd[] = $array[$i++];
+    }
+
+    return array('even'=>$even, 'odd'=>$odd);
+}

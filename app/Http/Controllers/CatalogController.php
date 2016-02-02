@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
+use App\Repo\Supplier\SupplierInterface;
 use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,13 @@ class CatalogController extends Controller
 {
     protected $product;
     protected $section;
+    protected $supplier;
 
-    public function __construct(ProductInterface $product, SectionInterface $section){
+    public function __construct(ProductInterface $product, SectionInterface $section,
+                                    SupplierInterface $supplier){
         $this->product = $product;
         $this->section = $section;
+        $this->supplier = $supplier;
     }
 
     public function byCode($code, Request $request){
@@ -34,11 +38,13 @@ class CatalogController extends Controller
         $currentSection = $this->section->byCode($code);
         $products = $this->product->bySection($currentSection->id);
         $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
+        $suppliers = $this->supplier->byProducts($this->product->allProductsFromLastRequest());
 
-        //TODO: переместить в композер инициализацию?
+        //TODO: переместить в композер инициализацию мб?
         $sections = $this->section->getTree($currentSection->id);
 
-        return view('catalog.index', compact('products', 'sections', 'currentSection', 'maxProductPrice'));
+        return view('catalog.index', compact('products', 'sections', 'currentSection',
+                                                'maxProductPrice', 'suppliers'));
     }
 
     public function ajax(Request $request){
