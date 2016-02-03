@@ -23,7 +23,7 @@ trait SortableTrait
     }
 
     public function getDirection(){
-        $dir = ( !empty(\Input::get('dir')) ) ? \Input::get('dir') : \Input::session()->get('dir', 'asc');
+        $dir = ( !empty(\Input::get('dir')) ) ? \Input::get('dir') : \Input::session()->get('dir', 'desc');
 
         if ( !empty(\Input::get('dir'))) {
             \Input::session()->put('dir', \Input::get('dir'));
@@ -33,7 +33,7 @@ trait SortableTrait
     }
 
     public function getOrder(){
-        $order = ( !empty(\Input::get('order')) ) ? \Input::get('order') : \Input::session()->get('order', 'price');
+        $order = ( !empty(\Input::get('order')) ) ? \Input::get('order') : \Input::session()->get('order', 'id');
         if ( !empty(\Input::get('order')) ) {
             \Input::session()->put('order', \Input::get('order'));
         }
