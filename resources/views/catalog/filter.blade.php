@@ -149,12 +149,7 @@
          */
         var filterButton = $("#submitFilterForm");
         filterButton.on("click", function() {
-
             proceedFilter();
-//            submitFilterForm().done(function(data) {
-//                $("#catalogProducts").html(data);
-//                addFilterParams();
-//            });
         });
 
         /*
