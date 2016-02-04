@@ -158,6 +158,11 @@ return [
          */
         SleepingOwl\Admin\AdminServiceProvider::class,
         SleepingOwl\AdminLteTemplate\AdminLteTemplateServiceProvider::class,
+
+        /*
+         * Cart
+         */
+        Darryldecode\Cart\CartServiceProvider::class,
     ],
 
     /*
@@ -225,6 +230,11 @@ return [
          */
         'AuthUser'      => App\Facades\AuthUser::class,
         'ProductRepo'   => App\Facades\ProductRepo::class,
+
+        /*
+         * Cart
+         */
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 
