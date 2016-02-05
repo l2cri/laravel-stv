@@ -71,3 +71,8 @@ Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-
 Route::get('catalog/{code}', 'CatalogController@byCode')->where('code', '[A-Za-z0-9\-\_]+')->name('section.page');
 Route::get('catalog/product/{id}', 'CatalogController@product')->where('id', '[0-9]+')->name('product.page');
 Route::post('catalog/ajax', 'CatalogController@ajax')->name('catalog.ajax'); // TODO: add validation for all params
+
+/*
+ * Корзина
+ */
+Route::get('cart', 'CartController@index')->name('cart.index');

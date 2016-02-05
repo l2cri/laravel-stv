@@ -179,3 +179,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .block-title.active {background-color: #f3f3f3; padding: 10px 0;  text-align: center;}
 .catalog-parent-section {padding-bottom: 10px}
 .block-title {border: none}
+
+.cart-column-title {padding: 0 0 20px; border-top: none}

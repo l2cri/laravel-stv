@@ -439,7 +439,7 @@
         </div>
         <div class="cart-buttons">
             <div class="column">
-                <a class="button style-3">Посмотреть корзину</a>
+                <a class="button style-3" href="{{route('cart.index')}}">Посмотреть корзину</a>
                 <div class="clear"></div>
             </div>
             <div class="column">
