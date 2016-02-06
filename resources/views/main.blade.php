@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
@@ -447,6 +448,36 @@
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<div id="addcart-popup" class="overlay-popup">
+    <div class="overflow">
+        <div class="table-view">
+            <div class="cell-view">
+                <div class="close-layer"></div>
+                <div class="popup-container">
+                    <div class="newsletter-title">Товар добавлен в корзину!</div>
+                    <div class="cart-buttons">
+                        <div class="column">
+                            <a class="button style-3 closePopup" href="#">Продолжить покупки</a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="column">
+                            <a class="button style-4" href="{{route('cart.index')}}">Посмотреть корзину</a>
+                            <div class="clear"></div>
+                        </div>
+                        &nbsp;
+                        <div class="column">
+                            <a class="button style-14">Оформить заказ</a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="close-popup"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

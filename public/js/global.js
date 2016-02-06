@@ -26,6 +26,12 @@ $(function() {
 
 	"use strict";
 
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	})
+
 	/*================*/
 	/* 01 - VARIABLES */
 	/*================*/
@@ -625,8 +631,48 @@ $(function() {
 		}
 	});
 
+	/**
+	 * Корзина
+	 */
+		//open subscribe popup
+	$('.addToCart').on('click', function(){
+
+		var params = { product_id: $(this).data('id'), qnt: 1 };
+
+		submitCart(params).done(function(data) {
+			$(".cart-box.popup").html(data.cart);
+			showPopup($('#addcart-popup'));
+		});
+
+		return false;
+	});
+
+	$('.closePopup').on('click', function(e){
+		e.preventDefault();
+		closePopup();
+	});
+
 });
 
 function setLocation(url){
 	window.location.href = url;
+}
+
+/**
+ * Корзина функции
+ */
+
+function closePopup(){
+	$('.overlay-popup.visible').removeClass('active');
+	setTimeout(function(){$('.overlay-popup.visible').removeClass('visible');}, 500);
+}
+
+function submitCart(params){
+
+	return $.ajax({
+		type: "POST",
+		url: '/cart/ajax/add',
+		data: params,
+		dataType: 'json'
+	});
 }

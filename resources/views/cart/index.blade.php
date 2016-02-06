@@ -2,6 +2,8 @@
 
 @section('content')
 
+    {{var_dump(Cart::getContent())}}
+
     <div class="breadcrumb-box">
         <a href="{{ url('/') }}">Главная</a>
         <a href="#">Корзина</a>
@@ -122,13 +124,12 @@
             </div>
             <div class="col-md-4 information-entry">
                 <div class="cart-summary-box">
-                    <div class="sub-total">Subtotal: $990,00</div>
-                    <div class="grand-total">Grand Total $1029,79</div>
-                    <a class="button style-10" href="#">Proceed To Checkout</a>
-                    <a class="simple-link" href="#">Checkout with Multiple Addresses</a>
+                    <div class="sub-total">Итого: 990,00 <i class="fa fa-rub"></i></div>
+                    <div class="grand-total">Итого с доставкой 1029,79 <i class="fa fa-rub"></i></div>
+                    <a class="button style-10" href="#">Оформить заказ</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
 @endsection

@@ -41,7 +41,7 @@
                                 <img src="{{ @url($product->photos[0]->file) }}" alt="" />
                                 <img src="{{ @url($product->photos[1]->file) }}" alt="" />
                                 <div class="bottom-line left-attached">
-                                    <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="bottom-line-a square addToCart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
                                     <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
                                     <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
@@ -61,11 +61,10 @@
                                 <p>{{ $product->preview }}</p>
                             </div>
                             <div class="price">
-                                {{--<div class="prev">$199,99</div>--}}
                                 <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
                             </div>
                             <div class="list-buttons">
-                                <a class="button style-10">В корзину</a>
+                                <a class="button style-10 addToCart" data-id="{{ $product->id }}">В корзину</a>
                                 <a class="button style-11"><i class="fa fa-heart"></i> В избранное</a>
                             </div>
                         </div>

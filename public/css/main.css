@@ -181,3 +181,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .block-title {border: none}
 
 .cart-column-title {padding: 0 0 20px; border-top: none}
+.cart-summary-box .grand-total {font-size: 16px}
+#addcart-popup .cart-buttons {margin-top: 20px}
+#addcart-popup .cart-buttons .column {width: 33%}
+#addcart-popup .cart-buttons .column:first-child {padding-right: 0!important; padding-left: 10px !important;}

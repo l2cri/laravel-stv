@@ -10,6 +10,7 @@ namespace App\Services\Form;
 
 
 use App\Services\Form\Product\ProductForm;
+use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Product\ProductValidator;
 use App\Services\Form\Section\SectionForm;
 use App\Services\Form\Section\SectionValidator;
@@ -35,6 +36,16 @@ class FormServiceProvider extends ServiceProvider
          */
         $app->bind('App\Services\Form\Product\ProductForm', function($app){
             return new ProductForm( new ProductValidator($app['validator']),
+                $app->make('App\Repo\Product\ProductInterface')
+            );
+        });
+
+        /*
+         * корзина
+         * TODO: добавить валидатор
+         */
+        $app->bind('App\Services\Form\Cart\CartForm', function($app){
+            return new CartForm(
                 $app->make('App\Repo\Product\ProductInterface')
             );
         });
