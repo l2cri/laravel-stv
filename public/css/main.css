@@ -185,3 +185,4 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #addcart-popup .cart-buttons {margin-top: 20px}
 #addcart-popup .cart-buttons .column {width: 33%}
 #addcart-popup .cart-buttons .column:first-child {padding-right: 0!important; padding-left: 10px !important;}
+.cart-table td.nopadding {padding-right: 0; padding-left: 0}

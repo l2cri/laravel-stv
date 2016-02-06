@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repo\Cart\CartInterface;
 use Illuminate\Http\Request;
 use App\Repo\Product\ProductInterface;
 use App\Services\Form\Cart\CartForm;
@@ -16,14 +17,17 @@ class CartController extends Controller {
 
     protected $product;
     protected $form;
+    protected $cart;
 
-    public function __construct(ProductInterface $product, CartForm $form) {
+    public function __construct(ProductInterface $product, CartForm $form, CartInterface $cart) {
         $this->product = $product;
         $this->form = $form;
+        $this->cart = $cart;
     }
 
     public function index(){
-        return view('cart.index');
+        $items = $this->cart->all();
+        return view('cart.index', compact('items'));
     }
 
     // $data - айди товара и кол-во

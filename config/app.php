@@ -148,6 +148,7 @@ return [
         App\Providers\SectionServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\SupplierServiceProvider::class,
+        App\Providers\CartServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 

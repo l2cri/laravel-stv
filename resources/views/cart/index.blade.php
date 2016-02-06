@@ -1,9 +1,7 @@
 @extends('main')
 
 @section('content')
-
-    {{var_dump(Cart::getContent())}}
-
+    
     <div class="breadcrumb-box">
         <a href="{{ url('/') }}">Главная</a>
         <a href="#">Корзина</a>
@@ -19,81 +17,35 @@
                     <th class="column-4">Всего</th>
                     <th class="column-5"></th>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="traditional-cart-entry">
-                            <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                            <div class="content">
-                                <div class="cell-view">
-                                    <a href="#" class="tag">woman clothing</a>
-                                    <a href="#" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                    <div class="inline-description">S / Dirty Pink</div>
-                                    <div class="inline-description">Zigzag Clothing</div>
+
+                @foreach($items as $item)
+                    <tr>
+                        <td>
+                            <div class="traditional-cart-entry">
+                                <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
+                                <div class="content">
+                                    <div class="cell-view">
+                                        <a href="#" class="tag">woman clothing</a>
+                                        <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
+                                        {{--<div class="inline-description">S / Dirty Pink</div>--}}
+                                        {{--<div class="inline-description">Zigzag Clothing</div>--}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>$99,00</td>
-                    <td>
-                        <div class="quantity-selector detail-info-entry">
-                            <div class="entry number-minus">&nbsp;</div>
-                            <div class="entry number">10</div>
-                            <div class="entry number-plus">&nbsp;</div>
-                        </div>
-                    </td>
-                    <td><div class="subtotal">$990,00</div></td>
-                    <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="traditional-cart-entry">
-                            <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                            <div class="content">
-                                <div class="cell-view">
-                                    <a href="#" class="tag">woman clothing</a>
-                                    <a href="#" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                    <div class="inline-description">S / Dirty Pink</div>
-                                    <div class="inline-description">Zigzag Clothing</div>
-                                </div>
+                        </td>
+                        <td>{{ $item->price }}</td>
+                        <td class="nopadding">
+                            <div class="quantity-selector detail-info-entry">
+                                <div class="entry number-minus">&nbsp;</div>
+                                <div class="entry number">{{ $item->quantity }}</div>
+                                <div class="entry number-plus">&nbsp;</div>
                             </div>
-                        </div>
-                    </td>
-                    <td>$99,00</td>
-                    <td>
-                        <div class="quantity-selector detail-info-entry">
-                            <div class="entry number-minus">&nbsp;</div>
-                            <div class="entry number">10</div>
-                            <div class="entry number-plus">&nbsp;</div>
-                        </div>
-                    </td>
-                    <td><div class="subtotal">$990,00</div></td>
-                    <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="traditional-cart-entry">
-                            <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                            <div class="content">
-                                <div class="cell-view">
-                                    <a href="#" class="tag">woman clothing</a>
-                                    <a href="#" class="title">Pullover Batwing Sleeve Zigzag</a>
-                                    <div class="inline-description">S / Dirty Pink</div>
-                                    <div class="inline-description">Zigzag Clothing</div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>$99,00</td>
-                    <td>
-                        <div class="quantity-selector detail-info-entry">
-                            <div class="entry number-minus">&nbsp;</div>
-                            <div class="entry number">10</div>
-                            <div class="entry number-plus">&nbsp;</div>
-                        </div>
-                    </td>
-                    <td><div class="subtotal">$990,00</div></td>
-                    <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
-                </tr>
+                        </td>
+                        <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>
+                        <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
+                    </tr>
+                @endforeach
+
             </table>
         </div>
         <div class="cart-submit-buttons-box">
