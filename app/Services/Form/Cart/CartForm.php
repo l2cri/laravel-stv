@@ -34,4 +34,8 @@ class CartForm
 
         return false;
     }
+
+    public function delete($id) {
+        Cart::remove($id);
+    }
 }

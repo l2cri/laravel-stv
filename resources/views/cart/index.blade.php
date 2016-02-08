@@ -42,7 +42,7 @@
                             </div>
                         </td>
                         <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>
-                        <td><a class="remove-button"><i class="fa fa-times"></i></a></td>
+                        <td><a href="{{ route('cart.delete', $item->id) }}" class="remove-button"><i class="fa fa-times"></i></a></td>
                     </tr>
                 @endforeach
 

@@ -77,3 +77,4 @@ Route::post('catalog/ajax', 'CatalogController@ajax')->name('catalog.ajax'); // 
  */
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::post('/cart/ajax/add', 'CartController@add')->name('cart.add');
+Route::get('/cart/delete/{id}', 'CartController@delete')->where('id', '[0-9]+')->name('cart.delete');

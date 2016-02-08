@@ -44,4 +44,9 @@ class CartController extends Controller {
         return response()->json(['status' => $status,
             'message' => $message, 'output' => 'Корзинка']);
     }
+
+    public function delete($id){
+        $this->form->delete($id);
+        return redirect()->back();
+    }
 }
