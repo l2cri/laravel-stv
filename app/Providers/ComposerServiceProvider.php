@@ -30,7 +30,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
-            'cart.updateForm', 'App\Http\ViewComposers\CartUpdateFormComposer'
+            ['cart.updateForm', 'cart.dropdown'], 'App\Http\ViewComposers\CartUpdateFormComposer'
         );
     }
 

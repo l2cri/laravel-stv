@@ -24,9 +24,18 @@ class CartForm
     public function add($data){
 
         if (!Cart::has($data['product_id'])){
+
             $product = $this->product->byId($data['product_id']);
-            Cart::add($product->id, $product->name, $product->price, $data['qnt'], array());
+
+            $attributes = array( 'unit' => $product->unit,
+                                 'file' => $product->photos[0]->file,
+                                 'section_url' => $product->sections[0]->url,
+                                 'section_name' => $product->sections[0]->name,
+                                 'supplier_name' => $product->supplier->name);
+            Cart::add($product->id, $product->name, $product->price, $data['qnt'], $attributes);
+
             if ( Cart::has($product->id) ) return true;
+
         } else {
             Cart::update($data['product_id'], array( 'quantity' => $data['qnt'] ));
             return true;

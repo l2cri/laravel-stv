@@ -10,4 +10,5 @@ return [
     // товар
     'productPhotoDir' => 'images/products',
     'perpage' => 12,
+    'unit' => 'шт',
 ];

@@ -4,26 +4,21 @@
 
 <div class="cart-box popup">
     <div class="popup-container">
-        <div class="cart-entry">
-            <a class="image"><img src="/img/product-menu-1.jpg" alt="" /></a>
-            <div class="content">
-                <a class="title" href="#">Молоко отборное коровье</a>
-                <div class="quantity">Кол-во: 4л</div>
-                <div class="price">200,00 <i class="fa fa-rub"></i></div>
+
+        @foreach($items as $item)
+            <div class="cart-entry">
+                <a class="image"><img src="{{ @url($item->attributes['file']) }}" alt="" /></a>
+                <div class="content">
+                    <a class="title" href="{{ route('product.page', $item->id) }}">{{ $item->name }}</a>
+                    <div class="quantity">Кол-во: {{ $item->quantity }} {{ trn($item->attributes['unit'], 'шт') }}</div>
+                    <div class="price">{{ $item->price }} <i class="fa fa-rub"></i></div>
+                </div>
+                <a class="button-x" href="{{ route('cart.delete', $item->id) }}"><i class="fa fa-close"></i></a>
             </div>
-            <div class="button-x"><i class="fa fa-close"></i></div>
-        </div>
-        <div class="cart-entry">
-            <a class="image"><img src="/img/product-menu-1_.jpg" alt="" /></a>
-            <div class="content">
-                <a class="title" href="#">Молоко отборное коровье</a>
-                <div class="quantity">Кол-во: 4л</div>
-                <div class="price">200,00 <i class="fa fa-rub"></i></div>
-            </div>
-            <div class="button-x"><i class="fa fa-close"></i></div>
-        </div>
+        @endforeach
+
         <div class="summary">
-            <div class="subtotal">Товаров на: 400,00 <i class="fa fa-rub"></i></div>
+            <div class="subtotal">Товаров на: {{ Cart::getTotal() }} <i class="fa fa-rub"></i></div>
             <div class="grandtotal">С доставкой <span>600,00 <i class="fa fa-rub"></i></span></div>
         </div>
         <div class="cart-buttons">

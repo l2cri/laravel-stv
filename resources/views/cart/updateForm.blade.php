@@ -19,13 +19,14 @@
                 <tr>
                     <td>
                         <div class="traditional-cart-entry">
-                            <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
+                            <a href="{{ route('product.page', $item->id) }}" class="image"><img src="{{ @url($item->attributes['file']) }}" alt=""></a>
                             <div class="content">
                                 <div class="cell-view">
-                                    <a href="#" class="tag">woman clothing</a>
+                                    <a href="{{ url($item->attributes['section_url']) }}" class="tag">
+                                        {{ $item->attributes['section_name'] }}</a>
                                     <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
                                     {{--<div class="inline-description">S / Dirty Pink</div>--}}
-                                    {{--<div class="inline-description">Zigzag Clothing</div>--}}
+                                    <div class="inline-description">{{ $item->attributes['supplier_name'] }}</div>
                                 </div>
                             </div>
                         </div>

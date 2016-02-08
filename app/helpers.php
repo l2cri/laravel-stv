@@ -87,3 +87,10 @@ function evenOddArray($array){
 
     return array('even'=>$even, 'odd'=>$odd);
 }
+
+/**
+ * тернанрый оператор
+ */
+function trn($val, $default){
+    return !empty($val) ? $val : $default;
+}
