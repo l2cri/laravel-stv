@@ -8,46 +8,12 @@
     </div>
 
     <div class="information-blocks">
-        <div class="table-responsive">
-            <table class="cart-table">
-                <tr>
-                    <th class="column-1">Название</th>
-                    <th class="column-2">Цена</th>
-                    <th class="column-3">Кол-во</th>
-                    <th class="column-4">Всего</th>
-                    <th class="column-5"></th>
-                </tr>
+        <div id="cartUpdateDiv">
 
-                @foreach($items as $item)
-                    <tr>
-                        <td>
-                            <div class="traditional-cart-entry">
-                                <a href="#" class="image"><img src="img/product-minimal-1.jpg" alt=""></a>
-                                <div class="content">
-                                    <div class="cell-view">
-                                        <a href="#" class="tag">woman clothing</a>
-                                        <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
-                                        {{--<div class="inline-description">S / Dirty Pink</div>--}}
-                                        {{--<div class="inline-description">Zigzag Clothing</div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>{{ $item->price }}</td>
-                        <td class="nopadding">
-                            <div class="quantity-selector detail-info-entry">
-                                <div class="entry number-minus">&nbsp;</div>
-                                <div class="entry number">{{ $item->quantity }}</div>
-                                <div class="entry number-plus">&nbsp;</div>
-                            </div>
-                        </td>
-                        <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>
-                        <td><a href="{{ route('cart.delete', $item->id) }}" class="remove-button"><i class="fa fa-times"></i></a></td>
-                    </tr>
-                @endforeach
+        @include('cart.updateForm')
 
-            </table>
         </div>
+
         <div class="cart-submit-buttons-box">
             {{--<a class="button style-15">Продолжить покупки</a>--}}
             {{--<a class="button style-15">Пересчитать корзину</a>--}}

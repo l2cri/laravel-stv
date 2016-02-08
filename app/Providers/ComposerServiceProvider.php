@@ -28,6 +28,10 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             'catalog.filter', 'App\Http\ViewComposers\FilterComposer'
         );
+
+        view()->composer(
+            'cart.updateForm', 'App\Http\ViewComposers\CartUpdateFormComposer'
+        );
     }
 
     /**

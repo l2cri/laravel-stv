@@ -652,6 +652,24 @@ $(function() {
 		closePopup();
 	});
 
+	// обновляем значения в самой корзине
+	$( document ).on( "click", ".number-minus-update", function() {
+	//$('.number-minus-update').on('click', function(){
+		var divUpd = $(this).parent().find('.number'), newVal = parseInt(divUpd.text(), 10)-1;
+		if(newVal>=0) {
+			divUpd.text(newVal);
+			$('#item' + $(this).data('id')).val(newVal);
+			updateCart();
+		}
+	});
+
+	$( document ).on( "click", ".number-plus-update", function() {
+		var divUpd = $(this).parent().find('.number'), newVal = parseInt(divUpd.text(), 10)+1;
+		divUpd.text(newVal);
+		$('#item' + $(this).data('id')).val(newVal);
+		updateCart();
+	});
+
 });
 
 function setLocation(url){
@@ -674,5 +692,23 @@ function submitCart(params){
 		url: '/cart/ajax/add',
 		data: params,
 		dataType: 'json'
+	});
+}
+
+function submitUpdateCart(params){
+	return $.ajax({
+		type: "POST",
+		url: '/cart/ajax/update',
+		data: params,
+		dataType: 'html'
+	});
+}
+
+function updateCart(){
+
+	var params = $('#updateCartForm').serialize();
+
+	submitUpdateCart(params).done(function(data) {
+		$("#cartUpdateDiv").html(data);
 	});
 }

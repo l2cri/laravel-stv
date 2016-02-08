@@ -35,6 +35,18 @@ class CartForm
         return false;
     }
 
+    public function update($data){
+
+        foreach($data['cartIds'] as $id => $qnt){
+            Cart::update($id, array(
+                'quantity' => array(
+                    'relative' => false, // чтобы не прибавляло или убавляло, а ставило жестко
+                    'value' => $qnt
+                ),
+            ));
+        }
+    }
+
     public function delete($id) {
         Cart::remove($id);
     }

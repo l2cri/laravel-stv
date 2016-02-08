@@ -26,8 +26,8 @@ class CartController extends Controller {
     }
 
     public function index(){
-        $items = $this->cart->all();
-        return view('cart.index', compact('items'));
+        //$items = $this->cart->all();
+        return view('cart.index'); //, compact('items')
     }
 
     // $data - айди товара и кол-во
@@ -43,6 +43,11 @@ class CartController extends Controller {
 
         return response()->json(['status' => $status,
             'message' => $message, 'output' => 'Корзинка']);
+    }
+
+    public function update(Request $request){
+        $this->form->update($request->all());
+        return view('cart.updateForm');
     }
 
     public function delete($id){
