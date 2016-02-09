@@ -42,8 +42,7 @@
             </div>
             <div class="col-md-4 information-entry">
                 <div class="cart-summary-box">
-                    <div class="sub-total">Итого: {{ Cart::getTotal() }} <i class="fa fa-rub"></i></div>
-                    <div class="grand-total">Итого с доставкой 1029,79 <i class="fa fa-rub"></i></div>
+                    <span id="cartTotal">@include('cart.total')</span>
                     <a class="button style-10" href="#">Оформить заказ</a>
                 </div>
             </div>

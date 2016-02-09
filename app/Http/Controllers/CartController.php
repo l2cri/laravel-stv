@@ -58,4 +58,8 @@ class CartController extends Controller {
     public function dropdown(){
         return view('cart.dropdown');
     }
+
+    public function total(){
+        return view('cart.total');
+    }
 }

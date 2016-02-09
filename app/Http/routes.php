@@ -80,3 +80,4 @@ Route::post('/cart/ajax/add', 'CartController@add')->name('cart.add');
 Route::post('/cart/ajax/update', 'CartController@update')->name('cart.update');
 Route::get('/cart/delete/{id}', 'CartController@delete')->where('id', '[0-9]+')->name('cart.delete');
 Route::get('/cart/ajax/dropdown', 'CartController@dropdown');
+Route::get('/cart/ajax/total', 'CartController@total');

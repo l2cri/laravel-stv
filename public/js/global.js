@@ -713,9 +713,14 @@ function updateCart(){
 
 	submitUpdateCart(params).done(function(data) {
 		$("#cartUpdateDiv").html(data);
+		loadCartTotal();
 	});
 }
 
 function loadCartDropDown(){
 	$('#dropdownCartDiv').load('/cart/ajax/dropdown');
+}
+
+function loadCartTotal(){
+	$('#cartTotal').load('/cart/ajax/total');
 }
