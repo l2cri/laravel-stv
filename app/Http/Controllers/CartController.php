@@ -54,4 +54,8 @@ class CartController extends Controller {
         $this->form->delete($id);
         return redirect()->back();
     }
+
+    public function dropdown(){
+        return view('cart.dropdown');
+    }
 }

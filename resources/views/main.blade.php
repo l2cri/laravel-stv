@@ -75,7 +75,9 @@
 
                         @include('common.loginform')
 
-                        @include('cart.dropdown')
+                        <span id="dropdownCartDiv">
+                            @include('cart.dropdown')
+                        </span>
 
                     </div>
                 </div>
