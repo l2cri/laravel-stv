@@ -9,6 +9,8 @@
 namespace App\Services\Form;
 
 
+use App\Services\Form\Order\OrderForm;
+use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
 use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Product\ProductValidator;
@@ -47,6 +49,15 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Cart\CartForm', function($app){
             return new CartForm(
                 $app->make('App\Repo\Product\ProductInterface')
+            );
+        });
+
+        /*
+         * заказ
+         */
+        $app->bind('App\Services\Form\Order\OrderForm', function($app){
+            return new OrderForm( new OrderValidator($app['validator']),
+                $app->make('App\Repo\Profile\ProfileInterface')
             );
         });
     }

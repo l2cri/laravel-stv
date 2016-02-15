@@ -43,7 +43,7 @@
             <div class="col-md-4 information-entry">
                 <div class="cart-summary-box">
                     <span id="cartTotal">@include('cart.total')</span>
-                    <a class="button style-10" href="#">Оформить заказ</a>
+                    <a class="button style-10" href="{{ route('order.checkout') }}">Оформить заказ</a>
                 </div>
             </div>
         </div>

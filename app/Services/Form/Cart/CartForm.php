@@ -59,4 +59,8 @@ class CartForm
     public function delete($id) {
         Cart::remove($id);
     }
+
+    public function save() {
+        // вытащить все товары и сохранить их в таблицу cart_items
+    }
 }

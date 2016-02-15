@@ -5,7 +5,6 @@
     <div class="information-blocks">
         <div class="row">
             <div class="col-sm-9 col-sm-push-3">
-                @include('errors')
                 @yield('panel_content')
             </div>
             <div class="col-sm-3 col-sm-pull-9 blog-sidebar padding-right-40">

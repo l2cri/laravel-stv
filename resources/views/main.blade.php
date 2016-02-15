@@ -323,6 +323,8 @@
 
         <div class="content-push">
 
+            @include('errors')
+
             @yield('content')
 
             <!-- FOOTER -->

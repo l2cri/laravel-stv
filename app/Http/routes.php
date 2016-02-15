@@ -81,3 +81,10 @@ Route::post('/cart/ajax/update', 'CartController@update')->name('cart.update');
 Route::get('/cart/delete/{id}', 'CartController@delete')->where('id', '[0-9]+')->name('cart.delete');
 Route::get('/cart/ajax/dropdown', 'CartController@dropdown');
 Route::get('/cart/ajax/total', 'CartController@total');
+
+/*
+ * Заказ
+ */
+Route::get('order/checkout', 'OrderController@checkout')->name('order.checkout'); // форма создания заказа одна, на трех вкладках если нужно
+Route::post('order/create', 'OrderController@create')->name('order.create');
+Route::get('order/thanks', 'OrderController@thanks')->name('order.thanks');

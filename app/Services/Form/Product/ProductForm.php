@@ -11,12 +11,9 @@ namespace App\Services\Form\Product;
 use App\Repo\Product\ProductInterface;
 use App\Services\Validation\ValidableInterface;
 use Auth;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 
 class ProductForm
 {
-    protected $data;
     protected $validator;
     protected $product;
 
