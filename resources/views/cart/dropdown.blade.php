@@ -27,7 +27,7 @@
                 <div class="clear"></div>
             </div>
             <div class="column">
-                <a class="button style-4">Оформить заказ</a>
+                <a class="button style-4" href="{{ route('order.checkout') }}">Оформить заказ</a>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>

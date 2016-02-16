@@ -434,7 +434,7 @@
                         </div>
                         &nbsp;
                         <div class="column">
-                            <a class="button style-14">Оформить заказ</a>
+                            <a class="button style-14" href="{{ route('order.checkout') }}">Оформить заказ</a>
                             <div class="clear"></div>
                         </div>
                         <div class="clear"></div>
