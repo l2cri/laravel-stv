@@ -1,4 +1,4 @@
-@if( isset($profile) && $profile instanceof ProfileInterface )
+@if( isset($profile) && !empty($profile) )
 
     <input type="hidden" name="profile_id" value="{{ $profile->id }}">
 

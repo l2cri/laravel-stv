@@ -15,4 +15,13 @@ trait RepoTrait
     public function create(array $data){
         return $this->model->create($data);
     }
+
+    public function byId($id, $columns = array('*'))
+    {
+        return $this->model->find($id, $columns);
+    }
+
+    public function findBy($attribute, $value, $columns = array('*')) {
+        return $this->model->where($attribute, '=', $value)->first($columns);
+    }
 }

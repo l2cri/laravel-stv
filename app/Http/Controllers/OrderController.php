@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Order\OrderForm;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 class OrderController extends Controller
 {
     protected $form;
+    protected $profile;
 
-    public function __construct(OrderForm $form) {
+    public function __construct(OrderForm $form, ProfileInterface $profile) {
         $this->form = $form;
+        $this->profile = $profile;
     }
 
     public function create(Request $request) {
@@ -30,7 +34,8 @@ class OrderController extends Controller
     }
 
     public function checkout(){
-        return view('order.checkout');
+        $profile = $this->profile->findBy('user_id', Auth::user()->id);
+        return view('order.checkout', compact('profile'));
     }
 
     public function thanks(){

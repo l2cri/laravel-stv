@@ -16,4 +16,5 @@ interface RepoInterface
     public function delete($id);
     public function update(array $data, $id, $attribute="id");
     public function create(array $data);
+    public function findBy($field, $value, $columns = array('*'));
 }

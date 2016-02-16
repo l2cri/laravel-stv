@@ -23,11 +23,6 @@ class EloquentProfile implements ProfileInterface
         $this->model = $model;
     }
 
-    public function byId($id)
-    {
-        // TODO: Implement byId() method.
-    }
-
     public function all()
     {
         // TODO: Implement all() method.
