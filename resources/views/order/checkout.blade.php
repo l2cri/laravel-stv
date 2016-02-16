@@ -7,7 +7,7 @@
         <a href="#">Оформить заказ</a>
     </div>
 
-    <div class="information-blocks">
+    <div class="information-blocks" id="checkoutPage">
         <div class="row">
             <div class="col-sm-9 information-entry">
 
@@ -44,14 +44,22 @@
                         <div class="accordeon-title active"><span class="number">4</span>Заказ</div>
                         <div class="accordeon-entry" style="display: block;">
                             <div class="article-container style-1">
-                                вставить сюда шаблон с корзины с мЕньшими картинками и добавить его в композер
-                                доставка отдельно будет
+
+                                @include('cart.checkout')
+
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="button style-10">Оформить заказ<input type="submit" value=""></div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-6 information-entry">
+                            <div class="cart-summary-box">
+                                <span id="cartTotal">@include('cart.total')</span>
+                                <div class="button style-10">Заказать<input type="submit" value=""></div>
+                            </div>
+                        </div>
+                    </div>
 
                 </form>
 

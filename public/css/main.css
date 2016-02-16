@@ -186,3 +186,8 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #addcart-popup .cart-buttons .column {width: 33%}
 #addcart-popup .cart-buttons .column:first-child {padding-right: 0!important; padding-left: 10px !important;}
 .cart-table td.nopadding {padding-right: 0; padding-left: 0}
+
+#checkoutPage textarea.simple-field {height: 100px}
+#checkoutPage .cart-table th {border-top: none; font-weight: lighter; font-size: 12px}
+#checkoutPage .cart-table th, #checkoutPage .cart-table td {padding: 15px 20px;}
+#checkoutPage .accordeon {margin-bottom: 0px}
