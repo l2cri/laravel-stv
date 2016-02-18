@@ -9,7 +9,9 @@
 namespace App\Services\Form\Order;
 
 
+use App\Exceptions\OrderNotCreatedException;
 use App\Repo\Cart\CartInterface;
+use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\FormTrait;
 use App\Services\Validation\ValidableInterface;
@@ -23,11 +25,15 @@ class OrderForm
     protected $validator;
     protected $profile;
     protected $cart;
+    protected $user;
 
-    public function __construct(ValidableInterface $validator, ProfileInterface $profile, CartInterface $cart) {
+    public function __construct(ValidableInterface $validator, ProfileInterface $profile,
+                                CartInterface $cart, OrderInterface $order) {
         $this->validator = $validator;
         $this->profile = $profile;
         $this->cart = $cart;
+        $this->order = $order;
+        $this->user = Auth::user();
     }
 
     public function create($input) {
@@ -35,13 +41,51 @@ class OrderForm
 
         $profileId = $this->handleProfile($input);
         $bySuppliersArray = $this->devideBySuppliers();
+        $this->saveBySuppliers($bySuppliersArray, $profileId);
 
         return true;
     }
 
+    protected function save($supplierId, $profileId, $cart){
+        $subtotal = 0;
+        $total = 0;
+
+        foreach($cart as $item) {
+            $subtotal += $item->getPriceSum();
+            $total += $item->getPriceSumWithConditions();
+        }
+
+        $data = array(
+            'user_id' => $this->user->id,
+            'supplier_id' => $supplierId,
+            'profile_id' => $profileId,
+            'subtotal' => $subtotal,
+            'total' => $total
+        );
+
+        $order = $this->order->create($data);
+
+        if ($order !== null) return $order->id;
+
+        throw new OrderNotCreatedException();
+    }
+
+    protected function saveBySuppliers($arr, $profileId) {
+        foreach ($arr as $supplierId => $cart) {
+            $orderId = $this->save($supplierId, $profileId, $cart);
+
+        }
+    }
+
     protected function devideBySuppliers(){
+
         $arr = array();
-        dd($this->cart->all()); die();
+        $items = $this->cart->all();
+
+        foreach ($items as $item){
+            $supplierId = $item->attributes->supplier_id;
+            $arr[$supplierId][] = $item;
+        }
 
         return $arr;
     }
@@ -57,7 +101,7 @@ class OrderForm
                 return $input['profile_id'];
 
         } else {
-            $arr['user_id'] = Auth::user()->id;
+            $arr['user_id'] = $this->user->id;
             $profile = $this->profile->create($arr);
             return $profile->id;
         }

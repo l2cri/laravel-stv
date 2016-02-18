@@ -73,4 +73,12 @@ class User extends Model implements AuthenticatableContract,
     public function profiles(){
         return $this->hasMany('App\Models\Profile');
     }
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order');
+    }
+
+    public function cartItems(){
+        return $this->hasMany('App\Models\CartItem');
+    }
 }

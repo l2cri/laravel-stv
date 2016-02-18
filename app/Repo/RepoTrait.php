@@ -28,4 +28,14 @@ trait RepoTrait
     public function update(array $data, $id, $attribute="id") {
         return $this->model->where($attribute, '=', $id)->update($data);
     }
+
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 }

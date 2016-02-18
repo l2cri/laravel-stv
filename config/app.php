@@ -150,6 +150,7 @@ return [
         App\Providers\SupplierServiceProvider::class,
         App\Providers\CartServiceProvider::class,
         App\Providers\ProfileServiceProvider::class,
+        App\Providers\OrderServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 
