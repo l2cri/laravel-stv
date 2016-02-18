@@ -31,7 +31,9 @@ class CartForm
                                  'file' => $product->photos[0]->file,
                                  'section_url' => $product->sections[0]->url,
                                  'section_name' => $product->sections[0]->name,
-                                 'supplier_name' => $product->supplier->name);
+                                 'supplier_name' => $product->supplier->name,
+                                 'supplier_id' => $product->supplier->id,
+                                );
             Cart::add($product->id, $product->name, $product->price, $data['qnt'], $attributes);
 
             if ( Cart::has($product->id) ) return true;

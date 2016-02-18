@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\ServiceProvider;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $user = Auth::user();
+        if ( $user ==  null ) $user = new User();
+        view()->share('user', $user);
     }
 
     /**

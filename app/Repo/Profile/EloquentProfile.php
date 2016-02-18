@@ -32,9 +32,4 @@ class EloquentProfile implements ProfileInterface
     {
         // TODO: Implement delete() method.
     }
-
-    public function update(array $data, $id, $attribute = "id")
-    {
-        // TODO: Implement update() method.
-    }
 }

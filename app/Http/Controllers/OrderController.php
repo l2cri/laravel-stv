@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Order\OrderForm;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -34,7 +35,13 @@ class OrderController extends Controller
     }
 
     public function checkout(){
-        $profile = $this->profile->findBy('user_id', Auth::user()->id);
+
+        $user = Auth::user();
+
+        if ( $user instanceof User ) {
+            $profile = $this->profile->findBy('user_id', Auth::user()->id);
+        }
+
         return view('order.checkout', compact('profile'));
     }
 

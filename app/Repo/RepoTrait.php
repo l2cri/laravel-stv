@@ -24,4 +24,8 @@ trait RepoTrait
     public function findBy($attribute, $value, $columns = array('*')) {
         return $this->model->where($attribute, '=', $value)->first($columns);
     }
+
+    public function update(array $data, $id, $attribute="id") {
+        return $this->model->where($attribute, '=', $id)->update($data);
+    }
 }
