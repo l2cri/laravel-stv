@@ -36,7 +36,7 @@ class OrdersCartItemsProfilesCreateTables extends Migration
             $table->foreign('profile_id')->references('id')->on('profiles');
             $table->float('subtotal')->default(0); // без скидок
             $table->float('total')->default(0); // со всеми скидками
-            $table->text('comment');
+            $table->text('comment')->nullable();
             //TODO: добавить delivery_id и delivery_price, payment_id, оплачен или нет, статус заказа,
             // возможность добавлять статусы
             // возвраты: return=yes - может быть, returned_id - id возвращаемого заказа, return_id - заказ-возврат данного,

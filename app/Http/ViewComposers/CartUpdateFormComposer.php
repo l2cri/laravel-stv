@@ -8,15 +8,14 @@
 
 namespace App\Http\ViewComposers;
 
-
-use App\Repo\Cart\CartRepo;
+use App\Repo\Cart\CartInterface;
 use Illuminate\View\View;
 
 class CartUpdateFormComposer
 {
     protected $cart;
 
-    public function __construct(CartRepo $cart){
+    public function __construct(CartInterface $cart){
         $this->cart = $cart;
     }
 

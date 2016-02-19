@@ -8,9 +8,15 @@
 
 namespace App\Repo\Cart;
 use Cart;
+use Illuminate\Database\Eloquent\Model;
 
 class CartRepo implements CartInterface
 {
+    protected $model;
+
+    public function __construct(Model $model) {
+        $this->model = $model;
+    }
 
     public function add($data)
     {
@@ -27,14 +33,33 @@ class CartRepo implements CartInterface
         // TODO: Implement delete() method.
     }
 
-    public function save()
+    public function save($items, $orderId = null, $userId = null)
     {
-        // TODO: Implement save() method.
+        foreach ($items as $item) {
+            $data = array(
+                'product_id' => $item->id,
+                'order_id' => $orderId,
+                'user_id' => $userId,
+                'name' => $item->name,
+                'price' => $item->price,
+                'final_price' => $item->getPriceWithConditions(),
+                'quantity' => $item->quantity,
+                'subtotal' => $item->getPriceSum(),
+                'total' => $item->getPriceSumWithConditions(),
+                'attributes' => serialize($item->attributes->all())
+            );
+
+            if ( !$this->model->create($data)) throw new CartItemNotSavedException();
+        }
     }
 
     public function all()
     {
         return Cart::getContent();
+    }
+
+    public function clear(){
+        Cart::clear();
     }
 
 }

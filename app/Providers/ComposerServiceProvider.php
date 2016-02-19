@@ -9,6 +9,8 @@
 namespace App\Providers;
 
 
+use App\User;
+use Illuminate\Auth\Guard;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -18,8 +20,17 @@ class ComposerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Guard $auth)
     {
+
+        view()->composer('*', function($view) use ($auth) {
+
+            $currentUser = $auth->user();
+            if (!$currentUser) $currentUser = new User();
+
+            $view->with('user', $currentUser);
+        });
+
         // Using class based composers...
         view()->composer(
             'common.menusections', 'App\Http\ViewComposers\MenuSectionsComposer'

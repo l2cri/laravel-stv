@@ -14,6 +14,7 @@ interface CartInterface
     public function add($data);
     public function update($id, $data);
     public function delete($id);
-    public function save();
+    public function save($items, $orderId = null, $userId = null);
     public function all();
+    public function clear();
 }

@@ -8,7 +8,6 @@
 
 namespace App\Services\Form\Order;
 
-
 use App\Exceptions\OrderNotCreatedException;
 use App\Repo\Cart\CartInterface;
 use App\Repo\Order\OrderInterface;
@@ -41,7 +40,12 @@ class OrderForm
 
         $profileId = $this->handleProfile($input);
         $bySuppliersArray = $this->devideBySuppliers();
+
+        // если что-то пойдет не так, то бросит исключение
         $this->saveBySuppliers($bySuppliersArray, $profileId);
+
+        // поэтому смело чистим корзину
+        $this->cart->clear();
 
         return true;
     }
@@ -73,7 +77,7 @@ class OrderForm
     protected function saveBySuppliers($arr, $profileId) {
         foreach ($arr as $supplierId => $cart) {
             $orderId = $this->save($supplierId, $profileId, $cart);
-
+            $this->cart->save($cart, $orderId, $this->user->id);
         }
     }
 

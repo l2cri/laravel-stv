@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartItem extends Model
 {
+    protected $table = 'cart_items';
+
     protected $fillable = ['user_id', 'order_id', 'product_id', 'price', 'final_price',
                             'subtotal', 'total', 'comment', 'name', 'quantity', 'attributes'];
 

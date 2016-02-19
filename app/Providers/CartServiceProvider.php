@@ -9,6 +9,8 @@
 namespace App\Providers;
 
 
+use App\Models\CartItem;
+use App\Models\Order;
 use App\Repo\Cart\CartRepo;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +24,7 @@ class CartServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Repo\Cart\CartInterface', function($app){
-            $cart = new CartRepo();
+            $cart = new CartRepo( new CartItem() );
             return $cart;
         });
     }
