@@ -15,7 +15,7 @@ use Input;
 use Redirect;
 use Auth;
 use Illuminate\Http\Request;
-use yajra\Datatables\Datatables;
+use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {

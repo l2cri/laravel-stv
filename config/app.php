@@ -170,7 +170,7 @@ return [
         /*
          * Datatables
          */
-        \yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
     ],
 
     /*
@@ -243,11 +243,6 @@ return [
          * Cart
          */
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
-
-        /*
-         * Datatables
-         */
-        'Datatables'      => \yajra\Datatables\Datatables::class,
 
     ],
 
