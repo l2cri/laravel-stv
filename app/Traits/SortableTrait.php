@@ -33,9 +33,12 @@ trait SortableTrait
     }
 
     public function getOrder(){
-        $order = ( !empty(\Input::get('order')) ) ? \Input::get('order') : \Input::session()->get('order', 'id');
-        if ( !empty(\Input::get('order')) ) {
-            \Input::session()->put('order', \Input::get('order'));
+
+        $str = $this->prefix."order";
+
+        $order = ( !empty(\Input::get($str)) ) ? \Input::get($str) : \Input::session()->get($str, 'id');
+        if ( !empty(\Input::get($str)) ) {
+            \Input::session()->put($str, \Input::get($str));
         }
 
         return $order;
