@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductsDataTable;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Services\Form\Product\ProductForm;
@@ -27,6 +28,10 @@ class ProductController extends Controller
         $this->product = $product;
         $this->section = $section;
         $this->form = $form;
+    }
+
+    public function index(ProductsDataTable $dataTable){
+        return $dataTable->render('panel.supplier.products.datatable');
     }
 
     public function getIndex(){
