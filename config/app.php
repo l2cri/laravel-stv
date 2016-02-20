@@ -166,6 +166,11 @@ return [
          * Cart
          */
         Darryldecode\Cart\CartServiceProvider::class,
+
+        /*
+         * Datatables
+         */
+        \yajra\Datatables\DatatablesServiceProvider::class,
     ],
 
     /*
@@ -238,6 +243,11 @@ return [
          * Cart
          */
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+
+        /*
+         * Datatables
+         */
+        'Datatables'      => \yajra\Datatables\Datatables::class,
 
     ],
 

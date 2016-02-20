@@ -1,5 +1,11 @@
 @extends('main')
 
+@section('headscripts')
+    <link href="{{ url('https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js') }}"></script>
+@endsection
+
 @section('content')
 
     <div class="information-blocks">

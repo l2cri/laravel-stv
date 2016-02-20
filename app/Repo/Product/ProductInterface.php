@@ -23,4 +23,5 @@ interface ProductInterface
     public function paginate();
     public function findBy($field, $value, $columns = array('*'));
     public function allProductsFromLastRequest();
+    public function datatables($attribute, $value, $columns = array('*'));
 }

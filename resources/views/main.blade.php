@@ -19,6 +19,8 @@
 
     @include('jsheader')
 
+    @yield('headscripts')
+
     <title>Маркетплейс</title>
 </head>
 <body class="style-2">

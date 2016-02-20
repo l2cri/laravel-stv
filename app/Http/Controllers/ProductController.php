@@ -15,6 +15,7 @@ use Input;
 use Redirect;
 use Auth;
 use Illuminate\Http\Request;
+use yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {
@@ -26,6 +27,17 @@ class ProductController extends Controller
         $this->product = $product;
         $this->section = $section;
         $this->form = $form;
+    }
+
+    public function getIndex(){
+        return view('panel.supplier.products.index');
+    }
+
+    public function anyData()
+    {
+        return Datatables::of( $this->product->datatables('supplier_id', Auth::user()->suppliers[0]->id) )
+                    ->editColumn('name','<a target="_blank" href="{{ route("product.page", $id) }}">{{ $name }}')
+                    ->make(true);
     }
 
     /*

@@ -10,6 +10,7 @@ namespace App\Repo\Product;
 
 
 use App\Repo\Criteria\CriteriaTrait;
+use App\Repo\DatatablesTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\Node;
 
@@ -17,6 +18,7 @@ class EloquentProduct implements ProductInterface
 {
 
     use CriteriaTrait;
+    use DatatablesTrait;
 
     protected $model;
     protected $section;
@@ -82,7 +84,6 @@ class EloquentProduct implements ProductInterface
     }
 
     public function findBy($field, $value, $columns = array('*')){
-
     }
 
     /**
