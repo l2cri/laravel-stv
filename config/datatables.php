@@ -3,8 +3,8 @@
 return [
 
     'search'  => [
-        'case_insensitive' => true,
-        'use_wildcards'    => true,
+        'case_insensitive' => false, //TODO: разобраться с caseinsensitive, похоже в sqlite другие query
+        'use_wildcards'    => false,
     ],
 
     'fractal' => [

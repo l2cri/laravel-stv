@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Product\Product;
 use Yajra\Datatables\Services\DataTable;
+use Auth;
 
 class ProductsDataTable extends DataTable
 {
@@ -29,7 +30,7 @@ class ProductsDataTable extends DataTable
      */
     public function query()
     {
-        $products = Product::select();
+        $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id);
 
         return $this->applyScopes($products);
     }
