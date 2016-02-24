@@ -3,8 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\Product\Product;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Services\DataTable;
 use Auth;
+use Input;
 
 class ProductsDataTable extends DataTable
 {
@@ -38,7 +40,7 @@ class ProductsDataTable extends DataTable
 
                 return '<a href="" title="Редактировать"><i class="fa fa-edit"></i></a>'.
                         ' <a href="" title="Удалить"><i class="fa fa-remove"></i></a>';
-                
+
             })
             ->make(true);
     }
@@ -50,7 +52,15 @@ class ProductsDataTable extends DataTable
      */
     public function query()
     {
-        $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->with('sections');
+        $sectionId = Input::input('section_id');
+
+        if ($sectionId > 0) {
+            $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->whereHas('sections', function($q) use ($sectionId)
+            {
+                $q->where('id', "=", $sectionId);
+            })->with('sections');
+        } else
+            $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->with('sections');
 
         return $this->applyScopes($products);
     }
@@ -64,7 +74,9 @@ class ProductsDataTable extends DataTable
     {
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->ajax(route('products.datatables'))
+                    ->ajax( [
+                                'url' => route('products.datatables'),
+                            ])
                     ->addAction(['width' => '50px', 'title' => 'Действие'])
                     ->parameters([
                         'dom' => 'Bfrtip',
@@ -113,7 +125,7 @@ class ProductsDataTable extends DataTable
             'id',
             'name' => ['title' => 'Название'],
             'created_at' => ['title' => 'Добавлен'],
-            'sections.name' => ['title' => 'В категориях']
+            'sections.name' => ['title' => 'В категориях', 'orderable' => 'false']
         ];
     }
 

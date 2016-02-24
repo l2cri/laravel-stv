@@ -12,6 +12,37 @@
 @endsection
 
 @section('panel_content')
+
+    <div class="table-responsive information-blocks sections-panel">
+
+        <form action="" method="post">
+            {{ csrf_field() }}
+            <table class="cart-table">
+
+                <tr>
+                    <td>
+                        <label>Фильтр по категории</label>
+                        <select class="simple-field" name="section_id" id="sectionSelect">
+                            @foreach($sectionTree as $section)
+                                <option value={{ $section->id }}>
+                                    {{ treeSymbol($section->depth*2, '&nbsp;') }}{{ $section->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
     {!! $dataTable->table() !!}
     {!! $dataTable->scripts() !!}
+
+    <script>
+        $( document ).on( "change", "#sectionSelect", function() {
+            window.LaravelDataTables["dataTableBuilder"].ajax.url( '{{ route('products.datatables') }}' + '?section_id=' + this.value );
+            window.LaravelDataTables["dataTableBuilder"].draw();
+        });
+    </script>
 @endsection

@@ -16,7 +16,6 @@ use Input;
 use Redirect;
 use Auth;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {
@@ -25,24 +24,20 @@ class ProductController extends Controller
     protected $form;
 
     public function __construct(ProductInterface $product, SectionInterface $section, ProductForm $form){
+
+        $this->middleware('auth');
+
         $this->product = $product;
         $this->section = $section;
         $this->form = $form;
     }
 
     public function index(ProductsDataTable $dataTable){
-        return $dataTable->render('panel.supplier.products.datatable');
-    }
 
-    public function getIndex(){
-        return view('panel.supplier.products.index');
-    }
+        // TODO: добавить чтобы категории были только те, где есть товары этого поставщика
 
-    public function anyData()
-    {
-        return Datatables::of( $this->product->datatables('supplier_id', Auth::user()->suppliers[0]->id) )
-                    ->editColumn('name','<a target="_blank" href="{{ route("product.page", $id) }}">{{ $name }}')
-                    ->make(true);
+        $sectionTree = $this->section->getTree();
+        return $dataTable->render('panel.supplier.products.datatable', compact('sectionTree'));
     }
 
     /*
