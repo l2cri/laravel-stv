@@ -19,7 +19,27 @@ class ProductsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'path.to.action.view')
+            ->editColumn('name', function($product) {
+
+                return '<a target="_blank" href="'.route('product.page', $product->id).'">'.$product->name.'</a>';
+
+            })->editColumn('sections.name', function($product){
+
+                $sections = $product->sections;
+
+                $arr = array();
+                foreach ($sections as $s) {
+                    $arr [] = '<a href="'.url($s->url).'" target="_blank">'.$s->name.'</a>';
+                }
+                return implode('<br>', $arr);
+
+            })
+            ->addColumn('action', function($product){
+
+                return '<a href="" title="Редактировать"><i class="fa fa-edit"></i></a>'.
+                        ' <a href="" title="Удалить"><i class="fa fa-remove"></i></a>';
+                
+            })
             ->make(true);
     }
 
@@ -30,7 +50,7 @@ class ProductsDataTable extends DataTable
      */
     public function query()
     {
-        $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id);
+        $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->with('sections');
 
         return $this->applyScopes($products);
     }
@@ -45,7 +65,7 @@ class ProductsDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax(route('products.datatables'))
-                    ->addAction(['width' => '80px'])
+                    ->addAction(['width' => '50px', 'title' => 'Действие'])
                     ->parameters([
                         'dom' => 'Bfrtip',
                         'lengthMenu' => [
@@ -93,7 +113,7 @@ class ProductsDataTable extends DataTable
             'id',
             'name' => ['title' => 'Название'],
             'created_at' => ['title' => 'Добавлен'],
-            'updated_at' => ['title' => 'Отредактирован'],
+            'sections.name' => ['title' => 'В категориях']
         ];
     }
 
