@@ -7,4 +7,4 @@
     </ul>
 
 </li>
-<li><a href="#">Заказы</a></li>
+<li><a href="{{ route('orders.datatables') }}">Заказы</a></li>

@@ -58,14 +58,21 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/products/add', 'ProductController@addform')->name('products.addform');
     Route::post('/panel/supplier/products/add', 'ProductController@store')->name('products.store');
 
-//    Route::controller('/panel/supplier/products/datatables', 'ProductController', [
-//        'anyData'  => 'products.datatables.data',
-//        'getIndex' => 'products.datatables',
-//    ]);
+    // orders
+
+    Route::get('/panel/supplier/order/{id}', 'OrderController@supplierorder')->name('ordersupplier.page');
+
 });
+
+/*
+ * Datatables
+ */
 
 Route::resource('/panel/supplier/products/datatables', 'ProductController',
     ['names' => ['index' => 'products.datatables']]);
+
+Route::resource('/panel/supplier/orderdatatables', 'OrderController',
+    ['names' => ['index' => 'orders.datatables']]);
 
 /*
  * Контент

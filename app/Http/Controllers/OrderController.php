@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SupplierOrdersDataTable;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Order\OrderForm;
 use App\User;
@@ -20,6 +21,10 @@ class OrderController extends Controller
     public function __construct(OrderForm $form, ProfileInterface $profile) {
         $this->form = $form;
         $this->profile = $profile;
+    }
+
+    public function index(SupplierOrdersDataTable $dataTable) {
+        return $dataTable->render('panel.supplier.order.datatablesupplier');
     }
 
     public function create(Request $request) {
@@ -47,5 +52,9 @@ class OrderController extends Controller
 
     public function thanks(){
         return 'спасибо за заказ';
+    }
+
+    public function supplierorder($id) {
+        return view('panel.supplier.order.show', compact('id'));
     }
 }
