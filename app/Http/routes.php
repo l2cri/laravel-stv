@@ -30,7 +30,7 @@ Route::get('/home', function () {
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin')->name('auth.post');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
@@ -44,7 +44,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel', function () {
         return view('panel.index');
-    });
+    })->name('panel.index');
 
     // sections
 
