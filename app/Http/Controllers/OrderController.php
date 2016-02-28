@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SupplierOrdersDataTable;
+use App\DataTables\UserOrdersDataTable;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Order\OrderForm;
@@ -28,6 +29,10 @@ class OrderController extends Controller
 
     public function index(SupplierOrdersDataTable $dataTable) {
         return $dataTable->render('panel.supplier.order.datatablesupplier');
+    }
+
+    public function getUserOrders(UserOrdersDataTable $dataTable) {
+        return $dataTable->render('panel.user.order.datatable');
     }
 
     public function create(Request $request) {

@@ -74,6 +74,10 @@ Route::resource('/panel/supplier/products/datatables', 'ProductController',
 Route::resource('/panel/supplier/orderdatatables', 'OrderController',
     ['names' => ['index' => 'orders.datatables']]);
 
+Route::controller('/panel/user/orders', 'OrderController', [
+    'getUserOrders' => 'userorders.datatables',
+]);
+
 /*
  * Контент
  */
