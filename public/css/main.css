@@ -191,3 +191,6 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #checkoutPage .cart-table th {border-top: none; font-weight: lighter; font-size: 12px}
 #checkoutPage .cart-table th, #checkoutPage .cart-table td {padding: 15px 20px;}
 #checkoutPage .accordeon {margin-bottom: 0px}
+
+.table.table-striped.panel th {font-weight: bold; border: none; width: 20%}
+.table.table-striped.panel td {border: none; text-align: right; padding-right: 3%}
