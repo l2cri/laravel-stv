@@ -20,10 +20,14 @@
                             @can('supplier_panel')
                                 @include('panel.menu.supplier')
                             @endcan
+
+                            @can('user_panel')
+                                @include('panel.menu.user')
+                            @endcan
                         </ul>
                     </div>
                     <div class="article-container">
-                        <br/>Custom CMS block displayed below the one page account panel block. Put your own content here.
+                        
                     </div>
                 </div>
             </div>

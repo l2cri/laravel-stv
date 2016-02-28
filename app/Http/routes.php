@@ -31,7 +31,7 @@ Route::get('/home', function () {
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin')->name('auth.post');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
