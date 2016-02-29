@@ -73,4 +73,8 @@ class OrderController extends Controller
         $order = $this->order->byId($id);
         return view('panel.user.order.show', compact('order'));
     }
+
+    public function auth(){
+        return view('order.auth');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Contracts\Auth\Guard;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,11 +61,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // по-умолчанию назначаем роль Клиент
+        $user->roles()->attach(config('client_role_id', 1));
+
+        return $user;
     }
 
     /**
@@ -93,7 +99,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->has('remember'))) {
 
             /**
-             * TODO: Hack to enter SleepingOwl Admin
+             * TODO: Hack to enter SleepingOwl Admin - done
              */
 
             \AdminAuth::login(\Auth::user());
@@ -115,6 +121,28 @@ class AuthController extends Controller
             ]);
 
         return $this->originPostLogin($request);
+    }
+
+    public function checkoutRegister(Request $request){
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::login($this->create($request->all()));
+
+        return redirect()->route('order.checkout');
+    }
+
+    public function authenticated(Request $request, User $user){
+
+        if ($request->has('checkout_page') && $request->get('checkout_page'))
+            return redirect()->route('order.checkout');
+
+        return redirect()->intended($this->redirectPath());
     }
 
 }

@@ -37,6 +37,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+Route::post('/order/checkout/register', 'Auth\AuthController@checkoutRegister')->name('checkout.register');
+
 /*
  * Панель
  */
@@ -104,6 +106,7 @@ Route::get('/cart/ajax/total', 'CartController@total');
 /*
  * Заказ
  */
-Route::get('order/checkout', 'OrderController@checkout')->name('order.checkout'); // форма создания заказа одна, на трех вкладках если нужно
+Route::get('order/checkout', 'OrderController@checkout')->name('order.checkout')->middleware(['auth.checkout']); // форма создания заказа одна, на трех вкладках если нужно
 Route::post('order/create', 'OrderController@create')->name('order.create');
 Route::get('order/thanks', 'OrderController@thanks')->name('order.thanks');
+Route::get('order/checkout/auth', 'OrderController@auth')->name('order.auth');

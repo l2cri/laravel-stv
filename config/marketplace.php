@@ -11,4 +11,6 @@ return [
     'productPhotoDir' => 'images/products',
     'perpage' => 12,
     'unit' => 'шт',
+
+    'client_role_id' => 1,
 ];
