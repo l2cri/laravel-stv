@@ -68,4 +68,9 @@ class OrderController extends Controller
 
         return view('panel.supplier.order.show', compact('order'));
     }
+
+    public function userrorder($id) {
+        $order = $this->order->byId($id);
+        return view('panel.user.order.show', compact('order'));
+    }
 }

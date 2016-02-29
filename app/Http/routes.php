@@ -61,7 +61,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     // orders
 
     Route::get('/panel/supplier/order/{id}', 'OrderController@supplierorder')->name('ordersupplier.page');
-
+    Route::get('/panel/user/order/{id}', 'OrderController@userrorder')->name('userorder');
 });
 
 /*
