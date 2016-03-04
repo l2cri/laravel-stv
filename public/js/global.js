@@ -724,3 +724,34 @@ function loadCartDropDown(){
 function loadCartTotal(){
 	$('#cartTotal').load('/cart/ajax/total');
 }
+
+/*
+	общие функции для отправки форм из модальных окон в панели
+ */
+
+function submitFormByAjax(url, data, dataType){
+
+	dataType = typeof dataType !== 'undefined' ? dataType : 'html';
+
+	return $.ajax({
+		type: "POST",
+		url: url,
+		data: data,
+		dataType: dataType
+	});
+}
+
+function submitCreateForm(url) {
+
+	if (!$('#form_create')[0].checkValidity()) return;
+
+	var data = $('#form_create').serialize();
+
+	submitFormByAjax(url, data).done(function(data) {
+		$('#modal_create').modal('hide');
+		location.reload();
+	})
+		.fail(function(jqXHR) {
+			$('#modal_create .modal-body').html("Ошибка: "+jqXHR.responseText);
+		});
+}

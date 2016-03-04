@@ -64,6 +64,12 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
 
     Route::get('/panel/supplier/order/{id}', 'OrderController@supplierorder')->name('ordersupplier.page');
     Route::get('/panel/user/order/{id}', 'OrderController@userrorder')->name('userorder');
+
+    // profiles
+
+    Route::get('/panel/user/profiles', 'ProfileController@index')->name('profiles');
+    Route::post('/panel/user/profiles/add', 'ProfileController@add')->name('profile.add');
+    Route::post('/panel/user/profiles/update', 'ProfileController@update')->name('profile.update');
 });
 
 /*

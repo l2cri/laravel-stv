@@ -14,6 +14,8 @@ use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
 use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Product\ProductValidator;
+use App\Services\Form\Profile\ProfileForm;
+use App\Services\Form\Profile\ProfileValidator;
 use App\Services\Form\Section\SectionForm;
 use App\Services\Form\Section\SectionValidator;
 use Illuminate\Support\ServiceProvider;
@@ -60,6 +62,15 @@ class FormServiceProvider extends ServiceProvider
                 $app->make('App\Repo\Profile\ProfileInterface'),
                 $app->make('App\Repo\Cart\CartInterface'),
                 $app->make('App\Repo\Order\OrderInterface')
+            );
+        });
+
+        /*
+         * профиль
+         */
+        $app->bind('App\Services\Form\Profile\ProfileForm', function($app){
+            return new ProfileForm( new ProfileValidator($app['validator']),
+                $app->make('App\Repo\Profile\ProfileInterface')
             );
         });
     }
