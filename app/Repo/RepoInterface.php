@@ -17,4 +17,5 @@ interface RepoInterface
     public function update(array $data, $id, $attribute="id");
     public function create(array $data);
     public function findBy($field, $value, $columns = array('*'));
+    public function findAllBy($field, $value, $columns = array('*'));
 }

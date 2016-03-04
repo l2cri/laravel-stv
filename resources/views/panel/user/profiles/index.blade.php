@@ -58,6 +58,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -67,5 +68,26 @@
             });
         });
     </script>
+
+    <div class="row information-blocks sections-panel">
+        <div class="col-md-12">
+            <h3 class="block-title">Мои профили</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach ($profiles as $profile)
+                        <div class="row padding-bottom-10">
+                            <div class="col-md-8"><a href="">
+                                    {{ $profile->name }} ({{$profile->person}})
+                                </a></div>
+                            <div class="col-md-4">
+                                <a href=""><i class="fa fa-edit"></i></a>
+                                <a href=""><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

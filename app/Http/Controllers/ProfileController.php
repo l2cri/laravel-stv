@@ -12,20 +12,24 @@ namespace App\Http\Controllers;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Profile\ProfileForm;
 use Illuminate\Http\Request;
+use Auth;
 
 class ProfileController extends Controller
 {
 
     protected $profile;
     protected $form;
+    protected $userId;
 
     public function __construct(ProfileInterface $profile, ProfileForm $form){
         $this->profile = $profile;
         $this->form = $form;
+        $this->userId = Auth::user()->id;
     }
 
     public function index() {
-        return view('panel.user.profiles.index');
+        $profiles = $this->profile->findAllBy('user_id', $this->userId);
+        return view('panel.user.profiles.index', compact('profiles'));
     }
 
     public function add(Request $request){

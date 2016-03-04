@@ -25,6 +25,10 @@ trait RepoTrait
         return $this->model->where($attribute, '=', $value)->first($columns);
     }
 
+    public function findAllBy($attribute, $value, $columns = array('*')){
+        return $this->model->where($attribute, '=', $value)->get($columns);
+    }
+
     public function update(array $data, $id, $attribute="id") {
         return $this->model->where($attribute, '=', $id)->update($data);
     }
