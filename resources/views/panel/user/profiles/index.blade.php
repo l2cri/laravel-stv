@@ -65,6 +65,11 @@
 
     <script>
         $(function(){
+
+            $( document ).on( "click", "#submit_update", function() {
+                submitUpdateForm('{{ route('panel::profile.update') }}');
+            });
+
             $('#submit_create').click(function(){
                 submitCreateForm('{{ route('panel::profile.add') }}');
             });
@@ -85,7 +90,9 @@
                                 </a>
                             </div>
                             <div class="col-md-4">
-                                <a href=""><i class="fa fa-edit"></i></a>
+                                <a data-toggle="modal" data-target="#modal_show"
+                                   href="{{ route('panel::profile.show.update', $profile->id) }}">
+                                    <i class="fa fa-edit"></i></a>
                                 <a href=""><i class="fa fa-times"></i></a>
                             </div>
                         </div>

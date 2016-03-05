@@ -35,4 +35,14 @@ class ProfileForm
         $this->profile->create($input);
         return true;
     }
+
+    public function update(array $input) {
+        if (!$this->valid($input)) return false;
+
+        $profileId = $input['profileId'];
+        unset($input['profileId']);
+        unset($input['_token']);
+        $this->profile->update($input, $profileId);
+        return true;
+    }
 }

@@ -673,6 +673,13 @@ $(function() {
 		updateCart();
 	});
 
+	/*
+		чтобы модальные окна бутстрап обновлялись
+	 */
+	$('body').on('hidden.bs.modal', '.modal', function () {
+		$(this).removeData('bs.modal');
+	});
+
 });
 
 function setLocation(url){
@@ -753,5 +760,20 @@ function submitCreateForm(url) {
 	})
 		.fail(function(jqXHR) {
 			$('#modal_create .modal-body').html("Ошибка: "+jqXHR.responseText);
+		});
+}
+
+function submitUpdateForm(url) {
+
+	if (!$('#form_update')[0].checkValidity()) return;
+
+	var data = $('#form_update').serialize();
+
+	submitFormByAjax(url, data).done(function(data) {
+		$('#modal_show').modal('hide');
+		location.reload();
+	})
+		.fail(function(jqXHR) {
+			$('#modal_show .modal-body').html("Ошибка: "+jqXHR.responseText);
 		});
 }

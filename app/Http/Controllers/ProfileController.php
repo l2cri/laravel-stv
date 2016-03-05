@@ -42,12 +42,27 @@ class ProfileController extends Controller
                     ->withErrors($this->form->errors())
                     ->with('status', 'error');
         }
+    }
 
+    public function update(Request $request) {
+        $input = removeEmptyValues($request->all());
 
+        if ($this->form->update($input)) {
+            return response("профиль отредактирован");
+        } else {
+            return response("профиль не сохранен")
+                ->withErrors($this->form->errors())
+                ->with('status', 'error');
+        }
     }
 
     public function show($id) {
         $profile = $this->profile->byId($id);
         return view('panel.user.profiles.show', compact('profile'));
+    }
+
+    public function updateform($id){
+        $profile = $this->profile->byId($id);
+        return view('panel.user.profiles.update', compact('profile'));
     }
 }
