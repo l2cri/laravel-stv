@@ -45,4 +45,9 @@ class ProfileController extends Controller
 
 
     }
+
+    public function show($id) {
+        $profile = $this->profile->byId($id);
+        return view('panel.user.profiles.show', compact('profile'));
+    }
 }

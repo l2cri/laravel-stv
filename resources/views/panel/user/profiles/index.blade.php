@@ -2,6 +2,8 @@
 
 @section('panel_content')
 
+    @include('panel.modalshow')
+
     <div class="information-blocks sections-panel">
 
         <button data-toggle="modal" data-target="#modal_create" class="button style-2">Добавить профиль</button>
@@ -76,9 +78,12 @@
                 <div class="col-md-12">
                     @foreach ($profiles as $profile)
                         <div class="row padding-bottom-10">
-                            <div class="col-md-8"><a href="">
+                            <div class="col-md-8">
+                                <a data-toggle="modal" data-target="#modal_show"
+                                   href="{{ route('panel::profile.show', $profile->id) }}">
                                     {{ $profile->name }} ({{$profile->person}})
-                                </a></div>
+                                </a>
+                            </div>
                             <div class="col-md-4">
                                 <a href=""><i class="fa fa-edit"></i></a>
                                 <a href=""><i class="fa fa-times"></i></a>

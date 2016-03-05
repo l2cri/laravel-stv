@@ -70,6 +70,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/user/profiles', 'ProfileController@index')->name('profiles');
     Route::post('/panel/user/profiles/add', 'ProfileController@add')->name('profile.add');
     Route::post('/panel/user/profiles/update', 'ProfileController@update')->name('profile.update');
+    Route::get('/panel/user/profiles/show/{id}', 'ProfileController@show')->name('profile.show');
 });
 
 /*
