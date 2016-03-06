@@ -127,3 +127,7 @@ function getMultiplePath($dir, $filename, $simbols) {
 
     return $path;
 }
+
+function removefile ($filename) {
+    return @unlink( public_path($filename));
+}
