@@ -71,11 +71,7 @@ class ProductForm
 
             if (is_null($photo)) continue;
 
-            $filename = md5(time() . $photo->getClientOriginalName()) . '.' . $photo->getClientOriginalExtension();
-            $path = config('marketplace.productPhotoDir');
-            $fullpath = public_path($path);
-            $photo->move($fullpath, $filename);
-            $value = $path . '/' . $filename;
+            $value = uploadFileToMultipleDirs($photo, config('marketplace.productPhotoDir'));
 
             $files[] = array(
                 'file' => $value

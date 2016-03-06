@@ -94,3 +94,36 @@ function evenOddArray($array){
 function trn($val, $default){
     return !empty($val) ? $val : $default;
 }
+
+/*
+ * загрузить UploadedFile файлы с созданием дополнительных директорий для уменьшения
+ * кол-ва файлов в одной директории
+ */
+function uploadFileToMultipleDirs(
+    \Symfony\Component\HttpFoundation\File\UploadedFile $file, $dir = "uploads", $simbols=2){
+
+    // название файла
+    $filename = md5(time() . $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+
+    // создаем новую директорию, если нет старой
+    $path = getMultiplePath($dir, $filename, $simbols);
+
+    // путь к директории относительно public_path
+    $fullpath = public_path($path);
+    // перемещаем файл в нужную директорию
+    $file->move($fullpath, $filename);
+
+    //возвращаем полное название файла с относительным путем к нему для записи в бд например
+    return $path . '/' . $filename;
+}
+
+function getMultiplePath($dir, $filename, $simbols) {
+
+    $parts = array_slice(str_split($filename, $simbols), 0, $simbols);
+    $path = $dir.'/'.implode('/', $parts);
+
+    // создаем директории
+    if ( !file_exists($path) ) @mkdir($path, 0777, true);
+
+    return $path;
+}
