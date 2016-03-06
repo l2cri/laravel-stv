@@ -72,6 +72,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::post('/panel/user/profiles/update', 'ProfileController@update')->name('profile.update');
     Route::get('/panel/user/profiles/update/{id}', 'ProfileController@updateform')->name('profile.show.update');
     Route::get('/panel/user/profiles/show/{id}', 'ProfileController@show')->name('profile.show');
+    Route::get('/panel/user/profiles/delete/{id}', 'ProfileController@delete')->name('profile.delete');
 });
 
 /*

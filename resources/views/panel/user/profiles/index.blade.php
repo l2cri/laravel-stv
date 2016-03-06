@@ -93,7 +93,7 @@
                                 <a data-toggle="modal" data-target="#modal_show"
                                    href="{{ route('panel::profile.show.update', $profile->id) }}">
                                     <i class="fa fa-edit"></i></a>
-                                <a href=""><i class="fa fa-times"></i></a>
+                                <a href="{{ route('panel::profile.delete', $profile->id) }}"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
                     @endforeach

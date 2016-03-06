@@ -22,14 +22,4 @@ class EloquentProfile implements ProfileInterface
     public function __construct(Model $model){
         $this->model = $model;
     }
-
-    public function all()
-    {
-        // TODO: Implement all() method.
-    }
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
 }

@@ -12,7 +12,7 @@ namespace App\Repo;
 interface RepoInterface
 {
     public function byId($id);
-    public function all();
+    public function all($columns = array('*'));
     public function delete($id);
     public function update(array $data, $id, $attribute="id");
     public function create(array $data);

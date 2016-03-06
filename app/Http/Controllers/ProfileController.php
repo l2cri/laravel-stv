@@ -13,6 +13,7 @@ use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Profile\ProfileForm;
 use Illuminate\Http\Request;
 use Auth;
+use Redirect;
 
 class ProfileController extends Controller
 {
@@ -64,5 +65,10 @@ class ProfileController extends Controller
     public function updateform($id){
         $profile = $this->profile->byId($id);
         return view('panel.user.profiles.update', compact('profile'));
+    }
+
+    public function delete($id){
+        $this->profile->delete($id);
+        return Redirect::to(route('panel::profiles'));
     }
 }
