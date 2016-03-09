@@ -145,4 +145,8 @@ class ProductForm
         removefile(Photo::find($id)->file);
         Photo::destroy($id);
     }
+
+    public function delete($id){
+        $this->product->delete($id);
+    }
 }

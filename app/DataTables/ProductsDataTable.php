@@ -39,7 +39,7 @@ class ProductsDataTable extends DataTable
             ->addColumn('action', function($product){
 
                 return '<a href="'.route('panel::products.edit', $product->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
-                        ' <a href="" title="Удалить"><i class="fa fa-remove"></i></a>';
+                        ' <a href="'.route('panel::products.delete', $product->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })
             ->make(true);

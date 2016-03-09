@@ -46,7 +46,8 @@ class EloquentProduct implements ProductInterface
     public function delete($id){
 
         // TODO: удалять изображения
-
+        $product = $this->model->find($id);
+        foreach ($product->photos as $photo) removefile($photo->file);
         return $this->model->destroy($id);
     }
 

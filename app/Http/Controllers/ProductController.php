@@ -94,4 +94,9 @@ class ProductController extends Controller
         $this->form->deleteimg($id);
         return redirect()->back();
     }
+
+    public function delete($id){
+        $this->form->delete($id);
+        return redirect()->back();
+    }
 }
