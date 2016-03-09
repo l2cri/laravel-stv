@@ -197,3 +197,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 
 #checkout_auth .login-box {min-height: 570px}
 #checkout_auth {margin-bottom: 25px}
+
+.width-pixel-150{ width: 150px}

@@ -131,3 +131,7 @@ function getMultiplePath($dir, $filename, $simbols) {
 function removefile ($filename) {
     return @unlink( public_path($filename));
 }
+
+function getColumnArray(\Illuminate\Support\Collection $collection, $column = "id") {
+    return $collection->lists("id")->all();
+}

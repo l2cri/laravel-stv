@@ -59,6 +59,9 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/products', 'ProductController@index')->name('products');
     Route::get('/panel/supplier/products/add', 'ProductController@addform')->name('products.addform');
     Route::post('/panel/supplier/products/add', 'ProductController@store')->name('products.store');
+    Route::post('/panel/supplier/products/update', 'ProductController@update')->name('products.update');
+    Route::get('/panel/supplier/products/edit/{id}', 'ProductController@edit')->name('products.edit');
+    Route::get('/panel/supplier/products/deleteimg/{id}', 'ProductController@deleteimg')->name('products.deleteimg');
 
     // orders
 

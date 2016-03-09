@@ -68,4 +68,30 @@ class ProductController extends Controller
         }
 
     }
+
+    public function update(Request $request){
+        $input = removeEmptyValues($request->all());
+        if ($request->hasFile('photos')) {
+            $input['photos'] = $request->file('photos');
+        }
+
+        if ($this->form->update($input)) {
+            return Redirect::to( route('panel::products.edit', $input['product_id']))->with('status', 'success');
+        } else {
+            return Redirect::to( route('panel::products.edit', $input['product_id']) )->withInput()
+                ->withErrors( $this->form->errors() )
+                ->with('status', 'error');
+        }
+    }
+
+    public function edit($id){
+        $product = $this->product->byId($id);
+        $sectionTree = $this->section->getTree();
+        return view('panel.supplier.products.edit', compact('product', 'sectionTree'));
+    }
+
+    public function deleteimg($id) {
+        $this->form->deleteimg($id);
+        return redirect()->back();
+    }
 }

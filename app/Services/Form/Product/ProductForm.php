@@ -11,6 +11,7 @@ namespace App\Services\Form\Product;
 use App\Repo\Product\ProductInterface;
 use App\Services\Validation\ValidableInterface;
 use Auth;
+use App\Models\Product\Photo;
 
 class ProductForm
 {
@@ -35,6 +36,35 @@ class ProductForm
         if (array_key_exists('photos', $input)){
 
             $files = $this->upload($input['photos']);
+            $product->photos()->createMany($files);
+        }
+
+        return $product;
+    }
+
+    public function update(array $input) {
+        if ( ! $this->valid($input) ) return false;
+
+        $input['regular_price'] = $input['price'];
+        $productId = $input['product_id'];
+        $photos = $input['photos'];
+        $sectionsIds = $input['section_ids'];
+
+        unset($input['product_id']);
+        unset($input['_token']);
+        unset($input['photos']);
+        unset($input['section_ids']);
+
+        $this->product->update($input, $productId);
+        $product = $this->product->byId($productId);
+
+        if(is_array($sectionsIds)) {
+            $product->sections()->detach();
+            $product->sections()->attach($sectionsIds);
+        }
+
+        if (is_array($photos)){
+            $files = $this->upload($photos);
             $product->photos()->createMany($files);
         }
 
@@ -109,5 +139,10 @@ class ProductForm
      */
     protected function getSupplierId(){
         return Auth::user()->suppliers[0]->id;
+    }
+
+    public function deleteimg($id){
+        removefile(Photo::find($id)->file);
+        Photo::destroy($id);
     }
 }
