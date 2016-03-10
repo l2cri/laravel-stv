@@ -17,4 +17,5 @@ interface CartInterface
     public function save($items, $orderId = null, $userId = null);
     public function all();
     public function clear();
+    public function updateOrderCart($data);
 }

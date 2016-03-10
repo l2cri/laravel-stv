@@ -9,6 +9,7 @@
 namespace App\Repo\Cart;
 use Cart;
 use Illuminate\Database\Eloquent\Model;
+use App\Extensions\OrderCart;
 
 class CartRepo implements CartInterface
 {
@@ -61,5 +62,39 @@ class CartRepo implements CartInterface
     public function clear(){
         Cart::clear();
     }
+
+    public function updateOrderCart($data)
+    {
+        $cart = new OrderCart($data['orderId'], $this->model);
+
+        foreach ($data['cartIds'] as $id => $qnt) {
+
+            $cart->update($id, array(
+                'quantity' => array(
+                    'relative' => false, // чтобы не прибавляло или убавляло, а ставило жестко
+                    'value' => $qnt
+                ),
+            ));
+
+            // если кол-во ноль, то удаляем из корзины
+            if ($qnt <= 0) {
+                $this->model->destroy($id);
+            } else {
+
+                $item = $cart->get($id);
+
+                $this->model->where('id', '=', $id)->update(array(
+                    'final_price' => $item->getPriceWithConditions(),
+                    'quantity' => $item->quantity,
+                    'subtotal' => $item->getPriceSum(),
+                    'total' => $item->getPriceSumWithConditions(),
+                ));
+            }
+            // если нет, то обновляем cart_items
+        }
+
+        return $cart;
+    }
+
 
 }
