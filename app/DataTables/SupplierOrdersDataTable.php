@@ -25,9 +25,9 @@ class SupplierOrdersDataTable extends DataTable
                 return '<a target="_blank" href="'.route('panel::ordersupplier.page', $order->id).'">'.$order->id.'</a>';
 
             })
-            ->addColumn('action', function($product){
+            ->addColumn('action', function($order){
 
-                return '<a href="" title="Редактировать"><i class="fa fa-edit"></i></a>'.
+                return '<a href="'.route('panel::order.edit', $order->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
                 ' <a href="" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })

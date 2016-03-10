@@ -39,7 +39,7 @@
                             <div class="entry number-plus-update" data-id="{{ $item->id }}">&nbsp;</div>
                         </div>
 
-                        <input type="hidden" id="item{{ $item->id }}" name="cartIds[{{ $item->id }}]" value="{{ $item->quantity }}">
+                        <input autocomplete="off" type="hidden" id="item{{ $item->id }}" name="cartIds[{{ $item->id }}]" value="{{ $item->quantity }}">
 
                     </td>
                     <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>

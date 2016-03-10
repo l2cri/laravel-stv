@@ -199,3 +199,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #checkout_auth {margin-bottom: 25px}
 
 .width-pixel-150{ width: 150px}
+
+.quantity-selector .entry.minus:before, .quantity-selector .entry.plus:before{content: ""; width: 11px; height: 1px; background: #4d4d4d; left: 50%; margin-left: -5.5px; top: 50%; margin-top: -0.5px; position: absolute;}
+.quantity-selector .entry.plus:after{content: ""; height: 11px; width: 1px; background: #4d4d4d; left: 50%; margin-left: -0.5px; top: 50%; margin-top: -5.5px; position: absolute;}
+.quantity-selector .entry.minus:hover, .quantity-selector .entry.plus:hover{background: #ca1515;}

@@ -77,4 +77,14 @@ class OrderController extends Controller
     public function auth(){
         return view('order.auth');
     }
+
+    public function orderedit($id) {
+        $order = $this->order->byId($id);
+        return view('panel.supplier.order.edit', compact('order'));
+    }
+
+    public function cartupdate(Request $request){
+        $this->form->updateOrderCart($request->all());
+        //return redirect()->back();
+    }
 }

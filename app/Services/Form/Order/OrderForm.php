@@ -9,6 +9,8 @@
 namespace App\Services\Form\Order;
 
 use App\Exceptions\OrderNotCreatedException;
+use App\Extensions\OrderCart;
+use App\Models\CartItem;
 use App\Repo\Cart\CartInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
@@ -109,5 +111,53 @@ class OrderForm
             $profile = $this->profile->create($arr);
             return $profile->id;
         }
+    }
+
+    public function updateOrderCart($data) {
+
+        $model = new CartItem();
+        $cart = new OrderCart($data['orderId'], $model);
+
+        foreach ($data['cartIds'] as $id => $qnt) {
+
+            $cart->update($id, array(
+                'quantity' => array(
+                    'relative' => false, // чтобы не прибавляло или убавляло, а ставило жестко
+                    'value' => $qnt
+                ),
+            ));
+
+            // если кол-во ноль, то удаляем из корзины
+            if ($qnt <= 0) {
+                $model->destroy($id);
+            } else {
+
+                $item = $cart->get($id);
+
+                $model->where('id', '=', $id)->update(array(
+                    'final_price' => $item->getPriceWithConditions(),
+                    'quantity' => $item->quantity,
+                    'subtotal' => $item->getPriceSum(),
+                    'total' => $item->getPriceSumWithConditions(),
+                ));
+            }
+            // если нет, то обновляем cart_items
+        }
+
+        // пересчитываем и обновляем парметры заказа
+
+        $this->order->update(array(
+            'subtotal' => $cart->getSubTotal(),
+            'total' => $cart->getTotal()
+        ), $data['orderId']);
+
+    }
+
+    public function addOrderCart() {
+
+    }
+
+    protected function getOrderCart($orderId) {
+
     }
 }
