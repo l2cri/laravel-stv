@@ -57,6 +57,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     // products
 
     Route::get('/panel/supplier/products', 'ProductController@index')->name('products');
+    Route::get('/panel/supplier/products/json/{supplierId}', 'ProductController@supplierProductsJson')->name('products.json');
     Route::get('/panel/supplier/products/add', 'ProductController@addform')->name('products.addform');
     Route::post('/panel/supplier/products/add', 'ProductController@store')->name('products.store');
     Route::post('/panel/supplier/products/update', 'ProductController@update')->name('products.update');

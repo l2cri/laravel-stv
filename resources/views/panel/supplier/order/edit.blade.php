@@ -95,10 +95,48 @@
                 </form>
             </div>
 
+            <div id="addToCartSearchDiv">
+                <input class="typeahead simple-field" type="text" placeholder="Добавить в заказ">
+            </div>
+
             <script>
                 $(function() {
 
                     "use strict";
+
+                    /**
+                     * autocomplete product search with callback form submit
+                     */
+                    var products = new Bloodhound({
+                        datumTokenizer: function (datum) {
+                            return Bloodhound.tokenizers.whitespace(datum.name);
+                        },
+                        queryTokenizer: Bloodhound.tokenizers.whitespace,
+                        // url points to a json file that contains an array of country names, see
+                        // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+                        prefetch: {
+                            url: '{{ route('panel::products.json', $order->supplier_id) }}',
+                            cache: false
+                        }
+                    });
+
+                    products.initialize();
+
+                    $('#addToCartSearchDiv .typeahead').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+
+                    }, {
+                        name: 'products',
+                        source: products,
+                        display: 'name'
+
+                    }).on('typeahead:selected',function(evt,data){
+                        alert(data.id);
+                    });
+
+                    /** ------------------ autocomplete end ------------------- */
 
                     $( document ).on( "click", ".ordercart-minus", function() {
                         //$('.number-minus-update').on('click', function(){

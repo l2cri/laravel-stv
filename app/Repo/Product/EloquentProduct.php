@@ -11,12 +11,13 @@ namespace App\Repo\Product;
 
 use App\Repo\Criteria\CriteriaTrait;
 use App\Repo\DatatablesTrait;
+use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\Node;
 
 class EloquentProduct implements ProductInterface
 {
-
+    use RepoTrait;
     use CriteriaTrait;
     use DatatablesTrait;
 
@@ -82,9 +83,6 @@ class EloquentProduct implements ProductInterface
 
     public function paginate(){
 
-    }
-
-    public function findBy($field, $value, $columns = array('*')){
     }
 
     /**

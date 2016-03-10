@@ -99,4 +99,9 @@ class ProductController extends Controller
         $this->form->delete($id);
         return redirect()->back();
     }
+
+    public function supplierProductsJson($supplierId){
+        $array = $this->product->findBy('supplier_id', $supplierId)->get()->all();
+        return json_encode($array);
+    }
 }
