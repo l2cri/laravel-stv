@@ -145,4 +145,60 @@ class OrderCart extends Cart
 
         $this->setContent($cart);
     }
+
+    public function add($id, $name = null, $price = null, $quantity = null, $attributes = array(), $conditions = array())
+    {
+        // if the first argument is an array,
+        // we will need to call add again
+        if( is_array($id) )
+        {
+            // the first argument is an array, now we will need to check if it is a multi dimensional
+            // array, if so, we will iterate through each item and call add again
+            if( Helpers::isMultiArray($id) )
+            {
+                foreach($id as $item)
+                {
+                    $this->add(
+                        $item['id'],
+                        $item['name'],
+                        $item['price'],
+                        $item['quantity'],
+                        Helpers::issetAndHasValueOrAssignDefault($item['attributes'], array()),
+                        Helpers::issetAndHasValueOrAssignDefault($item['conditions'], array())
+                    );
+                }
+            }
+            else
+            {
+                $this->add(
+                    $id['id'],
+                    $id['name'],
+                    $id['price'],
+                    $id['quantity'],
+                    Helpers::issetAndHasValueOrAssignDefault($id['attributes'], array()),
+                    Helpers::issetAndHasValueOrAssignDefault($id['conditions'], array())
+                );
+            }
+
+            return $this;
+        }
+
+        // validate data
+        $item = $this->validate(array(
+            'id' => $id,
+            'name' => $name,
+            'price' => Helpers::normalizePrice($price),
+            'quantity' => $quantity,
+            'attributes' => new ItemAttributeCollection($attributes),
+            'conditions' => $conditions,
+        ));
+
+        $cart = $this->getContent();
+
+        $cart->put($id, new ItemCollection($item));
+
+        $this->setContent($cart);
+
+        return $this;
+    }
 }

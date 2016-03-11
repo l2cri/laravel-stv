@@ -61,7 +61,8 @@ class FormServiceProvider extends ServiceProvider
             return new OrderForm( new OrderValidator($app['validator']),
                 $app->make('App\Repo\Profile\ProfileInterface'),
                 $app->make('App\Repo\Cart\CartInterface'),
-                $app->make('App\Repo\Order\OrderInterface')
+                $app->make('App\Repo\Order\OrderInterface'),
+                $app->make('App\Repo\Product\ProductInterface')
             );
         });
 

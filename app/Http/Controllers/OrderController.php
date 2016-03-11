@@ -85,6 +85,9 @@ class OrderController extends Controller
 
     public function cartupdate(Request $request){
         $this->form->updateOrderCart($request->all());
-        //return redirect()->back();
+    }
+
+    public function cartadd(Request $request){
+        $this->form->addOrderCartItem($request->all());
     }
 }

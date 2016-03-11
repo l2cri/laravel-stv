@@ -13,6 +13,7 @@ use App\Extensions\OrderCart;
 use App\Models\CartItem;
 use App\Repo\Cart\CartInterface;
 use App\Repo\Order\OrderInterface;
+use App\Repo\Product\ProductInterface;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\FormTrait;
 use App\Services\Validation\ValidableInterface;
@@ -27,14 +28,16 @@ class OrderForm
     protected $profile;
     protected $cart;
     protected $user;
+    protected $product;
 
     public function __construct(ValidableInterface $validator, ProfileInterface $profile,
-                                CartInterface $cart, OrderInterface $order) {
+                                CartInterface $cart, OrderInterface $order, ProductInterface $product) {
         $this->validator = $validator;
         $this->profile = $profile;
         $this->cart = $cart;
         $this->order = $order;
         $this->user = Auth::user();
+        $this->product = $product;
     }
 
     public function create($input) {
@@ -118,14 +121,34 @@ class OrderForm
         $cart = $this->cart->updateOrderCart($data); //new OrderCart($data['orderId'], $model);
 
         // пересчитываем и обновляем парметры заказа
+        $this->updateOrderAfterCartUpdate($cart, $data['orderId']);
+    }
+
+    public function addOrderCartItem($input) {
+
+        $product = $this->product->byId($input['productId']);
+        $attributes = array( 'unit' => $product->unit,
+            'file' => $product->photos[0]->file,
+            'section_url' => $product->sections[0]->url,
+            'section_name' => $product->sections[0]->name,
+            'supplier_name' => $product->supplier->name,
+            'supplier_id' => $product->supplier->id,
+        );
+        $data = array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'attributes' => $attributes
+        );
+
+        $cart = $this->cart->addOrderCartItem($this->user->id, $input['orderId'], $data);
+        $this->updateOrderAfterCartUpdate($cart, $input['orderId']);
+    }
+
+    protected function updateOrderAfterCartUpdate($cart, $orderId) {
         $this->order->update(array(
             'subtotal' => $cart->getSubTotal(),
             'total' => $cart->getTotal()
-        ), $data['orderId']);
-
-    }
-
-    public function addOrderCartItem() {
-
+        ), $orderId);
     }
 }

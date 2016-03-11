@@ -96,5 +96,18 @@ class CartRepo implements CartInterface
         return $cart;
     }
 
+    public function addOrderCartItem($userId, $orderId, $data){
+
+        $cart = new OrderCart($orderId, $this->model);
+
+        // добавляем товар в корзину, для того, чтобы ее потом пересчитать и обновить сумму заказа
+        $cart->add($data['id'], $data['name'], $data['price'], 1, $data['attributes']);
+
+        // сохраняем товар в корзине заказа
+        $this->save( array( $cart->get($data['id']) ), $orderId, $userId);
+
+        return $cart;
+    }
+
 
 }
