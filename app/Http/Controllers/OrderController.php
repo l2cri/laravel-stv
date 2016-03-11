@@ -90,4 +90,9 @@ class OrderController extends Controller
     public function cartadd(Request $request){
         $this->form->addOrderCartItem($request->all());
     }
+
+    public function cartdelete(Request $request){
+        $this->form->deleteOrderCartItem($request->all());
+        return redirect()->back();
+    }
 }

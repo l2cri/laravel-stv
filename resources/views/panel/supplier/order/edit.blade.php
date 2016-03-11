@@ -88,7 +88,7 @@
 
                                     </td>
                                     <td><div class="subtotal">{{ $item->total }}</div></td>
-                                    <td><a href="{{ route('cart.delete', $item->id) }}" class="remove-button"><i class="fa fa-times"></i></a></td>
+                                    <td><a href="{{ route('panel::ordercart.delete', ['itemId'=>$item->id, 'orderId'=>$order->id]) }}" class="remove-button"><i class="fa fa-times"></i></a></td>
                                 </tr>
 
                             @endforeach

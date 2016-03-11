@@ -145,6 +145,15 @@ class OrderForm
         $this->updateOrderAfterCartUpdate($cart, $input['orderId']);
     }
 
+    public function deleteOrderCartItem($input){
+        $data = array(
+            'orderId' => $input['orderId'],
+            'cartIds' => array($input['itemId'] => 0)
+        );
+        $cart = $this->cart->updateOrderCart($data);
+        $this->updateOrderAfterCartUpdate($cart, $data['orderId']);
+    }
+
     protected function updateOrderAfterCartUpdate($cart, $orderId) {
         $this->order->update(array(
             'subtotal' => $cart->getSubTotal(),
