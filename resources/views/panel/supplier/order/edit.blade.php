@@ -37,6 +37,11 @@
 
             <h1>Корзина</h1>
 
+            <div id="addToCartSearchDiv">
+                <input class="typeahead simple-field" type="text" placeholder="Добавить в заказ">
+            </div>
+
+
             <div class="error-content"></div>
             <div id="cartdiv">
                 <form id="updateOrderCartForm" action="{{ route("panel::ordercart.update") }}" method="post">
@@ -93,10 +98,6 @@
                         </table>
                     </div>
                 </form>
-            </div>
-
-            <div id="addToCartSearchDiv">
-                <input class="typeahead simple-field" type="text" placeholder="Добавить в заказ">
             </div>
 
             <script>
@@ -170,6 +171,11 @@
                             });
                 }
             </script>
+
+            <style>
+                #updateOrderCartForm .cart-table th {border-top: none}
+                #addToCartSearchDiv .twitter-typeahead {width: 100%;}
+            </style>
 
         </div>
     </div>
