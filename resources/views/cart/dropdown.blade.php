@@ -6,12 +6,25 @@
     <div class="popup-container">
 
         @foreach($items as $item)
+
+            <?
+            $conditions = array();
+            foreach($item->conditions as $condition) {
+                $arr = $condition->getAttributes();
+                if (isset($arr['name'])) $conditions[] = $arr['name'];
+            }
+            ?>
+
             <div class="cart-entry">
                 <a class="image"><img src="{{ @url($item->attributes['file']) }}" alt="" /></a>
                 <div class="content">
-                    <a class="title" href="{{ route('product.page', $item->id) }}">{{ $item->name }}</a>
+                    <a class="title" href="{{ route('product.page', $item->id) }}">{{ $item->name }}
+                        @foreach($conditions as $conditionName)
+                            <span class="inline-label red">{{ $conditionName }}</span>
+                        @endforeach
+                    </a>
                     <div class="quantity">Кол-во: {{ $item->quantity }} {{ trn($item->attributes['unit'], 'шт') }}</div>
-                    <div class="price">{{ $item->price }} <i class="fa fa-rub"></i></div>
+                    <div class="price">{{ $item->getPriceWithConditions() }} <i class="fa fa-rub"></i></div>
                 </div>
                 <a class="button-x" href="{{ route('cart.delete', $item->id) }}"><i class="fa fa-close"></i></a>
             </div>

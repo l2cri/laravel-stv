@@ -17,6 +17,14 @@
 
             @foreach($items as $item)
 
+                <?
+                $conditions = array();
+                foreach($item->conditions as $condition) {
+                    $arr = $condition->getAttributes();
+                    if (isset($arr['name'])) $conditions[] = $arr['name'];
+                }
+                ?>
+
                 <tr>
                     <td>
                         <div class="traditional-cart-entry">
@@ -25,7 +33,11 @@
                                 <div class="cell-view">
                                     <a href="{{ url($item->attributes['section_url']) }}" class="tag">
                                         {{ $item->attributes['section_name'] }}</a>
-                                    <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
+                                    <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}
+                                        @foreach($conditions as $conditionName)
+                                            <span class="inline-label red">{{ $conditionName }}</span>
+                                        @endforeach
+                                    </a>
                                     {{--<div class="inline-description">S / Dirty Pink</div>--}}
                                     <div class="inline-description">{{ $item->attributes['supplier_name'] }}</div>
                                 </div>
