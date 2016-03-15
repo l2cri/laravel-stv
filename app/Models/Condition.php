@@ -15,7 +15,7 @@ class Condition extends Model
 {
     protected $table = "conditions";
 
-    protected $fillable = ['conditionable_id', 'conditionable_type', 'name', 'type', 'target', 'value', 'attrubutes'];
+    protected $fillable = ['conditionable_id', 'conditionable_type', 'name', 'type', 'target', 'value', 'attributes'];
 
     public function conditionable(){
         return $this->morphTo();

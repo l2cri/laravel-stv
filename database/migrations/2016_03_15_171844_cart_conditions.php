@@ -20,7 +20,7 @@ class CartConditions extends Migration
             $table->string('type');
             $table->string('target');
             $table->float('value');
-            $table->text('attrubutes');
+            $table->text('attributes');
             $table->timestamps();
         });
     }

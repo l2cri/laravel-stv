@@ -14,9 +14,11 @@ use App\Extensions\OrderCart;
 class CartRepo implements CartInterface
 {
     protected $model;
+    protected $conditionModel;
 
-    public function __construct(Model $model) {
+    public function __construct(Model $model, Model $conditionModel) {
         $this->model = $model;
+        $this->conditionModel = $conditionModel;
     }
 
     public function add($data)
@@ -50,7 +52,20 @@ class CartRepo implements CartInterface
                 'attributes' => serialize($item->attributes->all())
             );
 
-            if ( !$this->model->create($data)) throw new CartItemNotSavedException();
+            if ( !$cartItem = $this->model->create($data)) throw new CartItemNotSavedException();
+
+            foreach($item->conditions as $condition){
+
+                $attr = serialize($condition->getAttributes());
+
+                $cartItem->conditions()->create([
+                    'name' => $condition->getName(),
+                    'type' => $condition->getType(),
+                    'target' => $condition->getTarget(),
+                    'value' => $condition->getValue(),
+                    'attributes' => $attr
+                ]);
+            }
         }
     }
 
