@@ -8,20 +8,17 @@
 
 namespace App\Repo\Supplier;
 
+use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class EloquentSupplier implements SupplierInterface
 {
+    use RepoTrait;
     protected $model;
 
     public function __construct(Model $model) {
         $this->model = $model;
-    }
-
-    public function byId($id)
-    {
-        // TODO: Implement byId() method.
     }
 
     public function byCode($code)
