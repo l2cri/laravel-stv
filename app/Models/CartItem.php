@@ -28,4 +28,8 @@ class CartItem extends Model
     public function product(){
         return $this->belongsTo('App\Models\Product\Product');
     }
+
+    public function conditions(){
+        return $this->morphMany('App\Models\Condition', 'conditionable');
+    }
 }
