@@ -3,6 +3,7 @@
         <tr>
             <th class="column-1">Название</th>
             <th class="column-2">Цена</th>
+            <th class="column-2">Цена со скидкой</th>
             <th class="column-3">Кол-во</th>
             <th class="column-4">Всего</th>
         </tr>
@@ -25,8 +26,9 @@
                     </div>
                 </td>
                 <td>{{ $item->price }}</td>
+                <td>{{ $item->getPriceWithConditions() }}</td>
                 <td>{{ $item->quantity }}</td>
-                <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>
+                <td><div class="subtotal">{{ $item->getPriceSumWithConditions() }}</div></td>
             </tr>
 
         @endforeach
