@@ -7,13 +7,7 @@
 
         @foreach($items as $item)
 
-            <?
-            $conditions = array();
-            foreach($item->conditions as $condition) {
-                $arr = $condition->getAttributes();
-                if (isset($arr['name'])) $conditions[] = $arr['name'];
-            }
-            ?>
+            <?$conditions = \App\StaticHelpers\CartHelper::getConditions($item);?>
 
             <div class="cart-entry">
                 <a class="image"><img src="{{ @url($item->attributes['file']) }}" alt="" /></a>

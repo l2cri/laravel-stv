@@ -17,13 +17,7 @@
 
             @foreach($items as $item)
 
-                <?
-                $conditions = array();
-                foreach($item->conditions as $condition) {
-                    $arr = $condition->getAttributes();
-                    if (isset($arr['name'])) $conditions[] = $arr['name'];
-                }
-                ?>
+                <?$conditions = \App\StaticHelpers\CartHelper::getConditions($item);?>
 
                 <tr>
                     <td>
