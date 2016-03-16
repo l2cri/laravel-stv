@@ -145,6 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\InfopageServiceProvider::class,
+        App\Providers\NewsServiceProvider::class,
         App\Providers\SectionServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\SupplierServiceProvider::class,

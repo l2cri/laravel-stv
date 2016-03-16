@@ -104,6 +104,12 @@ Route::controller('/panel/user/orders', 'OrderController', [
 Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-9\-\_]+');
 
 /*
+ * Новости
+ */
+Route::get('news', 'NewsController@index')->name('news.index');
+Route::get('news/{id}', 'NewsController@byId')->where('id','[0-9]')->name('news.detail');
+
+/*
  * Каталог
  */
 

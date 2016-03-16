@@ -33,9 +33,8 @@ trait RepoTrait
         return $this->model->where($attribute, '=', $id)->update($data);
     }
 
-    public function all($columns = array('*'))
-    {
-        // TODO: Implement all() method.
+    public function all($columns = array('*')) {
+        return $this->model->get($columns);
     }
 
     public function delete($id)
