@@ -14,7 +14,10 @@ class CartHelper
     public static function getConditions($item){
         $conditions = array();
         foreach($item->conditions as $condition) {
+
             $arr = $condition->getAttributes();
+            if (isset($arr['attributes'])) $arr = unserialize($arr['attributes']);
+
             if (isset($arr['name'])) $conditions[] = $arr['name'];
         }
 
