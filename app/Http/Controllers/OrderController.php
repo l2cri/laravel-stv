@@ -25,6 +25,8 @@ class OrderController extends Controller
         $this->form = $form;
         $this->profile = $profile;
         $this->order = $order;
+
+        $this->middleware('auth');
     }
 
     public function index(SupplierOrdersDataTable $dataTable) {

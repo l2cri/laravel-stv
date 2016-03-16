@@ -3,11 +3,14 @@
         <tr>
             <th class="column-1">Название</th>
             <th class="column-2">Цена</th>
+            <th class="column-2">Цена со скидкой</th>
             <th class="column-3">Кол-во</th>
             <th class="column-4">Всего</th>
         </tr>
 
         @foreach($items as $item)
+
+            <?$conditions = \App\StaticHelpers\CartHelper::getConditions($item);?>
 
             <tr>
                 <td>
@@ -17,7 +20,11 @@
                             <div class="cell-view">
                                 <a href="{{ url($item->attributes['section_url']) }}" class="tag">
                                     {{ $item->attributes['section_name'] }}</a>
-                                <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
+                                <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}
+                                    @foreach($conditions as $conditionName)
+                                        <span class="inline-label red">{{ $conditionName }}</span>
+                                    @endforeach
+                                </a>
                                 {{--<div class="inline-description">S / Dirty Pink</div>--}}
                                 <div class="inline-description">{{ $item->attributes['supplier_name'] }}</div>
                             </div>
@@ -25,8 +32,9 @@
                     </div>
                 </td>
                 <td>{{ $item->price }}</td>
+                <td>{{ $item->getPriceWithConditions() }}</td>
                 <td>{{ $item->quantity }}</td>
-                <td><div class="subtotal">{{ $item->getPriceSum() }}</div></td>
+                <td><div class="subtotal">{{ $item->getPriceSumWithConditions() }}</div></td>
             </tr>
 
         @endforeach
