@@ -12,6 +12,7 @@ namespace App\Extensions;
 use Darryldecode\Cart\Cart;
 use App\Models\CartItem;
 use Darryldecode\Cart\CartCollection;
+use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\CartConditionCollection;
 use Darryldecode\Cart\ItemAttributeCollection;
 use Darryldecode\Cart\Helpers\Helpers;
@@ -63,13 +64,24 @@ class OrderCart extends Cart
 
             $items = $this->model->where('order_id', '=', $this->orderId)->get()->all();
             foreach ($items as $item) {
+
+                $conditionArray = array();
+                foreach($item->conditions as $condition){
+                    $conditionArray[] = new CartCondition(array(
+                        'name' => $condition->name,
+                        'type' => $condition->type,
+                        'target' => $condition->target,
+                        'value' => $condition->value,
+                    ));
+                }
+
                 $cartItem = $this->validate(array(
                     'id' => $item->id,
                     'name' => $item->name,
                     'price' => Helpers::normalizePrice($item->price),
                     'quantity' => $item->quantity,
                     'attributes' => new ItemAttributeCollection(unserialize($item->attributes)),
-                    'conditions' => new CartConditionCollection( array() ), // TODO: добавить условия из базы
+                    'conditions' => $conditionArray,
                 ));
                 $cartItems[$item->id] = new ItemCollection($cartItem);
             }
