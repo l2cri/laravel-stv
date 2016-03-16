@@ -62,6 +62,7 @@
                             </tr>
 
                             @foreach($order->cartItems as $item)
+                                <?$conditions = \App\StaticHelpers\CartHelper::getConditions($item);?>
                                 <? $item->attributes = unserialize($item->attributes) ?>
                                 <tr>
                                     <td>
@@ -71,7 +72,11 @@
                                                 <div class="cell-view">
                                                     <a href="{{ url($item->attributes['section_url']) }}" class="tag">
                                                         {{ $item->attributes['section_name'] }}</a>
-                                                    <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}</a>
+                                                    <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}
+                                                        @foreach($conditions as $conditionName)
+                                                            <span class="inline-label red">{{ $conditionName }}</span>
+                                                        @endforeach
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
