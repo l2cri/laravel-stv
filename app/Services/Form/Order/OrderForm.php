@@ -133,6 +133,7 @@ class OrderForm
             'section_name' => $product->sections[0]->name,
             'supplier_name' => $product->supplier->name,
             'supplier_id' => $product->supplier->id,
+            'whosale_price' => $product-> whosale_price
         );
         $data = array(
             'id' => $product->id,

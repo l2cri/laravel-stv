@@ -50,7 +50,8 @@ class FormServiceProvider extends ServiceProvider
          */
         $app->bind('App\Services\Form\Cart\CartForm', function($app){
             return new CartForm(
-                $app->make('App\Repo\Product\ProductInterface')
+                $app->make('App\Repo\Product\ProductInterface'),
+                $app->make('App\Repo\Cart\CartInterface')
             );
         });
 

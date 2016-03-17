@@ -8,17 +8,18 @@
 
 namespace App\Services\Form\Cart;
 
+use App\Repo\Cart\CartInterface;
 use Cart;
 use App\Repo\Product\ProductInterface;
-use App\Services\CartConditions\ActionConditionHandler;
-use App\Services\CartConditions\WhosaleConditionHandler;
 
 class CartForm
 {
     protected $product;
+    protected $cart;
 
-    public function __construct(ProductInterface $product){
+    public function __construct(ProductInterface $product, CartInterface $cart){
         $this->product = $product;
+        $this->cart = $cart;
         $this->app = app();
     }
 
@@ -42,14 +43,14 @@ class CartForm
 
             if ( Cart::has($product->id) ) {
 
-                $this->cartConditions(Cart::get($product->id), app('cart'));
+                $this->cart->cartConditions(Cart::get($product->id), app('cart'));
 
                 return true;
             }
 
         } else {
             Cart::update($data['product_id'], array( 'quantity' => $data['qnt'] ));
-            $this->cartConditions(Cart::get($data['product_id']), app('cart'));
+            $this->cart->cartConditions(Cart::get($data['product_id']), app('cart'));
             return true;
         }
 
@@ -66,7 +67,7 @@ class CartForm
                 ),
             ));
 
-            $this->cartConditions(Cart::get($id), app('cart'));
+            $this->cart->cartConditions(Cart::get($id), app('cart'));
         }
     }
 
@@ -78,10 +79,5 @@ class CartForm
         // вытащить все товары и сохранить их в таблицу cart_items
     }
 
-    protected function cartConditions($items, $cart){
-        $conditionWhosale = new WhosaleConditionHandler($this->app->make('App\Repo\Product\ProductInterface'), $this->app->make('App\Repo\Supplier\SupplierInterface'));
-        $conditionAction = new ActionConditionHandler($this->app->make('App\Repo\Product\ProductInterface'), $this->app->make('App\Repo\Supplier\SupplierInterface'));
-        $conditionWhosale->setNext($conditionAction);
-        $conditionWhosale->process($items, $cart);
-    }
+
 }
