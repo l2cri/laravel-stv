@@ -20,3 +20,5 @@ if (AuthUser::isAdmin()){
     Admin::menu('App\Model\Role')->icon('fa-male')->label('Роли');
     Admin::menu('App\Model\Ability')->icon('fa-unlock')->label('Возможности');
 }
+
+Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");

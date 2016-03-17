@@ -24,6 +24,6 @@ class EloquentNews implements  NewsInterface
 
     public function getList()
     {
-        return $this->model->paginable(2);
+        return $this->model->orderBy('created_at', 'desc')->paginable();
     }
 }

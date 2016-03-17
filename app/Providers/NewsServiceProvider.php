@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\News;
+use App\Repo\News\CacheDecorator;
 use App\Repo\News\EloquentNews;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Cache\LaravelCache;
 
 class NewsServiceProvider extends ServiceProvider
 {
@@ -17,7 +19,8 @@ class NewsServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind('App\Repo\News\NewsInterface',function($app){
-            return new EloquentNews( new News() );
+            $news = new EloquentNews( new News());
+            return new CacheDecorator($news, new LaravelCache($app['cache']));
         });
 
     }

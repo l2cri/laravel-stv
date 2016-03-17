@@ -24,7 +24,7 @@
                             <h1 class="title">{{ $post->name }}</h1>
 
                             <div class="article-container style-1">
-                                {{ $post->text }}
+                                {!!  $post->text !!}
                             </div>
 
                         </div>

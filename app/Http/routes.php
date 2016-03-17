@@ -107,7 +107,7 @@ Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-
  * Новости
  */
 Route::get('news', 'NewsController@index')->name('news.index');
-Route::get('news/{id}', 'NewsController@byId')->where('id','[0-9]')->name('news.detail');
+Route::get('news/{id}', 'NewsController@byId')->where('id','[0-9]+')->name('news.detail');
 
 /*
  * Каталог

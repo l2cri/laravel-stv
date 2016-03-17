@@ -27,7 +27,7 @@
                             <div class="date">{{ $time->day  }} <span>{{ $time->format('M') }}</span></div>
                             <div class="content">
                                 <a class="title" href="{{ $url }}">{{ $post->name }}</a>
-                                <div class="description">{{ $post->text }}</div>
+                                <div class="description">{{ str_limit( strip_tags($post->text),20) }}</div>
                                 <a class="readmore" href="{{ $url }}">читать далее</a>
                             </div>
                         </div>
