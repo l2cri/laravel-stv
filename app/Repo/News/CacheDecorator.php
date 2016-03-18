@@ -28,7 +28,9 @@ class CacheDecorator extends AbstractNewsDecorator
 
     public function getList()
     {
-        $key = $this->key('news');
+        $page = ( !empty(\Input::get('page')) ) ? \Input::get('page') : 1;
+
+        $key = $this->key('all-news-'.$page);
 
         if($this->cache->has($key)){
             return $this->cache->get($key);

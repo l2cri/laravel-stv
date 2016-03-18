@@ -25,7 +25,9 @@ class NewsController extends Controller
     }
     public function byId($id)
     {
-        $post = $this->news->byId($id);
-        return view('news.detail',compact('post'));
+        if($post = $this->news->byId($id))
+            return view('news.detail',compact('post'));
+        else
+            \App::abort(404);
     }
 }

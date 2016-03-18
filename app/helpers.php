@@ -135,3 +135,9 @@ function removefile ($filename) {
 function getColumnArray(\Illuminate\Support\Collection $collection, $column = "id") {
     return $collection->lists("id")->all();
 }
+
+function getRusDate ($date){
+    setlocale(LC_ALL, 'ru_RU.UTF-8');
+    $carbon = new Carbon($date, 'Europe/Moscow');
+    return $carbon->formatLocalized('%d %B, %Y');
+}

@@ -16,13 +16,13 @@
                     <div class="blog-entry">
                         @if( ! empty($post->image))
                             <a class="image hover-class-1" href="#">
-                                <img src="{{ $post->image }}" alt="{{ $post->name }}" />
+                                <img src="/{{ $post->image }}" alt="{{ $post->name }}" />
                                 <span class="hover-label">{{ $post->name }}</span>
                             </a>
                         @endif
                         <div class="content">
                             <h1 class="title">{{ $post->name }}</h1>
-
+                            <div class="subtitle">Опубликован {{ $post->created_at->format('d F Y') }}</div>
                             <div class="article-container style-1">
                                 {!!  $post->text !!}
                             </div>

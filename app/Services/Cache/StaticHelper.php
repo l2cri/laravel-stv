@@ -13,7 +13,7 @@ use Cache;
 class StaticHelper
 {
     public static function refreshInfopageByCode($code){
-        $key = md5(config('cachePrefixInfopage').$code);
+        $key = md5(config('marketplace.cachePrefixInfopage').$code);
         Cache::forget($key);
     }
 }
