@@ -136,8 +136,10 @@ function getColumnArray(\Illuminate\Support\Collection $collection, $column = "i
     return $collection->lists("id")->all();
 }
 
-function getRusDate ($date){
-    setlocale(LC_ALL, 'ru_RU.UTF-8');
-    $carbon = new Carbon($date, 'Europe/Moscow');
-    return $carbon->formatLocalized('%d %B, %Y');
+function localizedFormat ($date){
+    Jenssegers\Date\Date::setLocale(\App::getLocale());
+
+    $obLocDate = new Jenssegers\Date\Date($date);
+
+    return $obLocDate;
 }

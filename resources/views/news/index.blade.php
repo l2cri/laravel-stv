@@ -15,7 +15,7 @@
                     @foreach($news as $post)
                         <?
                         $url = route('news.detail', ['id' => $post->id]);
-                        $time = $post->created_at;
+                        $time = localizedFormat($post->created_at);
                         ?>
                         <div class="blog-entry">
                             @if( ! empty($post->image))

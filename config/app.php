@@ -172,6 +172,11 @@ return [
          * Datatables
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
+
+        /*
+         * Date localization
+         */
+        Jenssegers\Date\DateServiceProvider::class,
     ],
 
     /*
@@ -244,6 +249,11 @@ return [
          * Cart
          */
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+
+        /*
+         * Date localization
+         */
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 

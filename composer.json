@@ -11,7 +11,8 @@
         "sleeping-owl/admin-lte-template": "dev-master",
         "kalnoy/nestedset": "3.*",
         "darryldecode/cart": "dev-master",
-        "yajra/laravel-datatables-oracle": "~6.0"
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "jenssegers/date": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
