@@ -20,14 +20,14 @@ class News extends Model
     public static function boot(){
         parent::boot();
         static::updated( function($post){
-            StaticHelper::refreshInfopageByCode('news');
+            StaticHelper::refreshInfopageByCode('all-news-1');
             StaticHelper::refreshInfopageByCode('news-'.$post->id);
         });
         static::creating( function($news){
-            StaticHelper::refreshInfopageByCode('news');
+            StaticHelper::refreshInfopageByCode('all-news-1');
         });
         static::deleted( function($post){
-            StaticHelper::refreshInfopageByCode('news');
+            StaticHelper::refreshInfopageByCode('all-news-1');
             StaticHelper::refreshInfopageByCode('news-'.$post->id);
         });
     }

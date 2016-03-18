@@ -58,6 +58,6 @@ class CacheDecorator extends AbstractNewsDecorator
 
     private function key($indentifier)
     {
-        return md5(config('cachePrefixInfopage').$indentifier);
+        return md5(config('marketplace.cachePrefixInfopage').$indentifier);
     }
 }

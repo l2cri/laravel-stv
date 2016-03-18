@@ -39,6 +39,6 @@ class CacheDecorator extends AbstractInfopageDecorator
     }
 
     private function key($indentifier){
-        return md5(config('cachePrefixInfopage').$indentifier);
+        return md5(config('marketplace.cachePrefixInfopage').$indentifier);
     }
 }
