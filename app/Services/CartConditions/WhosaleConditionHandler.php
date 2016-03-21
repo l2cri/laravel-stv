@@ -57,7 +57,8 @@ class WhosaleConditionHandler extends AbstractConditionHandler
 
     protected function quantity($item){
 
-        $product = $this->product->byId($item['id']);
+        $productId = $item->attributes->get('product_id') ? $item->attributes->get('product_id') : $item['id'];
+        $product = $this->product->byId( $productId );
         if ($product->whosale_quantity <= $item->quantity) return true;
 
         return false;

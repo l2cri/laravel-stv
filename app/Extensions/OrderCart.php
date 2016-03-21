@@ -75,12 +75,14 @@ class OrderCart extends Cart
                     ));
                 }
 
+                $attributes = array_merge(['product_id' => $item->product_id], unserialize($item->attributes));
+
                 $cartItem = $this->validate(array(
                     'id' => $item->id,
                     'name' => $item->name,
                     'price' => Helpers::normalizePrice($item->price),
                     'quantity' => $item->quantity,
-                    'attributes' => new ItemAttributeCollection(unserialize($item->attributes)),
+                    'attributes' => new ItemAttributeCollection($attributes),
                     'conditions' => $conditionArray,
                 ));
                 $cartItems[$item->id] = new ItemCollection($cartItem);

@@ -64,19 +64,23 @@
                             @foreach($order->cartItems as $item)
                                 <?$conditions = \App\StaticHelpers\CartHelper::getConditions($item);?>
                                 <? $item->attributes = unserialize($item->attributes) ?>
+
+                                @foreach($item->conditions as $condition)
+                                @endforeach
+
                                 <tr>
                                     <td>
                                         <div class="traditional-cart-entry">
-                                            <a href="{{ route('product.page', $item->id) }}" class="image"><img src="{{ @url($item->attributes['file']) }}" alt=""></a>
+                                            <a href="{{ route('product.page', $item->product_id) }}" class="image"><img src="{{ @url($item->attributes['file']) }}" alt=""></a>
                                             <div class="content">
                                                 <div class="cell-view">
                                                     <a href="{{ url($item->attributes['section_url']) }}" class="tag">
                                                         {{ $item->attributes['section_name'] }}</a>
-                                                    <a href="{{ route('product.page', $item->id) }}" class="title">{{ $item->name }}
-                                                        @foreach($conditions as $conditionName)
-                                                            <span class="inline-label red">{{ $conditionName }}</span>
-                                                        @endforeach
+                                                    <a href="{{ route('product.page', $item->product_id) }}" class="title">{{ $item->name }}
                                                     </a>
+                                                    @foreach($conditions as $conditionId => $conditionName)
+                                                        <span class="inline-label red"> <a href="{{ route('panel::ordercondition.delete', [$order->id, $conditionId]) }}" title="Удалить"><i class="fa fa-remove"></i></a> {{ $conditionName }}  </span>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

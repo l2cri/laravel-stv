@@ -71,6 +71,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/order/edit/{id}', 'OrderController@orderedit')->name('order.edit');
     Route::post('/panel/supplier/order/cart/add', 'OrderController@cartadd')->name('ordercart.add');
     Route::get('/panel/supplier/order/cart/delete', 'OrderController@cartdelete')->name('ordercart.delete');
+    Route::get('/panel/supplier/order/{orderId}/condition/delete/{id}', 'OrderController@conditionDelete')->name('ordercondition.delete');
     Route::post('/panel/supplier/order/cart/update', 'OrderController@cartupdate')->name('ordercart.update');
     Route::get('/panel/user/order/{id}', 'OrderController@userrorder')->name('userorder');
 

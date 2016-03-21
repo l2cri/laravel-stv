@@ -97,4 +97,9 @@ class OrderController extends Controller
         $this->form->deleteOrderCartItem($request->all());
         return redirect()->back();
     }
+
+    public function conditionDelete($orderId, $conditionId){
+        $this->form->deleteCondition($orderId, $conditionId);
+        return redirect()->back();
+    }
 }

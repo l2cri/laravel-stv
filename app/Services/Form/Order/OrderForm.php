@@ -161,4 +161,9 @@ class OrderForm
             'total' => $cart->getTotal()
         ), $orderId);
     }
+
+    public function deleteCondition($orderId, $conditionId){
+        $cart = $this->cart->deleteCondition($orderId, $conditionId, $this->user->id);
+        $this->updateOrderAfterCartUpdate($cart, $orderId);
+    }
 }

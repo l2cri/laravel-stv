@@ -7,6 +7,7 @@
  */
 
 namespace App\Repo\Cart;
+use App\Repo\RepoTrait;
 use Cart;
 use Illuminate\Database\Eloquent\Model;
 use App\Extensions\OrderCart;
@@ -15,6 +16,8 @@ use App\Services\CartConditions\WhosaleConditionHandler;
 
 class CartRepo implements CartInterface
 {
+    use RepoTrait;
+
     protected $model;
     protected $conditionModel;
 
@@ -27,11 +30,6 @@ class CartRepo implements CartInterface
     public function add($data)
     {
         // TODO: Implement add() method.
-    }
-
-    public function update($id, $data)
-    {
-        // TODO: Implement update() method.
     }
 
     public function delete($id)
@@ -165,7 +163,27 @@ class CartRepo implements CartInterface
     }
 
     // удалить скидку вручную
-    public function deleteCondition($conditionId){
+    public function deleteCondition($orderId, $conditionId, $userId){
+
+        // вытащим сразу id связанного cart_item
+        $condition = $this->conditionModel->find($conditionId);
+        $cartItemId = $condition->conditionable->id;
+
         $this->conditionModel->destroy($conditionId);
+
+        // инициализируем корзину товарами и скидками для пересчета заказа - для этого мы ее возвращаем
+        $cart = new OrderCart($orderId, $this->model);
+        $cart->getContent();
+
+        // обновить cart_item запись в бд
+        $item = $cart->get($cartItemId);
+        $data = array(
+            'final_price' => $item->getPriceWithConditions(),
+            'subtotal' => $item->getPriceSum(),
+            'total' => $item->getPriceSumWithConditions()
+        );
+        $this->update($data, $cartItemId);
+
+        return $cart;
     }
 }
