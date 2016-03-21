@@ -47,7 +47,8 @@ class News extends Model
 
             $fileName = basename($image);
 
-            Storage::move($image,$newPath.$fileName);
+            if(!Storage::exists($newPath.$fileName))
+                Storage::move($image,$newPath.$fileName);
 
             $this->attributes['image'] = $newPath.$fileName;
         }
