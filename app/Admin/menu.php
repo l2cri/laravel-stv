@@ -19,6 +19,7 @@ if (AuthUser::isAdmin()){
     Admin::menu('App\Model\Supplier')->icon('fa-users')->label('Поставщики');
     Admin::menu('App\Model\Role')->icon('fa-male')->label('Роли');
     Admin::menu('App\Model\Ability')->icon('fa-unlock')->label('Возможности');
+    Admin::menu('App\Model\Status')->icon('fa-shopping-cart')->label('Статусы заказов');
 }
 
 Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");

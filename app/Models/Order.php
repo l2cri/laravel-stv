@@ -30,4 +30,8 @@ class Order extends Model
     public function cartItems(){
         return $this->hasMany('App\Models\CartItem');
     }
+
+    public function status(){
+        return $this->belongsTo('App\Models\Status');
+    }
 }
