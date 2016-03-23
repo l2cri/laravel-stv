@@ -17,8 +17,11 @@ class EloquentOrder implements OrderInterface
     use RepoTrait;
 
     protected $model;
-    public function __construct(Model $model){
+    protected $modelStatus;
+
+    public function __construct(Model $model, Model $modelStatus){
         $this->model = $model;
+        $this->modelStatus = $modelStatus;
     }
 
     public function delete($id){
@@ -31,4 +34,11 @@ class EloquentOrder implements OrderInterface
 
         $order->delete();
     }
+
+    public function statuses()
+    {
+        return $this->modelStatus->all();
+    }
+
+
 }

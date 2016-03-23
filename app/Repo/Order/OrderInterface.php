@@ -13,5 +13,5 @@ use App\Repo\RepoInterface;
 
 interface OrderInterface extends RepoInterface
 {
-
+    public function statuses();
 }

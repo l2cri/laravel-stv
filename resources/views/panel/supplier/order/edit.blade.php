@@ -5,22 +5,45 @@
     <div class="row information-blocks sections-panel article-container style-2">
         <div class="col-md-12">
 
-            <h1>Заказ № {{ $order->id }}</h1>
+            <h1>Заказ № {{ $order->id }} <span class="pull-right" style="color: {{ @$order->status->color }}">{{ @$order->status->name }}</span> </h1>
 
-            <table class="table table-striped panel">
-                <tr>
-                    <th>Итого</th>
-                    <td>{{ $order->subtotal }} <i class="fa fa-rub"></i></td>
-                </tr>
-                <tr>
-                    <th>Итого со скидками</th>
-                    <td>{{ $order->total }} <i class="fa fa-rub"></i></td>
-                </tr>
-                <tr>
-                    <th>Комментарий</th>
-                    <td>{{ $order->comment }}</td>
-                </tr>
-            </table>
+            <form action="{{ route('panel::order.update') }}" method="post">
+
+                {{ csrf_field() }}
+
+                <input type="hidden" name="orderId" value="{{ $order->id }}">
+
+                <table class="table table-striped panel">
+                    <tr>
+                        <th>Итого</th>
+                        <td>{{ $order->subtotal }} <i class="fa fa-rub"></i></td>
+                    </tr>
+                    <tr>
+                        <th>Итого со скидками</th>
+                        <td>{{ $order->total }} <i class="fa fa-rub"></i></td>
+                    </tr>
+                    <tr>
+                        <th>Комментарий</th>
+                        <td>{{ $order->comment }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Изменить статус</label>
+                            <? $selectedId = trn($order->status->id, null) ?>
+                            @include('panel.common.orderstatuses', compact('statuses', 'selectedId'))
+                        </td>
+                        <td>
+                            <label>Внетренний комментарий</label>
+                            <textarea class="simple-field height70" name="innercomment">{{ $order->innercomment }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Изменить" class="button">
+                        </td>
+                    </tr>
+                </table>
+            </form>
 
             <h1>Клиент {{ $order->profile->person }}</h1>
 

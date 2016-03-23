@@ -82,11 +82,25 @@ class OrderController extends Controller
 
     public function orderedit($id) {
         $order = $this->order->byId($id);
-        return view('panel.supplier.order.edit', compact('order'));
+        $statuses = $this->order->statuses();
+        return view('panel.supplier.order.edit', compact('order', 'statuses'));
     }
 
     public function cartupdate(Request $request){
         $this->form->updateOrderCart($request->all());
+    }
+
+    public function update(Request $request){
+
+        // чтобы не создавать отдельного валидатора
+        $this->validate($request, [
+            'orderId' => 'required|numeric',
+            'orderstatus' => 'required|numeric',
+            'innercomment' => 'string',
+        ]);
+
+        $this->form->update($request->all());
+        return redirect()->back();
     }
 
     public function cartadd(Request $request){

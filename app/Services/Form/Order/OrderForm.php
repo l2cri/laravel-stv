@@ -55,6 +55,14 @@ class OrderForm
         return true;
     }
 
+    public function update($input){
+        $id = $input['orderId'];
+        $data = array(
+            'innercomment' => $input['innercomment'],
+            'status_id' => $input['orderstatus']);
+        $this->order->update($data, $id);
+    }
+
     protected function save($supplierId, $profileId, $cart){
         $subtotal = 0;
         $total = 0;
