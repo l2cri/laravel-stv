@@ -25,10 +25,15 @@ class SupplierOrdersDataTable extends DataTable
                 return '<a target="_blank" href="'.route('panel::ordersupplier.page', $order->id).'">'.$order->id.'</a>';
 
             })
+            ->editColumn('status', function($order) {
+
+                if ($order->status) return '<span style="color:'.$order->status->color.'">'.$order->status->name.'</span>';
+
+            })
             ->addColumn('action', function($order){
 
                 return '<a href="'.route('panel::order.edit', $order->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
-                ' <a href="" title="Удалить"><i class="fa fa-remove"></i></a>';
+                ' <a href="'.route('panel::order.delete', $order->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })
             ->make(true);
@@ -104,6 +109,7 @@ class SupplierOrdersDataTable extends DataTable
     {
         return [
             'id',
+            'status' => ['title' => 'Статус', 'orderable' => 'false'],
             'profile.person' => ['title' => 'Клиент', 'orderable' => 'false'],
             'profile.phone' => ['title' => 'Телефон', 'orderable' => 'false'],
             'total' => ['title' => 'Сумма'],

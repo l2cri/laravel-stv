@@ -102,4 +102,9 @@ class OrderController extends Controller
         $this->form->deleteCondition($orderId, $conditionId);
         return redirect()->back();
     }
+
+    public function delete($id) {
+        $this->order->delete($id);
+        return redirect()->back();
+    }
 }

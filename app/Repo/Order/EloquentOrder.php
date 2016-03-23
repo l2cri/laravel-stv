@@ -20,4 +20,15 @@ class EloquentOrder implements OrderInterface
     public function __construct(Model $model){
         $this->model = $model;
     }
+
+    public function delete($id){
+        $order = $this->model->find($id);
+
+        foreach ($order->cartItems as $item){
+            $item->conditions()->delete();
+            $item->delete();
+        }
+
+        $order->delete();
+    }
 }
