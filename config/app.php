@@ -157,6 +157,8 @@ return [
 
         App\Providers\ComposerServiceProvider::class,
 
+        App\Providers\CommentServiceProvider::class,
+
         /*
          * Sleeping-Owl Admin
          */

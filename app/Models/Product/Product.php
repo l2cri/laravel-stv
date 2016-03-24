@@ -38,4 +38,8 @@ class Product extends Model
     public function cartItems(){
         return $this->hasMany('App\Models\CartItem');
     }
+
+    public function comments(){
+        return $this->morphMany('App\Models\Comment', 'commentable');
+    }
 }
