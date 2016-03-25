@@ -19,4 +19,8 @@ class Action extends Model
     public function products(){
         return $this->hasMany('App\Models\Product\Product');
     }
+
+    public function supplier() {
+        return $this->belongsTo('App\Models\Supplier');
+    }
 }

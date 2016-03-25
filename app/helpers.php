@@ -143,3 +143,8 @@ function localizedFormat ($date){
 
     return $obLocDate;
 }
+
+// пока в требованиях нет возможности вести несколько поставщиков в одном аккаунте
+function supplierId(){
+    return Auth::user()->suppliers[0]->id;
+}

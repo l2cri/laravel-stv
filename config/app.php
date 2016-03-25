@@ -152,12 +152,12 @@ return [
         App\Providers\CartServiceProvider::class,
         App\Providers\ProfileServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
+        App\Providers\CommentServiceProvider::class,
+        App\Providers\ActionServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 
         App\Providers\ComposerServiceProvider::class,
-
-        App\Providers\CommentServiceProvider::class,
 
         /*
          * Sleeping-Owl Admin

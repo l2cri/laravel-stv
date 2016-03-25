@@ -15,6 +15,8 @@ class ActionsProductTable extends Migration
         Schema::create('actions', function (Blueprint $table) {
             //
             $table->increments('id');
+            $table->integer('supplier_id')->unsigned();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->boolean('active');
             $table->string('name');
             $table->text('description');
