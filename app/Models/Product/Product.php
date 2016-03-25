@@ -20,7 +20,7 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = ['active', 'moderated', 'available', 'featured', 'name', 'articul', 'barcode', 'unit',
         'length', 'width', 'height', 'weight', 'volume', 'price', 'regular_price', 'action_price', 'whosale_price',
-        'whosale_quantity', 'preview', 'description', 'supplier_id', 'sections'];
+        'whosale_quantity', 'preview', 'description', 'supplier_id', 'sections', 'action_id'];
 
     public function sections(){
         return $this->belongsToMany('App\Models\Section');
@@ -41,5 +41,9 @@ class Product extends Model
 
     public function comments(){
         return $this->morphMany('App\Models\Comment', 'commentable');
+    }
+
+    public function action(){
+        return $this->belongsTo('App\Models\Action');
     }
 }
