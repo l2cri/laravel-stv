@@ -214,3 +214,8 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .inline-label.red i {color: #FFFFff}
 
 .height70 {height: 70px!important;}
+
+/* comments */
+.comment-content {
+	margin-left: 0;
+}

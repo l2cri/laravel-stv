@@ -13,5 +13,6 @@ use App\Repo\RepoInterface;
 
 interface CommentInterface extends RepoInterface
 {
-
+    public function create(array $data);
+    public function getByObject($object);
 }

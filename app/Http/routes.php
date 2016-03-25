@@ -29,7 +29,7 @@ Route::get('/home', function () {
 });
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('auth/login', 'Auth\AuthController@getLogin')->name('login');
 Route::post('auth/login', 'Auth\AuthController@postLogin')->name('auth.post');
 Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 
@@ -137,3 +137,8 @@ Route::get('order/checkout', 'OrderController@checkout')->name('order.checkout')
 Route::post('order/create', 'OrderController@create')->name('order.create');
 Route::get('order/thanks', 'OrderController@thanks')->name('order.thanks');
 Route::get('order/checkout/auth', 'OrderController@auth')->name('order.auth');
+
+/*
+ * Comments
+ */
+Route::post('catalog/product/{id}/addComment', 'CommentController@store')->where('id', '[0-9]+')->name('comments.add');

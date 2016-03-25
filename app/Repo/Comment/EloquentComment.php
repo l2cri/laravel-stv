@@ -10,9 +10,32 @@ namespace App\Repo\Comment;
 
 
 use App\Repo\RepoTrait;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Input;
 
 class EloquentComment implements CommentInterface
 {
     use RepoTrait;
 
+    protected $model;
+    protected $productModel;
+
+    public function __construct(Model $model,Model $productModel){
+        $this->model = $model;
+        $this->productModel = $productModel;
+    }
+
+    public function create(array $data)
+    {
+
+        $product = $this->productModel->find($data['id']);
+
+        return $product->comments()->create($data);
+    }
+
+    public function getByObject($product)
+    {
+        Input::replace(array('limit' => '4'));
+        return $product->comments()->orderBy('created_at', 'desc')->paginable();
+    }
 }

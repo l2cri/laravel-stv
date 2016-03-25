@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repo\Comment\CommentInterface;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Criteria\Product\SuppliersOnly;
 use App\Repo\Product\ProductInterface;
@@ -24,10 +25,11 @@ class CatalogController extends Controller
     protected $supplier;
 
     public function __construct(ProductInterface $product, SectionInterface $section,
-                                    SupplierInterface $supplier){
+                                    SupplierInterface $supplier, CommentInterface $comments){
         $this->product = $product;
         $this->section = $section;
         $this->supplier = $supplier;
+        $this->comments = $comments;
     }
 
     public function byCode($code, Request $request){
@@ -77,6 +79,7 @@ class CatalogController extends Controller
 
     public function product($id){
         $product = $this->product->byId($id);
-        return view('catalog.product', compact('product'));
+        $comments = $this->comments->getByObject($product);
+        return view('catalog.product', compact(['product','comments']));
     }
 }

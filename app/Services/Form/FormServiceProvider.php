@@ -9,6 +9,8 @@
 namespace App\Services\Form;
 
 
+use App\Services\Form\Comment\CommentForm;
+use App\Services\Form\Comment\CommentValidator;
 use App\Services\Form\Order\OrderForm;
 use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
@@ -73,6 +75,15 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Profile\ProfileForm', function($app){
             return new ProfileForm( new ProfileValidator($app['validator']),
                 $app->make('App\Repo\Profile\ProfileInterface')
+            );
+        });
+
+        /*
+         * comments
+         */
+        $app->bind('App\Services\Form\Comment\CommentForm', function($app){
+            return new CommentForm( new CommentValidator($app['validator']),
+                $app->make('App\Repo\Comment\CommentInterface')
             );
         });
     }
