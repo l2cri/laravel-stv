@@ -31,21 +31,45 @@ class CommentController extends Controller
     public function store(Request $request,$id)
     {
         //
+        $errors = '';
+
         $request->merge(array('id' => $id));
         $input = removeEmptyValues($request->all());
 
         if ($this->commentForm->save($input) ){
-            return Redirect::to( route('product.page',['id'=>$id]) )->with('status', 'success');
+            $status = 'success';
         } else {
-           return Redirect::to( route('product.page',['id'=>$id]) )->withInput()
-                ->withErrors( $this->commentForm->errors() )
-                ->with('status', 'error');
+            $status = 'error';
+            $errors = $this->commentForm->errors();
         }
+
+        $comments = $this->comment->byProductId($id);
+
+        return view('comments.list',compact('comments','id','status','errors'));
     }
 
     public function paginator($id){
 
         $comments = $this->comment->byProductId($id);
         return view('comments.list', compact('comments','id'));
+    }
+    /**
+     * Store a newly created resource in storage with redirect.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeWithRedirect(Request $request,$id)
+    {
+        //
+        $request->merge(array('id' => $id));
+        $input = removeEmptyValues($request->all());
+        if ($this->commentForm->save($input) ){
+            return Redirect::to( route('product.page',['id'=>$id]) )->with('status', 'success');
+        } else {
+            return Redirect::to( route('product.page',['id'=>$id]) )->withInput()
+                ->withErrors( $this->commentForm->errors() )
+                ->with('status', 'error');
+        }
     }
 }

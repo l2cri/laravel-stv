@@ -679,6 +679,15 @@ $(function() {
 	$('body').on('hidden.bs.modal', '.modal', function () {
 		$(this).removeData('bs.modal');
 	});
+	function getHtmlLoader(){
+		return '<div class="bubbles">' +
+			'<div class="title">Загрузки</div>' +
+			'<span></span>' +
+			'<span id="bubble2"></span>' +
+			'<span id="bubble3"></span>' +
+			'</div>';
+	}
+
 
 });
 
