@@ -24,20 +24,5 @@ class CommentTableSeeder extends Seeder
 
             $comment->save();
         }
-        self::addAbiluties();
-    }
-
-    private function addAbiluties() {
-        $ability = new App\Models\Ability;
-
-        $isset = $ability->where('action','comments_admin')->first();
-
-        if(is_null($isset)){
-            $ability->name = "Comments  администрирование";
-            $ability->description = "Comments  администрирование";
-            $ability->action = "comments_admin";
-
-            $ability->save();
-        }
     }
 }
