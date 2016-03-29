@@ -219,3 +219,12 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .comment-content {
 	margin-left: 0;
 }
+#comments-list {
+	min-height: 100px;
+}
+#comments-list .divider{
+	display: inline;
+}
+#comments-list .list {
+	margin: 30px 0;
+}

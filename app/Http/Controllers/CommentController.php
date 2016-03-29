@@ -42,4 +42,10 @@ class CommentController extends Controller
                 ->with('status', 'error');
         }
     }
+
+    public function paginator($id){
+
+        $comments = $this->comment->byProductId($id);
+        return view('comments.list', compact('comments','id'));
+    }
 }

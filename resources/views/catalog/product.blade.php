@@ -246,12 +246,10 @@
                 <div class="tabs-entry">
                     <div class="article-container style-1">
                         <div class="row">
-                            <div class="col-md-12 information-entry">
-                                <?$comments->url = '/catalog/product/'.$product->id;?>
-                                @include('pagination.limit_links', ['paginator' => $comments,'currentSection' => $comments])
-                                @include('comments.list',['comments'=> $comments])
-                                @include('comments.form',['comments'=> $product->comments(),'id'=>$product->id])
+                            <div id="comments-list" class="col-md-12 information-entry">
+                                @include('comments.list',['comments'=> $comments,'id'=>$product->id])
                             </div>
+                                @include('comments.form',['comments'=> $product->comments(),'id'=>$product->id])
                         </div>
                     </div>
                 </div>

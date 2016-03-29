@@ -142,3 +142,4 @@ Route::get('order/checkout/auth', 'OrderController@auth')->name('order.auth');
  * Comments
  */
 Route::post('catalog/product/{id}/addComment', 'CommentController@store')->where('id', '[0-9]+')->name('comments.add');
+Route::get('catalog/product/{id}/pageComment', 'CommentController@paginator')->where('page','[0-9]+')->name('comment.page');
