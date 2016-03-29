@@ -42,7 +42,7 @@ class NewsTableSeeder extends Seeder
     private function addAbiluties() {
         $ability = new App\Models\Ability;
 
-        $isset = $ability->where('action','new')->first();
+        $isset = $ability->where('action','news_admin')->first();
 
         if(is_null($isset)){
             $ability->name = "News  администрирование";

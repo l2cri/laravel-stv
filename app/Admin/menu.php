@@ -24,5 +24,5 @@ if (AuthUser::isAdmin()){
 
 if (AuthUser::can('news_admin'))
     Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");
-
-Admin::menu('App\Model\Comment')->icon('fa-comments')->label("Комментарии");
+if (AuthUser::can('comments_admin'))
+    Admin::menu('App\Model\Comment')->icon('fa-comments')->label("Комментарии");
