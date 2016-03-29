@@ -22,4 +22,7 @@ if (AuthUser::isAdmin()){
     Admin::menu('App\Model\Status')->icon('fa-shopping-cart')->label('Статусы заказов');
 }
 
-Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");
+if (AuthUser::can('news_admin'))
+    Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");
+
+Admin::menu('App\Model\Comment')->icon('fa-comments')->label("Комментарии");

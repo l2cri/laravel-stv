@@ -1,3 +1,4 @@
+@if(Auth::check())
 <div class="blog-entry">
     <h3 class="additional-blog-title">Оставить комментарий</h3>
     <form action="{{ route('comments.add',['id'=>$id]) }}" method="post">
@@ -11,3 +12,6 @@
         </div>
     </form>
 </div>
+@else
+    <div><a href="{{route('login')}}">Войдите, чтобы оставить комментарий</a></div>
+@endif
