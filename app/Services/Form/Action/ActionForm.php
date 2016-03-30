@@ -29,18 +29,35 @@ class ActionForm
     }
 
     public function apply($actionId, $productId = null){
-        
+
+        if ($productId) {
+
+            $action = $this->action->byId($actionId);
+            $product = $this->product->byId($productId);
+            $product->action()->associate($action);
+            $product->save();
+
+        } else {
+            $data = array('action_id' => $actionId);
+            $this->product->update($data, supplierId(), 'supplier_id');
+        }
     }
 
     public function revoke($actionId, $productId = null){
-
+        if ($productId) {
+            $this->product->byId($productId)->dissociate();
+        } else {
+            foreach ( $this->product->bySupplier(supplierId()) as $product){
+                $product->dissociate();
+            }
+        }
     }
 
     public function activate($actionId){
-
+        $this->action->update(['active' => true], $actionId);
     }
 
     public function deactivate($actionId) {
-
+        $this->action->update(['active' => false], $actionId);
     }
 }

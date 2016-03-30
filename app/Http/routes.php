@@ -86,8 +86,12 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/user/profiles/show/{id}', 'ProfileController@show')->name('profile.show');
     Route::get('/panel/user/profiles/delete/{id}', 'ProfileController@delete')->name('profile.delete');
 
+
     // comments
     Route::get('/panel/supplier/comments','CommentController@getBySupplier')->name('comments.list');
+
+    Route::get('/panel/supplier/actions/', 'ActionController@index')->name('actions');
+    Route::post('/panel/supplier/actions/add', 'ActionController@add')->name('actions.add');
 });
 
 /*

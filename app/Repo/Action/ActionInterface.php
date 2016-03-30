@@ -13,5 +13,5 @@ use App\Repo\RepoInterface;
 
 interface ActionInterface extends RepoInterface
 {
-
+    public function bySupplier($supplierId);
 }
