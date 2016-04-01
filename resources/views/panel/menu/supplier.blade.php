@@ -8,3 +8,4 @@
     </ul>
 
 </li>
+<li><a href="{{ route('panel::comments.list') }}">Комментарии</a></li>

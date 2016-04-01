@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
+use App\Models\Comment;
 use Yajra\Datatables\Services\DataTable;
 use Auth;
-use App\Models\Order;
 
-class UserOrdersDataTable extends DataTable
+class CommentsProductsDataTable extends DataTable
 {
     // protected $printPreview  = 'path.to.print.preview.view';
 
@@ -34,9 +34,16 @@ class UserOrdersDataTable extends DataTable
      */
     public function query()
     {
-        $orders = Order::where('user_id', '=', Auth::user()->id)->with('profile', 'supplier');
 
-        return $this->applyScopes($orders);
+        $supplierId =  supplierId();
+
+        $comments = Comment::whereIn('commentable_id',function($q)use ($supplierId){
+            $q->select('id')
+                ->from('products')
+                ->where('supplier_id', $supplierId);
+        })->with('user','commentable');
+
+        return $this->applyScopes($comments);
     }
 
     /**
@@ -49,13 +56,13 @@ class UserOrdersDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->ajax( [
-                'url' => route('userorders.datatables'),
+                'url' => route('comments.datatables'),
             ])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'lengthMenu' => [
                     [ 10, 25, 50, -1 ],
-                    [ '10 заказов', '25 заказов', '50 заказов', 'Все' ]
+                    [ '10 комментариев', '25 комментариев', '50 комментариев', 'Все' ]
                 ],
                 'buttons' => ['pageLength', 'csv', 'excel', 'print'],
                 'order'   => [[0, 'desc']],
@@ -68,7 +75,7 @@ class UserOrdersDataTable extends DataTable
                     'infoFiltered' => '(отфильтровано из _MAX_ товаров)',
                     'infoPostFix' => '',
                     'loadingRecords' => 'Загрузка товаров...',
-                    'zeroRecords' => 'Заказы отсутствуют.',
+                    'zeroRecords' => 'Комментарии отсутствуют.',
                     'emptyTable' => 'В таблице отсутствуют данные',
                     'paginate' => [
                         'first' => '<<',
@@ -78,8 +85,8 @@ class UserOrdersDataTable extends DataTable
                     ],
                     'buttons' => [
                         'pageLength' => [
-                            '_' => 'Показать %d заказов',
-                            -1 => 'Все заказы'
+                            '_' => 'Показать %d комментариев',
+                            -1 => 'Все комментарии'
                         ],
                         'print' => 'Печать'
                     ]
@@ -96,8 +103,10 @@ class UserOrdersDataTable extends DataTable
     {
         return [
             'id',
-            'supplier.name' => ['title' => 'Поставщик', 'orderable' => 'false'],
-            'total' => ['title' => 'Сумма'],
+            'moderated' => ['title' => 'Модерирован'],
+            'text',
+            'commentable.name'=> ['title' => 'Товар'],
+            'user.name' => ['title' => 'Клиент'],
             'created_at' => ['title' => 'Добавлен'],
         ];
     }
@@ -109,6 +118,6 @@ class UserOrdersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'comments';
+        return 'users';
     }
 }

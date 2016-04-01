@@ -46,4 +46,17 @@ class EloquentComment implements CommentInterface
 
         return $this->getByObject($product);
     }
+    public function bySupplier(){
+
+        $supplierId = supplierId();
+
+        $comments = $this->model->whereIn('commentable_id',function($q)use ($supplierId){
+            $q->select('id')
+                ->from('products')
+                ->where('supplier_id', $supplierId);
+        })->orderBy('created_at', 'desc')->paginable();
+
+        return $comments;
+
+    }
 }

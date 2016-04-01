@@ -85,6 +85,9 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/user/profiles/update/{id}', 'ProfileController@updateform')->name('profile.show.update');
     Route::get('/panel/user/profiles/show/{id}', 'ProfileController@show')->name('profile.show');
     Route::get('/panel/user/profiles/delete/{id}', 'ProfileController@delete')->name('profile.delete');
+
+    // comments
+    Route::get('/panel/supplier/comments','CommentController@getBySupplier')->name('comments.list');
 });
 
 /*
@@ -100,6 +103,11 @@ Route::resource('/panel/supplier/orderdatatables', 'OrderController',
 Route::controller('/panel/user/orders', 'OrderController', [
     'getUserOrders' => 'userorders.datatables',
 ]);
+
+Route::controller('/panel/supplier/comments', 'CommentController', [
+    'getBySupplier' => 'comments.datatables',
+]);
+
 
 /*
  * Контент
