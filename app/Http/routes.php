@@ -88,6 +88,8 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
 
     // comments
     Route::get('/panel/supplier/comments','CommentController@getBySupplier')->name('comments.list');
+    Route::get('/panel/supplier/comments/delete/{id}', 'CommentController@delete')->name('comment.delete');
+    Route::get('/panel/supplier/comments/edit/{id}', 'CommentController@edit')->name('comment.edit');
 });
 
 /*

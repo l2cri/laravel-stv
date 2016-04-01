@@ -19,9 +19,15 @@ class CommentsProductsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('id', function($order) {
+            ->editColumn('id', function($comment) {
 
-                return '<a target="_blank" href="'.route('panel::userorder', $order->id).'">'.$order->id.'</a>';
+                return '<a target="_blank" href="'.route('panel::userorder', $comment->id).'">'.$comment->id.'</a>';
+
+            })
+            ->addColumn('action', function($comment){
+
+                return '<a href="'.route('panel::comment.edit', $comment->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
+                ' <a href="'.route('panel::comment.delete', $comment->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })
             ->make(true);
@@ -58,6 +64,7 @@ class CommentsProductsDataTable extends DataTable
             ->ajax( [
                 'url' => route('comments.datatables'),
             ])
+            ->addAction(['width' => '50px', 'title' => 'Действие'])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'lengthMenu' => [
