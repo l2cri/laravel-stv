@@ -109,6 +109,6 @@ class UserOrdersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'comments';
+        return 'users';
     }
 }

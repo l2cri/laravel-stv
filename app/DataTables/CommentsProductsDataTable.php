@@ -118,6 +118,6 @@ class CommentsProductsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'users';
+        return 'comments';
     }
 }
