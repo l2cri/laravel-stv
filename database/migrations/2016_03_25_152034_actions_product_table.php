@@ -20,8 +20,8 @@ class ActionsProductTable extends Migration
             $table->boolean('active')->nullable();
             $table->string('name');
             $table->text('description');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->timestamp('start');
+            $table->timestamp('end');
             $table->integer('percent')->nullable();
             $table->float('static')->nullable();
             $table->timestamps();

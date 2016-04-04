@@ -38,4 +38,9 @@ class ActionController extends Controller
             return response()->json( ['errors' => $this->form->errors()], 500 );
         }
     }
+
+    public function show($id) {
+        $action = $this->action->byId($id);
+        return view('panel.supplier.actions.show', compact('action'));
+    }
 }
