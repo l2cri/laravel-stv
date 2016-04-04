@@ -16,9 +16,9 @@ class ActionValidator extends AbstractLaravelValidator
     protected $rules = array(
         'name' => 'required|string',
         'description' => 'string',
-        'start' => 'required|data',
-        'end' => 'required|data',
-        'active' => 'boolean',
+        'start' => 'required|date',
+        'end' => 'required|date',
+//        'active' => 'boolean', не работает на checkbox
         'percent' => 'numeric',
         'static' => 'numeric'
     );

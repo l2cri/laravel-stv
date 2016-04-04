@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repo\Action\ActionInterface;
 use App\Services\Form\Action\ActionForm;
+use Illuminate\Http\Request;
 
 class ActionController extends Controller
 {
@@ -25,5 +26,16 @@ class ActionController extends Controller
     public function index(){
         $actions = $this->action->bySupplier(supplierId());
         return view('panel.supplier.actions.index', compact('actions'));
+    }
+
+    public function add(Request $request ){
+
+        $input = removeEmptyValues($request->all());
+
+        if ($this->form->save($input)) {
+            return response("action added");
+        } else {
+            return response()->json( ['errors' => $this->form->errors()], 500 );
+        }
     }
 }

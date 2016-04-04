@@ -60,4 +60,16 @@ class ActionForm
     public function deactivate($actionId) {
         $this->action->update(['active' => false], $actionId);
     }
+
+    public function save(array $input){
+
+        if ( ! $this->valid($input) ) return false;
+
+        $input['supplier_id'] = supplierId();
+        $this->action->create($input);
+
+        return true;
+
+        //return true;
+    }
 }

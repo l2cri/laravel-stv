@@ -6,7 +6,7 @@
 
     <div class="information-blocks sections-panel">
 
-        <button data-toggle="modal" data-target="#modal_create" class="button style-2">Добавить профиль</button>
+        <button data-toggle="modal" data-target="#modal_create" class="button style-2">Добавить акцию</button>
 
         <!-- Modal Add -->
         <div class="modal fade" id="modal_create" tabindex="-1" role="dialog" aria-labelledby="modal_createLabel">
@@ -23,7 +23,27 @@
                             {{ csrf_field() }}
 
                             <div class="row">
+                                <div class="col-md-3">
+                                    <label>Начало</label>
+                                    <input type="text" required="" id="start"
+                                           class="simple-field"
+                                           name="start">
+                                </div>
+                                <div class="col-md-9">
+                                    <label>Окончание</label>
+                                    <input type="text" required=""
+                                           class="simple-field"
+                                           name="end" id="end">
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-12">
+
+                                    <label class="checkbox-entry">
+                                        <input type="checkbox" checked name="active"> <span class="check"></span> Активна
+                                    </label>
+                                    <div class="clear"></div>
 
                                     <label>Название <span>*</span></label>
                                     <input type="text" required=""
@@ -31,21 +51,20 @@
                                            name="name">
                                     <div class="clear"></div>
 
-                                    <label>Имя контактного лица <span>*</span></label>
-                                    <input type="text" required=""
+                                    <label>Процент</label>
+                                    <input type="text"
                                            class="simple-field"
-                                           name="person">
+                                           name="percent">
                                     <div class="clear"></div>
 
-                                    <label>Телефон <span>*</span></label>
-                                    <input type="text" required=""
+                                    <label>Статическая скидка</label>
+                                    <input type="text"
                                            class="simple-field"
-                                           name="phone">
+                                           name="static">
                                     <div class="clear"></div>
 
-                                    <label>Адрес</label>
-                                    <textarea rows="2" class="simple-field" name="address" style="height: 70px"></textarea>
-
+                                    <label>Описание</label>
+                                    <textarea rows="2" class="simple-field" name="description" style="height: 70px"></textarea>
 
                                 </div>
                             </div>
@@ -72,6 +91,20 @@
 
             $('#submit_create').click(function(){
                 submitCreateForm('{{ route('panel::actions.add') }}');
+            });
+
+            jQuery('#start').periodpicker({
+
+                end: '#end',
+                lang: 'ru',
+                timepicker: true, // use timepicker
+                timepickerOptions: {
+                    hours: true,
+                    minutes: true,
+                    seconds: false,
+                    ampm: false,
+                    twelveHoursFormat:false
+                }
             });
         });
     </script>

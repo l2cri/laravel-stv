@@ -51,7 +51,7 @@ class ProfileController extends Controller
         if ($this->form->update($input)) {
             return response("профиль отредактирован");
         } else {
-            return response("профиль не сохранен")
+            return redirect()->back()
                 ->withErrors($this->form->errors())
                 ->with('status', 'error');
         }

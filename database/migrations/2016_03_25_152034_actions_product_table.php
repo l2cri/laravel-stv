@@ -17,7 +17,7 @@ class ActionsProductTable extends Migration
             $table->increments('id');
             $table->integer('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
-            $table->boolean('active');
+            $table->boolean('active')->nullable();
             $table->string('name');
             $table->text('description');
             $table->dateTime('start');
