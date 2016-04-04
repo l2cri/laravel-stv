@@ -66,4 +66,9 @@ class ActionController extends Controller
         $this->form->delete($id);
         return redirect()->back();
     }
+
+    public function associate($id) {
+        $this->form->apply($id);
+        return redirect()->back();
+    }
 }
