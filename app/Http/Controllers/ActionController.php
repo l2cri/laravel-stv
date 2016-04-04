@@ -50,7 +50,7 @@ class ActionController extends Controller
     }
 
     public function update(Request $request) {
-        
+
         $active = $request->get('active');
         $input = removeEmptyValues($request->all());
         $input['active'] = $active;
@@ -60,5 +60,10 @@ class ActionController extends Controller
         } else {
             response()->json( ['errors' => $this->form->errors()], 500 );
         }
+    }
+
+    public function delete($id){
+        $this->form->delete($id);
+        return redirect()->back();
     }
 }

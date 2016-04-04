@@ -95,6 +95,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/actions/show/{id}', 'ActionController@show')->name('actions.show');
     Route::get('/panel/supplier/actions/update/{id}', 'ActionController@updateform')->name('actions.show.update');
     Route::post('/panel/supplier/actions/update', 'ActionController@update')->name('actions.update');
+    Route::get('/panel/supplier/actions/delete/{id}', 'ActionController@delete')->name('actions.delete');
 });
 
 /*

@@ -44,21 +44,18 @@ class ActionForm
     }
 
     public function revoke($actionId, $productId = null){
+
+        $data = ['action_id' => null];
+
         if ($productId) {
-            $this->product->byId($productId)->dissociate();
+            $this->product->update($data, $productId);
         } else {
+            //TODO move to ProductInterface
             foreach ( $this->product->bySupplier(supplierId()) as $product){
-                $product->dissociate();
+                if ($product->action_id == $actionId)
+                    $this->product->update($data, $product->id);
             }
         }
-    }
-
-    public function activate($actionId){
-        $this->action->update(['active' => true], $actionId);
-    }
-
-    public function deactivate($actionId) {
-        $this->action->update(['active' => false], $actionId);
     }
 
     public function save(array $input){
@@ -79,5 +76,15 @@ class ActionForm
         unset($input['_token']);
         $this->action->update($input, $actionId);
         return true;
+    }
+
+    public function delete($id) {
+        $this->action->delete($id);
+
+        //TODO move to ProductInterface
+        foreach ( $this->product->bySupplier(supplierId()) as $product){
+            if ($product->action_id == $id)
+                $this->product->update(['action_id'=>null], $product->id);
+        }
     }
 }
