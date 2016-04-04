@@ -69,7 +69,15 @@ class ActionForm
         $this->action->create($input);
 
         return true;
+    }
 
-        //return true;
+    public function update(array $input) {
+        if (!$this->valid($input)) return false;
+
+        $actionId = $input['actionId'];
+        unset($input['actionId']);
+        unset($input['_token']);
+        $this->action->update($input, $actionId);
+        return true;
     }
 }

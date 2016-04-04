@@ -92,7 +92,9 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
 
     Route::get('/panel/supplier/actions/', 'ActionController@index')->name('actions');
     Route::post('/panel/supplier/actions/add', 'ActionController@add')->name('actions.add');
-    Route::get('/panel/supplier/actions/show/{id}', 'ActionController@show')->name('profile.show');
+    Route::get('/panel/supplier/actions/show/{id}', 'ActionController@show')->name('actions.show');
+    Route::get('/panel/supplier/actions/update/{id}', 'ActionController@updateform')->name('actions.show.update');
+    Route::post('/panel/supplier/actions/update', 'ActionController@update')->name('actions.update');
 });
 
 /*

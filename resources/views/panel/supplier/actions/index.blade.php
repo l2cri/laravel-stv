@@ -86,7 +86,7 @@
         $(function(){
 
             $( document ).on( "click", "#submit_update", function() {
-                submitUpdateForm('{{ route('panel::profile.update') }}');
+                submitUpdateForm('{{ route('panel::actions.update') }}');
             });
 
             $('#submit_create').click(function(){
@@ -118,13 +118,13 @@
                         <div class="row padding-bottom-10">
                             <div class="col-md-8">
                                 <a data-toggle="modal" data-target="#modal_show"
-                                   href="{{ route('panel::profile.show', $action->id) }}">
+                                   href="{{ route('panel::actions.show', $action->id) }}">
                                     {{ $action->name }}
                                 </a>
                             </div>
                             <div class="col-md-4">
                                 <a data-toggle="modal" data-target="#modal_show"
-                                   href="{{ route('panel::profile.show.update', $action->id) }}">
+                                   href="{{ route('panel::actions.show.update', $action->id) }}">
                                     <i class="fa fa-edit"></i></a>
                                 <a href="{{ route('panel::profile.delete', $action->id) }}"><i class="fa fa-times"></i></a>
                             </div>

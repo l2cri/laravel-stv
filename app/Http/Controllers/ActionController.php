@@ -43,4 +43,22 @@ class ActionController extends Controller
         $action = $this->action->byId($id);
         return view('panel.supplier.actions.show', compact('action'));
     }
+
+    public function updateform($id){
+        $action = $this->action->byId($id);
+        return view('panel.supplier.actions.update', compact('action'));
+    }
+
+    public function update(Request $request) {
+        
+        $active = $request->get('active');
+        $input = removeEmptyValues($request->all());
+        $input['active'] = $active;
+
+        if ($this->form->update($input)) {
+            return response("акция отредактирована");
+        } else {
+            response()->json( ['errors' => $this->form->errors()], 500 );
+        }
+    }
 }
