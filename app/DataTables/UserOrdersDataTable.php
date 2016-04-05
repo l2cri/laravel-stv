@@ -24,6 +24,18 @@ class UserOrdersDataTable extends DataTable
                 return '<a target="_blank" href="'.route('panel::userorder', $order->id).'">'.$order->id.'</a>';
 
             })
+            ->addColumn('action', function($order){
+
+                if ($order->returned) {
+                    return 'ВОЗВРАТ';
+                } else {
+                    return '<a href="'.route('panel::order.return', $order->id).'" title="Возврат заказа">Вернуть</a>';
+                }
+
+            })
+            ->setRowClass(function ($order) {
+                if ($order->returned) return 'oderReturn';
+            })
             ->make(true);
     }
 
@@ -51,6 +63,7 @@ class UserOrdersDataTable extends DataTable
             ->ajax( [
                 'url' => route('userorders.datatables'),
             ])
+            ->addAction(['width' => '50px', 'title' => 'Действие'])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'lengthMenu' => [

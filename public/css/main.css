@@ -230,3 +230,6 @@ input[type="file"].simple-field {padding: 0px; border: none}
 }
 
 .product-image-label span {font-size: 9px;}
+.oderReturn {background-color: #9c9c9c; color: #FFFFff}
+.oderReturn a {color: #d41b1b;}
+.left20 {margin-left: 20px}

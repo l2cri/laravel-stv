@@ -121,4 +121,9 @@ class OrderController extends Controller
         $this->order->delete($id);
         return redirect()->back();
     }
+
+    public function returnOrder($orderId){
+        $this->form->returnOrder($orderId);
+        return redirect()->back();
+    }
 }

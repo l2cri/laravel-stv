@@ -174,4 +174,8 @@ class OrderForm
         $cart = $this->cart->deleteCondition($orderId, $conditionId, $this->user->id);
         $this->updateOrderAfterCartUpdate($cart, $orderId);
     }
+
+    public function returnOrder($orderId){
+        $this->order->update(['returned' => true], $orderId);
+    }
 }

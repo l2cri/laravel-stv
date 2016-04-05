@@ -27,6 +27,8 @@ class SupplierOrdersDataTable extends DataTable
             })
             ->editColumn('status', function($order) {
 
+                if ($order->returned) return 'ВОЗВРАТ';
+
                 if ($order->status) return '<span style="color:'.$order->status->color.'">'.$order->status->name.'</span>';
 
             })
@@ -35,6 +37,9 @@ class SupplierOrdersDataTable extends DataTable
                 return '<a href="'.route('panel::order.edit', $order->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
                 ' <a href="'.route('panel::order.delete', $order->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
+            })
+            ->setRowClass(function ($order) {
+                if ($order->returned) return 'oderReturn';
             })
             ->make(true);
     }

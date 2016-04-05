@@ -5,7 +5,9 @@
     <div class="row information-blocks sections-panel article-container style-2">
         <div class="col-md-12">
 
-            <h1>Заказ № {{ $order->id }}</h1>
+            <h1>Заказ № {{ $order->id }}
+                @if($order->returned)<span class="pull-right left20">ВОЗВРАТ</span>@endif
+                <span class="pull-right" style="color: {{ @$order->status->color }}">{{ @$order->status->name }}</span></h1>
 
             <table class="table table-striped panel">
                 <tr>
