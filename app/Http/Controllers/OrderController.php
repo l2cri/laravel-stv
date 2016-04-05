@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
+use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\Cart\CartForm;
@@ -23,12 +24,14 @@ class OrderController extends Controller
     protected $profile;
     protected $order;
     protected $cartForm;
+    protected $message;
 
-    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm) {
+    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm, MessageInterface $message) {
         $this->form = $form;
         $this->profile = $profile;
         $this->order = $order;
         $this->cartForm = $cartForm;
+        $this->message = $message;
 
         $this->middleware('auth');
     }
@@ -74,12 +77,14 @@ class OrderController extends Controller
     public function supplierorder($id) {
 
         $order = $this->order->byId($id);
+        $this->message->supplierSaw($id); // поставщик просмотрел новые сообщения
 
         return view('panel.supplier.order.show', compact('order'));
     }
 
     public function userrorder($id) {
         $order = $this->order->byId($id);
+        $this->message->userSaw($id); // пользователь просмотрел новые сообщения
         return view('panel.user.order.show', compact('order'));
     }
 
@@ -137,5 +142,27 @@ class OrderController extends Controller
     public function repeat($orderId){
         $this->cartForm->addFromOrder($orderId);
         return redirect(route('cart.index'));
+    }
+
+    public function saveUserMessage(Request $request){
+        $this->validate($request, [
+            'order_id' => 'required|numeric',
+            'text' => 'required|string',
+        ]);
+
+        $this->form->saveUserMessage($request->all());
+
+        return redirect()->back();
+    }
+
+    public function saveSupplierMessage(Request $request){
+        $this->validate($request, [
+            'order_id' => 'required|numeric',
+            'text' => 'required|string',
+        ]);
+
+        $this->form->saveSupplierMessage($request->all());
+
+        return redirect()->back();
     }
 }

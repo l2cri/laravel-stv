@@ -17,12 +17,26 @@ class UserOrdersDataTable extends DataTable
      */
     public function ajax()
     {
+        $messageRepo = app()->make('App\Repo\Message\MessageInterface');
+
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('id', function($order) {
 
                 return '<a target="_blank" href="'.route('panel::userorder', $order->id).'">'.$order->id.'</a>'.
                         ' / <a href="'.route('panel::order.repeat', $order->id).'">Повторить</a>';
+
+            })
+            ->editColumn('supplier.name', function($order) use ($messageRepo){
+
+                $newMessageCount = $messageRepo->userNew($order->id);
+                $label = '';
+                if ( !empty( count($newMessageCount) ) ) {
+                    $label = '<span class="menu-label blue">'.count($newMessageCount).'</span>';
+                    return $order->supplier->name.$label;
+                }
+
+                return $order->supplier->name;
 
             })
             ->addColumn('action', function($order){

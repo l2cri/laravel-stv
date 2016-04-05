@@ -82,6 +82,36 @@
                 </table>
             </div>
 
+            <br>
+            <br>
+
+            <h1>Сообщения</h1>
+
+            @foreach($order->messages as $message)
+
+                <div class="blog-entry">
+                    <div class="comment">
+                        <div class="comment-content">
+                            <div class="comment-title"><span>{{ $message->user->name }}</span>  {{ localizedFormat($message->created_at)->format('l j F Y H:i') }}</div>
+                            <div class="comment-text">{{ $message->text }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            @endforeach
+
+            <br>
+
+            <form method="post" action="{{ route('panel::order.saveUserMessage') }}">
+
+                {{ csrf_field() }}
+
+                <input type="hidden" name="order_id" value="{{ $order->id }}">
+
+                <label>Текст <span>*</span></label>
+                <textarea class="simple-field" placeholder="" aria-autocomplete="off" name="text"></textarea>
+                <div class="button style-10">Отправить<input type="submit" value="" /></div>
+            </form>
         </div>
     </div>
 

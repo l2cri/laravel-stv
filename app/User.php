@@ -81,7 +81,12 @@ class User extends Model implements AuthenticatableContract,
     public function cartItems(){
         return $this->hasMany('App\Models\CartItem');
     }
+
     public function comments(){
         return $this->hasMany('App\Models\Comment');
+    }
+
+    public function messages(){
+        return $this->hasMany('App\Models\Message');
     }
 }

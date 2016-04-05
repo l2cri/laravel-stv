@@ -34,4 +34,8 @@ class Order extends Model
     public function status(){
         return $this->belongsTo('App\Models\Status');
     }
+
+    public function messages(){
+        return $this->hasMany('App\Models\Message');
+    }
 }

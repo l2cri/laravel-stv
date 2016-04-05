@@ -12,6 +12,7 @@ use App\Exceptions\OrderNotCreatedException;
 use App\Extensions\OrderCart;
 use App\Models\CartItem;
 use App\Repo\Cart\CartInterface;
+use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Profile\ProfileInterface;
@@ -29,15 +30,18 @@ class OrderForm
     protected $cart;
     protected $user;
     protected $product;
+    protected $message;
 
     public function __construct(ValidableInterface $validator, ProfileInterface $profile,
-                                CartInterface $cart, OrderInterface $order, ProductInterface $product) {
+                                CartInterface $cart, OrderInterface $order, ProductInterface $product,
+                                MessageInterface $message) {
         $this->validator = $validator;
         $this->profile = $profile;
         $this->cart = $cart;
         $this->order = $order;
         $this->user = Auth::user();
         $this->product = $product;
+        $this->message = $message;
     }
 
     public function create($input) {
@@ -85,6 +89,18 @@ class OrderForm
         if ($order !== null) return $order->id;
 
         throw new OrderNotCreatedException();
+    }
+
+    public function saveUserMessage($input) {
+        $input['user_id'] = userId();
+        $input['user_saw'] = true;
+        $this->message->create($input);
+    }
+
+    public function saveSupplierMessage($input) {
+        $input['user_id'] = userId();
+        $input['supplier_saw'] = true;
+        $this->message->create($input);
     }
 
     protected function saveBySuppliers($arr, $profileId) {
