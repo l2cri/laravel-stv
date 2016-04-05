@@ -21,7 +21,8 @@ class UserOrdersDataTable extends DataTable
             ->eloquent($this->query())
             ->editColumn('id', function($order) {
 
-                return '<a target="_blank" href="'.route('panel::userorder', $order->id).'">'.$order->id.'</a>';
+                return '<a target="_blank" href="'.route('panel::userorder', $order->id).'">'.$order->id.'</a>'.
+                        ' / <a href="'.route('panel::order.repeat', $order->id).'">Повторить</a>';
 
             })
             ->addColumn('action', function($order){

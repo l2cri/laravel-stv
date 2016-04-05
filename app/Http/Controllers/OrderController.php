@@ -6,6 +6,7 @@ use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
+use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Order\OrderForm;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,11 +21,13 @@ class OrderController extends Controller
     protected $form;
     protected $profile;
     protected $order;
+    protected $cartForm;
 
-    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order) {
+    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm) {
         $this->form = $form;
         $this->profile = $profile;
         $this->order = $order;
+        $this->cartForm = $cartForm;
 
         $this->middleware('auth');
     }
@@ -125,5 +128,10 @@ class OrderController extends Controller
     public function returnOrder($orderId){
         $this->form->returnOrder($orderId);
         return redirect()->back();
+    }
+
+    public function repeat($orderId){
+        $this->cartForm->addFromOrder($orderId);
+        return redirect(route('cart.index'));
     }
 }
