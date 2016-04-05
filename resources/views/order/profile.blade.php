@@ -1,5 +1,5 @@
 @if( isset($profile) && !empty($profile) )
-    
+
     <input type="hidden" name="profile_id" value="{{ $profile->id }}">
 
     <? $selectedProfileId = $profile->id; ?>

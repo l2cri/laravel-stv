@@ -25,6 +25,11 @@
                             <div class="row">
                                 <div class="col-md-12">
 
+                                    <label class="checkbox-entry">
+                                        <input type="checkbox" name="main"> <span class="check"></span> По-умолчанию
+                                    </label>
+                                    <div class="clear"></div>
+
                                     <label>Название <span>*</span></label>
                                     <input type="text" required=""
                                            class="simple-field"
@@ -88,6 +93,8 @@
                                    href="{{ route('panel::profile.show', $profile->id) }}">
                                     {{ $profile->name }} ({{$profile->person}})
                                 </a>
+
+                                @if($profile->main) Профиль по-умолчанию @endif
                             </div>
                             <div class="col-md-4">
                                 <a data-toggle="modal" data-target="#modal_show"

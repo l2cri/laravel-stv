@@ -31,8 +31,11 @@ class ProfileForm
     public function save(array $input) {
         if ( ! $this->valid($input) ) return false;
 
+        if (isset($input['main'])) $this->setMainNull($this->userId);
+
         $input['user_id'] = $this->userId;
         $this->profile->create($input);
+
         return true;
     }
 
@@ -42,7 +45,14 @@ class ProfileForm
         $profileId = $input['profileId'];
         unset($input['profileId']);
         unset($input['_token']);
+
+        if (isset($input['main'])) $this->setMainNull($this->userId);
+
         $this->profile->update($input, $profileId);
         return true;
+    }
+
+    protected function setMainNull($userId){
+        $this->profile->update(['main' => null], $userId, 'user_id');
     }
 }

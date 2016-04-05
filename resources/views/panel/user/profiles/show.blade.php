@@ -8,13 +8,18 @@
             <div class="col-md-12">
 
                 <table class="table table-striped panel">
+                    @if( $profile->main )
+                        <tr>
+                            <th colspan="2">Профиль по-умолчанию</th>
+                        </tr>
+                    @endif
                     <tr>
                         <th>Имя контактного лица</th>
-                        <td>{{ $profile->person }} <i class="fa fa-rub"></i></td>
+                        <td>{{ $profile->person }} </td>
                     </tr>
                     <tr>
                         <th>Телефон</th>
-                        <td>{{ $profile->phone }} <i class="fa fa-rub"></i></td>
+                        <td>{{ $profile->phone }} </td>
                     </tr>
                     <tr>
                         <th>Адрес</th>
