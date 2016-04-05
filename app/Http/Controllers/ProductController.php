@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProductsDataTable;
+use App\Repo\Action\ActionInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Services\Form\Product\ProductForm;
@@ -22,14 +23,17 @@ class ProductController extends Controller
     protected $product;
     protected $section;
     protected $form;
+    protected $action;
 
-    public function __construct(ProductInterface $product, SectionInterface $section, ProductForm $form){
+    public function __construct(ProductInterface $product, SectionInterface $section, ProductForm $form,
+                                    ActionInterface $action){
 
         $this->middleware('auth');
 
         $this->product = $product;
         $this->section = $section;
         $this->form = $form;
+        $this->action = $action;
     }
 
     public function index(ProductsDataTable $dataTable){
@@ -87,7 +91,8 @@ class ProductController extends Controller
     public function edit($id){
         $product = $this->product->byId($id);
         $sectionTree = $this->section->getTree();
-        return view('panel.supplier.products.edit', compact('product', 'sectionTree'));
+        $actions = $this->action->findAllBy('supplier_id', $product->supplier_id);
+        return view('panel.supplier.products.edit', compact('product', 'sectionTree', 'actions'));
     }
 
     public function deleteimg($id) {

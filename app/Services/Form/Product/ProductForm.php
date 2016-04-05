@@ -8,6 +8,7 @@
 
 namespace App\Services\Form\Product;
 
+use App\Repo\Action\ActionInterface;
 use App\Repo\Product\ProductInterface;
 use App\Services\Validation\ValidableInterface;
 use Auth;
@@ -17,10 +18,12 @@ class ProductForm
 {
     protected $validator;
     protected $product;
+    protected $action;
 
-    public function __construct(ValidableInterface $validator, ProductInterface $product){
+    public function __construct(ValidableInterface $validator, ProductInterface $product, ActionInterface $action){
         $this->validator = $validator;
         $this->product = $product;
+        $this->action = $action;
     }
 
     public function save(array $input) {
@@ -56,6 +59,12 @@ class ProductForm
         unset($input['section_ids']);
 
         $this->product->update($input, $productId);
+        /*
+         * добавление акции и расчет акционной цены
+         */
+        if (!empty($input['action_id']))
+            $this->action->applyOne($input['action_id'], $productId);
+
         $product = $this->product->byId($productId);
 
         if(is_array($sectionsIds)) {

@@ -23,6 +23,20 @@
                         <br>
                         <br>
                     @else
+                        @if( !empty($actions) )
+
+                            <label>Участвует в акции:</label>
+                            <select name="action_id" class="simple-field">
+                                    <option selected></option>
+                                @foreach( $actions as $action )
+                                    <option value={{ $action->id }}>
+                                        {{ $action->name }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                        @endif
                     @endif
 
                     <div class="clear"></div>
