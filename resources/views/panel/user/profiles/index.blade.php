@@ -43,8 +43,8 @@
                                            name="phone">
                                     <div class="clear"></div>
 
-                                    <label>Адрес</label>
-                                    <textarea rows="2" class="simple-field" name="address" style="height: 70px"></textarea>
+                                    <label>Адрес <span>*</span></label>
+                                    <textarea required="" rows="2" class="simple-field" name="address" style="height: 70px"></textarea>
 
 
                                 </div>

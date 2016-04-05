@@ -13,5 +13,6 @@ use App\Repo\RepoInterface;
 
 interface ProfileInterface extends RepoInterface
 {
-
+    public function mainProfile($userId);
+    public function profiles($userId);
 }

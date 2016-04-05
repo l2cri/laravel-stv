@@ -15,6 +15,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use Input;
 
 class OrderController extends Controller
 {
@@ -57,10 +58,13 @@ class OrderController extends Controller
         $user = Auth::user();
 
         if ( $user instanceof User ) {
-            $profile = $this->profile->findBy('user_id', Auth::user()->id);
+            $profile = $this->profile->mainProfile(Auth::user()->id);
+            $profiles = $this->profile->profiles(Auth::user()->id);
         }
 
-        return view('order.checkout', compact('profile'));
+        if ( !empty( Input::get('profileId') ) ) $profile = $this->profile->byId( Input::get('profileId') );
+
+        return view('order.checkout', compact('profile', 'profiles'));
     }
 
     public function thanks(){

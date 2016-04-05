@@ -39,9 +39,7 @@ class ProfileController extends Controller
         if ($this->form->save($input)) {
             return response("profile added");
         } else {
-            return response("profile added")
-                    ->withErrors($this->form->errors())
-                    ->with('status', 'error');
+            return response()->json( ['errors' => $this->form->errors()], 500 );
         }
     }
 
