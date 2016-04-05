@@ -71,4 +71,9 @@ class ActionController extends Controller
         $this->form->apply($id);
         return redirect()->back();
     }
+
+    public function disassociate($id) {
+        $this->form->revoke($id);
+        return redirect()->back();
+    }
 }

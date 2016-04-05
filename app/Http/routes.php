@@ -97,6 +97,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::post('/panel/supplier/actions/update', 'ActionController@update')->name('actions.update');
     Route::get('/panel/supplier/actions/delete/{id}', 'ActionController@delete')->name('actions.delete');
     Route::get('/panel/supplier/actions/associate/{id}', 'ActionController@associate')->name('actions.associate');
+    Route::get('/panel/supplier/actions/disassociate/{id}', 'ActionController@disassociate')->name('actions.disassociate');
 });
 
 /*

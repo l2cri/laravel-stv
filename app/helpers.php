@@ -148,3 +148,7 @@ function localizedFormat ($date){
 function supplierId(){
     return Auth::user()->suppliers[0]->id;
 }
+
+function roundPrice($price) {
+    return round($price, 2);
+}

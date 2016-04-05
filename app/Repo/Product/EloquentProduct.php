@@ -53,7 +53,7 @@ class EloquentProduct implements ProductInterface
     }
 
     public function bySupplier($supplierId){
-        return $this->section->where('supplier_id', $supplierId)->get();
+        return $this->model->where('supplier_id', $supplierId)->get();
     }
 
     public function bySection($sectionId, $includeSubsections = true){

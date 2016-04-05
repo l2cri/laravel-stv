@@ -115,24 +115,29 @@
             <div class="row">
                 <div class="col-md-12">
                     @foreach ($actions as $action)
+                        <?
+                            $color_class = $action->active ? 'text-success' : 'text-muted';
+                        ?>
 
                         <div class="row padding-bottom-30">
                             <div class="col-md-5">Название</div>
                             <div class="col-md-3">Назначить всем товарам</div>
-                            <div class="col-md-3">Удалить из всех товаров</div>
+                            <div class="col-md-3">Убрать из всех товаров</div>
                             <div class="col-md-1"></div>
                         </div>
 
                         <div class="row padding-bottom-10">
                             <div class="col-md-5">
-                                <a data-toggle="modal" data-target="#modal_show"
+                                <a class="{{ $color_class }}" data-toggle="modal" data-target="#modal_show"
                                    href="{{ route('panel::actions.show', $action->id) }}">
                                     {{ $action->name }}
                                 </a>
+
+                                ({{ count($action->products) }} товара из {{ count($action->supplier->products) }})
                             </div>
 
                             <div class="col-md-3"><a href="{{ route('panel::actions.associate', $action->id) }}">Назначить</a></div>
-                            <div class="col-md-3"></div>
+                            <div class="col-md-3"><a href="{{ route('panel::actions.disassociate', $action->id) }}">Убрать</a></div>
 
                             <div class="col-md-1">
                                 <a data-toggle="modal" data-target="#modal_show"

@@ -31,30 +31,18 @@ class ActionForm
     public function apply($actionId, $productId = null){
 
         if ($productId) {
-
-            $action = $this->action->byId($actionId);
-            $product = $this->product->byId($productId);
-            $product->action()->associate($action);
-            $product->save();
-
+            $this->action->applyOne($actionId, $productId);
         } else {
-            $data = array('action_id' => $actionId);
-            $this->product->update($data, supplierId(), 'supplier_id');
+            $this->action->applyAll($actionId, supplierId());
         }
     }
 
     public function revoke($actionId, $productId = null){
 
-        $data = ['action_id' => null];
-
         if ($productId) {
-            $this->product->update($data, $productId);
+            $this->action->revokeOne($actionId, $productId);
         } else {
-            //TODO move to ProductInterface
-            foreach ( $this->product->bySupplier(supplierId()) as $product){
-                if ($product->action_id == $actionId)
-                    $this->product->update($data, $product->id);
-            }
+            $this->action->revokeAll($actionId, supplierId());
         }
     }
 
@@ -80,11 +68,6 @@ class ActionForm
 
     public function delete($id) {
         $this->action->delete($id);
-
-        //TODO move to ProductInterface
-        foreach ( $this->product->bySupplier(supplierId()) as $product){
-            if ($product->action_id == $id)
-                $this->product->update(['action_id'=>null], $product->id);
-        }
+        $this->action->revokeAll($id, supplierId());
     }
 }
