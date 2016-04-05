@@ -26,7 +26,7 @@ trait RepoTrait
     }
 
     public function findAllBy($attribute, $value, $columns = array('*')){
-        return $this->model->where($attribute, '=', $value)->get($columns);
+        return $this->model->where($attribute, '=', $value)->orderBy('id', 'desc')->get($columns);
     }
 
     public function update(array $data, $id, $attribute="id") {

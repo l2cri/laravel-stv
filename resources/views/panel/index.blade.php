@@ -2,9 +2,15 @@
 
 @section('headscripts')
     <link href="{{ url('https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('/css/jquery.periodpicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('/css/jquery.timepicker.min.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('/js/moment.min.js') }}"></script>
+    <script src="{{ url('/js/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ url('/js/jquery.periodpicker.full.min.js') }}"></script>
     <script src="{{ url('https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url('https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 @endsection
 
 @section('content')

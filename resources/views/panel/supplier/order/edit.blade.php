@@ -29,7 +29,9 @@
                     <tr>
                         <td>
                             <label>Изменить статус</label>
-                            <? $selectedId = trn($order->status->id, null) ?>
+                            <?
+                            $selectedId = null;
+                            if ($order->status) {$selectedId = trn($order->status->id, null); } ?>
                             @include('panel.common.orderstatuses', compact('statuses', 'selectedId'))
                         </td>
                         <td>
