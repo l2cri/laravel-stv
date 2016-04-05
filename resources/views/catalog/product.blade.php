@@ -78,8 +78,8 @@
                     <div class="price detail-info-entry">
 
                         @if($product->action_id && $product->action_price)
-                            <div class="prev">{{ $product->action_price }} <i class="fa fa-rub"></i></div>
-                            <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                            <div class="prev">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                            <div class="current">{{ $product->action_price }} <i class="fa fa-rub"></i></div>
                         @else
                             <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
                         @endif

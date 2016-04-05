@@ -11,6 +11,21 @@
         <div class="row">
             <div class="col-sm-7">
 
+                @if( !empty($actions) )
+
+                    <label>Участвует в акции:</label>
+                    <select name="action_id" class="simple-field">
+                        <option selected></option>
+                        @foreach( $actions as $action )
+                            <option value={{ $action->id }}>
+                                {{ $action->name }}
+                            </option>
+                        @endforeach
+
+                    </select>
+                    <div class="clear"></div>
+                @endif
+
                 <label class="checkbox-entry">
                     <input type="checkbox" checked name="active" value="1"> <span class="check"></span> Активный
                 </label>

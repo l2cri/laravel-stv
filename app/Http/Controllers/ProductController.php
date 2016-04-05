@@ -49,7 +49,8 @@ class ProductController extends Controller
      */
     public function addform(){
         $sectionTree = $this->section->getTree();
-        return view('panel.supplier.products.addform', compact('sectionTree'));
+        $actions = $this->action->findAllBy('supplier_id', supplierId());
+        return view('panel.supplier.products.addform', compact('sectionTree', 'actions'));
     }
 
     /*

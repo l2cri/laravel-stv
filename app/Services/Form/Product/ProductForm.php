@@ -35,12 +35,15 @@ class ProductForm
 
         $product = $this->product->create($input);
         $product->sections()->attach($input['section_ids']);
-
+        
         if (array_key_exists('photos', $input)){
 
             $files = $this->upload($input['photos']);
             $product->photos()->createMany($files);
         }
+
+        if (!empty($input['action_id']))
+            $this->action->applyOne($input['action_id'], $product->id);
 
         return $product;
     }
@@ -108,7 +111,7 @@ class ProductForm
 
         foreach ($photos as $photo) {
 
-            if (is_null($photo)) continue;
+            if (is_null($photo) || empty($photo)) continue;
 
             $value = uploadFileToMultipleDirs($photo, config('marketplace.productPhotoDir'));
 
