@@ -42,7 +42,7 @@ class EloquentComment implements CommentInterface
     public function getByObject($product)
     {
         //Input::replace(array('limit' => '4','page' => $this->page));
-        return $product->comments()->where('moderated',1)->orderBy('created_at', 'desc')->paginable(null, 2);
+        return $product->comments()->where('moderated',1)->orderBy('created_at', 'desc')->paginable(null, 7);
     }
 
     public function byProductId($id){
