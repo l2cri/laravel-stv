@@ -41,4 +41,13 @@ class CommentForm
     protected function valid(array $input){
         return $this->validator->with($input)->passes();
     }
+
+    public function toggle($id){
+        $comment = $this->comment->byId($id);
+
+        $comment->moderated = ($comment->moderated == 1) ? 0 : 1;
+
+        return $comment->save();
+    }
+
 }

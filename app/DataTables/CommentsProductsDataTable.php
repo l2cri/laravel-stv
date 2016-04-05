@@ -19,15 +19,23 @@ class CommentsProductsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('id', function($comment) {
+            ->editColumn('moderated', function($comment) {
 
-                return '<a target="_blank" href="'.route('panel::userorder', $comment->id).'">'.$comment->id.'</a>';
+                $modareted = $comment->moderated == 1;
 
+                $checkClass = ($modareted)?'check-square-o':'square-o';
+
+                $title = ($modareted)?'Деактивировать':'Активировать';
+
+                return '<a href="'.route('panel::comment.toggle', $comment->id).'" title="'.$title.'"><i class="fa fa-'.$checkClass.'"></i></a>';
+
+            })
+            ->editColumn('commentable.name',function($comment){
+                return '<a target="_blank" href="'.route('product.page',['id'=>$comment->commentable->id]).'">'.$comment->commentable->name.'</a>';
             })
             ->addColumn('action', function($comment){
 
-                return '<a href="'.route('panel::comment.edit', $comment->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
-                ' <a href="'.route('panel::comment.delete', $comment->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
+                return '<a href="'.route('panel::comment.delete', $comment->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })
             ->make(true);
@@ -64,25 +72,25 @@ class CommentsProductsDataTable extends DataTable
             ->ajax( [
                 'url' => route('comments.datatables'),
             ])
-            ->addAction(['width' => '50px', 'title' => 'Действие'])
+            ->addAction(['width' => '50px', 'title' => 'Удалить'])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'lengthMenu' => [
                     [ 10, 25, 50, -1 ],
-                    [ '10 комментариев', '25 комментариев', '50 комментариев', 'Все' ]
+                    [ '10 отзывов', '25 отзывов', '50 отзывов', 'Все' ]
                 ],
                 'buttons' => ['pageLength', 'csv', 'excel', 'print'],
                 'order'   => [[0, 'desc']],
                 'language' => [
                     'processing' => 'Загрузка',
                     'search' => 'Поиск',
-                    'lengthMenu' => 'Показать _MENU_ товаров',
-                    'info' => 'Товары с _START_ до _END_ из _TOTAL_ товаров',
+                    'lengthMenu' => 'Показать _MENU_ отзывов',
+                    'info' => 'Отзывы с _START_ до _END_ из _TOTAL_ отзывов',
                     'infoEmpty' => 'Заказы с 0 до 0 из 0 заказов',
-                    'infoFiltered' => '(отфильтровано из _MAX_ товаров)',
+                    'infoFiltered' => '(отфильтровано из _MAX_ отзывов)',
                     'infoPostFix' => '',
-                    'loadingRecords' => 'Загрузка товаров...',
-                    'zeroRecords' => 'Комментарии отсутствуют.',
+                    'loadingRecords' => 'Загрузка отзывов...',
+                    'zeroRecords' => 'Отзывы отсутствуют.',
                     'emptyTable' => 'В таблице отсутствуют данные',
                     'paginate' => [
                         'first' => '<<',
@@ -92,8 +100,8 @@ class CommentsProductsDataTable extends DataTable
                     ],
                     'buttons' => [
                         'pageLength' => [
-                            '_' => 'Показать %d комментариев',
-                            -1 => 'Все комментарии'
+                            '_' => 'Показать %d отзывов',
+                            -1 => 'Все отзыввы'
                         ],
                         'print' => 'Печать'
                     ]
@@ -111,7 +119,7 @@ class CommentsProductsDataTable extends DataTable
         return [
             'id',
             'moderated' => ['title' => 'Модерирован'],
-            'text',
+            'text'=> ['title' => 'Отзыв'],
             'commentable.name'=> ['title' => 'Товар'],
             'user.name' => ['title' => 'Клиент'],
             'created_at' => ['title' => 'Добавлен'],

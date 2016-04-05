@@ -31,14 +31,18 @@ class EloquentComment implements CommentInterface
     {
 
         $product = $this->productModel->find($data['id']);
+        /**
+         * @todo get this parameter from supplier settings
+         */
+        $data['moderated'] = 1;
 
         return $product->comments()->create($data);
     }
 
     public function getByObject($product)
     {
-        Input::replace(array('limit' => '4','page' => $this->page));
-        return $product->comments()->orderBy('created_at', 'desc')->paginable();
+        //Input::replace(array('limit' => '4','page' => $this->page));
+        return $product->comments()->where('moderated',1)->orderBy('created_at', 'desc')->paginable(null, 2);
     }
 
     public function byProductId($id){
