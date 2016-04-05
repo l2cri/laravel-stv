@@ -20,17 +20,17 @@
         </div>
         <div class="row">
             <div class="col-md-4 information-entry">
-                <h3 class="cart-column-title">Калькулятор доставки</h3>
-                <form>
+                {{--<h3 class="cart-column-title">Калькулятор доставки</h3>--}}
+                {{--<form>--}}
 
-                    <label>Город или населенный пункт</label>
-                    <input type="text" value="" placeholder="..." class="simple-field size-1">
+                    {{--<label>Город или населенный пункт</label>--}}
+                    {{--<input type="text" value="" placeholder="..." class="simple-field size-1">--}}
 
-                    <label>Индекс</label>
-                    <input type="text" value="" placeholder="..." class="simple-field size-1">
+                    {{--<label>Индекс</label>--}}
+                    {{--<input type="text" value="" placeholder="..." class="simple-field size-1">--}}
 
-                    <div class="button style-16" style="margin-top: 10px;">Посчитать<input type="submit"/></div>
-                </form>
+                    {{--<div class="button style-16" style="margin-top: 10px;">Посчитать<input type="submit"/></div>--}}
+                {{--</form>--}}
             </div>
             <div class="col-md-4 information-entry">
                 {{--<h3 class="cart-column-title">Discount Codes <span class="inline-label red">Promotion</span></h3>--}}

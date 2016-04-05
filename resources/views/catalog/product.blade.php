@@ -61,7 +61,7 @@
                 <div class="product-detail-box">
                     <h1 class="product-title">{{ $product->name }}
                         @if($product->action_id && $product->action_price)
-                            <span class="inline-label red">Акция</span>
+                            <span class="inline-label red">{{ $product->action->name }}</span>
                         @endif</h1>
                     <h3 class="product-subtitle">{{ $product->supplier->name }}</h3>
                     <div class="rating-box">

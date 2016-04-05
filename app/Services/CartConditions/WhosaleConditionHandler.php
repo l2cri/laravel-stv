@@ -40,7 +40,11 @@ class WhosaleConditionHandler extends AbstractConditionHandler
             ));
 
             $cart->addItemCondition($item->id, $condition);
+
+            return true;
         }
+
+        return false;
 
         // добавляем условие в корзину
     }

@@ -35,7 +35,7 @@ class ProductForm
 
         $product = $this->product->create($input);
         $product->sections()->attach($input['section_ids']);
-        
+
         if (array_key_exists('photos', $input)){
 
             $files = $this->upload($input['photos']);
