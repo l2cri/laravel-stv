@@ -1,5 +1,5 @@
 @if(isset($status))
-    @include('comments.status',['status'=>$status,'errors'=>$errors])
+    @include('common.status',['status'=>$status,'errors'=>$errors])
 @endif
 <?$comments->url = '/catalog/product/'.$id;?>
 @include('pagination.limit_links', ['paginator' => $comments,'currentSection' => $comments])
@@ -11,6 +11,7 @@
                 <div class="comment-text">{{ $comment->text  }}</div>
             </div>
         </div>
+        <div class="clear"></div>
     @endforeach
 </div>
 

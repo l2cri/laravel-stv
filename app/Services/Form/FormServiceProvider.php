@@ -13,6 +13,8 @@ use App\Services\Form\Action\ActionForm;
 use App\Services\Form\Action\ActionValidator;
 use App\Services\Form\Comment\CommentForm;
 use App\Services\Form\Comment\CommentValidator;
+use App\Services\Form\Faq\FaqForm;
+use App\Services\Form\Faq\FaqValidator;
 use App\Services\Form\Order\OrderForm;
 use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
@@ -96,6 +98,15 @@ class FormServiceProvider extends ServiceProvider
            return new ActionForm( new ActionValidator($app['validator']),
                $app->make('App\Repo\Action\ActionInterface'), $app->make('App\Repo\Product\ProductInterface')
            );
+        });
+
+        /*
+         * FAQ
+         */
+        $app->bind('App\Services\Form\Faq\FaqForm', function ($app){
+            return new FaqForm( new FaqValidator($app['validator']),
+                $app->make('App\Repo\Faq\FaqInterface')
+            );
         });
     }
 }

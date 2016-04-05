@@ -46,4 +46,8 @@ class Product extends Model
     public function action(){
         return $this->belongsTo('App\Models\Action');
     }
+
+    public function faq(){
+        return $this->hasMany('App\Models\Faq');
+    }
 }

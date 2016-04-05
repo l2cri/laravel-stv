@@ -182,6 +182,7 @@
                     <a class="tab-switcher active">Описание</a>
                     <a class="tab-switcher">Условия работы</a>
                     <a class="tab-switcher">Отзывы ({{ $comments->total()  }})</a>
+                    <a class="tab-switcher">Вопросы ({{ $faq->total() }})</a>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -250,6 +251,16 @@
                                 @include('comments.list',['comments'=> $comments,'id'=>$product->id])
                             </div>
                                 @include('comments.form',['comments'=> $product->comments(),'id'=>$product->id])
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-entry">
+                    <div class="article-container style-1">
+                        <div class="row">
+                            <div id="faq-list" class="col-md-12 information-entry">
+                                @include('faq.list',['items' => $faq,'id'=>$product->id])
+                            </div>
+                            @include('faq.form',['comments'=> $product->comments(),'id'=>$product->id])
                         </div>
                     </div>
                 </div>

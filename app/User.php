@@ -84,4 +84,8 @@ class User extends Model implements AuthenticatableContract,
     public function comments(){
         return $this->hasMany('App\Models\Comment');
     }
+
+    public function faq(){
+        return $this->hasMany('App\Models\Faq');
+    }
 }

@@ -154,6 +154,7 @@ return [
         App\Providers\OrderServiceProvider::class,
         App\Providers\CommentServiceProvider::class,
         App\Providers\ActionServiceProvider::class,
+        App\Providers\FaqServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 

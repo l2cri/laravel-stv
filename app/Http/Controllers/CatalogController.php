@@ -80,6 +80,7 @@ class CatalogController extends Controller
     public function product($id){
         $product = $this->product->byId($id);
         $comments = $this->comments->getByObject($product);
-        return view('catalog.product', compact(['product','comments']));
+        $faq = $product->faq()->byProductItems($product->id);
+        return view('catalog.product', compact(['product','comments','faq']));
     }
 }
