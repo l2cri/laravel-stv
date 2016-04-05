@@ -228,3 +228,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #comments-list .list {
 	margin: 30px 0;
 }
+
+.product-image-label span {font-size: 9px;}
