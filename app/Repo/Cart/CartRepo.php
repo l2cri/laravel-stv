@@ -61,7 +61,7 @@ class CartRepo implements CartInterface
         }
     }
 
-    public function all()
+    public function all($columns = array('*'))
     {
         return Cart::getContent();
     }

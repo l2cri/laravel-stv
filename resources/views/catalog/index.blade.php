@@ -40,6 +40,13 @@
                             <div class="product-image">
                                 <img src="{{ @url($product->photos[0]->file) }}" alt="" />
                                 <img src="{{ @url($product->photos[1]->file) }}" alt="" />
+
+                                @if($product->action_id && $product->action_price)
+                                    <div class="product-image-label type-2">
+                                        <span>Акция</span>
+                                    </div>
+                                @endif
+
                                 <div class="bottom-line left-attached">
                                     <a class="bottom-line-a square addToCart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i></a>
                                     <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
@@ -61,7 +68,14 @@
                                 <p>{{ $product->preview }}</p>
                             </div>
                             <div class="price">
-                                <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
+
+                                @if($product->action_id && $product->action_price)
+                                    <div class="prev">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                                    <div class="current">{{ $product->action_price }} <i class="fa fa-rub"></i></div>
+                                @else
+                                    <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                                @endif
+
                             </div>
                             <div class="list-buttons">
                                 <a class="button style-10 addToCart" data-id="{{ $product->id }}">В корзину</a>

@@ -57,6 +57,16 @@ class CartForm
         return false;
     }
 
+    public function addFromOrder($orderId){
+        $items = $this->cart->findAllBy('order_id', $orderId);
+        foreach ($items as $item) {
+            $this->add([
+                'product_id' => $item->product_id,
+                'qnt' => $item->quantity
+            ]);
+        }
+    }
+
     public function update($data){
 
         foreach($data['cartIds'] as $id => $qnt){

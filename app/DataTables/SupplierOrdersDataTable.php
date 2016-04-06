@@ -18,16 +18,32 @@ class SupplierOrdersDataTable extends DataTable
      */
     public function ajax()
     {
+        $messageRepo = app()->make('App\Repo\Message\MessageInterface');
+
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('id', function($order) {
 
-                return '<a target="_blank" href="'.route('panel::ordersupplier.page', $order->id).'">'.$order->id.'</a>';
+                return '<a target="_blank" href="'.route('panel::ordersupplier.page', $order->id).'">'.$order->id. '</a>';
 
             })
             ->editColumn('status', function($order) {
 
+                if ($order->returned) return 'ВОЗВРАТ';
+
                 if ($order->status) return '<span style="color:'.$order->status->color.'">'.$order->status->name.'</span>';
+
+            })
+            ->editColumn('profile.person', function($order) use ($messageRepo){
+
+                $newMessageCount = $messageRepo->supplierNew($order->id);
+                $label = '';
+                if ( !empty( count($newMessageCount) ) ) {
+                    $label = '<span class="menu-label blue">'.count($newMessageCount).'</span>';
+                    return $order->profile->person.$label;
+                }
+
+                return $order->profile->person;
 
             })
             ->addColumn('action', function($order){
@@ -35,6 +51,9 @@ class SupplierOrdersDataTable extends DataTable
                 return '<a href="'.route('panel::order.edit', $order->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
                 ' <a href="'.route('panel::order.delete', $order->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
+            })
+            ->setRowClass(function ($order) {
+                if ($order->returned) return 'oderReturn';
             })
             ->make(true);
     }

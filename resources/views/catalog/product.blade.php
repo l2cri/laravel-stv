@@ -59,7 +59,10 @@
             </div>
             <div class="col-sm-7 col-md-4 information-entry">
                 <div class="product-detail-box">
-                    <h1 class="product-title">{{ $product->name }}</h1>
+                    <h1 class="product-title">{{ $product->name }}
+                        @if($product->action_id && $product->action_price)
+                            <span class="inline-label red">{{ $product->action->name }}</span>
+                        @endif</h1>
                     <h3 class="product-subtitle">{{ $product->supplier->name }}</h3>
                     <div class="rating-box">
                         <div class="star"><i class="fa fa-star"></i></div>
@@ -73,10 +76,16 @@
                         {{ $product->preview }}
                     </div>
                     <div class="price detail-info-entry">
-                        <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
-                        <div class="whosale">
-                            {{ $product->whosale_price }} <i class="fa fa-rub"></i> оптом от {{ $product->whosale_quantity }} {{ $unit }}.
-                        </div>
+
+                        @if($product->action_id && $product->action_price)
+                            <div class="prev">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                            <div class="current">{{ $product->action_price }} <i class="fa fa-rub"></i></div>
+                        @else
+                            <div class="current">{{ $product->price }} <i class="fa fa-rub"></i></div>
+                        @endif
+                            <div class="whosale">
+                                {{ $product->whosale_price }} <i class="fa fa-rub"></i> оптом от {{ $product->whosale_quantity }} {{ $unit }}.
+                            </div>
                     </div>
                     <div class="quantity-selector detail-info-entry">
                         <div class="detail-info-entry-title">Кол-во</div>

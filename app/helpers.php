@@ -149,6 +149,11 @@ function supplierId(){
     return Auth::user()->suppliers[0]->id;
 }
 
+function userId() {
+    if (Auth::user()) return Auth::user()->id;
+    return false;
+}
+
 function roundPrice($price) {
     return round($price, 2);
 }

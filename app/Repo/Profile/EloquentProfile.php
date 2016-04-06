@@ -22,4 +22,19 @@ class EloquentProfile implements ProfileInterface
     public function __construct(Model $model){
         $this->model = $model;
     }
+
+    public function mainProfile($userId)
+    {
+        $mainProfile = $this->model->where('user_id', '=', $userId)->whereNotNull('main')->first();
+        if (empty($mainProfile)) $mainProfile = $this->model->where('user_id', '=', $userId)->first();
+
+        return $mainProfile;
+    }
+
+    public function profiles($userId)
+    {
+        return $this->findAllBy('user_id', $userId);
+    }
+
+
 }

@@ -76,4 +76,9 @@ class ActionController extends Controller
         $this->form->revoke($id);
         return redirect()->back();
     }
+
+    public function removeProduct($actionId, $productId){
+        $this->action->revokeOne($actionId, $productId);
+        return redirect()->back();
+    }
 }

@@ -46,7 +46,8 @@ class FormServiceProvider extends ServiceProvider
          */
         $app->bind('App\Services\Form\Product\ProductForm', function($app){
             return new ProductForm( new ProductValidator($app['validator']),
-                $app->make('App\Repo\Product\ProductInterface')
+                $app->make('App\Repo\Product\ProductInterface'),
+                $app->make('App\Repo\Action\ActionInterface')
             );
         });
 
@@ -69,7 +70,8 @@ class FormServiceProvider extends ServiceProvider
                 $app->make('App\Repo\Profile\ProfileInterface'),
                 $app->make('App\Repo\Cart\CartInterface'),
                 $app->make('App\Repo\Order\OrderInterface'),
-                $app->make('App\Repo\Product\ProductInterface')
+                $app->make('App\Repo\Product\ProductInterface'),
+                $app->make('App\Repo\Message\MessageInterface')
             );
         });
 

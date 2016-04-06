@@ -5,7 +5,7 @@
             $sectionIds = getColumnArray($product->sections);
     ?>
     <div class="information-blocks">
-        <h3 class="block-title main-heading">Добавить товар</h3>
+        <h3 class="block-title main-heading">Редактировать товар</h3>
 
         <form method="post" action="{{ route('panel::products.update') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -15,6 +15,31 @@
 
             <div class="row">
                 <div class="col-sm-7">
+
+                    @if($product->action)
+                        Акция: <span class="inline-label red">
+                                    <a href="{{ route('panel::actions.removeProduct', [$product->action->id, $product->id]) }}" title="Удалить"> <i class="fa fa-remove"></i> </a> {{ $product->action->name  }}  </span>
+                        <br>
+                        <br>
+                        <br>
+                    @else
+                        @if( !empty($actions) )
+
+                            <label>Участвует в акции:</label>
+                            <select name="action_id" class="simple-field">
+                                    <option selected></option>
+                                @foreach( $actions as $action )
+                                    <option value={{ $action->id }}>
+                                        {{ $action->name }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                        @endif
+                    @endif
+
+                    <div class="clear"></div>
 
                     <label class="checkbox-entry">
                         <input type="checkbox" checked name="active" value="{{ $product->active }}"> <span class="check"></span> Активный

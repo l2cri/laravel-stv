@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
+use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
+use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Order\OrderForm;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,17 +16,22 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use Input;
 
 class OrderController extends Controller
 {
     protected $form;
     protected $profile;
     protected $order;
+    protected $cartForm;
+    protected $message;
 
-    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order) {
+    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm, MessageInterface $message) {
         $this->form = $form;
         $this->profile = $profile;
         $this->order = $order;
+        $this->cartForm = $cartForm;
+        $this->message = $message;
 
         $this->middleware('auth');
     }
@@ -54,10 +61,13 @@ class OrderController extends Controller
         $user = Auth::user();
 
         if ( $user instanceof User ) {
-            $profile = $this->profile->findBy('user_id', Auth::user()->id);
+            $profile = $this->profile->mainProfile(Auth::user()->id);
+            $profiles = $this->profile->profiles(Auth::user()->id);
         }
 
-        return view('order.checkout', compact('profile'));
+        if ( !empty( Input::get('profileId') ) ) $profile = $this->profile->byId( Input::get('profileId') );
+
+        return view('order.checkout', compact('profile', 'profiles'));
     }
 
     public function thanks(){
@@ -67,12 +77,14 @@ class OrderController extends Controller
     public function supplierorder($id) {
 
         $order = $this->order->byId($id);
+        $this->message->supplierSaw($id); // поставщик просмотрел новые сообщения
 
         return view('panel.supplier.order.show', compact('order'));
     }
 
     public function userrorder($id) {
         $order = $this->order->byId($id);
+        $this->message->userSaw($id); // пользователь просмотрел новые сообщения
         return view('panel.user.order.show', compact('order'));
     }
 
@@ -119,6 +131,38 @@ class OrderController extends Controller
 
     public function delete($id) {
         $this->order->delete($id);
+        return redirect()->back();
+    }
+
+    public function returnOrder($orderId){
+        $this->form->returnOrder($orderId);
+        return redirect()->back();
+    }
+
+    public function repeat($orderId){
+        $this->cartForm->addFromOrder($orderId);
+        return redirect(route('cart.index'));
+    }
+
+    public function saveUserMessage(Request $request){
+        $this->validate($request, [
+            'order_id' => 'required|numeric',
+            'text' => 'required|string',
+        ]);
+
+        $this->form->saveUserMessage($request->all());
+
+        return redirect()->back();
+    }
+
+    public function saveSupplierMessage(Request $request){
+        $this->validate($request, [
+            'order_id' => 'required|numeric',
+            'text' => 'required|string',
+        ]);
+
+        $this->form->saveSupplierMessage($request->all());
+
         return redirect()->back();
     }
 }

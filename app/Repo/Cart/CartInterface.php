@@ -9,13 +9,13 @@
 namespace App\Repo\Cart;
 
 
-interface CartInterface
+use App\Repo\RepoInterface;
+
+interface CartInterface extends RepoInterface
 {
     public function add($data);
-    public function update(array $data, $id);
     public function delete($id);
     public function save($items, $orderId = null, $userId = null);
-    public function all();
     public function clear();
     public function updateOrderCart($data);
     public function addOrderCartItem($userId, $orderId, $data);

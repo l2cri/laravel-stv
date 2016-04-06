@@ -12,6 +12,12 @@
         <div class="row">
             <div class="col-md-12">
 
+                <label class="checkbox-entry">
+                    <input type="checkbox" {{ $profile->main ? 'checked' : '' }}
+                    name="main"> <span class="check"></span> По-умолчанию
+                </label>
+                <div class="clear"></div>
+
                 <label>Название <span>*</span></label>
                 <input type="text" required=""
                        class="simple-field"
