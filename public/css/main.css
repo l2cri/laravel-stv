@@ -225,6 +225,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #comments-list .divider{
 	display: inline;
 }
-#comments-list .list {
+#comments-list .list,
+.faq.pull-left {
 	margin: 30px 0;
 }

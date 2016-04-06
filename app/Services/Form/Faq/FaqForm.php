@@ -35,4 +35,18 @@ class FaqForm
 
         return $this->faq->create($input);
     }
+
+    public function update($request,$id,$old){
+
+        $request->merge([
+            'id' => $id,'product_id' => $old->product->id,'user_id' => $old->user->id ,
+            'question' => $old->question, 'moderated' => ($request->get('moderated') ==1)?1:0
+        ]);
+
+        $input = removeEmptyValues($request->except('_method', '_token'));
+
+        if ( ! $this->valid($input) ) return false;
+
+        return $this->faq->update($input,$id);
+    }
 }

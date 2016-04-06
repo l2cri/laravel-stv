@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Comment;
+use App\Models\Faq;
 use Yajra\Datatables\Services\DataTable;
 use Auth;
 
-class CommentsProductsDataTable extends DataTable
+class FaqProductsDataTable extends DataTable
 {
     // protected $printPreview  = 'path.to.print.preview.view';
 
@@ -19,23 +19,20 @@ class CommentsProductsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('moderated', function($comment) {
+            ->editColumn('moderated', function($faq) {
 
-                $modareted = $comment->moderated == 1;
+                $checkClass = ($faq->moderated == 1)?'check-square-o':'square-o';
 
-                $checkClass = ($modareted)?'check-square-o':'square-o';
-
-                $title = ($modareted)?'Деактивировать':'Активировать';
-
-                return '<a href="'.route('panel::comment.toggle', $comment->id).'" title="'.$title.'"><i class="fa fa-'.$checkClass.'"></i></a>';
+                return '<i class="fa fa-'.$checkClass.'"></i>';
 
             })
-            ->editColumn('commentable.name',function($comment){
-                return '<a target="_blank" href="'.route('product.page',['id'=>$comment->commentable->id]).'">'.$comment->commentable->name.'</a>';
+            ->editColumn('product.name',function($faq){
+                return '<a target="_blank" href="'.route('product.page',['id'=>$faq->product->id]).'">'.$faq->product->name.'</a>';
             })
-            ->addColumn('action', function($comment){
+            ->addColumn('action', function($faq){
 
-                return '<a href="'.route('panel::comment.delete', $comment->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
+                return '<a href="'.route('panel::faq.edit', $faq->id).'" title="Редактировать"><i class="fa fa-edit"></i></a>'.
+                ' <a href="'.route('panel::faq.delete', $faq->id).'" title="Удалить"><i class="fa fa-remove"></i></a>';
 
             })
             ->make(true);
@@ -51,13 +48,13 @@ class CommentsProductsDataTable extends DataTable
 
         $supplierId =  supplierId();
 
-        $comments = Comment::whereIn('commentable_id',function($q)use ($supplierId){
+        $faq = Faq::whereIn('product_id',function($q)use ($supplierId){
             $q->select('id')
                 ->from('products')
                 ->where('supplier_id', $supplierId);
-        })->with('user','commentable');
+        })->with('user','product');
 
-        return $this->applyScopes($comments);
+        return $this->applyScopes($faq);
     }
 
     /**
@@ -70,27 +67,27 @@ class CommentsProductsDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->ajax( [
-                'url' => route('comments.datatables'),
+                'url' => route('faq.datatables'),
             ])
-            ->addAction(['width' => '50px', 'title' => 'Удалить'])
+            ->addAction(['width' => '50px', 'title' => 'Действия'])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'lengthMenu' => [
                     [ 10, 25, 50, -1 ],
-                    [ '10 отзывов', '25 отзывов', '50 отзывов', 'Все' ]
+                    [ '10 вопросов', '25 вопросов', '50 вопросов', 'Все' ]
                 ],
                 'buttons' => ['pageLength', 'csv', 'excel', 'print'],
                 'order'   => [[0, 'desc']],
                 'language' => [
                     'processing' => 'Загрузка',
                     'search' => 'Поиск',
-                    'lengthMenu' => 'Показать _MENU_ отзывов',
-                    'info' => 'Отзывы с _START_ до _END_ из _TOTAL_ отзывов',
-                    'infoEmpty' => 'Заказы с 0 до 0 из 0 заказов',
-                    'infoFiltered' => '(отфильтровано из _MAX_ отзывов)',
+                    'lengthMenu' => 'Показать _MENU_ вопросов',
+                    'info' => 'Вопросы с _START_ до _END_ из _TOTAL_ вопросов',
+                    'infoEmpty' => 'Заказы с 0 до 0 из 0 вопросов',
+                    'infoFiltered' => '(отфильтровано из _MAX_ вопросов)',
                     'infoPostFix' => '',
-                    'loadingRecords' => 'Загрузка отзывов...',
-                    'zeroRecords' => 'Отзывы отсутствуют.',
+                    'loadingRecords' => 'Загрузка вопросов...',
+                    'zeroRecords' => 'Вопросы отсутствуют.',
                     'emptyTable' => 'В таблице отсутствуют данные',
                     'paginate' => [
                         'first' => '<<',
@@ -100,8 +97,8 @@ class CommentsProductsDataTable extends DataTable
                     ],
                     'buttons' => [
                         'pageLength' => [
-                            '_' => 'Показать %d отзывов',
-                            -1 => 'Все отзывы'
+                            '_' => 'Показать %d вопросов',
+                            -1 => 'Все вопросы'
                         ],
                         'print' => 'Печать'
                     ]
@@ -119,8 +116,9 @@ class CommentsProductsDataTable extends DataTable
         return [
             'id',
             'moderated' => ['title' => 'Модерирован'],
-            'text'=> ['title' => 'Отзыв'],
-            'commentable.name'=> ['title' => 'Товар'],
+            'question'=> ['title' => 'Вопрос'],
+            'answer'=> ['title' => 'Ответ'],
+            'product.name'=> ['title' => 'Товар'],
             'user.name' => ['title' => 'Клиент'],
             'created_at' => ['title' => 'Добавлен'],
         ];
@@ -133,6 +131,6 @@ class CommentsProductsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'comments';
+        return 'faq';
     }
 }

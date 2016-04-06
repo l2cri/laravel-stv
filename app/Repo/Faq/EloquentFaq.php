@@ -23,7 +23,7 @@ class EloquentFaq implements FaqInterface
 
     public function paginateByProductId($product_id){
 
-        return $this->model->byProductItems($product_id);
+        return $this->model->where('moderated',1)->byProductItems($product_id,null,['updated_at','desc']);
     }
 
     public function create(array $data)
@@ -35,6 +35,34 @@ class EloquentFaq implements FaqInterface
         $data['moderated'] = 1;
 
         return $this->model->create($data);
+    }
+
+    public function deleteSupplier($id,$supplier_id){
+        $faq = $this->byId($id);
+
+        if($faq->product->supplier->id == $supplier_id)
+            $this->delete($id);
+    }
+
+    public function bySupplier(){
+
+        $supplierId = supplierId();
+
+        $faq = $this->model->whereIn('product_id',function($q)use ($supplierId){
+            $q->select('id')
+                ->from('products')
+                ->where('supplier_id', $supplierId);
+        })->orderBy('created_at', 'desc')->paginable();
+
+        return $faq;
+
+    }
+
+    public function getForEdit($id,$supplier_id){
+        $faq = $this->byId($id);
+
+        if($faq->product->supplier->id == $supplier_id)
+            return $faq;
     }
 
 }

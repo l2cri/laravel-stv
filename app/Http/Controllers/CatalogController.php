@@ -80,7 +80,7 @@ class CatalogController extends Controller
     public function product($id){
         $product = $this->product->byId($id);
         $comments = $this->comments->getByObject($product);
-        $faq = $product->faq()->byProductItems($product->id);
+        $faq = $product->faq()->where('moderated',1)->byProductItems($product->id,null,['updated_at','desc']);
         return view('catalog.product', compact(['product','comments','faq']));
     }
 }
