@@ -94,6 +94,6 @@ class User extends Model implements AuthenticatableContract,
     public function messages(){
         return $this->hasMany('App\Models\Message');
     }
-    
+
 
 }
