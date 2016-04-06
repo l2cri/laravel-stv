@@ -222,7 +222,8 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #comments-list {
 	min-height: 100px;
 }
-#comments-list .divider{
+#comments-list .divider,
+#faq-list .divider{
 	display: inline;
 }
 #comments-list .list,

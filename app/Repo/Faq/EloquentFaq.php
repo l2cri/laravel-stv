@@ -37,10 +37,10 @@ class EloquentFaq implements FaqInterface
         return $this->model->create($data);
     }
 
-    public function deleteSupplier($id,$supplier_id){
+    public function deleteSupplier($id){
         $faq = $this->byId($id);
 
-        if($faq->product->supplier->id == $supplier_id)
+        if($faq->product->supplier->id ==  supplierId())
             $this->delete($id);
     }
 
@@ -58,10 +58,10 @@ class EloquentFaq implements FaqInterface
 
     }
 
-    public function getForEdit($id,$supplier_id){
+    public function getForEdit($id){
         $faq = $this->byId($id);
 
-        if($faq->product->supplier->id == $supplier_id)
+        if($faq->product->supplier->id ==  supplierId())
             return $faq;
     }
 

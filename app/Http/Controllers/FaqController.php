@@ -15,12 +15,10 @@ class FaqController extends Controller
 {
     protected $faq;
     protected $faqForm;
-    protected $supplier;
 
     public function __construct(FaqInterface $faq, FaqForm $faqForm){
         $this->faq = $faq;
         $this->faqForm = $faqForm;
-        $this->supplier = supplierId();
     }
 
     public function paginator($id){
@@ -62,18 +60,18 @@ class FaqController extends Controller
     }
 
     public function edit($id){
-        $faq = $this->faq->getForEdit($id,$this->supplier);
+        $faq = $this->faq->getForEdit($id);
 
         return view('panel.supplier.faq.edit', compact('id','faq'));
     }
 
     public function delete($id){
-        $this->faq->deleteSupplier($id,$this->supplier);
+        $this->faq->deleteSupplier($id);
         return redirect()->back();
     }
 
     public function update(Request $request,$id){
-        $faq = $this->faq->getForEdit($id,$this->supplier);
+        $faq = $this->faq->getForEdit($id);
 
         if ($this->faqForm->update($request,$id,$faq) ){
             return Redirect::to( route('panel::faq.list') )->with('status', 'success');

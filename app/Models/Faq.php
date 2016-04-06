@@ -23,4 +23,16 @@ class Faq extends Model
         return $this->belongsTo('App\Models\Product\Product');
     }
 
+    public function scopeByProductItems($query,$product_id, $limit = null,$order = null){
+
+        if(!$limit) $limit = 7;
+
+        $arOrder = ($order) ?['order'=>$order[0],'by'=>$order[1]] :['order'=>'created_at','by'=>'desc'];
+
+        return $query
+            ->where('product_id',$product_id)
+            ->orderBy($arOrder['order'], $arOrder['by'])
+            ->paginable(null, $limit);
+    }
+
 }
