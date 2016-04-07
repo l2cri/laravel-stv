@@ -64,14 +64,7 @@
                             <span class="inline-label red">{{ $product->action->name }}</span>
                         @endif</h1>
                     <h3 class="product-subtitle">{{ $product->supplier->name }}</h3>
-                    <div class="rating-box">
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star-o"></i></div>
-                        <div class="star"><i class="fa fa-star-o"></i></div>
-                        <div class="rating-number">25 отзывов</div>
-                    </div>
+                    @include('rating.list',['item'=>$product,'routeName'=>'rating.rateProduct'])
                     <div class="product-description detail-info-entry">
                         {{ $product->preview }}
                     </div>

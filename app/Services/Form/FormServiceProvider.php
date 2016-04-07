@@ -22,10 +22,11 @@ use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Product\ProductValidator;
 use App\Services\Form\Profile\ProfileForm;
 use App\Services\Form\Profile\ProfileValidator;
+use App\Services\Form\Rating\RatingForm;
+use App\Services\Form\Rating\RatingValidator;
 use App\Services\Form\Section\SectionForm;
 use App\Services\Form\Section\SectionValidator;
 use Illuminate\Support\ServiceProvider;
-
 class FormServiceProvider extends ServiceProvider
 {
     public function register(){
@@ -109,6 +110,14 @@ class FormServiceProvider extends ServiceProvider
             return new FaqForm( new FaqValidator($app['validator']),
                 $app->make('App\Repo\Faq\FaqInterface')
             );
+        });
+
+        /*
+         * Rating
+         */
+        $app->bind('App\Services\Form\Rating\RatingForm', function ($app){
+            return new RatingForm( new RatingValidator($app['validator']),
+                $app->make('App\Repo\Product\ProductInterface'));
         });
     }
 }

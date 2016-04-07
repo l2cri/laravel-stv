@@ -235,3 +235,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .oderReturn {background-color: #9c9c9c; color: #FFFFff}
 .oderReturn a {color: #d41b1b;}
 .left20 {margin-left: 20px}
+
+.product-detail-box .rating-box .star {
+	color: inherit;!important;
+}

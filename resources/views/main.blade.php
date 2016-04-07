@@ -11,6 +11,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
     <link href="/css/main.css" rel="stylesheet" type="text/css" />
     <!--[if IE 9]>
     <link href="/css/ie9.css" rel="stylesheet" type="text/css" />

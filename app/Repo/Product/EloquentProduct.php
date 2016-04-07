@@ -11,6 +11,7 @@ namespace App\Repo\Product;
 
 use App\Repo\Criteria\CriteriaTrait;
 use App\Repo\DatatablesTrait;
+use App\Repo\RatingRepoTrait;
 use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\Node;
@@ -20,6 +21,7 @@ class EloquentProduct implements ProductInterface
     use RepoTrait;
     use CriteriaTrait;
     use DatatablesTrait;
+    use RatingRepoTrait;
 
     protected $model;
     protected $section;

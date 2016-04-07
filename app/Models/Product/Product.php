@@ -8,19 +8,21 @@
 
 namespace App\Models\Product;
 
+use App\Traits\Rateable;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use SortableTrait;
+    use Rateable;
 
     protected $prefix = "products";
 
     protected $table = 'products';
     protected $fillable = ['active', 'moderated', 'available', 'featured', 'name', 'articul', 'barcode', 'unit',
         'length', 'width', 'height', 'weight', 'volume', 'price', 'regular_price', 'action_price', 'whosale_price',
-        'whosale_quantity', 'preview', 'description', 'supplier_id', 'sections', 'action_id'];
+        'whosale_quantity', 'preview', 'description', 'supplier_id', 'sections', 'action_id','rating'];
 
     public function sections(){
         return $this->belongsToMany('App\Models\Section');

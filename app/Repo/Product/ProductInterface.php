@@ -9,7 +9,9 @@
 namespace App\Repo\Product;
 
 
-interface ProductInterface
+use App\Repo\RatingIterface;
+
+interface ProductInterface extends RatingIterface
 {
     public function byId($id);
     public function create(array $data);

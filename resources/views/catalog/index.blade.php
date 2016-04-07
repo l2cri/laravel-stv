@@ -56,14 +56,7 @@
                             </div>
                             <a class="tag" href="{{ url($section->url) }}">{{ $section->name }}</a>
                             <a class="title" href="{{ route('product.page', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                            <div class="rating-box">
-                                <div class="star"><i class="fa fa-star"></i></div>
-                                <div class="star"><i class="fa fa-star"></i></div>
-                                <div class="star"><i class="fa fa-star"></i></div>
-                                <div class="star"><i class="fa fa-star"></i></div>
-                                <div class="star"><i class="fa fa-star"></i></div>
-                                <div class="reviews-number">отзывы (25)</div>
-                            </div>
+                            @include('rating.list',['item'=>$product,'routeName'=>'rating.rateProduct'])
                             <div class="article-container style-1">
                                 <p>{{ $product->preview }}</p>
                             </div>

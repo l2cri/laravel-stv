@@ -16,6 +16,7 @@ use App\Repo\Faq\FaqInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
+use App\Services\Form\Rating\RatingForm;
 use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
 
@@ -86,5 +87,22 @@ class CatalogController extends Controller
         $comments = $this->comments->getByObject($product);
         $faq = $this->faq->paginateByProductId($id);
         return view('catalog.product', compact(['product','comments','faq']));
+    }
+
+    public function rateProduct(Request $request,RatingForm $ratingForm,$id){
+
+        $request->merge(array('rateable_id' => $id));
+        $input = removeEmptyValues($request->all());
+
+        if ($ratingForm->rateProduct($input) ){
+            $item = $this->product->byId($id);
+            return response()->json(['rating' => $item['rating'], 'status' => 'OK']);
+        }
+        else{
+            $errors = $ratingForm->errors();
+            return response()->json(['errors' => $errors, 'status' => 'ERROR']);
+        }
+
+
     }
 }
