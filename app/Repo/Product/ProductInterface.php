@@ -22,6 +22,7 @@ interface ProductInterface extends RatingIterface
     public function bySection($sectionId, $includeSubsections = true);
     public function bySectionIds (array $ids);
     public function bySectionWithSupplier($sectionId, $supplierId, $includeSubsections = true);
+    public function bySupplierPaginate($supplierId);
 
     public function paginate();
     public function findBy($field, $value, $columns = array('*'));

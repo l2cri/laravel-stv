@@ -20,7 +20,7 @@
                     @include('supplier.sectionaccordion')
                 </div>
 
-                @include('catalog.filter')
+                @include('catalog.filter', [ 'filterRoute' => route('supplier.ajax', $supplier->code) ])
 
             </div>
         </div>

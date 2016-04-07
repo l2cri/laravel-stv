@@ -15,6 +15,7 @@ use App\Repo\Supplier\SupplierInterface;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Criteria\Product\SuppliersOnly;
 use App\StaticHelpers\ProductHelper;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -48,5 +49,31 @@ class SupplierController extends Controller
 
         return view('supplier.index', compact('products', 'sections', 'currentSection',
             'maxProductPrice', 'supplier'));
+    }
+
+    public function ajax(Request $request, $name){
+
+        $supplier = $this->supplier->byCode($name);
+//        $sections = $this->section->bySupplier($supplier->id);
+        if ($request->input('sectionId')) $currentSection = $this->section->byCode($request->input('sectionId'));
+
+        // фильтр по цене
+        if ($request->has('minprice') && $request->has('maxprice')) {
+            $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
+        }
+
+        // назначаем поставщика всегда
+        $this->product->pushCriteria( new SuppliersOnly([$supplier->id]) );
+
+        // секции - одна или много
+        if (isset($currentSection) && !empty($currentSection))
+            $products = $this->product->bySection($currentSection->id, false);
+        else $products = $this->product->bySupplierPaginate($supplier->id);
+
+
+//        $products = $this->product->bySection($request->input('sectionId'));
+//        $currentSection = $this->section->byCode($request->input('sectionId'));
+
+        return view('catalog.ajaxindex', compact('products', 'currentSection'));
     }
 }

@@ -96,7 +96,7 @@
                     @include('common.sectionaccordion')
                 </div>
 
-                @include('catalog.filter')
+                @include('catalog.filter', ['filterRoute' => '/catalog/ajax'])
 
             </div>
         </div>

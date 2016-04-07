@@ -55,6 +55,7 @@ class EloquentProduct implements ProductInterface
     }
 
     public function bySupplier($supplierId){
+        $this->applyCriteria();
         return $this->model->where('supplier_id', $supplierId)->get();
     }
 
@@ -81,6 +82,14 @@ class EloquentProduct implements ProductInterface
 
     public function bySectionIds (array $ids) {
         $productsQuery = $this->bySections($ids);
+        $this->allProducts = $productsQuery->get();
+
+        return $productsQuery->sortable()->paginable();
+    }
+
+    public function bySupplierPaginate($supplierId){
+        $this->applyCriteria();
+        $productsQuery = $this->model->where('supplier_id', $supplierId);
         $this->allProducts = $productsQuery->get();
 
         return $productsQuery->sortable()->paginable();

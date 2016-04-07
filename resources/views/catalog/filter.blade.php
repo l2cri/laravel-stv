@@ -104,7 +104,7 @@
 
         return $.ajax({
             type: "POST",
-            url: '/catalog/ajax',
+            url: '{{ $filterRoute }}',
             data: $( "#filterForm" ).serialize(),
             dataType: 'html'
         });
