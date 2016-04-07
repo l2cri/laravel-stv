@@ -88,6 +88,25 @@ class EloquentProduct implements ProductInterface
 
     public function bySectionWithSupplier($sectionId, $supplierId, $includeSubsections = true){
 
+        // TODO: добавить в отдельную функцию - повтор кода с public function bySection($sectionId, $includeSubsections = true)
+        $category = $this->section->find($sectionId);
+
+        // айдишники категорий
+        $categories = array();
+        if ($includeSubsections){
+            $categories = $category->descendants()->lists('id');
+        }
+        $categories[] = $category->getKey();
+        // TODO end
+
+        $products = $this->model->whereHas('sections', function($q) use ($categories)
+        {
+            $q->whereIn('id', $categories);
+        })
+        ->where('supplier_id', $supplierId)
+        ->get();
+
+        return $products;
     }
 
     public function paginate(){

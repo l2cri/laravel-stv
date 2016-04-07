@@ -24,6 +24,10 @@ class Section extends Node
         return '/catalog/'.$param;
     }
 
+    public function getCodeAttribute(){
+        return (!empty($this->code)) ? $this->code : $this->id;
+    }
+
     public function products(){
         return $this->belongsToMany('App\Models\Product\Product');
     }
