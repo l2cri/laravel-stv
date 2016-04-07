@@ -118,8 +118,8 @@
                     <div class="col-md-12">
                         <div class="information-blocks production-logo">
                             <div class="background">
-                                <div class="logo"><img src="{{ url('img/production-logo.png') }}" alt="" /></div>
-                                <a href="#">О поставщике</a>
+                                <div class="logo"><img src="{{ url( $product->supplier->logo ) }}" alt="{{ $product->supplier->name }}" /></div>
+                                <a href="{{ route('supplier', $product->supplier->code) }}">О поставщике</a>
                             </div>
                         </div>
                     </div>
