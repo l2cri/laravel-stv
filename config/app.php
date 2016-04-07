@@ -183,6 +183,9 @@ return [
          * Date localization
          */
         Jenssegers\Date\DateServiceProvider::class,
+
+        // BreadCrumbs
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
     ],
 
     /*
@@ -260,6 +263,9 @@ return [
          * Date localization
          */
         'Date' => Jenssegers\Date\Date::class,
+
+        // BreadCrumbs
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
 
     ],
 

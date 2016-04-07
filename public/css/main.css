@@ -239,3 +239,13 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .product-detail-box .rating-box .star {
 	color: inherit;!important;
 }
+
+.breadcrumb-box span{display: inline-block; font-size: 13px; color: #696969; line-height: 16px; margin-right: 7px; padding: 7px 0;}
+
+.list-breadcrumb{
+	margin-bottom: 25px;
+}
+
+.list-breadcrumb .breadcrumb-box{
+	margin-bottom: 0;
+}

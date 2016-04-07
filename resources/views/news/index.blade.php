@@ -2,10 +2,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">Новости</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('news'))
 
     <div class="information-blocks">
         <div class="row">

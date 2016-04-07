@@ -6,10 +6,10 @@
             $unit = !empty($product->unit) ? $product->unit : 'шт';
     ?>
 
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">Каталог</a>
-        <a href="#">Молоко</a>
+    <div class="list-breadcrumb">
+        @foreach($product->sections as $section)
+            {!! Breadcrumbs::render('product',$product,$section) !!}
+        @endforeach
     </div>
 
     <div class="information-blocks">

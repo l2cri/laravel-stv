@@ -328,6 +328,7 @@
 
             @include('errors')
 
+            @yield('breadcrumbs')
             @yield('content')
 
             <!-- FOOTER -->

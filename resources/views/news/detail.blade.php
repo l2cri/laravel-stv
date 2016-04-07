@@ -2,11 +2,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="{{ route('news.index')  }}">Новости</a>
-        <a href="#">{{ $post->name }}</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('news-detail',$post))
 
     <div class="information-blocks">
         <div class="row">

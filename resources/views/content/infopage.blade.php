@@ -1,10 +1,7 @@
 @extends('main')
 
 @section('content')
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">О нас</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('infopage',$infopage))
 
     <div class="information-blocks">
         <div class="article-container style-2">
