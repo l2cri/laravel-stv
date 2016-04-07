@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     protected $fillable = ['name', 'description', 'conditions', 'responsibility',
-                            'whosale_order', 'whosale_quantity', 'color', 'logo'];
+                            'whosale_order', 'whosale_quantity', 'color', 'logo', 'code'];
 
     public function user(){
         return $this->belongsTo('App\User');

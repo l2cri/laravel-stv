@@ -79,6 +79,13 @@ class EloquentProduct implements ProductInterface
         return $products;
     }
 
+    public function bySectionIds (array $ids) {
+        $productsQuery = $this->bySections($ids);
+        $this->allProducts = $productsQuery->get();
+
+        return $productsQuery->sortable()->paginable();
+    }
+
     public function bySectionWithSupplier($sectionId, $supplierId, $includeSubsections = true){
 
     }

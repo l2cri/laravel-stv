@@ -9,28 +9,30 @@ if ( !empty(Input::get('productsorder')) || !empty(Input::get('dir'))) {
     Input::session()->put('dir', Input::get('dir'));
     Input::session()->put('productsorder', Input::get('productsorder'));
 }
+
+$currentUrl = isset($currentSection) ? $currentSection->url : URL::current();
 ?>
 
 <div class="inline-text">Сортировать по</div>
 <div class="simple-drop-down">
     <select onchange="setLocation(this.value)">
         <option @if($order == 'price')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, 'productsorder=price'), url($currentSection->url)) }}">
+                value="{{ url_add_params(array('dir='.$dir, 'productsorder=price'), url($currentUrl)) }}">
             Цене                </option>
         <option @if($order == 'name')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, 'productsorder=name'), url($currentSection->url)) }}">
+                value="{{ url_add_params(array('dir='.$dir, 'productsorder=name'), url($currentUrl)) }}">
             Названию                </option>
         <option @if($order == 'rating')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, 'productsorder=rating'), url($currentSection->url)) }}">
+                value="{{ url_add_params(array('dir='.$dir, 'productsorder=rating'), url($currentUrl)) }}">
             Рейтингу                </option>
     </select>
 </div>
 @if($dir == 'asc')
-    <a title="По убыванию" href="{{ url_add_params(array('dir=desc', 'productsorder='.$order), url($currentSection->url)) }}" class="sort-button">
+    <a title="По убыванию" href="{{ url_add_params(array('dir=desc', 'productsorder='.$order), url($currentUrl)) }}" class="sort-button">
         &nbsp;
     </a>
 @else
-    <a title="По возрастанию" href="{{ url_add_params(array('dir=asc', 'productsorder='.$order), url($currentSection->url)) }}" class="sort-button active">
+    <a title="По возрастанию" href="{{ url_add_params(array('dir=asc', 'productsorder='.$order), url($currentUrl)) }}" class="sort-button active">
         &nbsp;
     </a>
 @endif

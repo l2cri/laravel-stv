@@ -4,7 +4,9 @@ $link_limit = 7; // maximum number of links (a little bit inaccurate, but will b
 $from = 0;
 $to = 0;
 
-$paginator->setPath($currentSection->url);
+$currentPath = isset($currentSection) ? $currentSection->url : URL::current();
+$paginator->setPath($currentPath);
+
 ?>
 
 @if ($paginator->lastPage() > 1)

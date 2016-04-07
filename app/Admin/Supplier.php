@@ -16,6 +16,7 @@ if (AuthUser::isAdmin()) {
             $display->columns([
                 Column::string('id')->label('ID'),
                 Column::string('name')->label('Название'),
+                Column::string('code')->label('Код никнэйм'),
             ]);
             return $display;
         })->createAndEdit(function ()
@@ -28,6 +29,7 @@ if (AuthUser::isAdmin()) {
                 FormItem::image('logo', 'Логотип'),
                 FormItem::text('color', 'Цвет шаблона'),
                 FormItem::text('name', 'Название'),
+                FormItem::text('code', 'Код никнэйм'),
                 FormItem::ckeditor('description', 'Описание'),
                 FormItem::ckeditor('conditions', 'Оплата и Доставка'),
                 FormItem::ckeditor('responsibility', 'Гарантии'),

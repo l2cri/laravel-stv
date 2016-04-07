@@ -49,6 +49,7 @@ class CatalogController extends Controller
             $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
         }
 
+        // эту строку не убирать, вытаскиваем товары по категории, чтобы по ним вытащить список поставщиков
         $productsForSupplier = $this->product->bySection($currentSection->id);
         $suppliers = $this->supplier->byProducts($this->product->allProductsFromLastRequest());
         $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());

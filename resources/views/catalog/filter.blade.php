@@ -1,7 +1,11 @@
+<?
+    $sectionId = isset($currentSection) ? $currentSection->id : null;
+?>
+
 <form id="filterForm" method="post">
 
     {{ csrf_field() }}
-    <input type="hidden" value="{{ $currentSection->id }}" name="sectionId">
+    <input type="hidden" value="{{ $sectionId }}" name="sectionId">
 
     {{--start serialize div--}}
     <div id="srlz">
@@ -22,7 +26,9 @@
         </div>
         </div>
 
-        <?
+        @if (isset($suppliers) && !empty($suppliers))
+
+            <?
             $evenOdd = array();
             if (count($suppliers) > 1) {
                 $evenOdd = evenOddArray($suppliers);
@@ -30,37 +36,39 @@
                 $evenOdd['even'] = $suppliers;
                 $evenOdd['odd'] = array();
             }
-        ?>
+            ?>
 
-        <div class="information-blocks">
-        <div class="block-title size-2">По производителю</div>
-        <div class="row">
-            <div class="col-xs-6">
+            <div class="information-blocks">
+                <div class="block-title size-2">По производителю</div>
+                <div class="row">
+                    <div class="col-xs-6">
 
-                @foreach($evenOdd['even'] as $supplier)
+                        @foreach($evenOdd['even'] as $supplier)
 
-                    <label class="checkbox-entry">
-                        <input type="checkbox" name="suppliers[]" value="{{ $supplier->id }}" />
-                        <span class="check"></span> {{ $supplier->name }}
-                    </label>
+                            <label class="checkbox-entry">
+                                <input type="checkbox" name="suppliers[]" value="{{ $supplier->id }}" />
+                                <span class="check"></span> {{ $supplier->name }}
+                            </label>
 
-                @endforeach
+                        @endforeach
 
+                    </div>
+                    <div class="col-xs-6">
+
+                        @foreach($evenOdd['odd'] as $supplier)
+
+                            <label class="checkbox-entry">
+                                <input type="checkbox" name="suppliers[]" value="{{ $supplier->id }}" />
+                                <span class="check"></span> {{ $supplier->name }}
+                            </label>
+
+                        @endforeach
+
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-6">
 
-                @foreach($evenOdd['odd'] as $supplier)
-
-                    <label class="checkbox-entry">
-                        <input type="checkbox" name="suppliers[]" value="{{ $supplier->id }}" />
-                        <span class="check"></span> {{ $supplier->name }}
-                    </label>
-
-                @endforeach
-
-            </div>
-        </div>
-        </div>
+        @endif
 
     </div>
     {{--end serialize div--}}

@@ -23,7 +23,7 @@ class EloquentSupplier implements SupplierInterface
 
     public function byCode($code)
     {
-        // TODO: Implement byCode() method.
+        return $this->model->where('code', '=', $code)->first();
     }
 
     public function update(array $data, $id, $attribute = "id")

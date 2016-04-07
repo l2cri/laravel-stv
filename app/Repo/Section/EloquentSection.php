@@ -78,5 +78,35 @@ class EloquentSection implements SectionInterface
     public function byUser($userId){
         return $this->section->where('user_id', $userId)->withDepth()->defaultOrder()->get();
     }
-    public function bySupplier($supplierId){}
+    public function bySupplier($supplierId){
+
+        $allSectionsTree = array();
+
+        $sections = $this->section->whereHas('products', function($q) use ($supplierId)
+        {
+            $q->where('supplier_id', $supplierId);
+        })->withDepth()->defaultOrder()->get();
+
+        foreach ($sections as $section) {
+            // добавляем в главный массив по айдишнику эту секцию
+            $allSectionsTree[ $section->id ] = $section;
+
+            // потомки не нужны, но пока оставим
+//            // достаем потомков этой секции
+//            $descendants = $this->getTree( $section->id );
+//
+//            // добавляем всех потомков в общий массив, айдишник позволит отфильтровать дубли
+//            foreach ($descendants as $des) {
+//                $allSectionsTree[ $des->id ] = $des;
+//            }
+        }
+
+        // убираем глубину, ставим ее один, категориям, у которых нет родителей в массиве
+        foreach ($allSectionsTree as $key => $sec) {
+            if ( !array_key_exists($sec->parent_id, $allSectionsTree) )
+                $allSectionsTree[ $key ][ 'depth' ] = 1;
+        }
+
+        return $sections;
+    }
 }
