@@ -1,5 +1,9 @@
 @extends('main')
 
+@section('logo')
+    <a id="logo" href="{{ route('supplier', $supplier->code) }}"><img src="{{ url($supplier->logo) }}" alt="" /></a>
+@endsection
+
 @section('content')
 
     <div class="breadcrumb-box">

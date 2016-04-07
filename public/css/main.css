@@ -249,3 +249,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .list-breadcrumb .breadcrumb-box{
 	margin-bottom: 0;
 }
+
+#logo img {max-height: 64px}

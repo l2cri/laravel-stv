@@ -61,7 +61,11 @@
 
                 <div class="header-middle">
                     <div class="logo-wrapper">
-                        <a id="logo" href="{{ url('/') }}"><img src="/img/logo-main.png" alt="" /></a>
+
+                        @section('logo')
+                            <a id="logo" href="{{ url('/') }}"><img src="/img/logo-main.png" alt="" /></a>
+                        @show
+
                     </div>
 
                     <div class="right-entries">
