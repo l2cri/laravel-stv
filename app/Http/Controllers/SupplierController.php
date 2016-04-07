@@ -39,7 +39,10 @@ class SupplierController extends Controller
         $this->product->pushCriteria( new SuppliersOnly([$supplier->id]) );
 
         // вытаскиваем товары по категориям
-        $products = $this->product->bySectionIds( $sections->lists('id')->all() );
+        if (isset($currentSection) && !empty($currentSection)) {
+            $sectionIds = [$currentSection->id];
+        } else $sectionIds = $sections->lists('id')->all();
+        $products = $this->product->bySectionIds( $sectionIds );
 
         $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
 

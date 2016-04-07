@@ -14,7 +14,9 @@
 
             <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
                 <div class="information-blocks categories-border-wrapper">
-                    <div class="block-title size-3">Каталог {{ $supplier->name }}</div>
+                    <div class="block-title size-3">
+                        <a href="{{ route('supplier', $supplier->code) }}">Каталог {{ $supplier->name }}</a>
+                    </div>
                     @include('supplier.sectionaccordion')
                 </div>
 
