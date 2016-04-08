@@ -13,4 +13,7 @@ return [
     'unit' => 'шт',
 
     'client_role_id' => 1,
+
+    // поставщик
+    'supplierDir' => 'images/supplier'
 ];

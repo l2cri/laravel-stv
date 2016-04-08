@@ -26,11 +26,6 @@ class EloquentSupplier implements SupplierInterface
         return $this->model->where('code', '=', $code)->first();
     }
 
-    public function update(array $data, $id, $attribute = "id")
-    {
-        // TODO: Implement update() method.
-    }
-
     public function bySection($sectionId, $includeSubsections = true)
     {
         // TODO: Implement bySection() method.

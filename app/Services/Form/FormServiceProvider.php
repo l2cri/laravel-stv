@@ -26,6 +26,8 @@ use App\Services\Form\Rating\RatingForm;
 use App\Services\Form\Rating\RatingValidator;
 use App\Services\Form\Section\SectionForm;
 use App\Services\Form\Section\SectionValidator;
+use App\Services\Form\Supplier\SupplierForm;
+use App\Services\Form\Supplier\SupplierValidator;
 use Illuminate\Support\ServiceProvider;
 class FormServiceProvider extends ServiceProvider
 {
@@ -118,6 +120,14 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Rating\RatingForm', function ($app){
             return new RatingForm( new RatingValidator($app['validator']),
                 $app->make('App\Repo\Product\ProductInterface'));
+        });
+
+        /*
+         * Supplier
+         */
+        $app->bind('App\Services\Form\Supplier\SupplierForm', function ($app){
+            return new SupplierForm( new SupplierValidator($app['validator']),
+                $app->make('App\Repo\Supplier\SupplierInterface'));
         });
     }
 }

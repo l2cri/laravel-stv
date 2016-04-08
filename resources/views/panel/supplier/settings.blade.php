@@ -4,27 +4,9 @@
 
     @parent
 
-    {{--<script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>--}}
-    {{--<script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script>--}}
-
-
-
     <script src="{{ url('js/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ url('js/ckeditor/config.js') }}"></script>
     <script src="{{ url('js/ckeditor/styles.js') }}"></script>
-
-    <script>
-        $(function() {
-
-            "use strict";
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-        });
-    </script>
 
 @endsection
 
@@ -32,7 +14,7 @@
     <div class="information-blocks">
         <h3 class="block-title main-heading">Настройки магазина</h3>
 
-        <form method="post" action="{{ route('panel::supplier.settings.save') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('panel::supplier.settings.update') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="row">
@@ -73,9 +55,9 @@
                            value="{{ $supplier->whosale_quantity }}">
                     <div class="clear"></div>
 
-                    <label>Логотип <span>*</span></label>
-                    <input type='file' name="logo" class="simple-field" required="">
-                    @if(!empty($supplier->logo)) <img src="{{ url($supplier->logo) }}"> @endif
+                    <label>Логотип</label>
+                    <input type='file' name="logo" class="simple-field">
+                    @if(!empty($supplier->logo)) <img src="{{ url($supplier->logo) }}" class="img-responsive"> @endif
                     <div class="clear"></div>
 
                     <br>
@@ -90,7 +72,7 @@
                     <div class="clear"></div>
 
                     <label>Описание</label>
-                    <textarea rows="5" class="simple-field" id="supplier_description" name="description" style="height: 270px">{{ $supplier->conditions }}</textarea>
+                    <textarea rows="5" class="simple-field" id="supplier_description" name="description" style="height: 270px">{{ $supplier->description }}</textarea>
                     <div class="clear"></div>
 
                     <br>

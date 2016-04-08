@@ -14,19 +14,24 @@ use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Criteria\Product\SuppliersOnly;
+use App\Services\Form\Supplier\SupplierForm;
 use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
+use Redirect;
 
 class SupplierController extends Controller
 {
     protected $product;
     protected $section;
     protected $supplier;
+    protected $form;
 
-    public function __construct(ProductInterface $product, SectionInterface $section, SupplierInterface $supplier){
+    public function __construct(ProductInterface $product, SectionInterface $section,
+                                SupplierInterface $supplier, SupplierForm $form){
         $this->section = $section;
         $this->product = $product;
         $this->supplier = $supplier;
+        $this->form = $form;
     }
 
     public function catalog($name, $code = null) {
@@ -80,5 +85,21 @@ class SupplierController extends Controller
     public function settings(){
         $supplier = $this->supplier->byId(supplierId());
         return view('panel.supplier.settings', compact('supplier'));
+    }
+
+    public function updateSettings(Request $request) {
+        $input = removeEmptyValues($request->all());
+
+        if ($request->hasFile('logo')) {
+            $input['logo'] = $request->file('logo');
+        }
+
+        if ($this->form->update( $input ) ){
+            return Redirect::to( route('panel::supplier.settings') )->with('status', 'success');
+        } else {
+            return Redirect::to( route('panel::supplier.settings') )->withInput()
+                ->withErrors( $this->form->errors() )
+                ->with('status', 'error');
+        }
     }
 }
