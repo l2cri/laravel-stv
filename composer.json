@@ -13,7 +13,8 @@
         "darryldecode/cart": "dev-master",
         "yajra/laravel-datatables-oracle": "~6.0",
         "jenssegers/date": "^3.2",
-        "davejamesmiller/laravel-breadcrumbs": "^3.0"
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "mexitek/phpcolors": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

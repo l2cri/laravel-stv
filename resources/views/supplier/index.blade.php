@@ -30,4 +30,21 @@
         </div>
     </div>
 
+    @if( !empty( $supplier->color ) )
+
+        <?
+                $color = new \Mexitek\PHPColors\Color( $supplier->color );
+        ?>
+
+        <style>
+            a {color: {{ $supplier->color }} }
+            body.style-2 .price .current { color: {{ $supplier->color }} }
+            body.style-2 .product-slide-entry .title:hover{color: {{ $supplier->color }};}
+            .header-wrapper.style-2 .navigation {background-color: {{ $supplier->color }}}
+            .navigation-search-content .toggle-desktop-menu {border-left: 1px solid #{{ $color->lighten(30) }} }
+            .header-wrapper.style-2 header:not(.fixed-header) nav > ul > li .fa { color: #{{ $color->lighten(30) }} }
+        </style>
+
+    @endif
+
 @endsection
