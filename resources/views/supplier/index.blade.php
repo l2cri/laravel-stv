@@ -1,50 +1,7 @@
-@extends('main')
+@extends('supplier.main')
 
-@section('logo')
-    <a id="logo" href="{{ route('supplier', $supplier->code) }}"><img src="{{ url($supplier->logo) }}" alt="" /></a>
-@endsection
+@section('supplier_content')
 
-@section('content')
-
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">Каталог</a>
-    </div>
-
-    <div class="information-blocks">
-        <div class="row">
-
-            @include('catalog.products')
-
-            <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
-                <div class="information-blocks categories-border-wrapper">
-                    <div class="block-title size-3">
-                        <a href="{{ route('supplier', $supplier->code) }}">Каталог {{ $supplier->name }}</a>
-                    </div>
-                    @include('supplier.sectionaccordion')
-                </div>
-
-                @include('catalog.filter', [ 'filterRoute' => route('supplier.ajax', $supplier->code) ])
-
-            </div>
-        </div>
-    </div>
-
-    @if( !empty( $supplier->color ) )
-
-        <?
-                $color = new \Mexitek\PHPColors\Color( $supplier->color );
-        ?>
-
-        <style>
-            a {color: {{ $supplier->color }} }
-            body.style-2 .price .current { color: {{ $supplier->color }} }
-            body.style-2 .product-slide-entry .title:hover{color: {{ $supplier->color }};}
-            .header-wrapper.style-2 .navigation {background-color: {{ $supplier->color }}}
-            .navigation-search-content .toggle-desktop-menu {border-left: 1px solid #{{ $color->lighten(30) }} }
-            .header-wrapper.style-2 header:not(.fixed-header) nav > ul > li .fa { color: #{{ $color->lighten(30) }} }
-        </style>
-
-    @endif
+    @include('catalog.products')
 
 @endsection
