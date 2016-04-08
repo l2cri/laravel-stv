@@ -13,6 +13,7 @@ use App\Repo\Comment\CommentInterface;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Criteria\Product\SuppliersOnly;
 use App\Repo\Faq\FaqInterface;
+use App\Repo\Favorite\FavoriteInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
@@ -27,14 +28,17 @@ class CatalogController extends Controller
     protected $supplier;
     protected $comments;
     protected $faq;
+    protected $favorite;
 
     public function __construct(ProductInterface $product, SectionInterface $section,
-                                    SupplierInterface $supplier, CommentInterface $comments, FaqInterface $faq){
+                                    SupplierInterface $supplier, CommentInterface $comments, FaqInterface $faq,
+                                    FavoriteInterface $favorite){
         $this->product = $product;
         $this->section = $section;
         $this->supplier = $supplier;
         $this->comments = $comments;
         $this->faq = $faq;
+        $this->favorite = $favorite;
     }
 
     public function byCode($code, Request $request){
@@ -87,7 +91,8 @@ class CatalogController extends Controller
         $product = $this->product->byId($id);
         $comments = $this->comments->getByObject($product);
         $faq = $this->faq->paginateByProductId($id);
-        return view('catalog.product', compact(['product','comments','faq']));
+        $favorite = $this->favorite->byProduct($id);
+        return view('catalog.product', compact(['product','comments','faq','favorite']));
     }
 
     public function rateProduct(Request $request,RatingForm $ratingForm,$id){
