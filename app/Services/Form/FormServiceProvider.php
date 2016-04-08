@@ -15,6 +15,8 @@ use App\Services\Form\Comment\CommentForm;
 use App\Services\Form\Comment\CommentValidator;
 use App\Services\Form\Faq\FaqForm;
 use App\Services\Form\Faq\FaqValidator;
+use App\Services\Form\Favorite\FavoriteForm;
+use App\Services\Form\Favorite\FavoriteValidator;
 use App\Services\Form\Order\OrderForm;
 use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
@@ -118,6 +120,15 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Rating\RatingForm', function ($app){
             return new RatingForm( new RatingValidator($app['validator']),
                 $app->make('App\Repo\Product\ProductInterface'));
+        });
+
+        /*
+         * Favorite
+         */
+        $app->bind('App\Services\Form\Favorite\FavoriteForm', function ($app){
+            return new FavoriteForm( new FavoriteValidator($app['validator']),
+                $app->make('App\Repo\Favorite\FavoriteInterface')
+            );
         });
     }
 }

@@ -52,4 +52,9 @@ class Product extends Model
     public function faq(){
         return $this->hasMany('App\Models\Faq');
     }
+
+    public function favorite()
+    {
+        return $this->hasMany('App\Models\Favorite');
+    }
 }

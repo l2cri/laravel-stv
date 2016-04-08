@@ -88,7 +88,7 @@
                     </div>
                     <div class="detail-info-entry">
                         <a class="button style-10">В корзину</a>
-                        <a class="button style-11"><i class="fa fa-heart"></i> В избранное</a>
+                        @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=>isset($favorite)])
                         <div class="clear"></div>
                     </div>
                     <div class="tags-selector detail-info-entry">

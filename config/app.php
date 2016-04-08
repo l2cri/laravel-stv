@@ -162,6 +162,7 @@ return [
         App\Services\Form\FormServiceProvider::class,
 
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\FavoriteServiceProvider::class,
 
         /*
          * Sleeping-Owl Admin
