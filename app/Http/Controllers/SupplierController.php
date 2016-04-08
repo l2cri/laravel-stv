@@ -76,4 +76,9 @@ class SupplierController extends Controller
 
         return view('catalog.ajaxindex', compact('products', 'currentSection'));
     }
+
+    public function settings(){
+        $supplier = $this->supplier->byId(supplierId());
+        return view('panel.supplier.settings', compact('supplier'));
+    }
 }

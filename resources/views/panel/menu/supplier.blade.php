@@ -12,3 +12,7 @@
 <li><a href="{{ route('panel::faq.list') }}">Вопросы</a></li>
 </li>
 <li><a href="{{ route('panel::actions') }}">Акции</a></li>
+<li><a href="{{ route('panel::supplier.settings') }}">Настройки магазина</a></li>
+<br>
+<br>
+

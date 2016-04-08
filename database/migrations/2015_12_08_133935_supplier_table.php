@@ -18,12 +18,12 @@ class SupplierTable extends Migration
         {
             $table->increments('id');
             $table->string('name');
-            $table->text('description');
-            $table->text('conditions');
-            $table->text('responsibility');
+            $table->text('description')->nullable();
+            $table->text('conditions')->nullable();
+            $table->text('responsibility')->nullable();
             $table->integer('whosale_order')->default(0);  // сумма заказа от для оптовой цены
             $table->integer('whosale_quantity')->default(0); // кол-во одного товара для оптовой цены
-            $table->string('color');
+            $table->string('color')->nullable();
             $table->string('logo'); // название файла в папке с логотипами, путь к папке будем задавать
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
