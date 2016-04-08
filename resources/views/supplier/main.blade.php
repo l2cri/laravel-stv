@@ -33,7 +33,7 @@
                         <ul>
                             <li><a href="{{ route('supplier.about', $supplier->code) }}"> О нас </a></li>
                             <li><a href="{{ route('supplier.comments', $supplier->code) }}"> Отзывы </a></li>
-                            <li><a href="{{ route('supplier.news', $supplier->code) }}"> Новости </a></li>
+                            <li><a href="{{ route('supplier.actions', $supplier->code) }}"> Акции </a></li>
                             <li><a href="{{ route('supplier.contacts', $supplier->code) }}"> Контакты </a></li>
                         </ul>
                     </div>
