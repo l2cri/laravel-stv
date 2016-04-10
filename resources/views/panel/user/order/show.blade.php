@@ -37,6 +37,10 @@
                 </tr>
             </table>
 
+            @if ($order->profile->company)
+                @include('panel.common.companyshow', [ 'company' =>  $order->profile->company ])
+            @endif
+
             <h1>Корзина</h1>
 
             <div class="table-responsive">

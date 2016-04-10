@@ -40,4 +40,9 @@ class CompanyController extends Controller
                 ->with('status', 'error');
         }
     }
+
+    public function toggleProfile($profileId){
+        $this->form->toggleProfile($profileId, userId());
+        return redirect()->back();
+    }
 }

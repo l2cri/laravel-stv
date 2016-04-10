@@ -95,8 +95,32 @@
                                 </a>
 
                                 @if($profile->main) Профиль по-умолчанию @endif
+
                             </div>
-                            <div class="col-md-4">
+
+                            <div class="col-md-3">
+
+                                @if($profile->user->company)
+
+                                    @if ($profile->company)
+
+                                        <a href="{{ route('panel::company.toggleProfile', $profile->id) }}">
+                                            Отключить реквизиты
+                                        </a>
+
+                                    @else
+
+                                        <a href="{{ route('panel::company.toggleProfile', $profile->id) }}">
+                                            Включить реквизиты
+                                        </a>
+
+                                    @endif
+
+                                @endif
+
+                            </div>
+
+                            <div class="col-md-1">
                                 <a data-toggle="modal" data-target="#modal_show"
                                    href="{{ route('panel::profile.show.update', $profile->id) }}">
                                     <i class="fa fa-edit"></i></a>

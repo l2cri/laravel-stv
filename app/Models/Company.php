@@ -15,7 +15,7 @@ class Company extends Model
 {
     protected $table = 'companies';
     protected $fillable = [ 'user_id', 'supplier_id' , 'name', 'ogrn', 'inn', 'kpp', 'rs', 'ks',
-                            'ceo', 'phone', 'email', 'law_address', 'fact_address' ];
+                            'ceo', 'phone', 'email', 'law_address', 'fact_address'];
 
     public function user() {
         return $this->belongsTo('App\User');

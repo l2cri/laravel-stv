@@ -42,7 +42,7 @@ class EloquentCompany implements CompanyInterface
 
     public function unbindProfile($profileId)
     {
-        $this->profile->find($profileId)->company()->dissociate();
+        $this->profile->find($profileId)->company()->dissociate()->save(); // обязательно save - видимо глюк
     }
 
     public function bindSupplier($supplierId, $companyId)

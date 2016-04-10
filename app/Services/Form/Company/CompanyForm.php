@@ -10,6 +10,7 @@ namespace App\Services\Form\Company;
 
 
 use App\Repo\Company\CompanyInterface;
+use App\Repo\Profile\ProfileInterface;
 use App\Services\Form\FormTrait;
 use App\Services\Validation\AbstractLaravelValidator;
 
@@ -17,12 +18,15 @@ class CompanyForm
 {
     protected $validator;
     protected $company;
+    protected $profile;
 
     use FormTrait;
 
-    public function __construct(AbstractLaravelValidator $validator, CompanyInterface $company) {
+    public function __construct(AbstractLaravelValidator $validator, CompanyInterface $company,
+                                    ProfileInterface $profile) {
         $this->validator = $validator;
         $this->company = $company;
+        $this->profile = $profile;
     }
 
     public function save(array $data){
@@ -47,8 +51,18 @@ class CompanyForm
         }
     }
 
-    public function update(array $data){
-        if ( ! $this->valid($data) ) return false;
+    public function toggleProfile($profileId, $userId) {
+
+        $company = $this->company->getByUserId($userId);
+
+        $profile = $this->profile->byId($profileId);
+        if ($profile->company_id == $company->id) {
+            // отвязать
+            $this->company->unbindProfile($profileId);
+        } else {
+            // привязать
+            $this->company->bindProfile($profileId, $company->id);
+        }
     }
 
     public function bindProfile(array $data){
