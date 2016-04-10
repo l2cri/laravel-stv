@@ -17,5 +17,5 @@ interface CompanyInterface extends RepoInterface
     public function bindProfile($profileId, $companyId);
     public function unbindProfile($profileId);
     public function bindSupplier($supplierId, $companyId);
-    public function unbindSupplier($supplierId);
+    public function unbindSupplier($supplierId, $companyId);
 }

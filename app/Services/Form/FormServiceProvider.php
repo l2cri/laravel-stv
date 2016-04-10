@@ -150,7 +150,8 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Company\CompanyForm', function ($app){
             return new CompanyForm( new CompanyValidator( $app['validator'] ),
                 $app->make('App\Repo\Company\CompanyInterface'),
-                $app->make('App\Repo\Profile\ProfileInterface')
+                $app->make('App\Repo\Profile\ProfileInterface'),
+                $app->make('App\Repo\Supplier\SupplierInterface')
             );
         });
     }

@@ -12,7 +12,7 @@
 
 @section('panel_content')
     <div class="information-blocks">
-        <h3 class="block-title main-heading">Настройки магазина</h3>
+        <h3 class="block-title main-heading">Настройки магазина @include('panel.common.companysupplier', ['supplier' => $supplier])</h3>
 
         <form method="post" action="{{ route('panel::supplier.settings.update') }}" enctype="multipart/form-data">
             {{ csrf_field() }}

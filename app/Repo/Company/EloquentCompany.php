@@ -48,11 +48,11 @@ class EloquentCompany implements CompanyInterface
     public function bindSupplier($supplierId, $companyId)
     {
         $supplier = $this->supplier->find($supplierId);
-        $this->model->find($companyId)->supplier()->associate($supplier);
+        $this->model->find($companyId)->supplier()->associate($supplier)->save();
     }
 
-    public function unbindSupplier($supplierId)
+    public function unbindSupplier($supplierId, $companyId)
     {
-        $this->supplier->find($supplierId)->company()->dissociate();
+        $this->model->find($companyId)->supplier()->dissociate()->save();
     }
 }

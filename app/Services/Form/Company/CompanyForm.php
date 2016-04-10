@@ -11,6 +11,7 @@ namespace App\Services\Form\Company;
 
 use App\Repo\Company\CompanyInterface;
 use App\Repo\Profile\ProfileInterface;
+use App\Repo\Supplier\SupplierInterface;
 use App\Services\Form\FormTrait;
 use App\Services\Validation\AbstractLaravelValidator;
 
@@ -19,14 +20,16 @@ class CompanyForm
     protected $validator;
     protected $company;
     protected $profile;
+    protected $supplier;
 
     use FormTrait;
 
     public function __construct(AbstractLaravelValidator $validator, CompanyInterface $company,
-                                    ProfileInterface $profile) {
+                                    ProfileInterface $profile, SupplierInterface $supplier) {
         $this->validator = $validator;
         $this->company = $company;
         $this->profile = $profile;
+        $this->supplier = $supplier;
     }
 
     public function save(array $data){
@@ -65,18 +68,13 @@ class CompanyForm
         }
     }
 
-    public function bindProfile(array $data){
-        if ( ! $this->valid($data) ) return false;
-    }
-    public function unbindProfile(array $data){
-        if ( ! $this->valid($data) ) return false;
-    }
+    public function toggleSupplier($supplierId, $userId) {
+        $company = $this->company->getByUserId($userId);
+        $supplier = $this->supplier->byId($supplierId);
 
-    public function bindSupplier(array $data){
-        if ( ! $this->valid($data) ) return false;
-    }
-    public function unbindSupplier(array $data){
-        if ( ! $this->valid($data) ) return false;
+        if ( $company->supplier_id == $company->id ){
+            $this->company->unbindSupplier($supplierId, $company->id);
+        } else $this->company->bindSupplier($supplierId, $company->id);
     }
 
 }

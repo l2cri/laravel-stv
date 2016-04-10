@@ -45,4 +45,9 @@ class CompanyController extends Controller
         $this->form->toggleProfile($profileId, userId());
         return redirect()->back();
     }
+
+    public function toggleSupplier($supplierId) {
+        $this->form->toggleSupplier($supplierId, userId());
+        return redirect()->back();
+    }
 }
