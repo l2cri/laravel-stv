@@ -30,6 +30,8 @@ class EloquentCompany implements CompanyInterface
     {
         $company = $this->model->where('user_id', '=', $userId)->first();
         if (! $company) return $this->model;
+
+        return $company;
     }
 
     public function bindProfile($profileId, $companyId)

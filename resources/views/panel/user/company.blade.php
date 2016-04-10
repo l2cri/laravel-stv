@@ -7,6 +7,8 @@
         <form method="post" action="{{ route('panel::company.save') }}" >
             {{ csrf_field() }}
 
+            <input type="hidden" name="companyId" value="{{ $company->id }}">
+
             <div class="row">
                 <div class="col-sm-12">
 
@@ -14,55 +16,71 @@
                     <input type="text" required=""
                            class="simple-field"
                            name="name"
-                           value="{{ $supplier->name }}">
+                           value="{{ $company->name }}">
                     <div class="clear"></div>
 
-                    <label>Никнейм <span>*</span></label>
-                    <input type="text" required=""
-                           class="simple-field"
-                           name="code"
-                           value="{{ $supplier->code }}">
-                    <div class="clear"></div>
-
-                    <label>Цвет </label>
+                    <label>ОГРН</label>
                     <input type="text"
                            class="simple-field"
-                           name="color"
-                           value="{{ $supplier->color }}">
+                           name="ogrn"
+                           value="{{ $company->ogrn }}">
                     <div class="clear"></div>
 
-                    <label>Сумма для оптового заказ </label>
+                    <label>ИНН </label>
                     <input type="text"
                            class="simple-field"
-                           name="whosale_order"
-                           value="{{ $supplier->whosale_order }}">
+                           name="inn"
+                           value="{{ $company->inn }}">
                     <div class="clear"></div>
 
-                    <label>Кол-во для оптового заказа </label>
+                    <label>КПП </label>
                     <input type="text"
                            class="simple-field"
-                           name="whosale_quantity"
-                           value="{{ $supplier->whosale_quantity }}">
+                           name="kpp"
+                           value="{{ $company->kpp }}">
                     <div class="clear"></div>
 
-                    <label>Логотип</label>
-                    <input type='file' name="logo" class="simple-field">
-                    @if(!empty($supplier->logo)) <img src="{{ url($supplier->logo) }}" class="img-responsive"> @endif
+                    <label>Расчетный счет </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="rs"
+                           value="{{ $company->rs }}">
                     <div class="clear"></div>
 
-                    <br>
-                    <br>
-
-                    <label>Условия работы</label>
-                    <textarea rows="2" class="simple-field" name="conditions" style="height: 70px">{{ $supplier->conditions }}</textarea>
+                    <label>Корреспондентский счет </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="ks"
+                           value="{{ $company->ks }}">
                     <div class="clear"></div>
 
-                    <label>Обмен/Возврат и Гарантии</label>
-                    <textarea rows="2" class="simple-field" name="responsibility" style="height: 70px">{{ $supplier->responsibility }}</textarea>
+                    <label>Генеральный директор </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="ceo"
+                           value="{{ $company->ceo }}">
                     <div class="clear"></div>
 
-                    <label>Описание</label>
-                    <textarea rows="5" class="simple-field" id="supplier_description" name="description" style="height: 270px">{{ $supplier->description }}</textarea>
+                    <label>Телефон </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="phone"
+                           value="{{ $company->phone }}">
+                    <div class="clear"></div>
+
+                    <label>E-mail </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="email"
+                           value="{{ $company->email }}">
+                    <div class="clear"></div>
+
+                    <label>Юридический адрес</label>
+                    <textarea rows="2" class="simple-field" name="law_address" style="height: 70px">{{ $company->law_address }}</textarea>
+                    <div class="clear"></div>
+
+                    <label>Фактический адрес</label>
+                    <textarea rows="2" class="simple-field" name="fact_address" style="height: 70px">{{ $company->fact_address }}</textarea>
                     <div class="clear"></div>
 
                     <br>

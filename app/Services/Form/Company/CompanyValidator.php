@@ -17,6 +17,7 @@ class CompanyValidator extends AbstractLaravelValidator
 
         'user_id' => 'numeric',
         'supplier_id' , 'numeric',
+        'name' => 'string',
         'ogrn' => 'string',
         'inn' => 'string',
         'kpp' => 'string',
