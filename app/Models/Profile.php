@@ -22,4 +22,8 @@ class Profile extends Model
     public function orders(){
         return $this->hasMany('App\Models\Order');
     }
+
+    public function company() {
+        return $this->belongsTo('App\Models\Company');
+    }
 }

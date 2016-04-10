@@ -13,6 +13,8 @@ use App\Services\Form\Action\ActionForm;
 use App\Services\Form\Action\ActionValidator;
 use App\Services\Form\Comment\CommentForm;
 use App\Services\Form\Comment\CommentValidator;
+use App\Services\Form\Company\CompanyForm;
+use App\Services\Form\Company\CompanyValidator;
 use App\Services\Form\Faq\FaqForm;
 use App\Services\Form\Faq\FaqValidator;
 use App\Services\Form\Favorite\FavoriteForm;
@@ -139,6 +141,15 @@ class FormServiceProvider extends ServiceProvider
         $app->bind('App\Services\Form\Favorite\FavoriteForm', function ($app){
             return new FavoriteForm( new FavoriteValidator($app['validator']),
                 $app->make('App\Repo\Favorite\FavoriteInterface')
+            );
+        });
+
+        /*
+       * Company
+        */
+        $app->bind('App\Services\Form\Company\CompanyForm', function ($app){
+            return new CompanyForm( new CompanyValidator( $app['validator'] ),
+                $app->make('App\Repo\Company\CompanyInterface')
             );
         });
     }

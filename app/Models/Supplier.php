@@ -31,4 +31,8 @@ class Supplier extends Model
     public function actions(){
         return $this->hasMany('App\Models\Action');
     }
+
+    public function company() {
+        return $this->hasOne('App\Models\Company');
+    }
 }
