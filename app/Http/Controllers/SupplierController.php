@@ -113,10 +113,23 @@ class SupplierController extends Controller
 
         if ($sectionCode) {
             $currentSection = $this->section->byCode($sectionCode);
-            $products = $this->product->bySection($currentSection->id);
-            $suppliers = $this->supplier->byProducts($products);
+            $this->product->bySection($currentSection->id);
+            $suppliers = $this->supplier->byProducts( $this->product->allProductsFromLastRequest() );
+
+            // определеяем текущая секция где
+            if ( in_array( $currentSection->id, $sectionsPotreb->pluck('id')->all() ) ||
+                ( $currentSection->id ==  config('marketplace.potrebSectionId') ) )
+                $currentSectionPotreb = $currentSection;
+
+            if ( in_array( $currentSection->id, $sectionsProm->pluck('id')->all() ) ||
+                ( $currentSection->id == config('marketplace.promSectionId') ) )
+                $currentSectionProm = $currentSection;
+
         } else $suppliers = $this->supplier->all();
 
-        return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm', 'currentSection'));
+        $mainRoute = route('suppliers');
+
+        return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm',
+            'currentSectionPotreb', 'currentSectionProm', 'mainRoute'));
     }
 }

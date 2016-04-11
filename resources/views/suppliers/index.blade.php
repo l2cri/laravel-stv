@@ -18,13 +18,24 @@
                     <div class="block-title size-3">
                         Потребительские товары
                     </div>
-                    @include('common.saccordion', ['sections' => $sectionsPotreb])
+
+                    @if (isset($currentSectionPotreb))
+                        @include('common.saccordion', ['sections' => $sectionsPotreb, 'currentSection' => $currentSectionPotreb])
+                    @else
+                        @include('common.saccordion', ['sections' => $sectionsPotreb])
+                    @endif
+
 
                     <div class="block-title size-3">
                         Промышленные товары
                     </div>
 
-                    @include('common.saccordion', ['sections' => $sectionsProm])
+                    @if (isset($currentSectionProm))
+                        @include('common.saccordion', ['sections' => $sectionsProm, 'currentSection' => $currentSectionProm])
+                    @else
+                        @include('common.saccordion', ['sections' => $sectionsProm])
+                    @endif
+
                 </div>
 
                 {{--@include('catalog.filter', [ 'filterRoute' => route('supplier.ajax', $supplier->code) ])--}}

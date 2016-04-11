@@ -1,7 +1,7 @@
 @if ( isset($currentSection) )
     @if ($currentSection->parent instanceof \App\Models\Section)
         <div class="catalog-parent-section">
-            <a href="{{ url($currentSection->parent->url) }}"> {{$currentSection->parent->name}} </a>
+            <a href="{{ url( $mainRoute.'/'.$currentSection->parent->code ) }}"> {{$currentSection->parent->name}} </a>
             <i class="fa fa-level-up"></i>
         </div>
     @endif
@@ -15,7 +15,7 @@
 
         @if( ($section->depth == 0))
 
-            <a href="{{ url($section->url) }}" class="nonaccordeon-title"><b>{{ $section->name }}</b></a>
+            <a href="{{ url( $mainRoute.'/'.$section->code ) }}" class="nonaccordeon-title"><b>{{ $section->name }}</b></a>
 
         @endif
 
@@ -37,7 +37,7 @@
                         <ul>
 
                             @foreach($children as $child)
-                                <li><a href="{{ url($section->url) }}">{{ $section->name }}</a></li>
+                                <li><a href="{{ url( $mainRoute.'/'.$section->code ) }}">{{ $section->name }}</a></li>
                             @endforeach
 
                         </ul>
@@ -47,7 +47,7 @@
         @endif
 
         @if( ($section->depth == 1) && count($section->children) == 0 )
-            <a href="{{ url($section->url) }}" class="nonaccordeon-title">{{ $section->name }}</a>
+            <a href="{{ url( $mainRoute.'/'.$section->code ) }}" class="nonaccordeon-title">{{ $section->name }}</a>
         @endif
 
     @endforeach
