@@ -102,4 +102,21 @@ class SupplierController extends Controller
                 ->with('status', 'error');
         }
     }
+
+    /**
+     * Каталог поставщиков
+     */
+    public function suppliers($sectionCode = null) {
+
+        $sectionsPotreb = $this->section->getTree( config('marketplace.potrebSectionId') );
+        $sectionsProm = $this->section->getTree( config('marketplace.promSectionId') );
+
+        if ($sectionCode) {
+            $currentSection = $this->section->byCode($sectionCode);
+            $products = $this->product->bySection($currentSection->id);
+            $suppliers = $this->supplier->byProducts($products);
+        } else $suppliers = $this->supplier->all();
+
+        return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm', 'currentSection'));
+    }
 }

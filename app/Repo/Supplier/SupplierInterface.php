@@ -9,9 +9,10 @@
 namespace App\Repo\Supplier;
 
 
+use App\Repo\RepoInterface;
 use Illuminate\Support\Collection;
 
-interface SupplierInterface
+interface SupplierInterface extends RepoInterface
 {
     public function byId($id);
     public function byCode($code);
