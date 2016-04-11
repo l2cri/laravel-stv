@@ -52,14 +52,16 @@ class SupplierController extends Controller
 
         $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
 
+        $prefix = $this->product->prefix();
+
         return view('supplier.index', compact('products', 'sections', 'currentSection',
-            'maxProductPrice', 'supplier'));
+            'maxProductPrice', 'supplier', 'prefix'));
     }
 
     public function ajax(Request $request, $name){
 
         $supplier = $this->supplier->byCode($name);
-//        $sections = $this->section->bySupplier($supplier->id);
+
         if ($request->input('sectionId')) $currentSection = $this->section->byCode($request->input('sectionId'));
 
         // фильтр по цене
@@ -75,11 +77,9 @@ class SupplierController extends Controller
             $products = $this->product->bySection($currentSection->id, false);
         else $products = $this->product->bySupplierPaginate($supplier->id);
 
+        $prefix = $this->product->prefix();
 
-//        $products = $this->product->bySection($request->input('sectionId'));
-//        $currentSection = $this->section->byCode($request->input('sectionId'));
-
-        return view('catalog.ajaxindex', compact('products', 'currentSection'));
+        return view('catalog.ajaxindex', compact('products', 'currentSection', 'prefix'));
     }
 
     public function settings(){
@@ -114,7 +114,7 @@ class SupplierController extends Controller
         if ($sectionCode) {
             $currentSection = $this->section->byCode($sectionCode);
             $this->product->bySection($currentSection->id);
-            $suppliers = $this->supplier->byProducts( $this->product->allProductsFromLastRequest() );
+            $suppliers = $this->supplier->byProductsPaginate( $this->product->allProductsFromLastRequest() );
 
             // определеяем текущая секция где
             if ( in_array( $currentSection->id, $sectionsPotreb->pluck('id')->all() ) ||
@@ -125,11 +125,12 @@ class SupplierController extends Controller
                 ( $currentSection->id == config('marketplace.promSectionId') ) )
                 $currentSectionProm = $currentSection;
 
-        } else $suppliers = $this->supplier->all();
+        } else $suppliers = $this->supplier->allPaginate();
 
         $mainRoute = route('suppliers');
+        $prefix = $this->supplier->prefix();
 
         return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm',
-            'currentSectionPotreb', 'currentSectionProm', 'mainRoute'));
+            'currentSectionPotreb', 'currentSectionProm', 'mainRoute', 'prefix'));
     }
 }

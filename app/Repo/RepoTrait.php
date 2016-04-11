@@ -41,4 +41,11 @@ trait RepoTrait
     {
         return $this->model->destroy($id);
     }
+
+    public function prefix() {
+
+        if (isset($this->model->prefix)) return $this->model->prefix;
+
+        return null;
+    }
 }

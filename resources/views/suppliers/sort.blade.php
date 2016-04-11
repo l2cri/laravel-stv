@@ -18,14 +18,11 @@ $currentUrl = isset($currentSection) ? $currentSection->url : URL::current();
 <div class="inline-text">Сортировать по</div>
 <div class="simple-drop-down">
     <select onchange="setLocation(this.value)">
-        <option @if($order == 'price')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, $prefix.'order=price'), url($currentUrl)) }}">
-            Цене                </option>
         <option @if($order == 'name')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, $prefix.'order=name'), url($currentUrl)) }}">
+        value="{{ url_add_params(array('dir='.$dir, $prefix.'order=name'), url($currentUrl)) }}">
             Названию                </option>
         <option @if($order == 'rating')selected="selected"@endif
-                value="{{ url_add_params(array('dir='.$dir, $prefix.'order=rating'), url($currentUrl)) }}">
+        value="{{ url_add_params(array('dir='.$dir, $prefix.'order=rating'), url($currentUrl)) }}">
             Рейтингу                </option>
     </select>
 </div>

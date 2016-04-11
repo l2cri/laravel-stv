@@ -69,8 +69,10 @@ class CatalogController extends Controller
         //TODO: переместить в композер инициализацию мб?
         $sections = $this->section->getTree($currentSection->id);
 
+        $prefix = $this->product->prefix();
+
         return view('catalog.index', compact('products', 'sections', 'currentSection',
-                                                'maxProductPrice', 'suppliers'));
+                                                'maxProductPrice', 'suppliers', 'prefix'));
     }
 
     public function ajax(Request $request){
@@ -84,7 +86,10 @@ class CatalogController extends Controller
         }
         $products = $this->product->bySection($request->input('sectionId'));
         $currentSection = $this->section->byCode($request->input('sectionId'));
-        return view('catalog.ajaxindex', compact('products', 'currentSection'));
+
+        $prefix = $this->product->prefix();
+
+        return view('catalog.ajaxindex', compact('products', 'currentSection', 'prefix'));
     }
 
     public function product($id){

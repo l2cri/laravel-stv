@@ -18,4 +18,5 @@ interface RepoInterface
     public function create(array $data);
     public function findBy($field, $value, $columns = array('*'));
     public function findAllBy($field, $value, $columns = array('*'));
+    public function prefix();
 }

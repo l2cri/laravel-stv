@@ -37,4 +37,13 @@ class EloquentSupplier implements SupplierInterface
         return $this->model->whereIn('id', $ids)->get();
     }
 
+    public function byProductsPaginate(Collection $products) {
+        $ids = $products->pluck('supplier_id')->toBase()->unique()->all();
+        return $this->model->whereIn('id', $ids)->sortable()->paginable();
+    }
+
+    public function allPaginate() {
+        return $this->model->sortable()->paginable();
+    }
+
 }

@@ -19,4 +19,6 @@ interface SupplierInterface extends RepoInterface
     public function update(array $data, $id, $attribute="id");
     public function bySection($sectionId, $includeSubsections = true);
     public function byProducts(Collection $products);
+    public function byProductsPaginate(Collection $products);
+    public function allPaginate();
 }
