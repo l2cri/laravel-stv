@@ -35,7 +35,7 @@ Route::post('auth/login', 'Auth\AuthController@postLogin')->name('auth.post');
 Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::get('auth/register', 'Auth\AuthController@getRegister')->name('register');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::post('/order/checkout/register', 'Auth\AuthController@checkoutRegister')->name('checkout.register');
@@ -114,6 +114,8 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
 
     //Favorite
     Route::post('panel/user/favorite/add','FavoriteController@favoriteProduct')->name('favorite-product.add');
+    Route::get('panel/user/favorite','FavoriteController@favoriteList')->name('favorite-list');
+    Route::post('panel/user/favorite/ajax', 'FavoriteController@ajax')->name('favorite-ajax');
 
     Route::get('/panel/supplier/actions/', 'ActionController@index')->name('actions');
     Route::post('/panel/supplier/actions/add', 'ActionController@add')->name('actions.add');
@@ -189,8 +191,10 @@ Route::get('order/checkout/auth', 'OrderController@auth')->name('order.auth');
 /*
  * Comments
  */
-Route::post('catalog/product/{id}/addComment', 'CommentController@store')->where('id', '[0-9]+')->name('comments.add');
-Route::get('catalog/product/{id}/pageComment', 'CommentController@paginator')->where('page','[0-9]+')->name('comment.page');
+Route::post('catalog/product/{id}/addComment', 'CommentController@storeProduct')->where('id', '[0-9]+')->name('commentProduct.add');
+Route::post('supplier/{id}/addComment', 'CommentController@storeSupplier')->where('id', '[0-9]+')->name('commentSupplier.add');
+Route::get('catalog/product/{id}/pageComment', 'CommentController@paginatorProduct')->where('page','[0-9]+')->name('commentProduct.page');
+Route::get('supplier/{id}/pageComment', 'CommentController@paginatorSupplier')->where('id', '[0-9]+')->name('commentSupplier.page');
 
 /**
  * FAQ
@@ -204,6 +208,7 @@ Route::get('catalog/product/{id}/pageFaq', 'FaqController@paginator')->where('pa
 Route::get('supplier/{name}/about', 'SupplierController@about')->name('supplier.about');
 Route::get('supplier/{name}/comments', 'SupplierController@comments')->name('supplier.comments');
 Route::get('supplier/{name}/contacts', 'SupplierController@contacts')->name('supplier.contacts');
+Route::post('supplier/{name}/contacts', 'SupplierController@feedback')->name('supplier.feedback');
 Route::get('supplier/{name}/news', 'SupplierController@actions')->name('supplier.actions');
 Route::get('supplier/{name}/{code?}', 'SupplierController@catalog')->name('supplier');
 Route::post('supplier/{name}', 'SupplierController@ajax')->name('supplier.ajax');
@@ -215,3 +220,4 @@ Route::get('suppliers/{sectionCode?}', 'SupplierController@suppliers')->name('su
  * Rating Products
  */
 Route::post('catalog/product/{id}/rate','CatalogController@rateProduct')->where('id','[0-9]+')->name('rating.rateProduct');
+Route::post('supplier/{id}/rate','SupplierController@rateSupply')->where('id','[0-9]+')->name('rating.rateSupplier');
