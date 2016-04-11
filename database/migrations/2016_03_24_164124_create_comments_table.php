@@ -22,6 +22,9 @@ class CreateCommentsTable extends Migration
             $table->text('text');
             $table->boolean('moderated')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // Todo Удалять свойства morthTo т.е в зависимости от commentable_type удалять каскадно из разных таблиц
         });
     }
 
