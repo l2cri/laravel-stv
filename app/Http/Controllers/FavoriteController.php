@@ -21,13 +21,11 @@ class FavoriteController extends Controller
     protected $product;
     protected $supplier;
 
-    public function __construct(FavoriteInterface $favorite,FavoriteForm $favoriteForm, ProductInterface $product,
-                    SupplierInterface $supplier)
+    public function __construct(FavoriteInterface $favorite,FavoriteForm $favoriteForm, ProductInterface $product)
     {
         $this->favorite = $favorite;
         $this->favoriteForm = $favoriteForm;
         $this->product = $product;
-        $this->supplier = $supplier;
     }
 
     public function favoriteProduct(Request $request)
@@ -52,24 +50,8 @@ class FavoriteController extends Controller
     {
 
         $products = $this->product->getUserFavorite();
-        $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
-        $suppliers = $this->supplier->byProducts($this->product->allProductsFromLastRequest());
 
-
-        return view('panel.user.favorite', compact('products','maxProductPrice','suppliers'));
-    }
-
-    public function ajax(Request $request){
-
-        if ($request->has('minprice') && $request->has('maxprice')) {
-            $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
-        }
-
-        if ($request->has('suppliers')) {
-            $this->product->pushCriteria( new SuppliersOnly($request->input('suppliers')) );
-        }
-        $products = $this->product->getUserFavorite();
-        return view('catalog.ajaxindex', compact('products'));
+        return view('panel.user.favorite', compact('products'));
     }
 
 }

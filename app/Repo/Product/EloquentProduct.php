@@ -143,16 +143,11 @@ class EloquentProduct implements ProductInterface
 
     public function getUserFavorite()
     {
-
-        $this->applyCriteria();
-
         $productsQuery = $this->model->whereIn('id',function($q) {
             $q->select('product_id')
                 ->from('favorite')
                 ->where('user_id', userId());
         });
-
-        $this->allProducts = $productsQuery->get();
 
        return $productsQuery->sortable()->paginable();
     }
