@@ -12,6 +12,6 @@ use App\Repo\RepoInterface;
 
 interface FavoriteInterface extends RepoInterface
 {
-    public function set($product_id,$user_id);
-    public function get($user_id);
+    public function add($product_id,$user_id);
+    public function delete($id);
 }

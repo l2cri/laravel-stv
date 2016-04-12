@@ -1,20 +1,21 @@
-<div id="fav-inner-{{$item->id}}">
-    @if($check)
-        <div class="button style-11"><i class="fa fa-heart-o"></i> В избранном</div>
-    @else
-        <a id="addFav-{{$item->id}}" class="button style-11"><i class="fa fa-heart"></i> В избранное</a>
+<? $show_all = (!isset($type))? true: false; ?>
 
-        <script>
-            $('#addFav-{{$item->id}}').click(function(){
-                submitFormByAjax('{{ route($routeName)}}',{'id':'{{$item->id}}'}).done(function(data) {
-                    try {
-                        obj =  $.parseJSON(data);
-                    } catch (e) {
-                        $('#fav-inner-{{$item->id}}').html(data);
-                    }
-                })
-                return false;
-            })
-        </script>
+@if($show_all || $type == 'icon')
+<span id="fav-icon-{{$item->id}}" class="fav-icon">
+    @if($check)
+        <a href="{{ route($routeName)}}" data-id="{{$item->id}}" data-alt="true" class="bottom-line-a square"><i class="fa fa-heart-o"></i></a>
+    @else
+        <a href="{{ route($routeName)}}" data-id="{{$item->id}}" data-alt="true" class="bottom-line-a square"><i class="fa fa-heart"></i></a>
     @endif
-</div>
+</span>
+@endif
+
+@if($show_all || $type == 'label')
+<span id="fav-label-{{$item->id}}" class="fav-label">
+    @if($check)
+        <a href="{{ route($routeName)}}" data-id="{{$item->id}}" data-alt="false" class="button style-11"><i class="fa fa-heart-o"></i> В избранном</a>
+    @else
+        <a href="{{ route($routeName)}}" data-id="{{$item->id}}" data-alt="false" class="button style-11"><i class="fa fa-heart"></i> В избранное</a>
+    @endif
+</span>
+@endif

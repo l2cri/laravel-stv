@@ -30,7 +30,7 @@ class FavoriteController extends Controller
 
     public function favoriteProduct(Request $request)
     {
-        $input = removeEmptyValues($request->all());
+        $input = removeEmptyValues($request->except('alt'));
         $product_id = $input["id"];
 
         if ($this->favoriteForm->FavoriteProduct($input) ){

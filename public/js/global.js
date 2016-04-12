@@ -679,17 +679,69 @@ $(function() {
 	$('body').on('hidden.bs.modal', '.modal', function () {
 		$(this).removeData('bs.modal');
 	});
-	function getHtmlLoader(){
-		return '<div class="bubbles">' +
-			'<div class="title">Загрузки</div>' +
-			'<span></span>' +
-			'<span id="bubble2"></span>' +
-			'<span id="bubble3"></span>' +
-			'</div>';
-	}
 
+	$(document).on('click','.fav-icon', function(){
+		var _this = $(this),
+		fav = _this.children(),
+		url = fav.attr('href'),
+		params = {
+			'id' : fav.data('id'),
+			'alt' : fav.data('alt')
+		};
 
-});
+		submitFormByAjax(url,params).done(function(data) {
+			try {
+				var obj =  $.parseJSON(data);
+				console.log(obj);
+			} catch (e) {
+				var iconContent = $(data).filter('.fav-icon'),
+					labelContent = $(data).filter('.fav-label');
+
+				_this.html(iconContent.html());
+
+				$('#fav-label-'+params.id).html(labelContent.html());
+			}
+		})
+
+		return false;
+	});
+
+	$(document).on('click','.fav-label',function(){
+		var _this = $(this),
+			fav = _this.children(),
+			url = fav.attr('href'),
+			params = {
+				'id' : fav.data('id'),
+				'alt' : fav.data('alt')
+			};
+
+		submitFormByAjax(url,params).done(function(data) {
+			try {
+				var obj =  $.parseJSON(data);
+				console.log(obj);
+			} catch (e) {
+				var iconContent = $(data).filter('.fav-icon'),
+					labelContent = $(data).filter('.fav-label');
+
+				_this.html(labelContent.html());
+
+				$('#fav-icon-'+params.id).html(iconContent.html());
+			}
+		})
+
+		return false;
+	});
+
+}); //handlers end
+
+function getHtmlLoader(){
+	return '<div class="bubbles">' +
+		'<div class="title">Загрузки</div>' +
+		'<span></span>' +
+		'<span id="bubble2"></span>' +
+		'<span id="bubble3"></span>' +
+		'</div>';
+}
 
 function setLocation(url){
 	window.location.href = url;

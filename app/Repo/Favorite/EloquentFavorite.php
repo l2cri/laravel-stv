@@ -22,7 +22,7 @@ class EloquentFavorite implements FavoriteInterface
         $this->model = $model;
     }
 
-    public function set($product_id, $user_id)
+    public function add($product_id, $user_id)
     {
         return $this->model->create(['product_id'=>$product_id,'user_id'=>$user_id]);
     }
@@ -30,6 +30,11 @@ class EloquentFavorite implements FavoriteInterface
     public function get($user_id)
     {
         // TODO: Implement get() method.
+    }
+
+    public function deleteFav($element){
+
+        return $this->delete($element->id);
     }
 
     public function checkUnique($user_id,$product_id)

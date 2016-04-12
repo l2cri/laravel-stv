@@ -34,10 +34,13 @@ class FavoriteForm
         $user_id = (int) Auth::user()->id;
         $product_id = (int) $input['id'];
 
-        if($this->favorite->checkUnique($user_id,$product_id)) return false;
-
         if ( ! $this->valid(['user_id'=>$user_id,'product_id'=>$product_id]) ) return false;
 
-        return $this->favorite->set($product_id,$user_id);
+        if($element = $this->favorite->checkUnique($user_id,$product_id)){
+            return $this->favorite->deleteFav($element);
+        }
+        else {
+            return $this->favorite->add($product_id,$user_id);
+        }
     }
 }
