@@ -8,3 +8,4 @@ test.php
 storage/database.sqlite
 test.html
 /public/images/products
+storage/database.sqlite-journal

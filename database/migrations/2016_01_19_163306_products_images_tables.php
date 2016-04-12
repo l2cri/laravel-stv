@@ -63,7 +63,7 @@ class ProductsImagesTables extends Migration
      */
     public function down()
     {
-        Schema::drop('product_product');
+        Schema::drop('product_section');
         Schema::drop('photos');
         Schema::drop('products');
     }

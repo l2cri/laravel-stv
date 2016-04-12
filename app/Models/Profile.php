@@ -26,4 +26,8 @@ class Profile extends Model
     public function company() {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function location(){
+        return $this->belongsTo('App\Models\Location');
+    }
 }
