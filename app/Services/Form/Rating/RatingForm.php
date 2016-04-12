@@ -10,6 +10,7 @@ namespace App\Services\Form\Rating;
 
 use App\Repo\Product\ProductInterface;
 use App\Repo\RatingRepoTrait;
+use App\Repo\Supplier\SupplierInterface;
 use App\Services\Form\FormTrait;
 use App\Services\Validation\ValidableInterface;
 use Auth;
@@ -20,12 +21,14 @@ class RatingForm
     use FormTrait;
 
     protected $validator;
-    protected $rating;
+    protected $product;
+    protected $supplier;
 
-    public function __construct(ValidableInterface $validator,ProductInterface $rating)
+    public function __construct(ValidableInterface $validator,ProductInterface $product, SupplierInterface $supplier )
     {
         $this->validator = $validator;
-        $this->rating = $rating;
+        $this->product = $product;
+        $this->supplier = $supplier;
     }
 
     public function rateProduct($input)
@@ -34,6 +37,14 @@ class RatingForm
         if ( ! $this->valid($input) ) return false;
 
 
-        return $this->rating->rate($input['rateable_id'],$input['rate']);
+        return $this->product->rate($input['rateable_id'],$input['rate']);
+    }
+
+    public function rateSupplier($input)
+    {
+        if ( ! $this->valid($input) ) return false;
+
+
+        return $this->supplier->rate($input['rateable_id'],$input['rate']);
     }
 }

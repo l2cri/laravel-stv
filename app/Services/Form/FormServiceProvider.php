@@ -123,7 +123,8 @@ class FormServiceProvider extends ServiceProvider
          */
         $app->bind('App\Services\Form\Rating\RatingForm', function ($app){
             return new RatingForm( new RatingValidator($app['validator']),
-                $app->make('App\Repo\Product\ProductInterface'));
+                $app->make('App\Repo\Product\ProductInterface'),
+                $app->make('App\Repo\Supplier\SupplierInterface'));
         });
 
         /*

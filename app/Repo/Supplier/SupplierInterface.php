@@ -8,11 +8,11 @@
 
 namespace App\Repo\Supplier;
 
-
 use App\Repo\RepoInterface;
+use App\Repo\RatingIterface;
 use Illuminate\Support\Collection;
 
-interface SupplierInterface extends RepoInterface
+interface SupplierInterface extends RepoInterface,RatingIterface
 {
     public function byId($id);
     public function byCode($code);

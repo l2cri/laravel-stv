@@ -8,6 +8,7 @@
 
 namespace App\Repo\Supplier;
 
+use App\Repo\RatingRepoTrait;
 use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -15,6 +16,7 @@ use Illuminate\Support\Collection;
 class EloquentSupplier implements SupplierInterface
 {
     use RepoTrait;
+    use RatingRepoTrait;
     protected $model;
 
     public function __construct(Model $model) {

@@ -14,6 +14,7 @@ use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
 use App\Repo\Criteria\Product\MinMaxPrice;
 use App\Repo\Criteria\Product\SuppliersOnly;
+use App\Services\Form\Rating\RatingForm;
 use App\Services\Form\Supplier\SupplierForm;
 use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
@@ -106,23 +107,26 @@ class SupplierController extends Controller
     /**
      * Каталог поставщиков
      */
-    public function suppliers($sectionCode = null) {
+    public function suppliers($sectionCode = null)
+    {
 
-        $sectionsPotreb = $this->section->getTree( config('marketplace.potrebSectionId') );
-        $sectionsProm = $this->section->getTree( config('marketplace.promSectionId') );
+        $sectionsPotreb = $this->section->getTree(config('marketplace.potrebSectionId'));
+        $sectionsProm = $this->section->getTree(config('marketplace.promSectionId'));
 
         if ($sectionCode) {
             $currentSection = $this->section->byCode($sectionCode);
             $this->product->bySection($currentSection->id);
-            $suppliers = $this->supplier->byProductsPaginate( $this->product->allProductsFromLastRequest() );
+            $suppliers = $this->supplier->byProductsPaginate($this->product->allProductsFromLastRequest());
 
             // определеяем текущая секция где
-            if ( in_array( $currentSection->id, $sectionsPotreb->pluck('id')->all() ) ||
-                ( $currentSection->id ==  config('marketplace.potrebSectionId') ) )
+            if (in_array($currentSection->id, $sectionsPotreb->pluck('id')->all()) ||
+                ($currentSection->id == config('marketplace.potrebSectionId'))
+            )
                 $currentSectionPotreb = $currentSection;
 
-            if ( in_array( $currentSection->id, $sectionsProm->pluck('id')->all() ) ||
-                ( $currentSection->id == config('marketplace.promSectionId') ) )
+            if (in_array($currentSection->id, $sectionsProm->pluck('id')->all()) ||
+                ($currentSection->id == config('marketplace.promSectionId'))
+            )
                 $currentSectionProm = $currentSection;
 
         } else $suppliers = $this->supplier->allPaginate();
@@ -132,5 +136,20 @@ class SupplierController extends Controller
 
         return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm',
             'currentSectionPotreb', 'currentSectionProm', 'mainRoute', 'prefix'));
+    }
+
+    public function rateSupply(Request $request,RatingForm $ratingForm,$id)
+    {
+        $request->merge(array('rateable_id' => $id));
+        $input = removeEmptyValues($request->all());
+
+        if ($ratingForm->rateSupplier($input) ){
+            $item = $this->supplier->byId($id);
+            return response()->json(['rating' => $item['rating'], 'status' => 'OK']);
+        }
+        else{
+            $errors = $ratingForm->errors();
+            return response()->json(['errors' => $errors, 'status' => 'ERROR']);
+        }
     }
 }

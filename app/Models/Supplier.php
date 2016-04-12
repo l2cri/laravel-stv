@@ -8,12 +8,16 @@
 
 namespace App\Models;
 
+
 use App\Traits\SortableTrait;
+use App\Traits\Rateable;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
     use SortableTrait;
+    use Rateable;
     protected $prefix = "suppliers";
 
     protected $fillable = ['name', 'description', 'conditions', 'responsibility',

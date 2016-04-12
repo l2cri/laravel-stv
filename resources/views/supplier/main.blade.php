@@ -21,6 +21,7 @@
                     <div class="block-title size-3">
                         <a href="{{ route('supplier', $supplier->code) }}">Каталог {{ $supplier->name }}</a>
                     </div>
+                    @include('rating.list',['item'=>$supplier,'routeName'=>'rating.rateSupplier'])
                     @include('supplier.sectionaccordion')
                 </div>
 
