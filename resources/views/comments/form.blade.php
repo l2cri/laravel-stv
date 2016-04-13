@@ -1,6 +1,6 @@
 @if(Auth::check())
 <div class="blog-entry">
-    <form id="comment-add" action="{{ route('comments.add',['id'=>$id]) }}" method="post">
+    <form id="comment-add" action="{{ route($routeName.'.add',['id'=>$id]) }}" method="post">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-sm-12">

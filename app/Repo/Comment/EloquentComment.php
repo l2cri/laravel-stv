@@ -10,6 +10,7 @@ namespace App\Repo\Comment;
 
 
 use App\Repo\RepoTrait;
+use App\Repo\Supplier\SupplierInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
 
@@ -19,11 +20,13 @@ class EloquentComment implements CommentInterface
 
     protected $model;
     protected $productModel;
+    protected $supplierModel;
     protected $page = 1;
 
-    public function __construct(Model $model,Model $productModel){
+    public function __construct(Model $model,Model $productModel, Model $supplierModel){
         $this->model = $model;
         $this->productModel = $productModel;
+        $this->supplierModel = $supplierModel;
         $this->page = Input::get('page');
     }
 
@@ -39,16 +42,22 @@ class EloquentComment implements CommentInterface
         return $product->comments()->create($data);
     }
 
-    public function getByObject($product)
+    public function getByObject($item, $perPage = null)
     {
-        //Input::replace(array('limit' => '4','page' => $this->page));
-        return $product->comments()->where('moderated',1)->orderBy('created_at', 'desc')->paginable(null, 7);
+        if(!$perPage) $perPage = config('marketplace.commentsPerPage');
+
+        return $item->comments()->where('moderated',1)->orderBy('created_at', 'desc')->paginable(null, $perPage);
     }
 
     public function byProductId($id){
         $product = $this->productModel->find($id);
 
         return $this->getByObject($product);
+    }
+    public function bySupplierId($id){
+        $supplier = $this->supplierModel->find($id);
+
+        return $this->getByObject($supplier,config('marketplace.perpage'));
     }
     public function bySupplier(){
 
@@ -62,5 +71,10 @@ class EloquentComment implements CommentInterface
 
         return $comments;
 
+    }
+
+    public function commentsBySupplier($supplier)
+    {
+        return $supplier->comments()->sortable()->paginable();
     }
 }

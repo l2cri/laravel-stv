@@ -11,6 +11,7 @@ return [
     'productPhotoDir' => 'images/products',
     'perpage' => 12,
     'unit' => 'шт',
+    'commentsPerPage' => 7,
 
     'client_role_id' => 1,
 

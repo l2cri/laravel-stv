@@ -250,9 +250,9 @@
                     <div class="article-container style-1">
                         <div class="row">
                             <div id="comments-list" class="col-md-12 information-entry">
-                                @include('comments.list',['comments'=> $comments,'id'=>$product->id])
+                                @include('comments.list',['comments'=> $comments,'id'=>$product->id,'routeName'=>'commentProduct'])
                             </div>
-                                @include('comments.form',['comments'=> $product->comments(),'id'=>$product->id])
+                                @include('comments.form',['comments'=> $product->comments(),'id'=>$product->id,'routeName'=>'commentProduct'])
                         </div>
                     </div>
                 </div>

@@ -44,7 +44,12 @@ class Supplier extends Model
         return $this->hasOne('App\Models\Company');
     }
 
+    
     public function locations(){
         return $this->belongsToMany('App\Models\Location');
+    }
+
+    public function comments(){
+        return $this->morphMany('App\Models\Comment', 'commentable');
     }
 }

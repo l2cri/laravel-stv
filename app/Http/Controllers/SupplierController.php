@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repo\Comment\CommentInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
@@ -151,5 +152,14 @@ class SupplierController extends Controller
             $errors = $ratingForm->errors();
             return response()->json(['errors' => $errors, 'status' => 'ERROR']);
         }
+    }
+
+    public function comments($name,CommentInterface $commentsInterfafe){
+
+        $supplier = $this->supplier->byCode($name);
+        $comments = $commentsInterfafe->commentsBySupplier($supplier);
+        $routeName = 'commentSupplier';
+
+        return view('supplier.comments',compact('comments','supplier','routeName'));
     }
 }

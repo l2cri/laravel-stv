@@ -17,6 +17,7 @@
             @yield('supplier_content')
 
             <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
+                @if(isset($sections))
                 <div class="information-blocks categories-border-wrapper">
                     <div class="block-title size-3">
                         <a href="{{ route('supplier', $supplier->code) }}">Каталог {{ $supplier->name }}</a>
@@ -28,6 +29,7 @@
                 @include('catalog.filter', [ 'filterRoute' => route('supplier.ajax', $supplier->code) ])
 
                 <br><br><br>
+                @endif
                 <div class="information-blocks">
                     <div class="categories-list">
                         <div class="block-title size-3">Компания</div>

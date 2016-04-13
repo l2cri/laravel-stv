@@ -1,8 +1,7 @@
 @if(isset($status))
     @include('common.status',['status'=>$status,'errors'=>$errors])
 @endif
-<?$comments->url = '/catalog/product/'.$id;?>
-@include('pagination.limit_links', ['paginator' => $comments,'currentSection' => $comments])
+@include('pagination.limit_links', ['paginator' => $comments])
 <div class="list">
     @foreach($comments as $comment )
         <div class="comment">
@@ -29,7 +28,7 @@
 
         $('#comments-list').html(getHtmlLoader());
 
-        $('#comments-list').load('{{ route('comment.page',['id'=>$id]) }}?page='+page);
+        $('#comments-list').load('{{ route($routeName.'.page',['id'=>$id]) }}?page='+page);
 
         return false;
     });
