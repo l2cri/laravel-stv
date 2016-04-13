@@ -20,6 +20,7 @@ if (AuthUser::isAdmin()){
     Admin::menu('App\Model\Role')->icon('fa-male')->label('Роли');
     Admin::menu('App\Model\Ability')->icon('fa-unlock')->label('Возможности');
     Admin::menu('App\Model\Status')->icon('fa-shopping-cart')->label('Статусы заказов');
+    Admin::menu('App\Model\Location')->icon('fa-location-arrow')->label('Локации');
 }
 
 if (AuthUser::can('news_admin'))

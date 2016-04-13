@@ -11,12 +11,13 @@ if (AuthUser::isAdmin()) {
         ->title('Локации')
         ->display(function ()
         {
-            $display = AdminDisplay::datatables();
-            $display->order([[0, 'desc']]);
+            $display = AdminDisplay::datatablesAsync();
             $display->columns([
                 Column::string('id')->label('ID'),
                 Column::string('name')->label('Название'),
+                Column::string('shortname')->label('Обозначение'),
                 Column::string('path')->label('Регион'),
+                Column::string('level')->label('Уровень'),
             ]);
             return $display;
         })->createAndEdit(function ()

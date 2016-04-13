@@ -19,15 +19,17 @@ class Location extends Node
 
     public function getPathAttribute(){
 
-        $path = "";
-        $ancestors = $this->ancestors()->defaultOrder()->get();
+        $path = array();
+        $ancestors = $this->ancestors()->get();
+        $ancestors[] = $this;
 
         foreach ($ancestors as $ancestor) {
             if ( ($ancestor->shortname == 'р-н') || ($ancestor->shortname == 'обл') )
-                $path .= $ancestor->name .' '.$ancestor->shortname;
+                $path []= $ancestor->name .' '.$ancestor->shortname.'.';
+            else $path []= $ancestor->shortname.'. '.$ancestor->name;
         }
 
-        return $path;
+        return implode(', ', $path);
     }
 
     public function suppliers(){
