@@ -20,6 +20,7 @@ use App\Services\Form\Supplier\SupplierForm;
 use App\StaticHelpers\ProductHelper;
 use Illuminate\Http\Request;
 use Redirect;
+use Mail;
 
 class SupplierController extends Controller
 {
@@ -161,5 +162,50 @@ class SupplierController extends Controller
         $routeName = 'commentSupplier';
 
         return view('supplier.comments',compact('comments','supplier','routeName'));
+    }
+
+    public function about($name){
+        $supplier = $this->supplier->byCode($name);
+
+        return view('supplier.about',compact('supplier'));
+    }
+
+    public function contacts($name){
+        $supplier = $this->supplier->byCode($name);
+
+        return view('supplier.contacts',compact('supplier','send'));
+    }
+
+    public function feedback(Request $request,$name){
+
+        $supplier = $this->supplier->byCode($name);
+        $errors =[];
+
+        if($request->message){
+            $send = Mail::raw($request->message, function($message) use ($supplier,$request)
+            {
+                $userEmail = userField('email');
+                $userName = ($request->name)? $request->name: userField('name');
+
+                $message->from($userEmail, $userName);
+
+                $message->to($supplier->user->email);
+            });
+
+            if($send){
+                return Redirect::to( route('supplier.feedback',['name'=>$name]) )->withInput()
+                    ->with('message', 'Ваше письмо отправлено.');
+            }else{
+                $errors[] = 'Почтовая служба не настроена';
+            }
+
+
+        }else{
+            $errors[] = 'Не введено вообщение.';
+        }
+
+        return Redirect::to( route('supplier.feedback',['name'=>$name]) )->withInput()
+            ->withErrors( $errors )
+            ->with('status', 'error');
     }
 }

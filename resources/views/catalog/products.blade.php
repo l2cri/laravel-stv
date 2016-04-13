@@ -23,7 +23,8 @@
     <div class="row shop-grid grid-view">
 
         @foreach($products as $product)
-            <? $section = $product->sections[0]; ?>
+            <? $section = $product->sections[0];
+            $check = $product->favorite->first()?>
             <div class="col-md-3 col-sm-4 shop-grid-item">
                 <div class="product-slide-entry shift-image">
                     <div class="product-image">
@@ -38,21 +39,14 @@
 
                         <div class="bottom-line left-attached">
                             <a class="bottom-line-a square addToCart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
+                            @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=> $check,'type'=>'icon'])
                             <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
                             <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
                         </div>
                     </div>
                     <a class="tag" href="{{ url($section->url) }}">{{ $section->name }}</a>
                     <a class="title" href="{{ route('product.page', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                    <div class="rating-box">
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="star"><i class="fa fa-star"></i></div>
-                        <div class="reviews-number">отзывы (25)</div>
-                    </div>
+                    @include('rating.list',['item'=>$product,'routeName'=>'rating.rateProduct'])
                     <div class="article-container style-1">
                         <p>{{ $product->preview }}</p>
                     </div>
@@ -68,7 +62,7 @@
                     </div>
                     <div class="list-buttons">
                         <a class="button style-10 addToCart" data-id="{{ $product->id }}">В корзину</a>
-                        <a class="button style-11"><i class="fa fa-heart"></i> В избранное</a>
+                        @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=> $check,'type'=>'label'])
                     </div>
                 </div>
                 <div class="clear"></div>

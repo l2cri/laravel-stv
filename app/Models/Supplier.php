@@ -44,7 +44,7 @@ class Supplier extends Model
         return $this->hasOne('App\Models\Company');
     }
 
-    
+
     public function locations(){
         return $this->belongsToMany('App\Models\Location');
     }

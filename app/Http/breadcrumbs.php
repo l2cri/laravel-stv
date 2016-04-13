@@ -47,3 +47,31 @@ Breadcrumbs::register('product', function($breadcrumbs,$product,$section)
     $breadcrumbs->parent('section',$section);
     $breadcrumbs->push($product->name, route('product.page',['id'=>$product->id]));
 });
+
+// Supplier main
+Breadcrumbs::register('supplier', function($breadcrumbs,$supplier,$currentSection)
+{
+    $breadcrumbs->parent('home');
+
+    $breadcrumbs->push($supplier->name, route('supplier', $supplier->code) );
+
+    if(isset($currentSection)){
+        $breadcrumbs->push($currentSection->name, route('supplier',['code'=>$currentSection->id,'name'=>$supplier->code]));
+    }
+});
+
+// Static Supplier
+Breadcrumbs::register('supplier-static', function($breadcrumbs,$supplier,$name, $url = null)
+{
+    $breadcrumbs->parent('supplier',$supplier,null);
+
+    $breadcrumbs->push($name, $url );
+});
+
+// Static 1 root
+Breadcrumbs::register('common.static', function($breadcrumbs,$name, $url = null)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push($name, $url );
+
+});

@@ -153,6 +153,10 @@ function userId() {
     if (Auth::user()) return Auth::user()->id;
     return false;
 }
+function userField($field) {
+    if (Auth::user()) return Auth::user()->$field;
+    return false;
+}
 
 function roundPrice($price) {
     return round($price, 2);

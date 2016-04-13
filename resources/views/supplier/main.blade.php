@@ -6,10 +6,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">Каталог</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('supplier',$supplier,@$currentSection))
 
     <div class="information-blocks">
         <div class="row">
