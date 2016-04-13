@@ -157,6 +157,7 @@ return [
         App\Providers\FaqServiceProvider::class,
         App\Providers\MessageServiceProvider::class,
         App\Providers\CompanyServiceProvider::class,
+        App\Providers\LocationServiceProvider::class,
 
         App\Services\Form\FormServiceProvider::class,
 

@@ -16,6 +16,7 @@ class Location extends Node
     protected $table = 'locations';
     protected $fillable = ['name', 'regioncode', 'aoguid', 'parentguid', 'auid', 'level', 'shortname'];
     protected $appends = ['path'];
+    protected $regions = ['край', 'р-н', 'обл'];
 
     public function getPathAttribute(){
 
@@ -24,7 +25,7 @@ class Location extends Node
         $ancestors[] = $this;
 
         foreach ($ancestors as $ancestor) {
-            if ( ($ancestor->shortname == 'р-н') || ($ancestor->shortname == 'обл') )
+            if ( in_array($ancestor->shortname, $this->regions) )
                 $path []= $ancestor->name .' '.$ancestor->shortname.'.';
             else $path []= $ancestor->shortname.'. '.$ancestor->name;
         }
