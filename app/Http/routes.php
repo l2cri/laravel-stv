@@ -162,7 +162,7 @@ Route::controller('/panel/supplier/faq', 'FaqController', [
 /*
  * Контент
  */
-Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-9\-\_]+')->name('');
+Route::get('info/{code}', 'InfopageController@byCode')->where('code', '[A-Za-z0-9\-\_]+')->name('infopage');
 
 /*
  * Новости
