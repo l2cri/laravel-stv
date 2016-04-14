@@ -11,6 +11,7 @@ $paginator->setPath($currentPath);
 
 @if ($paginator->lastPage() > 1)
 
+
         @if($paginator->currentPage() !== 1)
             <a class="addFilterParams square-button" href="{{ $paginator->url(1) }}"><i class="fa fa-angle-left"></i></a>
         @endif

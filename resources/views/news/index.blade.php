@@ -35,8 +35,7 @@
                     <div class="description">Showing: 1-3 of 16</div>
                     <div class="pages-box">
 
-                        <?$news->url = '/news';?>
-                        @include('pagination.limit_links', ['paginator' => $news,'currentSection' => $news])
+                        @include('pagination.limit_links', ['paginator' => $news])
 
                     </div>
                     <div class="clear"></div>

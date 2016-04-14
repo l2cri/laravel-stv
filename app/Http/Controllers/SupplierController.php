@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Repo\Action\ActionInterface;
 use App\Repo\Comment\CommentInterface;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
@@ -207,5 +208,13 @@ class SupplierController extends Controller
         return Redirect::to( route('supplier.feedback',['name'=>$name]) )->withInput()
             ->withErrors( $errors )
             ->with('status', 'error');
+    }
+
+
+    public function actions($name, ActionInterface $actionInterface){
+        $supplier = $this->supplier->byCode($name);
+        $news = $actionInterface->pagenatebleBySupplier($supplier);
+
+        return view('supplier.actions',compact('supplier','news'));
     }
 }

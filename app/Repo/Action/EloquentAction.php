@@ -83,4 +83,10 @@ class EloquentAction implements ActionInterface
 
         return roundPrice($price);
     }
+
+
+    public function pagenatebleBySupplier($supplier)
+    {
+        return $supplier->actions()->orderBy('updated_at', 'desc')->paginate();
+    }
 }
