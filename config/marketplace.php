@@ -12,6 +12,7 @@ return [
     'perpage' => 12,
     'unit' => 'шт',
     'commentsPerPage' => 7,
+    'recommedates_count' => 3,
 
     'client_role_id' => 1,
 

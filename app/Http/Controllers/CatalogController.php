@@ -97,7 +97,8 @@ class CatalogController extends Controller
         $comments = $this->comments->getByObject($product);
         $faq = $this->faq->paginateByProductId($id);
         $favorite = $this->favorite->byProduct($id);
-        return view('catalog.product', compact(['product','comments','faq','favorite']));
+        $randProducts = $this->supplier->getRandList($this->product,$product);
+        return view('catalog.product', compact(['product','comments','faq','favorite','randProducts']));
     }
 
     public function rateProduct(Request $request,RatingForm $ratingForm,$id){

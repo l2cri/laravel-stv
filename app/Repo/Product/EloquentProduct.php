@@ -59,6 +59,10 @@ class EloquentProduct implements ProductInterface
         return $this->model->where('supplier_id', $supplierId)->get();
     }
 
+    public function otherBySupplier($supplierId,$id){
+        return $this->model->where('supplier_id', $supplierId)->where('id','!=',$id);
+    }
+
     public function bySection($sectionId, $includeSubsections = true){
 
         $category = $this->section->find($sectionId);
@@ -150,6 +154,10 @@ class EloquentProduct implements ProductInterface
         });
 
        return $productsQuery->sortable()->paginable();
+    }
+
+    public function orderByRandom(){
+        return $this->model->orderByRandom();
     }
 
 }

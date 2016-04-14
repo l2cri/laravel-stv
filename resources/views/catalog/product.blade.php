@@ -83,20 +83,13 @@
                     <div class="quantity-selector detail-info-entry">
                         <div class="detail-info-entry-title">Кол-во</div>
                         <div class="entry number-minus">&nbsp;</div>
-                        <div class="entry number">10</div>
+                        <div class="entry number">1</div>
                         <div class="entry number-plus">&nbsp;</div>
                     </div>
                     <div class="detail-info-entry">
-                        <a class="button style-10">В корзину</a>
+                        <a data-id="{{$product->id}}" class="button addToCart style-10">В корзину</a>
                         @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=>isset($favorite),'type'=>'label'])
                         <div class="clear"></div>
-                    </div>
-                    <div class="tags-selector detail-info-entry">
-                        <div class="detail-info-entry-title">Теги:</div>
-                        <a href="#">ставрополь</a>/
-                        <a href="#">одежда</a>/
-                        <a href="#">платья/</a>
-                        <a href="#">для женщин</a>
                     </div>
                     <div class="share-box detail-info-entry">
                         <div class="title">Поделиться</div>
@@ -123,54 +116,36 @@
                             </div>
                         </div>
                     </div>
+                    @if(isset($randProducts))
                     <div class="col-md-12">
                         <div class="information-blocks">
                             <div class="information-entry products-list">
                                 <h3 class="block-title inline-product-column-title">Рекомендуем</h3>
+                                @foreach($randProducts as $product)
                                 <div class="inline-product-entry">
-                                    <a href="#" class="image"><img alt="" src="{{ url('img/product-image-inline-1.jpg') }}"></a>
+                                    <a href="{{route('product.page',['id'=>$product->id])}}" class="image">
+                                        <img alt="{{$product->name}}" src="{{ @url($product->photos[0]->file) }}">
+                                    </a>
                                     <div class="content">
                                         <div class="cell-view">
-                                            <a href="#" class="title">Товар 1</a>
+                                            <a href="{{route('product.page',['id'=>$product->id])}}" class="title">{{$product->name}}</a>
                                             <div class="price">
-                                                <div class="prev">199,99 <i class="fa fa-rub"></i></div>
-                                                <div class="current">119,99 <i class="fa fa-rub"></i></div>
+                                                @if($product->action_id && $product->action_price)
+                                                    <div class="prev">{{$product->regular_price}} <i class="fa fa-rub"></i></div>
+                                                    <div class="current">{{$product->action_price}} <i class="fa fa-rub"></i></div>
+                                                @else
+                                                    <div class="current">{{$product->regular_price}} <i class="fa fa-rub"></i></div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
-
-                                <div class="inline-product-entry">
-                                    <a href="#" class="image"><img alt="" src="{{ url('img/product-image-inline-1.jpg') }}"></a>
-                                    <div class="content">
-                                        <div class="cell-view">
-                                            <a href="#" class="title">Товар 2</a>
-                                            <div class="price">
-                                                <div class="prev">199,99 <i class="fa fa-rub"></i></div>
-                                                <div class="current">119,99 <i class="fa fa-rub"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-
-                                <div class="inline-product-entry">
-                                    <a href="#" class="image"><img alt="" src="{{ url('img/product-image-inline-1.jpg') }}"></a>
-                                    <div class="content">
-                                        <div class="cell-view">
-                                            <a href="#" class="title">Товар 3</a>
-                                            <div class="price">
-                                                <div class="prev">199,99 <i class="fa fa-rub"></i></div>
-                                                <div class="current">119,99 <i class="fa fa-rub"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -221,27 +196,12 @@
                     <div class="article-container style-1">
                         <div class="row">
                             <div class="col-md-6 information-entry">
-                                <h4>Обмен/Возврат</h4>
-                                <p>Вы можете вернуть или обменять товар в течение 14 дней без объяснения причин.
-                                Для этого Вам нужно сделать следующее:</p>
-                                <ul>
-                                    <li>Раз</li>
-                                    <li>Два</li>
-                                    <li>Три</li>
-                                    <li>Четыре</li>
-                                    <li>Пять</li>
-                                </ul>
+                                <h4>Условия работы</h4>
+                                <p>{{strip_tags($product->supplier->conditions)}}</p>
                             </div>
                             <div class="col-md-6 information-entry">
                                 <h4>Доставка</h4>
-                                <p>Мы доставляем товар следующими способами:</p>
-                                <ul>
-                                    <li>Раз</li>
-                                    <li>Два</li>
-                                    <li>Три</li>
-                                    <li>Четыре</li>
-                                    <li>Пять</li>
-                                </ul>
+                                <p>{{strip_tags($product->supplier->responsibility)}}</p>
                             </div>
                         </div>
                     </div>

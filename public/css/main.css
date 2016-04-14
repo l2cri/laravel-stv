@@ -254,3 +254,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 }
 
 #logo img {max-height: 64px}
+
+.cart-table .quantity-selector {
+	width: 120px;
+}

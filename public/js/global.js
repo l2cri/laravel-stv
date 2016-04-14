@@ -639,7 +639,15 @@ $(function() {
 		//open subscribe popup
 	$('.addToCart').on('click', function(){
 
-		var params = { product_id: $(this).data('id'), qnt: 1 };
+		var count = 1;
+
+		if($('.quantity-selector .number').length){
+			count = parseInt($('.quantity-selector .number').text());
+
+			if(isNaN(count) || count == 0) count = 1;
+		};
+
+		var params = { product_id: $(this).data('id'), qnt: count };
 
 		submitCart(params).done(function(data) {
 			$(".cart-box.popup").html(data.cart);

@@ -8,6 +8,7 @@
 
 namespace App\Repo\Supplier;
 
+use App\Models\Product\Product;
 use App\Repo\RatingRepoTrait;
 use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -46,6 +47,21 @@ class EloquentSupplier implements SupplierInterface
 
     public function allPaginate() {
         return $this->model->sortable()->paginable();
+    }
+
+    public function getRandList($productsModel,$currentProduct,$limit = null){
+        if(!$limit) $limit = config('marketplace.recommedates_count');
+
+        $supplier_id = $currentProduct->supplier_id;
+        $products_id = $currentProduct->id;
+
+        $products = $productsModel
+            ->otherBySupplier($supplier_id,$products_id)
+            ->orderByRandom()
+            ->take($limit)
+            ->get();
+        
+        return $products;
     }
 
 }
