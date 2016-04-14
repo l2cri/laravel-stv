@@ -18,6 +18,7 @@ class Supplier extends Model
 {
     use SortableTrait;
     use Rateable;
+    
     protected $prefix = "suppliers";
 
     protected $fillable = ['name', 'description', 'conditions', 'responsibility',
