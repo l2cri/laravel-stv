@@ -1,4 +1,5 @@
 @extends('panel.index')
+@section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Категории'))
 
 @section('panel_content')
 

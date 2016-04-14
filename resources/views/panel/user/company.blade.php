@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Реквизиты'))
 @section('panel_content')
     <div class="information-blocks">
         <h3 class="block-title main-heading">Настройки корпоративного профиля</h3>

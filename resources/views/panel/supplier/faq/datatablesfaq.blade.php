@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Вопросы'))
 @section('headscripts')
 
     @parent

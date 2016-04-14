@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('breadcrumbs', Breadcrumbs::render('common.static','Панель управления'))
+
 @section('headscripts')
     <link href="{{ url('https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ url('/css/jquery.periodpicker.min.css') }}" rel="stylesheet" type="text/css" />

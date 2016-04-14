@@ -68,6 +68,7 @@ Breadcrumbs::register('supplier-static', function($breadcrumbs,$supplier,$name, 
     $breadcrumbs->push($name, $url );
 });
 
+
 // Static 1 root
 Breadcrumbs::register('common.static', function($breadcrumbs,$name, $url = null)
 {
@@ -75,3 +76,27 @@ Breadcrumbs::register('common.static', function($breadcrumbs,$name, $url = null)
     $breadcrumbs->push($name, $url );
 
 });
+
+// Static 2 root
+Breadcrumbs::register('common.static-sub', function($breadcrumbs,$parent,$name, $url = null)
+{
+    $breadcrumbs->parent('common.static',$parent['name'],$parent['url']);
+    $breadcrumbs->push($name, $url );
+
+});
+
+// Static panel
+Breadcrumbs::register('common.panel-sub', function($breadcrumbs,$name, $url = null)
+{
+    $breadcrumbs->parent('common.static','Панель управления',route('panel::panel.index'));
+    $breadcrumbs->push($name, $url );
+
+});
+// Static order
+Breadcrumbs::register('common.order-sub', function($breadcrumbs,$name, $url = null)
+{
+    $breadcrumbs->parent('common.panel-sub','Заказы',$url);
+    $breadcrumbs->push($name, $url );
+
+});
+

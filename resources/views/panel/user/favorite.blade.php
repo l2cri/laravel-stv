@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Избранные'))
 @section('panel_content')
 
 

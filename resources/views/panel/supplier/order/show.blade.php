@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('common.order-sub','Заказ № '.$order->id,route('orders.datatables')))
 @section('panel_content')
 
     <div class="row information-blocks sections-panel article-container style-2">

@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Добавить товар'))
 @section('panel_content')
 
 <div class="information-blocks">
