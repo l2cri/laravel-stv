@@ -106,6 +106,10 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/comments/delete/{id}', 'CommentController@delete')->name('comment.delete');
     Route::get('/panel/supplier/comments/toggle/{id}', 'CommentController@toggle')->name('comment.toggle');
 
+    Route::get('/panel/supplier/supplier-comments','CommentController@getSupplierComments')->name('supplierComments.list');
+    Route::get('/panel/supplier/supplier-comments/delete/{id}', 'CommentController@deleteSupplierComments')->name('supplierComments.delete');
+    Route::get('/panel/supplier/supplier-comments/toggle/{id}', 'CommentController@toggleSupplierComments')->name('supplierComments.toggle');
+
     //FAQ
     Route::get('/panel/supplier/faq','FaqController@getBySupplier')->name('faq.list');
     Route::get('/panel/supplier/faq/delete/{id}', 'FaqController@delete')->name('faq.delete');
