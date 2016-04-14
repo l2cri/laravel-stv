@@ -8,7 +8,8 @@
             <div class="col-sm-9 information-entry">
                 <h1 class="block-title">Спасибо за ваш заказ</h1>
                 <div class="article-container style-1">
-
+                    <p>Спасибо,  {{ Auth::user()->name}}  за заказ!</p>
+                    Поставщики свяжутся с вами в ближайшее время.
                 </div>
             </div>
             <div class="col-sm-3 information-entry">
