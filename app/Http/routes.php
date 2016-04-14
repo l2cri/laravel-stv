@@ -150,6 +150,10 @@ Route::controller('/panel/supplier/comments', 'CommentController', [
     'getBySupplier' => 'comments.datatables',
 ]);
 
+Route::controller('/panel/supplier/supplier-comments', 'CommentController', [
+    'getSupplierComments' => 'supplierComments.datatables',
+]);
+
 Route::controller('/panel/supplier/faq', 'FaqController', [
     'getBySupplier' => 'faq.datatables',
 ]);
