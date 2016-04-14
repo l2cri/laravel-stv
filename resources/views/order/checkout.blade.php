@@ -2,10 +2,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="{{ url() }}">Главная</a>
-        <a href="#">Оформить заказ</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('common.static-sub',['name'=>'Корзина','url'=> route('cart.index')],'Оформить заказ'))
 
     <div class="information-blocks" id="checkoutPage">
         <div class="row">

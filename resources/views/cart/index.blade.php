@@ -2,10 +2,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="{{ url('/') }}">Главная</a>
-        <a href="#">Корзина</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('common.static','Корзина'))
 
     <div class="information-blocks">
         <div id="cartUpdateDiv">

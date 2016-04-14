@@ -71,7 +71,8 @@ class OrderController extends Controller
     }
 
     public function thanks(){
-        return 'спасибо за заказ';
+
+        return view('order.thanks');//'спасибо за заказ';
     }
 
     public function supplierorder($id) {
