@@ -1,5 +1,5 @@
 @extends('panel.index')
-
+@section('breadcrumbs', Breadcrumbs::render('edit-faq','Вопрос №'.$faq->id))
 @section('panel_content')
     <div class="row information-blocks sections-panel article-container style-2">
         <div class="col-md-12">

@@ -100,3 +100,18 @@ Breadcrumbs::register('common.order-sub', function($breadcrumbs,$name, $url = nu
 
 });
 
+Breadcrumbs::register('edit-faq', function($breadcrumbs,$name)
+{
+    $breadcrumbs->parent('common.static','Панель управления',route('panel::panel.index'));
+    $breadcrumbs->push('Вопросы', route('panel::faq.list'));
+    $breadcrumbs->push($name);
+
+});
+
+Breadcrumbs::register('edit-product', function($breadcrumbs,$name)
+{
+    $breadcrumbs->parent('common.static','Панель управления',route('panel::panel.index'));
+    $breadcrumbs->push('Товары', route('panel::products'));
+    $breadcrumbs->push($name);
+
+});

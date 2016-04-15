@@ -1,5 +1,6 @@
 @extends('panel.index')
 
+@section('breadcrumbs', Breadcrumbs::render('edit-product','Товар №'.$product->id))
 @section('panel_content')
     <?
             $sectionIds = getColumnArray($product->sections);
