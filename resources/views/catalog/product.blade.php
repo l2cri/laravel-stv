@@ -1,4 +1,29 @@
+<?
+    $sharePage = [
+    'url'=>route('product.page',['id'=>$product->id]),
+    'title'=>$product->name,
+    'description'=>$product->description,
+    'image'=> url($product->photos[0]->file)]
+?>
 @extends('main')
+@section('headscripts')
+
+    @parent
+
+    <meta name="name"  content="{{$sharePage['title']}}" />
+    <meta name="description"  content="{{$sharePage['description']}}" />
+    <meta name="image"  content="{{$sharePage['image']}}" />
+
+    <meta property="og:title" content="{{$sharePage['title']}}" />
+    <meta property="og:description" content="{{$sharePage['description']}}"/>
+    <meta property="og:image" content="{{$sharePage['image']}}"/>
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{$sharePage['title']}}">
+    <meta name="twitter:description" content="{{$sharePage['description']}}"/>
+    <meta name="twitter:image:src" content="{{$sharePage['image']}}"/>
+
+@endsection
 
 @section('content')
 
@@ -91,18 +116,7 @@
                         @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=>isset($favorite),'type'=>'label'])
                         <div class="clear"></div>
                     </div>
-                    <div class="share-box detail-info-entry">
-                        <div class="title">Поделиться</div>
-                        <div class="socials-box">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-youtube"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
+                    @include('common.social-share',$sharePage)
                 </div>
             </div>
             <div class="clear visible-xs visible-sm"></div>
