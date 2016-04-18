@@ -25,8 +25,8 @@ class LocationController extends Controller
 
     public function locationsTree() {
         $locationTree = $this->location->getTree( config('marketplace.locationLevel') );
-
-        return view('panel.supplier.locations', compact('locationTree'));
+        $supplierLocations = $this->location->getBySupplier(supplierId());
+        return view('panel.supplier.locationtree', compact('locationTree', 'supplierLocations'));
     }
 
     public function saveDeliveryZone(Request $request){
@@ -40,5 +40,9 @@ class LocationController extends Controller
                 ->withErrors( $this->form->errors() )
                 ->with('status', 'error');
         }
+    }
+
+    public function ajax(Request $request){
+        return $this->location->getJson($request->get('id'), supplierId());
     }
 }

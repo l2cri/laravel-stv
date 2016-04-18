@@ -20,5 +20,5 @@ return [
     'supplierDir' => 'images/supplier',
 
     //локации
-    'locationLevel' =>2,
+    'locationLevel' =>3,
 ];

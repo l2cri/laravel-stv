@@ -135,6 +135,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     // Locations
     Route::get('/panel/supplier/zones', 'LocationController@locationsTree')->name('location.zones');
     Route::post('/panel/supplier/zones', 'LocationController@saveDeliveryZone')->name('location.zones.save');
+    Route::get('/panel/supplier/zones/ajax', 'LocationController@ajax')->name('location.zones.ajax');
 });
 
 /*

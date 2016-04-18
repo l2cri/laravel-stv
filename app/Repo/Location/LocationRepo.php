@@ -45,6 +45,22 @@ class LocationRepo implements LocationInterface
         return $this->model->where('level', '<=', $level)->defaultOrder()->get()->toTree();
     }
 
+    public function getJson($parentId, $supplierId)
+    {
+        $json = array();
+        $parent = $this->model->find($parentId);
+        foreach ($parent->children as $child) {
+            $json[] = array(
+                'id' => $child->id,
+                'title' => $child->name.' '.$child->shortname,
+                'isFolder' => ( count($child->children) > 0) ? 1 : 0,
+                'checked' => ( in_array($supplierId, $child->suppliers()->lists('id')->all()) ) ? "checked" : ""
+            );
+        }
+
+        return json_encode($json);
+    }
+
     public function getByGeoIp()
     {
         $ch = curl_init();
@@ -87,6 +103,10 @@ class LocationRepo implements LocationInterface
         if ($this->model->find($locationId))
             $this->request->session()->put('locationId', $locationId);
         else return false;
+    }
+
+    public function getBySupplier($supplierId) {
+        return $this->supplier->find($supplierId)->locations()->defaultOrder()->withDepth()->get();
     }
 
 }

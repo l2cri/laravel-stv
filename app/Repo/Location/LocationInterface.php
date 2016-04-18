@@ -17,4 +17,6 @@ interface LocationInterface
     public function getByGeoIp();
     public function getSessionLocation();
     public function setSessionLocation($locationId);
+    public function getJson($parentId, $supplierId);
+    public function getBySupplier($supplierId);
 }
