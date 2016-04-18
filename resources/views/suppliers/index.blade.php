@@ -50,7 +50,7 @@
                         <input type="hidden" value="{{ @$currentSection }}" name="sectionId">
 
                         <div class="information-blocks">
-                            <div class="block-title size-2">По зоне доставки</div>
+                            <div class="block-title size-3">По зоне доставки</div>
                             <div>
 
                                 @include('common.geo')

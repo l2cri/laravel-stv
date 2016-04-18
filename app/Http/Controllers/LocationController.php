@@ -45,4 +45,14 @@ class LocationController extends Controller
     public function ajax(Request $request){
         return $this->location->getJson($request->get('id'), supplierId());
     }
+
+    public function queryJson($query) {
+        return json_encode( $this->location->getByQuery($query)->all() );
+    }
+
+    public function setLocation(Request $request) {
+
+        $this->location->setSessionLocation($request->get('locationId'));
+//        return redirect()->back();
+    }
 }

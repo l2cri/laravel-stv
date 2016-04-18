@@ -19,4 +19,5 @@ interface LocationInterface
     public function setSessionLocation($locationId);
     public function getJson($parentId, $supplierId);
     public function getBySupplier($supplierId);
+    public function getByQuery($query);
 }

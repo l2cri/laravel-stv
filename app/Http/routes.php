@@ -236,3 +236,7 @@ Route::get('suppliers/{sectionCode?}', 'SupplierController@suppliers')->name('su
  */
 Route::post('catalog/product/{id}/rate','CatalogController@rateProduct')->where('id','[0-9]+')->name('rating.rateProduct');
 Route::post('supplier/{id}/rate','SupplierController@rateSupply')->where('id','[0-9]+')->name('rating.rateSupplier');
+
+// Location typehead
+Route::get('queryJson/{query}', 'LocationController@queryJson')->name('locationQuery');
+Route::post('setLocation', 'LocationController@setLocation')->name('setLocation');

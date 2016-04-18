@@ -34,7 +34,7 @@ class ComposerServiceProvider extends ServiceProvider
              * geoLocation
              */
             $location = app()->make('App\Repo\Location\LocationInterface');
-            $view->with('currentLocation', $location->getByGeoIp());
+            $view->with('currentLocation', $location->getSessionLocation());
         });
 
         // Using class based composers...

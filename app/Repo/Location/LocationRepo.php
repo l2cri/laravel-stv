@@ -40,6 +40,10 @@ class LocationRepo implements LocationInterface
         return $this->model->where('name', 'like', $locationName.'%')->first();
     }
 
+    public function getByQuery($query){
+        return $this->model->where('name', 'like', $query.'%')->orWhere('name', 'like', mb_convert_case($query, MB_CASE_TITLE, "UTF-8").'%' )->get();
+    }
+
     public function getTree($level)
     {
         return $this->model->where('level', '<=', $level)->defaultOrder()->get()->toTree();
