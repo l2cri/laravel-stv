@@ -9,6 +9,7 @@
 namespace App\Repo\Supplier;
 
 use App\Models\Product\Product;
+use App\Repo\Criteria\CriteriaTrait;
 use App\Repo\RatingRepoTrait;
 use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ class EloquentSupplier implements SupplierInterface
 {
     use RepoTrait;
     use RatingRepoTrait;
+    use CriteriaTrait;
     protected $model;
 
     public function __construct(Model $model) {
@@ -37,15 +39,21 @@ class EloquentSupplier implements SupplierInterface
     public function byProducts(Collection $products)
     {
         $ids = $products->pluck('supplier_id')->toBase()->unique()->all();
+
+        $this->applyCriteria();
         return $this->model->whereIn('id', $ids)->get();
     }
 
     public function byProductsPaginate(Collection $products) {
+
         $ids = $products->pluck('supplier_id')->toBase()->unique()->all();
+
+        $this->applyCriteria();
         return $this->model->whereIn('id', $ids)->sortable()->paginable();
     }
 
     public function allPaginate() {
+        $this->applyCriteria();
         return $this->model->sortable()->paginable();
     }
 

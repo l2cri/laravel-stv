@@ -200,3 +200,11 @@ function getUserIP()
 
     return $ip;
 }
+
+function getCurrentLocation(){
+    /**
+     * geoLocation
+     */
+    $location = app()->make('App\Repo\Location\LocationInterface');
+    return $location->getSessionLocation();
+}

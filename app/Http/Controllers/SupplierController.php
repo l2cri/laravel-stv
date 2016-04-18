@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repo\Action\ActionInterface;
 use App\Repo\Comment\CommentInterface;
+use App\Repo\Criteria\Supplier\LocationOnly;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
 use App\Repo\Supplier\SupplierInterface;
@@ -144,6 +145,13 @@ class SupplierController extends Controller
 
     public function suppliersAjax(Request $request){
 
+        $location = getCurrentLocation();
+
+        $this->supplier->pushCriteria(new LocationOnly(array_merge(
+            [$location->id]),
+            $location->ancestors()->get()->lists('id')->all()
+            ));
+
         if ($request->has('sectionId')) {
 
             $currentSectionCopy = $this->section->byCode( $request->get('sectionId') );
@@ -158,6 +166,7 @@ class SupplierController extends Controller
         $currentSection = new \StdClass;
         $currentSection->url = route('suppliers');
         if (isset($currentSectionCopy)) $currentSection->url = route('suppliers', $currentSectionCopy->code);
+        // костыль
 
         return view('suppliers.ajaxindex', compact('suppliers', 'prefix', 'currentSectionCopy', 'currentSection'));
     }
