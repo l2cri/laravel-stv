@@ -230,6 +230,7 @@ Route::post('supplier/{name}', 'SupplierController@ajax')->name('supplier.ajax')
 
 // каталог поставщиков
 Route::get('suppliers/{sectionCode?}', 'SupplierController@suppliers')->name('suppliers');
+Route::post('suppliers/ajax', 'SupplierController@suppliersAjax')->name('suppliers.ajax');
 
 /**
  * Rating Products

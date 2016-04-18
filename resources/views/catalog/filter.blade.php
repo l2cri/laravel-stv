@@ -131,19 +131,6 @@
         });
     }
 
-    function setParamsFromLocation(selectors, supplementUrl){
-        $(selectors).each(function(){
-            var href = this.href;
-            if (href.indexOf('?') != -1) {
-                href = href + '&' + supplementUrl;
-            }
-            else {
-                href = href + '?' + supplementUrl;
-            }
-            $(this).attr('href', href);
-        });
-    }
-
     $(function() {
 
         {{--параметры для фильтрации из GET-запроса, формируем в контроллере и передаем в шаблон--}}

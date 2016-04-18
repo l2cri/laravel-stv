@@ -118,6 +118,7 @@ class SupplierController extends Controller
 
         if ($sectionCode) {
             $currentSection = $this->section->byCode($sectionCode);
+            $currentSectionCopy = $currentSection;
             $this->product->bySection($currentSection->id);
             $suppliers = $this->supplier->byProductsPaginate($this->product->allProductsFromLastRequest());
 
@@ -138,7 +139,27 @@ class SupplierController extends Controller
         $prefix = $this->supplier->prefix();
 
         return view('suppliers.index', compact('suppliers', 'sectionsPotreb', 'sectionsProm',
-            'currentSectionPotreb', 'currentSectionProm', 'mainRoute', 'prefix'));
+            'currentSectionPotreb', 'currentSectionProm', 'mainRoute', 'prefix', 'currentSectionCopy'));
+    }
+
+    public function suppliersAjax(Request $request){
+
+        if ($request->has('sectionId')) {
+
+            $currentSectionCopy = $this->section->byCode( $request->get('sectionId') );
+            $this->product->bySection( $request->get('sectionId') );
+            $suppliers = $this->supplier->byProductsPaginate($this->product->allProductsFromLastRequest());
+
+        } else $suppliers = $this->supplier->allPaginate();
+
+        $prefix = $this->supplier->prefix();
+
+        //TODO: костыль, чтобы не переделывать пагинацию и сортировки - но это надо сделать
+        $currentSection = new \StdClass;
+        $currentSection->url = route('suppliers');
+        if (isset($currentSectionCopy)) $currentSection->url = route('suppliers', $currentSectionCopy->code);
+
+        return view('suppliers.ajaxindex', compact('suppliers', 'prefix', 'currentSectionCopy', 'currentSection'));
     }
 
     public function rateSupply(Request $request,RatingForm $ratingForm,$id)

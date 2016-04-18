@@ -865,3 +865,16 @@ function getParameterByName(name, url) {
 	if (!results[2]) return '';
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+function setParamsFromLocation(selectors, supplementUrl){
+	$(selectors).each(function(){
+		var href = this.href;
+		if (href.indexOf('?') != -1) {
+			href = href + '&' + supplementUrl;
+		}
+		else {
+			href = href + '?' + supplementUrl;
+		}
+		$(this).attr('href', href);
+	});
+}

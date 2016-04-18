@@ -47,7 +47,7 @@
 
                     {{--start serialize div--}}
                     <div id="srlz">
-                        <input type="hidden" value="{{ @$currentSection }}" name="sectionId">
+                        <input type="hidden" value="{{ @$currentSectionCopy->id }}" name="sectionId">
 
                         <div class="information-blocks">
                             <div class="block-title size-3">По зоне доставки</div>
@@ -63,6 +63,31 @@
                     </div>
                     {{--end serialize div--}}
                 </form>
+
+                <script>
+                    $(function() {
+
+                        if(window.location.search.indexOf("filterByLocation=") > -1){
+                            setParamsFromLocation('a.addFilterParams', 'filterByLocation=1');
+                        }
+
+                        /*
+                         кнопка фильтра
+                         */
+                        var filterButton = $("#submitFilterForm");
+                        filterButton.on("click", function() {
+
+                            submitFormByAjax( '{{ route('suppliers.ajax') }}',
+                                            $( "#filterForm" ).serialize()).done(function(data){
+                                $("#catalogSuppliers").html(data);
+                                setParamsFromLocation('a.addFilterParams', 'filterByLocation=1');
+
+                            }).fail(function(jqXHR) {
+                                alert("Ошибка: "+jqXHR.responseText);
+                            });
+                        });
+                    });
+                </script>
 
             </div>
         </div>
