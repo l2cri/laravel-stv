@@ -19,6 +19,8 @@ use App\Services\Form\Faq\FaqForm;
 use App\Services\Form\Faq\FaqValidator;
 use App\Services\Form\Favorite\FavoriteForm;
 use App\Services\Form\Favorite\FavoriteValidator;
+use App\Services\Form\Location\LocationForm;
+use App\Services\Form\Location\LocationValidator;
 use App\Services\Form\Order\OrderForm;
 use App\Services\Form\Order\OrderValidator;
 use App\Services\Form\Product\ProductForm;
@@ -154,6 +156,15 @@ class FormServiceProvider extends ServiceProvider
                 $app->make('App\Repo\Profile\ProfileInterface'),
                 $app->make('App\Repo\Supplier\SupplierInterface')
             );
+        });
+
+        /*
+         * Locations
+         */
+        $app->bind('App\Services\Form\Location\LocationForm', function ($app){
+
+            return new LocationForm(new LocationValidator($app['validator']),
+                $app->make('App\Repo\Location\LocationInterface'));
         });
     }
 }

@@ -121,6 +121,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('panel/user/favorite','FavoriteController@favoriteList')->name('favorite-list');
     Route::post('panel/user/favorite/ajax', 'FavoriteController@ajax')->name('favorite-ajax');
 
+    // Supplier
     Route::get('/panel/supplier/actions/', 'ActionController@index')->name('actions');
     Route::post('/panel/supplier/actions/add', 'ActionController@add')->name('actions.add');
     Route::get('/panel/supplier/actions/show/{id}', 'ActionController@show')->name('actions.show');
@@ -130,6 +131,10 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/actions/associate/{id}', 'ActionController@associate')->name('actions.associate');
     Route::get('/panel/supplier/actions/disassociate/{id}', 'ActionController@disassociate')->name('actions.disassociate');
     Route::get('/panel/supplier/actions/{action_id}/product/{product_id}/remove', 'ActionController@removeProduct')->name('actions.removeProduct');
+
+    // Locations
+    Route::get('/panel/supplier/zones', 'LocationController@locationsTree')->name('location.zones');
+    Route::post('/panel/supplier/zones', 'LocationController@saveDeliveryZone')->name('location.zones.save');
 });
 
 /*

@@ -17,5 +17,8 @@ return [
     'client_role_id' => 1,
 
     // поставщик
-    'supplierDir' => 'images/supplier'
+    'supplierDir' => 'images/supplier',
+
+    //локации
+    'locationLevel' =>2,
 ];
