@@ -740,6 +740,14 @@ $(function() {
 		return false;
 	});
 
+	/**
+	 * geoIp
+	 */
+	$('.geoipLink').on('click', function(e){
+		e.preventDefault();
+		showPopup($('#geo-popup'));;
+	});
+
 }); //handlers end
 
 function getHtmlLoader(){

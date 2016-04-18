@@ -454,6 +454,31 @@
     </div>
 </div>
 
+<div id="geo-popup" class="overlay-popup">
+    <div class="overflow">
+        <div class="table-view">
+            <div class="cell-view">
+                <div class="close-layer"></div>
+                <div class="popup-container">
+                    <div class="newsletter-title">Выбрать местополжение</div>
+
+                    <div class="styled-form">
+
+                        <form>
+                            <div class="submit-wrapper">Выбрать<input type="submit" value=""></div>
+                            <div class="field-wrapper">
+                                <input type="text" value="" placeholder="Город или населенный пункт">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="close-popup"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @include('jsfooter')
 
 </body>

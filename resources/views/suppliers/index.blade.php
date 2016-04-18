@@ -41,7 +41,28 @@
 
                 </div>
 
-                {{--@include('catalog.filter', [ 'filterRoute' => route('supplier.ajax', $supplier->code) ])--}}
+                <form id="filterForm" method="post">
+
+                    {{ csrf_field() }}
+
+                    {{--start serialize div--}}
+                    <div id="srlz">
+                        <input type="hidden" value="{{ @$currentSection }}" name="sectionId">
+
+                        <div class="information-blocks">
+                            <div class="block-title size-2">По зоне доставки</div>
+                            <div>
+
+                                @include('common.geo')
+
+
+                            </div>
+                            <a class="button style-14" id="submitFilterForm">Фильтр</a>
+                        </div>
+
+                    </div>
+                    {{--end serialize div--}}
+                </form>
 
             </div>
         </div>

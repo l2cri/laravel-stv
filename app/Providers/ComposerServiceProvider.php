@@ -29,6 +29,12 @@ class ComposerServiceProvider extends ServiceProvider
             if (!$currentUser) $currentUser = new User();
 
             $view->with('user', $currentUser);
+
+            /**
+             * geoLocation
+             */
+            $location = app()->make('App\Repo\Location\LocationInterface');
+            $view->with('currentLocation', $location->getByGeoIp());
         });
 
         // Using class based composers...

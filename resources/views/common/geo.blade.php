@@ -1,0 +1,1 @@
+<div class="geoip">Ваше местоположение: <a class="geoipLink">{{ $currentLocation->name }} {{ $currentLocation->shortname }}</a></div>
