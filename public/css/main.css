@@ -262,3 +262,20 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .swiper-slide .navigation-banner-wrapper .info {
 	min-width: 258px;
 }
+
+.cabinet>.dropdown-menu {
+	display: block;
+	position: relative;
+	width: 293px;
+	left: -29px;
+	top: -30px;
+	text-align: right;
+	padding-right: 7px;
+	padding-top: 22px;
+}
+
+.cabinet>.dropdown-menu ul ,
+.cabinet>.dropdown-menu .block-title
+{
+	padding-right: 20px;
+}

@@ -5,8 +5,8 @@
     <a class="" href="{{ route('panel::panel.index') }}">
         <span>Кабинет </span><i class="fa fa-user"></i>
     </a>
-    <div class="dropped-div" id="drop-login-form">
-        <ul class="list">
+    <div class="dropped-div cabinet" id="drop-login-form">
+        <ul class="dropdown-menu">
             @can('supplier_panel')
                 @include('panel.menu.supplier')
             @else
