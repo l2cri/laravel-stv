@@ -3,72 +3,17 @@
 @section('content')
 
 <div class="row">
+    @if(isset($banners))
     <div class="col-lg-9 col-md-12">
         <div class="information-blocks">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="navigation-banner-swiper size-1">
-
-                        <div class="swiper-container" data-autoplay="5000" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide active" data-val="0">
-                                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/moloko.jpg') }}); background-color: #f5f1e2;">
-                                        <div class="navigation-banner-content">
-                                            <div class="cell-view">
-                                                <h2 class="subtitle">Распродажа 1</h2>
-                                                <h1 class="title">Молоко</h1>
-                                                <div class="description">Супер коровье.</div>
-                                                <div class="info">
-                                                    <a class="button style-2" href="#">Каталог</a>
-                                                    <a class="button style-2" href="#">Подробнее</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" data-val="1">
-                                    <div class="navigation-banner-wrapper align-2" style="background-image: url({{ url('img/egg.jpg') }}); background-color: #e8e8e8;">
-                                        <div class="navigation-banner-content">
-                                            <div class="cell-view">
-                                                <h2 class="subtitle">Распродажа 2!</h2>
-                                                <h1 class="title">Яйца</h1>
-                                                <div class="description">Перепелиные</div>
-                                                <div class="info">
-                                                    <a class="button style-2" href="#">Каталог</a>
-                                                    <a class="button style-2" href="#">Подробнее</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" data-val="2">
-                                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/velo.jpg') }}); background-color: #f6e8d8;">
-                                        <div class="navigation-banner-content">
-                                            <div class="cell-view">
-                                                <h2 class="subtitle">Распродажа 3</h2>
-                                                <h1 class="title">Велосипед Десна</h1>
-                                                <div class="description">Для детей и взрослых</div>
-                                                <div class="info">
-                                                    <a class="button style-2" href="#">Каталог</a>
-                                                    <a class="button style-2" href="#">Подробнее</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="pagination"></div>
-                        </div>
-
-                    </div>
+                    @include('home.slider',['items'=>$banners])
                 </div>
             </div>
         </div>
     </div>
+    @endif
     <div class="col-lg-3 col-md-12">
         <div class="row">
             <div class="col-lg-12 col-md-4">

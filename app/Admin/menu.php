@@ -25,3 +25,7 @@ if (AuthUser::isAdmin()){
 
 if (AuthUser::can('news_admin'))
     Admin::menu('App\Model\News')->icon('fa-list-alt')->label("Новости");
+
+if (AuthUser::can('banners_admin')) {
+    Admin::menu('App\Model\Banner')->icon('fa-picture-o')->label('Баннеры');
+}

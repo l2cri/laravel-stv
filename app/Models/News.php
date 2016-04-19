@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Services\Cache\StaticHelper;
+use App\Traits\PathImageTrait;
 use App\Traits\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class News extends Model
 {
     use SortableTrait;
+    use PathImageTrait;
     //
     protected $table = 'news';
 
@@ -30,28 +31,6 @@ class News extends Model
             StaticHelper::refreshInfopageByCode('all-news-1');
             StaticHelper::refreshInfopageByCode('news-'.$post->id);
         });
-    }
-
-    public function setImageAttribute($image)
-    {
-        $newPath = 'images/news/';
-        $issetOldImage = array_key_exists('image',$this->attributes);
-
-        if(!$image) {
-            $this->attributes['image'] = "";
-        }
-        else{
-
-            if($issetOldImage && $this->attributes['image'] == $image)
-                    return;
-
-            $fileName = basename($image);
-
-            if(!Storage::exists($newPath.$fileName))
-                Storage::move($image,$newPath.$fileName);
-
-            $this->attributes['image'] = $newPath.$fileName;
-        }
     }
 
 }
