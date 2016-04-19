@@ -34,6 +34,15 @@ class CommentForm
         return $this->comment->create($input);
     }
 
+    public function save4Supplier(array $input) {
+
+        $input['user_id'] = (int) Auth::user()->id;
+
+        if ( ! $this->valid($input) ) return false;
+
+        return $this->comment->create4Supplier($input);
+    }
+
     public function errors() {
         return $this->validator->errors();
     }

@@ -25,6 +25,7 @@ class HomeController extends Controller
     {
         //
         $banners = $this->banners->sortable('sort','asc');
-        return view('home',compact('banners'));
+        $rightBanners  = $this->banners->sortable('sort','asc','right');
+        return view('home',compact('banners','rightBanners'));
     }
 }

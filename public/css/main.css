@@ -258,3 +258,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .cart-table .quantity-selector {
 	width: 120px;
 }
+
+.swiper-slide .navigation-banner-wrapper .info {
+	min-width: 258px;
+}

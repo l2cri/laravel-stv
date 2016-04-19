@@ -21,7 +21,7 @@ class EloquentBanner implements BannerInterface
         $this->model = $model;
     }
 
-    public function sortable($order,$by){
-        return $this->model->orderBy($order,$by)->get();
+    public function sortable($order,$by,$type = null){
+        return $this->model->where('type',$type)->orderBy($order,$by)->get();
     }
 }

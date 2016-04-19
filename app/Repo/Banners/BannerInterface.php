@@ -13,5 +13,5 @@ use App\Repo\RepoInterface;
 
 interface BannerInterface extends RepoInterface
 {
-    public function sortable($order,$by);
+    public function sortable($order,$by,$type = null);
 }

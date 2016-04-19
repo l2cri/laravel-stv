@@ -7,7 +7,7 @@
                 <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url($slide->image) }}); background-color: #f5f1e2;">
                     <div class="navigation-banner-content">
                         <div class="cell-view">
-                            @if($slide->name))
+                            @if($slide->name)
                             <h1 class="title">{{$slide->name}}</h1>
                             @endif
                             <div class="description"></div>

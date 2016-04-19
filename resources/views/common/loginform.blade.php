@@ -6,7 +6,14 @@
         <span>Кабинет </span><i class="fa fa-user"></i>
     </a>
     <div class="dropped-div" id="drop-login-form">
-        здесь будет меню кабинета
+        <ul class="list">
+            @can('supplier_panel')
+                @include('panel.menu.supplier')
+            @else
+                @include('panel.menu.user')
+            @endcan
+        </ul>
+
     </div>
 
 @else

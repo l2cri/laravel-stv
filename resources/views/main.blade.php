@@ -75,12 +75,13 @@
                             <i class="fa fa-search"></i><span>Поиск</span>
                         </a>
 
+                        @if (!Auth::check())
                         <div class="drop-hover header-functionality-entry">
-                            <a class="">
+                            <a href="{{route('register')}}" >
                                 <span>Регистрация </span><i class="fa fa-angle-down"></i>
                             </a>
-                            <div class="submenu"><h2>Test!</h2></div>
                         </div>
+                        @endif
 
                         @include('common.loginform')
 

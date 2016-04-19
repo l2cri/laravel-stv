@@ -16,63 +16,7 @@
     @endif
     <div class="col-lg-3 col-md-12">
         <div class="row">
-            <div class="col-lg-12 col-md-4">
-                <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
-                        <div class="" style="height: 145px">
-                            <div class="cell-view">
-                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
-                                {{--<h1 class="title">распродажа 4</h1>--}}
-                                {{--<div class="description">Описание распродажа 4.</div>--}}
-                                <div class="info">
-                                    <br><br><br><br><br><br><br>
-                                    <a class="button style-2" href="#">Купить</a>
-                                    <a class="button style-2" href="#">Подбробнее</a>
-                                </div>
-                            </div>
-                        </div>
-                        {{--<div class="clear"></div>--}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-4">
-                <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
-                        <div class="" style="height: 145px">
-                            <div class="cell-view">
-                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
-                                {{--<h1 class="title">распродажа 4</h1>--}}
-                                {{--<div class="description">Описание распродажа 4.</div>--}}
-                                <div class="info">
-                                    <br><br><br><br><br><br><br>
-                                    <a class="button style-2" href="#">Купить</a>
-                                    <a class="button style-2" href="#">Подбробнее</a>
-                                </div>
-                            </div>
-                        </div>
-                        {{--<div class="clear"></div>--}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-4">
-                <div class="swiper-slide">
-                    <div class="navigation-banner-wrapper align-1" style="background-image: url({{ url('img/traktor.jpg') }}); background-color: #f6e8d8;">
-                        <div class="" style="height: 145px">
-                            <div class="cell-view">
-                                {{--<h2 class="subtitle">Распродажа 4</h2>--}}
-                                {{--<h1 class="title">распродажа 4</h1>--}}
-                                {{--<div class="description">Описание распродажа 4.</div>--}}
-                                <div class="info">
-                                    <br><br><br><br><br><br><br>
-                                    <a class="button style-2" href="#">Купить</a>
-                                    <a class="button style-2" href="#">Подбробнее</a>
-                                </div>
-                            </div>
-                        </div>
-                        {{--<div class="clear"></div>--}}
-                    </div>
-                </div>
-            </div>
+            @include('home.right-banners',['items'=>$rightBanners])
         </div>
     </div>
 </div>

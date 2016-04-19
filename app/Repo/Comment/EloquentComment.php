@@ -42,6 +42,18 @@ class EloquentComment implements CommentInterface
         return $product->comments()->create($data);
     }
 
+    public function create4Supplier(array $data)
+    {
+
+        $product = $this->supplierModel->find($data['id']);
+        /**
+         * @todo get this parameter from supplier settings
+         */
+        $data['moderated'] = 1;
+
+        return $product->comments()->create($data);
+    }
+
     public function getByObject($item, $perPage = null)
     {
         if(!$perPage) $perPage = config('marketplace.commentsPerPage');

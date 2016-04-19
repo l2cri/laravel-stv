@@ -15,6 +15,7 @@ if (AuthUser::can('banners_admin')) {
             $display->columns([
                 Column::string('id')->label('ID'),
                 Column::string('name')->label('Название'),
+                Column::string('type')->label('Тип'),
                 Column::image('image')->label('Картинка'),
                 Column::string('url')->label('Ссылка'),
                 Column::string('sort')->label('Сортировка'),
@@ -25,6 +26,7 @@ if (AuthUser::can('banners_admin')) {
             $form = AdminForm::form();
             $form->items([
                 FormItem::text('name', 'Название'),
+                FormItem::text('type', 'Тип'),
                 FormItem::text('sort', 'Сортировка')->defaultValue(500),
                 FormItem::image('image', 'Картинка')->required(),
                 FormItem::text('url',"Ссылка"),
