@@ -2,10 +2,7 @@
 
 @section('content')
 
-    <div class="breadcrumb-box">
-        <a href="#">Главная</a>
-        <a href="#">Каталог компаний</a>
-    </div>
+    @section('breadcrumbs', Breadcrumbs::render('common.static','Поставщики'))
 
     <div class="information-blocks">
         <div class="row">
