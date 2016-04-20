@@ -52,6 +52,7 @@ Breadcrumbs::register('product', function($breadcrumbs,$product,$section)
 Breadcrumbs::register('supplier', function($breadcrumbs,$supplier,$currentSection)
 {
     $breadcrumbs->parent('home');
+    $breadcrumbs->push('Поставщики', route('suppliers') );
 
     $breadcrumbs->push($supplier->name, route('supplier', $supplier->code) );
 
