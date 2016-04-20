@@ -37,14 +37,7 @@
                 </div>
                 {{--<a class="tag" href="{{ url($section->url) }}">{{ $section->name }}</a>--}}
                 <a class="title" href="{{ route('supplier', $supplier->code) }}">{{ $supplier->name }}</a>
-                <div class="rating-box">
-                    <div class="star"><i class="fa fa-star"></i></div>
-                    <div class="star"><i class="fa fa-star"></i></div>
-                    <div class="star"><i class="fa fa-star"></i></div>
-                    <div class="star"><i class="fa fa-star"></i></div>
-                    <div class="star"><i class="fa fa-star"></i></div>
-                    <div class="reviews-number">отзывы (25)</div>
-                </div>
+                @include('rating.list',['item'=>$supplier,'routeName'=>'rating.rateSupplier'])
                 <div class="article-container style-1">
                     <p>{{ $supplier->conditions }}</p>
                 </div>

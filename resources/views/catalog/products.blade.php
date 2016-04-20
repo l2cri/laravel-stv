@@ -1,4 +1,3 @@
-<div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4" id="catalogProducts">
 
     <div class="page-selector">
         <div class="pages-box hidden-xs">
@@ -79,4 +78,3 @@
         </div>
         <div class="clear"></div>
     </div>
-</div>

@@ -352,6 +352,7 @@ $(function() {
 		var thisDropDown = $(this).closest('.search-drop-down');
 		thisDropDown.removeClass('active');
 		thisDropDown.find('.title span').text($(this).text());
+		thisDropDown.parents('form').attr('action',$(this).attr('data-route'));
 	});
 
 	/*search popup*/

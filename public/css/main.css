@@ -279,3 +279,11 @@ input[type="file"].simple-field {padding: 0px; border: none}
 {
 	padding-right: 20px;
 }
+
+#search-head .search-drop-down {
+	width: 170px;
+}
+
+.search-box.size-1 #search-head  .search-field {
+	margin-right: 210px;
+}

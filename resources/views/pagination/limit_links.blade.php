@@ -5,6 +5,11 @@ $from = 0;
 $to = 0;
 
 $currentPath = isset($currentSection) ? $currentSection->url : URL::current();
+
+if(isset($query)){
+    $paginator->appends(['q' => $query]);
+}
+
 $paginator->setPath($currentPath);
 
 ?>

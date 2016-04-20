@@ -115,27 +115,24 @@
                         <div class="navigation-search-content">
                             <div class="toggle-desktop-menu"><i class="fa fa-bars"></i><i class="fa fa-close"></i>меню</div>
                             <div class="search-box size-1">
-                                <form>
+                                <form id="search-head" method="get" action="{{route('search.products')}}">
                                     <div class="search-button">
                                         <i class="fa fa-search"></i>
                                         <input type="submit" />
                                     </div>
 
                                     <div class="search-drop-down">
-                                        <div class="title"><span>Все категории</span><i class="fa fa-angle-down"></i></div>
+                                        <div class="title"><span>По товару</span><i class="fa fa-angle-down"></i></div>
                                         <div class="list">
                                             <div class="overflow">
-                                                <div class="category-entry">Категория 1</div>
-                                                <div class="category-entry">Категория 2</div>
-                                                <div class="category-entry">Категория 2</div>
-                                                <div class="category-entry">Категория 4</div>
-                                                <div class="category-entry">Категория 5</div>
+                                                <div data-route="{{route('search.products')}}" class="category-entry">По товару</div>
+                                                <div data-route="{{route('search.suppliers')}}" class="category-entry">По производителю</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="search-field">
-                                        <input type="text" value="" placeholder="Поиск..." />
+                                        <input name="q" type="text" value="" placeholder="Поиск..." />
                                     </div>
                                 </form>
                             </div>

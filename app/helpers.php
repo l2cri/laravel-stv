@@ -55,6 +55,8 @@ function url_add_params($params, $current = null){
 
     if (!$current) $current = URL::full();
 
+    $params = array_filter($params);
+
     $query = implode('&', $params);
     if (stristr($current, '?')){
         return $current.'&'.$query;
@@ -64,6 +66,8 @@ function url_add_params($params, $current = null){
 function url_set_params($params, $current = null){
 
     if (!$current) $current = URL::current();
+
+    $params = array_filter($params);
 
     $query = implode('&', $params);
     return $current.'?'.$query;
@@ -207,4 +211,10 @@ function getCurrentLocation(){
      */
     $location = app()->make('App\Repo\Location\LocationInterface');
     return $location->getSessionLocation();
+}
+
+function mb_ucfirst($string, $enc = 'UTF-8')
+{
+    return mb_strtoupper(mb_substr($string, 0, 1, $enc), $enc) .
+    mb_substr($string, 1, mb_strlen($string, $enc), $enc);
 }

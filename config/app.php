@@ -189,6 +189,9 @@ return [
 
         // BreadCrumbs
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+
+        // Search
+        App\Providers\SearchServiceProvider::class,
     ],
 
     /*
@@ -269,6 +272,9 @@ return [
 
         // BreadCrumbs
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+
+        //search
+        'Search' => App\Facades\Search::class,
 
     ],
 
