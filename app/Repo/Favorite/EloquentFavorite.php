@@ -46,6 +46,8 @@ class EloquentFavorite implements FavoriteInterface
 
     public function byProduct($product_id)
     {
+        if(!Auth::check()) return false;
+
         $user_id = userId();
         return $this->checkUnique($user_id,$product_id);
     }

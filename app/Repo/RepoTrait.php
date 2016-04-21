@@ -43,8 +43,9 @@ trait RepoTrait
     }
 
     public function prefix() {
+        $prefix = $this->model->getPrefix();
 
-        if (isset($this->model->prefix)) return $this->model->prefix;
+        if ($prefix) return $prefix;
 
         return null;
     }

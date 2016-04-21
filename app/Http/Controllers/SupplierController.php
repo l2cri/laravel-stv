@@ -40,6 +40,7 @@ class SupplierController extends Controller
     }
 
     public function catalog($name, $code = null) {
+        $prefix = $this->product->prefix();
 
         if ($code) $currentSection = $this->section->byCode($code);
 
@@ -56,8 +57,6 @@ class SupplierController extends Controller
         $products = $this->product->bySectionIds( $sectionIds );
 
         $maxProductPrice = ProductHelper::maxProductPrice($this->product->allProductsFromLastRequest());
-
-        $prefix = $this->product->prefix();
 
         return view('supplier.index', compact('products', 'sections', 'currentSection',
             'maxProductPrice', 'supplier', 'prefix'));

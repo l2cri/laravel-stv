@@ -1,9 +1,11 @@
 <?
+   $firstImg = current($product->photos);
+
     $sharePage = [
     'url'=>route('product.page',['id'=>$product->id]),
     'title'=>$product->name,
     'description'=>$product->description,
-    'image'=> url($product->photos[0]->file)]
+    'image'=> url(@$firstImg->file)]
 ?>
 @extends('main')
 @section('headscripts')
@@ -56,8 +58,8 @@
                         <div class="pagination"></div>
                         <div class="product-zoom-container">
                             <div class="move-box">
-                                <img class="default-image" src="{{ url($product->photos[0]->file) }}" alt="" />
-                                <img class="zoomed-image" src="{{ url($product->photos[0]->file) }}" alt="" />
+                                <img class="default-image" src="{{ url(@$firstImg->file) }}" alt="" />
+                                <img class="zoomed-image" src="{{ url(@$firstImg->file) }}" alt="" />
                             </div>
                             <div class="zoom-area"></div>
                         </div>
@@ -138,7 +140,7 @@
                                 @foreach($randProducts as $product)
                                 <div class="inline-product-entry">
                                     <a href="{{route('product.page',['id'=>$product->id])}}" class="image">
-                                        <img alt="{{$product->name}}" src="{{ @url($product->photos[0]->file) }}">
+                                        <img alt="{{$product->name}}" src="{{ @url($product->photos->shift()->file) }}">
                                     </a>
                                     <div class="content">
                                         <div class="cell-view">
