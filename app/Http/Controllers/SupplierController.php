@@ -217,6 +217,7 @@ class SupplierController extends Controller
                 $userEmail = userField('email');
                 $userName = ($request->name)? $request->name: userField('name');
 
+                $message->subject('Письмо с обратной формы');
                 $message->from($userEmail, $userName);
 
                 $message->to($supplier->user->email);

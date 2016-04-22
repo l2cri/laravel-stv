@@ -137,20 +137,20 @@
                         <div class="information-blocks">
                             <div class="information-entry products-list">
                                 <h3 class="block-title inline-product-column-title">Рекомендуем</h3>
-                                @foreach($randProducts as $product)
+                                @foreach($randProducts as $randProduct)
                                 <div class="inline-product-entry">
-                                    <a href="{{route('product.page',['id'=>$product->id])}}" class="image">
-                                        <img alt="{{$product->name}}" src="{{ @url($product->photos->shift()->file) }}">
+                                    <a href="{{route('product.page',['id'=>$randProduct->id])}}" class="image">
+                                        <img alt="{{$randProduct->name}}" src="{{ @url($randProduct->photos->shift()->file) }}">
                                     </a>
                                     <div class="content">
                                         <div class="cell-view">
-                                            <a href="{{route('product.page',['id'=>$product->id])}}" class="title">{{$product->name}}</a>
+                                            <a href="{{route('product.page',['id'=>$randProduct->id])}}" class="title">{{$randProduct->name}}</a>
                                             <div class="price">
-                                                @if($product->action_id && $product->action_price)
-                                                    <div class="prev">{{$product->regular_price}} <i class="fa fa-rub"></i></div>
-                                                    <div class="current">{{$product->action_price}} <i class="fa fa-rub"></i></div>
+                                                @if($randProduct->action_id && $randProduct->action_price)
+                                                    <div class="prev">{{$randProduct->regular_price}} <i class="fa fa-rub"></i></div>
+                                                    <div class="current">{{$randProduct->action_price}} <i class="fa fa-rub"></i></div>
                                                 @else
-                                                    <div class="current">{{$product->regular_price}} <i class="fa fa-rub"></i></div>
+                                                    <div class="current">{{$randProduct->regular_price}} <i class="fa fa-rub"></i></div>
                                                 @endif
                                             </div>
                                         </div>
@@ -194,16 +194,7 @@
                                 @if (!empty($product->length)) <b>Длина:</b> {{ $product->length }} мм. <br>@endif
                                 @if (!empty($product->width)) <b>Ширина:</b> {{ $product->width }} мм. <br>@endif
                                 @if (!empty($product->height)) <b>Высота:</b> {{ $product->height }} мм. <br>@endif
-                                <br>
 
-                                <h4>5 причин заказать товар у нас</h4>
-                                <ul>
-                                    <li>Раз</li>
-                                    <li>Два</li>
-                                    <li>Три</li>
-                                    <li>Четыре</li>
-                                    <li>Пять</li>
-                                </ul>
                             </div>
                         </div>
                     </div>
