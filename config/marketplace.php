@@ -2,6 +2,7 @@
 return [
     'cacheTime' => 60, // время кеширования по-умолчанию в минутах
     'cachePrefixInfopage' => 'infopage',
+    'cacheStoreNews' => 'filenews',
 
     // id корневых категорий Промышленная и Потребительская
     'promSectionId' => 11,

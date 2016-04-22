@@ -16,4 +16,9 @@ class StaticHelper
         $key = md5(config('marketplace.cachePrefixInfopage').$code);
         Cache::forget($key);
     }
+
+    public static function refreshByStore($store)
+    {
+        Cache::store($store)->flush();
+    }
 }

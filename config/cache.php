@@ -46,6 +46,10 @@ return [
             'driver' => 'file',
             'path'   => storage_path('framework/cache'),
         ],
+        'filenews' => [
+            'driver' => 'file',
+            'path'   => storage_path('framework/cache/news'),
+        ],
 
         'memcached' => [
             'driver'  => 'memcached',

@@ -22,7 +22,7 @@ class CacheDecorator extends AbstractNewsDecorator
 
         parent::__construct($nextNews);
 
-        $this->cacheTime = $minutes;
+        $this->cacheTime = (!$minutes)? config('marketplace.cacheTime'):$minutes;
         $this->cache = $cache;
     }
 
@@ -30,15 +30,17 @@ class CacheDecorator extends AbstractNewsDecorator
     {
         $page = ( !empty(\Input::get('page')) ) ? \Input::get('page') : 1;
 
+        $cache = Cache::store(config('marketplace.cacheStoreNews'));
+
         $key = $this->key('all-news-'.$page);
 
-        if($this->cache->has($key)){
-            return $this->cache->get($key);
+        if($cache->has($key)){
+            return $cache->get($key);
         }
 
         $news = $this->nextNews->getList();
 
-        $this->cache->put($key,$news,$this->cacheTime);
+        $cache->put($key,$news, $this->cacheTime);
 
         return $news;
     }
