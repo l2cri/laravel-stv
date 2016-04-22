@@ -24,8 +24,11 @@
                             <input type="checkbox" name="remember" value="1" />
                             <span class="check"></span> Запомнить меня
                         </label>
+                        <div class="pull-right"><a class="forgot-password" href="{{route('password.remind')}}">Забыли пароль?</a></div>
 
                         <div class="button style-10">Войти<input type="submit" value="" /></div>
+                        <div class="clear"></div>
+
                     </form>
                 </div>
             </div>

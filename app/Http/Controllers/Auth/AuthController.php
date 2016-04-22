@@ -28,6 +28,8 @@ class AuthController extends Controller
         AuthenticatesAndRegistersUsers::postLogin as originPostLogin;
     }
 
+    protected $redirectTo = '/panel';
+
     /**
      * Create a new authentication controller instance.
      *

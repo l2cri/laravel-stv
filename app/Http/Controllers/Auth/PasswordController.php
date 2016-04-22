@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\PasswordBroker;
 
 class PasswordController extends Controller
 {
@@ -19,14 +21,17 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
+    protected $redirectTo = '/panel';
 
     /**
-     * Create a new password controller instance.
-     *
-     * @return void
+     * @param Guard $auth
+     * @param PasswordBroker $passwords
      */
-    public function __construct()
+    public function __construct(Guard $auth, PasswordBroker $passwords)
     {
+        $this->auth = $auth;
+        $this->passwords = $passwords;
+        $this->subject = 'Ваша ссылка на восстановление пароля';
         $this->middleware('guest');
     }
 }

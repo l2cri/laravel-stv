@@ -34,7 +34,7 @@
             <div class="button style-10">Войти<input type="submit" value=""></div>
             {{--<input class="button style-10" type="submit" value="Войти">--}}
             <div class="clear"></div>
-            <a class="forgot-password" href="#">Забыли пароль?</a>
+            <a class="forgot-password" href="{{route('password.remind')}}">Забыли пароль?</a>
         </form>
     </div>
 

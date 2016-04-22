@@ -32,6 +32,11 @@ Route::get('auth/login', 'Auth\AuthController@getLogin')->name('login');
 Route::post('auth/login', 'Auth\AuthController@postLogin')->name('auth.post');
 Route::get('auth/logout', 'Auth\AuthController@getLogout')->name('logout');
 
+Route::get('password/remind','Auth\PasswordController@getEmail')->name('password.remind');
+Route::post('password/reset','Auth\PasswordController@postEmail')->name('password.request');
+Route::get('password/reset/{token}','Auth\PasswordController@getReset')->name('password.reset');
+Route::post('password/reset/{token}','Auth\PasswordController@postReset')->name('password.update');
+
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister')->name('register');
 Route::post('auth/register', 'Auth\AuthController@postRegister');

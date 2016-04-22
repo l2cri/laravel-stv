@@ -57,11 +57,6 @@ class User extends Model implements AuthenticatableContract,
         $this->roles()->attach($roles);
     }
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
     /*
      * Поставщики
      */
