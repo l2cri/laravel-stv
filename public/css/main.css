@@ -291,3 +291,6 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .payment-methods a {cursor: inherit}
 
 .footer-wrapper .style-2 {text-align: justify}
+
+.container-404 {padding: 0}
+.container-404 .description {font-size: 60px}
