@@ -406,11 +406,8 @@
                             </div>
                             <div class="cell-view">
                                 <div class="payment-methods">
-                                    <a href="#"><img src="/img/payment-method-1.png" alt="" /></a>
-                                    <a href="#"><img src="/img/payment-method-2.png" alt="" /></a>
                                     <a href="#"><img src="/img/payment-method-3.png" alt="" /></a>
                                     <a href="#"><img src="/img/payment-method-4.png" alt="" /></a>
-                                    <a href="#"><img src="/img/payment-method-5.png" alt="" /></a>
                                     <a href="#"><img src="/img/payment-method-6.png" alt="" /></a>
                                 </div>
                             </div>
