@@ -1,5 +1,14 @@
 @extends('panel.index')
 @section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Добавить товар'))
+@section('headscripts')
+
+    @parent
+
+    <script src="{{ url('js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('js/ckeditor/config.js') }}"></script>
+    <script src="{{ url('js/ckeditor/styles.js') }}"></script>
+
+@endsection
 @section('panel_content')
 
 <div class="information-blocks">
@@ -156,7 +165,7 @@
                     {{ Input::old('preview') }}
                 </textarea>
                 <label>Полное описание</label>
-                <textarea class="simple-field" name="description">
+                <textarea class="simple-field ckeditor" name="description">
                     {{ Input::old('description') }}
                 </textarea>
 

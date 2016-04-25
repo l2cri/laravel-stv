@@ -8,6 +8,9 @@
     <script src="{{ url('js/ckeditor/config.js') }}"></script>
     <script src="{{ url('js/ckeditor/styles.js') }}"></script>
 
+    <script src="{{ url('/js/colorpicker/bootstrap-colorpicker.js') }}"></script>
+    <link href="{{ url('/js/colorpicker/bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('panel_content')
@@ -35,10 +38,15 @@
                     <div class="clear"></div>
 
                     <label>Цвет </label>
-                    <input type="text"
-                           class="simple-field"
-                           name="color"
-                           value="{{ $supplier->color }}">
+                    <div id="cp2" class="input-group colorpicker-component">
+                        <input type="text" name="color" value="{{ $supplier->color }}" class="form-control simple-field" />
+                        <span class="input-group-addon"><i></i></span>
+                    </div>
+                    <script>
+                        $(function() {
+                            $('#cp2').colorpicker({format: 'hex'});
+                        });
+                    </script>
                     <div class="clear"></div>
 
                     <label>Сумма для оптового заказ </label>
@@ -64,15 +72,15 @@
                     <br>
 
                     <label>Условия работы</label>
-                    <textarea rows="2" class="simple-field" name="conditions" style="height: 70px">{{ $supplier->conditions }}</textarea>
+                    <textarea rows="2" class="simple-field ckeditor" name="conditions" style="height: 70px">{{ $supplier->conditions }}</textarea>
                     <div class="clear"></div>
 
                     <label>Обмен/Возврат и Гарантии</label>
-                    <textarea rows="2" class="simple-field" name="responsibility" style="height: 70px">{{ $supplier->responsibility }}</textarea>
+                    <textarea rows="2" class="simple-field ckeditor" name="responsibility" style="height: 70px">{{ $supplier->responsibility }}</textarea>
                     <div class="clear"></div>
 
                     <label>Описание</label>
-                    <textarea rows="5" class="simple-field" id="supplier_description" name="description" style="height: 270px">{{ $supplier->description }}</textarea>
+                    <textarea rows="5" class="simple-field ckeditor" id="supplier_description" name="description" style="height: 270px">{{ $supplier->description }}</textarea>
                     <div class="clear"></div>
 
                     <br>
