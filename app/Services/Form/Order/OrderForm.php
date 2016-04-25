@@ -51,12 +51,12 @@ class OrderForm
         $bySuppliersArray = $this->devideBySuppliers();
 
         // если что-то пойдет не так, то бросит исключение
-        $this->saveBySuppliers($bySuppliersArray, $profileId);
+        $orders = $this->saveBySuppliers($bySuppliersArray, $profileId);
 
         // поэтому смело чистим корзину
         $this->cart->clear();
 
-        return true;
+        return $orders;
     }
 
     public function update($input){
@@ -104,10 +104,16 @@ class OrderForm
     }
 
     protected function saveBySuppliers($arr, $profileId) {
+
+        $orders = array();
+
         foreach ($arr as $supplierId => $cart) {
             $orderId = $this->save($supplierId, $profileId, $cart);
             $this->cart->save($cart, $orderId, $this->user->id);
+            $orders[] = $orderId;
         }
+
+        return $orders;
     }
 
     protected function devideBySuppliers(){

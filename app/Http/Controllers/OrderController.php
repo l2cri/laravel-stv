@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
+use App\Events\OrderMade;
 use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
@@ -33,7 +34,7 @@ class OrderController extends Controller
         $this->cartForm = $cartForm;
         $this->message = $message;
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['auth']]);
     }
 
     public function index(SupplierOrdersDataTable $dataTable) {
@@ -47,7 +48,14 @@ class OrderController extends Controller
     public function create(Request $request) {
         $input = removeEmptyValues($request->all());
 
-        if ($this->form->create($input)) {
+
+        if ($orders = $this->form->create($input)) {
+
+            /**
+             * EVENT
+             */
+            event(new OrderMade($orders));
+
             return Redirect::to( route('order.thanks') );
         } else {
             return Redirect::back()->withInput()

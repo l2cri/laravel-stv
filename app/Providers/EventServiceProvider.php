@@ -13,8 +13,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\UserRegistered' => [
+            'App\Listeners\UserRegisterMail',
+        ],
+
+        'App\Events\OrderMade' => [
+            'App\Listeners\OrderMadeMails', // отправить письма клиенту и всем поставщикам, если заказ составной
+        ],
+
+        'App\Events\OrderStatusChanged' => [
+            'App\Listeners\OrderStatusChangeMail',
+        ],
+
+        'App\Events\OrderReturned' => [
+            'App\Listeners\OrderReturnMails', // отправить письма поставщику и клиенту о возврате заказа
         ],
     ];
 

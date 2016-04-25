@@ -77,6 +77,8 @@ class CatalogController extends Controller
 
     public function ajax(Request $request){
 
+        $prefix = $this->product->prefix();
+
         if ($request->has('minprice') && $request->has('maxprice')) {
             $this->product->pushCriteria( new MinMaxPrice($request->input('minprice'), $request->input('maxprice')));
         }
@@ -86,8 +88,6 @@ class CatalogController extends Controller
         }
         $products = $this->product->bySection($request->input('sectionId'));
         $currentSection = $this->section->byCode($request->input('sectionId'));
-
-        $prefix = $this->product->prefix();
 
         return view('catalog.ajaxindex', compact('products', 'currentSection', 'prefix'));
     }
