@@ -343,35 +343,28 @@
                                 <div class="footer-description">Лучшие товары от ставропольских производителей.
                                 </div>
                                 <div class="footer-address">г. Ставрополь, пр. Мира, д. 1<br/>
-                                    Тел: 8 800 111 22 33<br/>
+
                                     Email: <a href="mailto:info@buy26.ru">info@buy26.ru</a><br/>
-                                    <a href="www.inmedio.com"><b>www.buy26.ru</b></a>
                                 </div>
                                 <div class="clear"></div>
                             </div>
 
                             <div class="col-md-2 col-sm-4">
-                                <h3 class="column-title">Меню</h3>
+                                <h3 class="column-title">О проекте</h3>
                                 <ul class="column">
-                                    <li><a href="#">О нас</a></li>
-                                    <li><a href="#">Как заказать</a></li>
-                                    <li><a href="#">Обмен/Возврат</a></li>
-                                    <li><a href="#">Оплата</a></li>
-                                    <li><a href="#">Доставка</a></li>
-                                    <li><a href="#">Контакты</a></li>
+                                    <li><a href="{{ route('infopage', 'about') }}">О проекте</a></li>
+                                    <li><a href="{{ route('infopage', 'regvendor') }}">Для поставщиков</a></li>
+                                    <li><a href="{{ route('infopage', 'howtoorder') }}">Как заказать?</a></li>
                                 </ul>
                                 <div class="clear"></div>
                             </div>
 
                             <div class="col-md-3 col-sm-5">
-                                <h3 class="column-title">Меню</h3>
+                                <h3 class="column-title">Информация</h3>
                                 <ul class="column">
-                                    <li><a href="#">О нас</a></li>
-                                    <li><a href="#">Как заказать</a></li>
-                                    <li><a href="#">Обмен/Возврат</a></li>
-                                    <li><a href="#">Оплата</a></li>
-                                    <li><a href="#">Доставка</a></li>
-                                    <li><a href="#">Контакты</a></li>
+                                    <li><a href="{{ route('infopage', 'payment') }}">Способы оплаты</a></li>
+                                    <li><a href="{{ route('infopage', 'delivery') }}">Доставка</a></li>
+                                    <li><a href="{{ route('infopage', 'contacts') }}">Контакты</a></li>
                                 </ul>
                                 <div class="clear"></div>
                             </div>
@@ -379,7 +372,7 @@
                             <div class="col-md-3 col-sm-5">
                                 <h3 class="column-title">Часы работы call-центра</h3>
                                 <div class="footer-description">
-                                    Заказы на сайте оставляйте в любое время.
+                                    Тел: 8 800 111 22 33
                                 </div>
                                 <div class="footer-description">
                                     <b>Пн-Пт:</b> 9.00 - 18.30<br/>
