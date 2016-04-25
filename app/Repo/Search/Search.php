@@ -84,4 +84,10 @@ class Search {
             }
         });
     }
-} 
+
+    public function searchInModel($searchable, $keyword){
+        $resultSet = $this->search($searchable, $keyword);
+
+        return $resultSet;
+    }
+}
