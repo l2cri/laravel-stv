@@ -18,7 +18,7 @@
                     <form method="POST" action="{{ route('register')}}">
                         {!! csrf_field() !!}
                         <label>Имя</label>
-                        <input class="simple-field" name="name" value="{{ old('name') }}" placeholder="Введите ваш ник" />
+                        <input class="simple-field" name="name" value="{{ old('name') }}" placeholder="Введите ваше имя и фамилию" />
                         <label>Email адрес</label>
                         <input class="simple-field" type="email" name="email" value="{{ old('email') }}" placeholder="Введите ваш Email адрес" />
                         <label>Пароль</label>
