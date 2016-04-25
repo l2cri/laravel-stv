@@ -67,7 +67,7 @@ class ProductController extends Controller
         if ($this->form->save( $input ) ){
             return Redirect::to( route('panel::products') )->with('status', 'success');
         } else {
-            return Redirect::to( route('panel::products.addform') )->withInput()
+            return Redirect::to( route('panel::products.addform') )->withInput($request->except('photos'))
                 ->withErrors( $this->form->errors() )
                 ->with('status', 'error');
         }

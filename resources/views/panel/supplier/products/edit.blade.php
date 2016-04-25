@@ -1,5 +1,13 @@
 @extends('panel.index')
+@section('headscripts')
 
+    @parent
+
+    <script src="{{ url('js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('js/ckeditor/config.js') }}"></script>
+    <script src="{{ url('js/ckeditor/styles.js') }}"></script>
+
+@endsection
 @section('breadcrumbs', Breadcrumbs::render('edit-product','Товар №'.$product->id))
 @section('panel_content')
     <?
@@ -173,7 +181,7 @@
                     <label>Краткое описание</label>
                 <textarea rows="2" class="simple-field" name="preview" style="height: 70px">{{ $product->preview }}</textarea>
                     <label>Полное описание</label>
-                <textarea class="simple-field" name="description">{{ $product->description }}</textarea>
+                <textarea class="simple-field ckeditor" name="description">{{ $product->description }}</textarea>
 
                 <label>Фотографии</label>
                 @foreach($product->photos as $photo)
