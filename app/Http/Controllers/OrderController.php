@@ -48,7 +48,7 @@ class OrderController extends Controller
         $input = removeEmptyValues($request->all());
 
         if ($this->form->create($input)) {
-            return Redirect::to( route('order.thanks') )->with('status', 'success');
+            return Redirect::to( route('order.thanks') );
         } else {
             return Redirect::back()->withInput()
                                    ->withErrors($this->form->errors())
