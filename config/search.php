@@ -1,6 +1,6 @@
 <?php
 
 return array(
-    'products' => 'App\Models\Product\Product',
-    'suppliers' => 'App\Models\Supplier',
+    'products' => 'App\Repo\Product\ProductInterface',
+    'suppliers' => 'App\Repo\Supplier\SupplierInterface',
 );

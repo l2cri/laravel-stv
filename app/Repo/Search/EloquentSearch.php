@@ -1,46 +1,87 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: l2cri
- * Date: 25.04.16
- * Time: 13:19
- */
 namespace App\Repo\Search;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use App\Exceptions\SearchException;
 
-class EloquentSearch implements SearchInterface {
+class EloquentSearch  implements SearchInterface{
 
-    protected $productModel;
-    protected $supplierModel;
-    protected $search;
+    protected $suffix = 'search';
+    protected $useModel;
 
-    public function __call($function, $args){
-        return $this->search->$function($args[0]);
-    }
-
-
-    public function __construct(Model $product,Model $supplier, Search $search){
-        $this->productModel = $product;
-        $this->supplierModel = $supplier;
-        $this->search = $search;
-    }
-
-    public function products($keyword)
+    /**
+     * Handle static calls on the Search Facade
+     *
+     * @param $function
+     * @param $args
+     * @return mixed
+     * @throws SearchException
+     */
+    public function __call($function, $args)
     {
-        $searchable = $this->search->searchInModel($this->productModel, $keyword);
+        $keyword = $args[0];
+        $searchable = $this->getSearchableFor($function);
+        $this->useModel = $searchable;
+        $resultSet = $this->search($searchable, $keyword);
 
-        return $searchable;
+        return $resultSet;
     }
 
-    public function suppliers($keyword)
+    /**
+     * Returns the specified Model for the function, determined by the Config file
+     *
+     * @param $function
+     * @return mixed
+     * @throws SearchException
+     */
+    private function getSearchableFor($function)
     {
-        $searchable = $this->search->searchInModel($this->supplierModel, $keyword);
+        $className = Config::get("search.$function");
 
-        return $searchable;
+        if(is_null($className))
+            throw new SearchException("No model for $function has been found in the config.");
+
+        return App::make($className);
     }
 
-    public function all($keywords){
-        return $this->search->all($keywords);
+    /**
+     * Searches all available Models for the specified keyword
+     *
+     * @param $keyword
+     * @return array
+     */
+    public function all($keyword)
+    {
+        $registeredModels = Config::get("search");
+
+        $resultSet = [];
+        foreach($registeredModels as $model) {
+            $searchable = App::make($model);
+            $resultSet[] = $this->search($searchable, $keyword);
+        }
+
+        return $resultSet;
+    }
+
+    /**
+     * Searches the specified Searchable/Model for the specified keyword
+     *
+     * @param $searchable
+     * @param $keyword
+     * @return mixed
+     */
+    private function search($searchable, $keyword)
+    {
+        $model = (property_exists($searchable,'model')) ? $searchable->getModel() : $searchable;
+
+        $model->setPrefix('search');
+        $searchFields = $model->searchFields();
+
+        return $model->where(function($query) use ($searchFields, $keyword){
+            foreach($searchFields as $field) {
+                $query->orWhere($field, "LIKE" , '%' . $keyword . '%')->orWhere($field,"LIKE",'%' .mb_ucfirst($keyword). '%' );
+            }
+        });
     }
 }

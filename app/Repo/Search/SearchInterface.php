@@ -9,9 +9,8 @@
 namespace App\Repo\Search;
 
 interface SearchInterface {
-    public function products($keyword);
 
-    public function suppliers($keyword);
+    public function __call($function, $args);
 
     public function all($keyword);
 }

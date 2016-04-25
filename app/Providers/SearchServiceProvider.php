@@ -1,20 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ley
- * Date: 18.02.16
- * Time: 18:43
- */
-
 namespace App\Providers;
 
-use App\Models\Product\Product;
-use App\Models\Supplier;
 use App\Repo\Search\EloquentSearch;
 use Illuminate\Support\ServiceProvider;
 
-class SearchServiceProvider extends ServiceProvider
-{
+class SearchServiceProvider extends ServiceProvider {
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../../config/config.php' => config_path('search.php'),
+        ]);
+
+    }
+
     /**
      * Register the service provider.
      *
@@ -23,8 +34,19 @@ class SearchServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Repo\Search\SearchInterface', function($app){
-            return new EloquentSearch( new Product(), new Supplier(), $app->make('App\Repo\Search\Search') );
+            $search = new EloquentSearch();
+            return $search;
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array();
     }
 
 }

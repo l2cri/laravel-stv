@@ -49,4 +49,8 @@ trait RepoTrait
 
         return null;
     }
+
+    public function getModel(){
+        return $this->model;
+    }
 }
