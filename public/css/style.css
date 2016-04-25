@@ -98,7 +98,7 @@
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 01 - FONTS USAGE */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-body{font-family: 'Raleway', sans-serif;}
+body{font-family: 'Lato', sans-serif;}
 
 
 /*-------------------------------------------------------------------------------------------------------------------------------*/
@@ -113,10 +113,10 @@ blockquote footer:before, blockquote footer:after{display: none;}
 body *{-webkit-text-size-adjust:none;}
 .clear{clear:both; overflow:hidden; height:0px; font-size:0px; display: block;}
 input:focus, select:focus, textarea:focus, button:focus {outline: none;}
-input, textarea, select{font-family: 'Raleway', sans-serif; font-weight: 300; -webkit-appearance: none; border-radius: 0;}
+input, textarea, select{font-family: 'Lato', sans-serif; font-weight: 300; -webkit-appearance: none; border-radius: 0;}
 a, a:link, a:visited, a:active, a:hover{cursor: pointer; text-decoration: none; outline: none;}
 ul{list-style: none;}
-body{font-family: 'Raleway', sans-serif; font-weight: 400; font-size: 14px; line-height: 1;}
+body{font-family: 'Lato', sans-serif; font-weight: 400; font-size: 14px; line-height: 1;}
 
 
 /*-------------------------------------------------------------------------------------------------------------------------------*/
