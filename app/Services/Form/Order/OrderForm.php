@@ -61,10 +61,18 @@ class OrderForm
 
     public function update($input){
         $id = $input['orderId'];
+
+        $order = $this->order->byId($id);
+        if ($order->status_id !== $input['orderstatus'] ) {
+            $changed = true;
+        } else $changed = false;
+
         $data = array(
             'innercomment' => $input['innercomment'],
             'status_id' => $input['orderstatus']);
         $this->order->update($data, $id);
+
+        return $changed;
     }
 
     protected function save($supplierId, $profileId, $cart){

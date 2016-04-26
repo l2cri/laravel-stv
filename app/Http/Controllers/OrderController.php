@@ -6,6 +6,7 @@ use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
 use App\Events\OrderMade;
 use App\Events\OrderReturned;
+use App\Events\OrderStatusChanged;
 use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
@@ -121,7 +122,9 @@ class OrderController extends Controller
             'innercomment' => 'string',
         ]);
 
-        $this->form->update($request->all());
+        $statusChanged = $this->form->update($request->all());
+        if ($statusChanged) event(new OrderStatusChanged($request->get('orderId'), userId()));
+
         return redirect()->back();
     }
 

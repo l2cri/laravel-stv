@@ -10,14 +10,18 @@ class OrderStatusChanged extends Event
 {
     use SerializesModels;
 
+    public $ordersId;
+    public $userId;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($ordersId, $userId)
     {
-        //
+        $this->userId = $userId;
+        $this->ordersId = $ordersId;
     }
 
     /**
