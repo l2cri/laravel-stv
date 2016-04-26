@@ -10,23 +10,15 @@ class UserRegistered extends Event
 {
     use SerializesModels;
 
+    public $userId;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userId)
     {
-        //
-    }
-
-    /**
-     * Get the channels the event should be broadcast on.
-     *
-     * @return array
-     */
-    public function broadcastOn()
-    {
-        return [];
+        $this->userId = $userId;
     }
 }

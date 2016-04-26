@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegistered;
 use App\User;
 use Illuminate\Contracts\Auth\Guard;
 use Validator;
@@ -71,6 +72,11 @@ class AuthController extends Controller
 
         // по-умолчанию назначаем роль Клиент
         $user->roles()->attach(config('client_role_id', 1));
+
+        /**
+         * EVENT user registered
+         */
+        event(new UserRegistered( $user->id ));
 
         return $user;
     }
