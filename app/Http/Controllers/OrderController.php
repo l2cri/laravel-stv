@@ -54,7 +54,7 @@ class OrderController extends Controller
             /**
              * EVENT
              */
-            event(new OrderMade($orders));
+            event(new OrderMade($orders, userId()));
 
             return Redirect::to( route('order.thanks') );
         } else {

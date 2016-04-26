@@ -1,8 +1,12 @@
 <html>
 <head>
     <style type="text/css">
+        th{text-align: left;}
+        td, th {height: 35px}
+
         table table {
             width: 600px !important;
+            padding: 2%;
         }
         table div + div { /* main content */
             width: 100%;
@@ -33,7 +37,7 @@
                 <tr><td style="padding: 12px 2%;">
 
                         <div>
-                            <img src="{{ url('http://www.buy26.ru/img/logo-main.png') }}">
+                            <img src="{{ url('http://stage.buy26.ru/img/logo-main.png') }}">
                         </div>
 
                         <br><br>

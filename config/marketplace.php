@@ -20,6 +20,13 @@ return [
     // поставщик
     'supplierDir' => 'images/supplier',
 
-    //локации
+    // локации
     'locationLevel' =>3,
+
+    // email-уведомления
+    'email' => 'info@buy26.ru',
+    'emailOrderNew' => 'BUY26.RU: новый заказ!',
+    'emailOrderReturned' => 'BUY26.RU: возврат заказа!',
+    'emailOrderStatusChanged' => 'BUY26.RU: новый статус заказа - ',
+    'emailUserRegistered' => 'BUY26.RU: спасибо за регистрацию!',
 ];

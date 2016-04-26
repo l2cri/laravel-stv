@@ -10,16 +10,17 @@ class OrderMade extends Event
 {
     use SerializesModels;
 
-    public $orders;
-    public $user;
+    public $ordersIds;
+    public $userId;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(array $orders)
+    public function __construct(array $ordersIds, $userId)
     {
-        $this->orders = $orders;
+        $this->userId = $userId;
+        $this->ordersIds = $ordersIds;
     }
 }
