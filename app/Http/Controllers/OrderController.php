@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\SupplierOrdersDataTable;
 use App\DataTables\UserOrdersDataTable;
 use App\Events\OrderMade;
+use App\Events\OrderReturned;
 use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
@@ -145,6 +146,12 @@ class OrderController extends Controller
 
     public function returnOrder($orderId){
         $this->form->returnOrder($orderId);
+
+        /**
+         * EVENT
+         */
+        event( new OrderReturned($orderId, userId()) );
+
         return redirect()->back();
     }
 
