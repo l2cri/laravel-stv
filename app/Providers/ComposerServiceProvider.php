@@ -29,12 +29,6 @@ class ComposerServiceProvider extends ServiceProvider
             if (!$currentUser) $currentUser = new User();
 
             $view->with('user', $currentUser);
-
-            /**
-             * geoLocation
-             */
-            $location = app()->make('App\Repo\Location\LocationInterface');
-            $view->with('currentLocation', $location->getSessionLocation());
         });
 
         // Using class based composers...
@@ -49,6 +43,14 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             ['cart.updateForm', 'cart.dropdown', 'cart.checkout'], 'App\Http\ViewComposers\CartUpdateFormComposer'
         );
+
+        view()->composer('common.geo', function($view){
+            /**
+             * geoLocation
+             */
+            $location = app()->make('App\Repo\Location\LocationInterface');
+            $view->with('currentLocation', $location->getSessionLocation());
+        });
     }
 
     /**
