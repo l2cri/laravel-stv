@@ -65,7 +65,7 @@ class SupplierOrdersDataTable extends DataTable
      */
     public function query()
     {
-        $orders = Order::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->with('profile');
+        $orders = Order::where('supplier_id', '=', supplierId())->with('profile');
 
         return $this->applyScopes($orders);
     }

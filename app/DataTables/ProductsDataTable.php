@@ -55,12 +55,12 @@ class ProductsDataTable extends DataTable
         $sectionId = Input::input('section_id');
 
         if ($sectionId > 0) {
-            $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->whereHas('sections', function($q) use ($sectionId)
+            $products = Product::where('supplier_id', '=', supplierId())->whereHas('sections', function($q) use ($sectionId)
             {
                 $q->where('id', "=", $sectionId);
             })->with('sections');
         } else
-            $products = Product::where('supplier_id', '=', Auth::user()->suppliers[0]->id)->with('sections');
+            $products = Product::where('supplier_id', '=', supplierId())->with('sections');
 
         return $this->applyScopes($products);
     }

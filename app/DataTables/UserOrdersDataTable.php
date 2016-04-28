@@ -61,7 +61,7 @@ class UserOrdersDataTable extends DataTable
      */
     public function query()
     {
-        $orders = Order::where('user_id', '=', Auth::user()->id)->with('profile', 'supplier');
+        $orders = Order::where('user_id', '=', userId())->with('profile', 'supplier');
 
         return $this->applyScopes($orders);
     }
