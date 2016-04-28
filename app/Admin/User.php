@@ -20,7 +20,13 @@ Admin::model('App\User')->title('Users')->display(function ()
 	$form->items([
 		FormItem::text('name', 'Name')->required(),
 		FormItem::text('email', 'Email')->required()->unique(),
-		FormItem::password('password', 'Password'),
+		FormItem::custom()->display(function ($instance)
+		{
+			return view('form.password_field', ['instance' => $instance]);
+		})->callback(function ($instance)
+		{
+			$instance->password = bcrypt(Input::get('password'));
+		}),
 		FormItem::multiselect('roles', 'Роли')->model('App\Models\Role')->display('name'),
 	]);
 	return $form;
