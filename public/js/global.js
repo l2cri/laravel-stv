@@ -749,6 +749,11 @@ $(function() {
 		showPopup($('#geo-popup'));;
 	});
 
+	/**
+	 * panel active links
+	 */
+	$('#panelMenu a[href="' + location.href + '"]').addClass('active');
+
 }); //handlers end
 
 function getHtmlLoader(){

@@ -298,3 +298,6 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #thanksPage h4 {margin-top: 50px}
 #thanksPage h1 {font-size: 24px}
 #thanksPage th {font-size: 12px; padding: 10px}
+
+#panelMenu .active {background-color: #0f51a3; color: #FFFFff; margin-left: -20px; padding-left: 20px}
+#panelMenu li {padding-left: 20px}
