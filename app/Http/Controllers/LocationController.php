@@ -24,8 +24,15 @@ class LocationController extends Controller
     }
 
     public function locationsTree() {
-        $locationTree = $this->location->getTree( config('marketplace.locationLevel') );
-        $supplierLocations = $this->location->getBySupplier(supplierId());
+
+        $locationTree = array();
+        $supplierLocations = array();
+
+        if (supplierId()) {
+            $locationTree = $this->location->getTree( config('marketplace.locationLevel') );
+            $supplierLocations = $this->location->getBySupplier(supplierId());
+        }
+
         return view('panel.supplier.locationtree', compact('locationTree', 'supplierLocations'));
     }
 
