@@ -116,3 +116,10 @@ Breadcrumbs::register('edit-product', function($breadcrumbs,$name)
     $breadcrumbs->push($name);
 
 });
+
+// Catalog
+Breadcrumbs::register('catalog', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Каталог', route('catalog'));
+});

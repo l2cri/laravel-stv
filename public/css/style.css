@@ -2768,7 +2768,7 @@ body.style-17 .button.style-4{background: #901794; border-color: #901794;}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 .side-square-wrapper{}
 .side-square-wrapper:after{content: ""; display: block; clear: both;}
-.side-square-entry{padding-bottom: 50%; position: relative; min-height: 800px;}
+.side-square-entry{position: relative; }
 .side-square-entry .fixed-parallax{width: 50%;}
 .side-square-entry.col-md-push-6 .fixed-parallax{left: 50%;}
 .side-square-entry .fixed-parallax:before{display: none;}

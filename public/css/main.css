@@ -302,3 +302,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 #panelMenu .active {background-color: #0f51a3; color: #FFFFff; margin-left: -20px; padding-left: 20px}
 #panelMenu li {padding-left: 20px}
 .container-404 .title, .container-404 .description {color: #0f51a3}
+
+.side-square-wrapper .information-blocks h3{font-size: 16px; line-height: 24px; color: #2e2e2e; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; padding-left: 10px;}

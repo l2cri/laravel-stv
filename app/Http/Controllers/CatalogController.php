@@ -117,4 +117,8 @@ class CatalogController extends Controller
 
 
     }
+
+    public function main(){
+        return view('catalog.main');
+    }
 }

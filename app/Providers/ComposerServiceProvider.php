@@ -33,7 +33,7 @@ class ComposerServiceProvider extends ServiceProvider
 
         // Using class based composers...
         view()->composer(
-            'common.menusections', 'App\Http\ViewComposers\MenuSectionsComposer'
+            ['common.menusections', 'catalog.main'], 'App\Http\ViewComposers\MenuSectionsComposer'
         );
 
         view()->composer(
