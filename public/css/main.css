@@ -301,3 +301,4 @@ input[type="file"].simple-field {padding: 0px; border: none}
 
 #panelMenu .active {background-color: #0f51a3; color: #FFFFff; margin-left: -20px; padding-left: 20px}
 #panelMenu li {padding-left: 20px}
+.container-404 .title, .container-404 .description {color: #0f51a3}
