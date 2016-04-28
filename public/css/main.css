@@ -294,3 +294,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 
 .container-404 {padding: 0}
 .container-404 .description {font-size: 60px}
+
+#thanksPage h4 {margin-top: 50px}
+#thanksPage h1 {font-size: 24px}
+#thanksPage th {font-size: 12px; padding: 10px}

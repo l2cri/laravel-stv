@@ -40,5 +40,7 @@ class EloquentOrder implements OrderInterface
         return $this->modelStatus->all();
     }
 
-
+    public function byWhereIn($field, array $array){
+        return $this->model->whereIn($field, $array)->get();
+    }
 }

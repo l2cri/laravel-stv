@@ -58,7 +58,7 @@ class OrderController extends Controller
              */
             event(new OrderMade($orders, userId()));
 
-            return Redirect::to( route('order.thanks') );
+            return Redirect::to( route('order.thanks', serialize($orders)) );
         } else {
             return Redirect::back()->withInput()
                                    ->withErrors($this->form->errors())
@@ -80,9 +80,14 @@ class OrderController extends Controller
         return view('order.checkout', compact('profile', 'profiles'));
     }
 
-    public function thanks(){
+    public function thanks($orders = null){
 
-        return view('order.thanks');//'спасибо за заказ';
+        $ordersCollection = array();
+        if ($orders){
+            $ordersCollection = $this->order->byWhereIn('id', unserialize($orders));
+        }
+
+        return view('order.thanks', compact('ordersCollection'));//'спасибо за заказ';
     }
 
     public function supplierorder($id) {

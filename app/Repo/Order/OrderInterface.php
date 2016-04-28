@@ -14,4 +14,5 @@ use App\Repo\RepoInterface;
 interface OrderInterface extends RepoInterface
 {
     public function statuses();
+    public function byWhereIn($field, array $array);
 }

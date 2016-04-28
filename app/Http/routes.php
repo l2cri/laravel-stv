@@ -203,7 +203,7 @@ Route::get('/cart/ajax/total', 'CartController@total');
  */
 Route::get('order/checkout', 'OrderController@checkout')->name('order.checkout')->middleware(['auth.checkout']); // форма создания заказа одна, на трех вкладках если нужно
 Route::post('order/create', 'OrderController@create')->name('order.create');
-Route::get('order/thanks', 'OrderController@thanks')->name('order.thanks');
+Route::get('order/thanks/{orders?}', 'OrderController@thanks')->name('order.thanks');
 Route::get('order/checkout/auth', 'OrderController@auth')->name('order.auth');
 
 /*
