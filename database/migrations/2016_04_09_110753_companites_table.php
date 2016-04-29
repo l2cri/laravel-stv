@@ -14,6 +14,7 @@ class CompanitesTable extends Migration
     {
         Schema::create('companies', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();

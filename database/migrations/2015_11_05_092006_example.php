@@ -13,6 +13,7 @@ class Example extends Migration
     public function up()
     {
         Schema::create('examples', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->text('text')->nullable();

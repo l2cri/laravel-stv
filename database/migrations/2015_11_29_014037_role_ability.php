@@ -15,6 +15,7 @@ class RoleAbility extends Migration
         // таблицы роли - возможности - пивот роль-юзер - пивот роль-возможность
         Schema::create('roles', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -22,6 +23,7 @@ class RoleAbility extends Migration
 
         Schema::create('abilities', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->string('description')->default('');
@@ -30,6 +32,7 @@ class RoleAbility extends Migration
         });
 
         Schema::create('role_user', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
@@ -37,6 +40,7 @@ class RoleAbility extends Migration
         });
 
         Schema::create('ability_role', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->integer('ability_id')->unsigned();
             $table->foreign('ability_id')->references('id')->on('abilities')->onDelete('cascade');
             $table->integer('role_id')->unsigned();

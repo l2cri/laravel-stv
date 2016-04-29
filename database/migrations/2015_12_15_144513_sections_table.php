@@ -16,10 +16,10 @@ class SectionsTable extends Migration
         //Категории в каталоге, отношение многи ко многим и таблицу-пивот добавим позже
 
         Schema::create('sections', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable(); // если создано из админки, то user_id не нужен
             $table->foreign('user_id')->references('id')->on('users');
-            //$table->integer('parent_id')->nullable();
             $table->string('name');
             $table->string('code')->nullable(); // при создании категории из панели поставщика код не нужен
             $table->text('description')->nullable();

@@ -5,8 +5,8 @@ return [
     'cacheStoreNews' => 'filenews',
 
     // id корневых категорий Промышленная и Потребительская
-    'promSectionId' => 11,
-    'potrebSectionId' => 10,
+    'promSectionId' => 3,
+    'potrebSectionId' => 1,
 
     // товар
     'productPhotoDir' => 'images/products',

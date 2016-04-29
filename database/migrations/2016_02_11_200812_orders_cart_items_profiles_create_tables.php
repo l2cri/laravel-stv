@@ -13,6 +13,7 @@ class OrdersCartItemsProfilesCreateTables extends Migration
     public function up()
     {
         Schema::create('profiles', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->default('Профиль по умолчанию');
             $table->string('person');
@@ -27,6 +28,7 @@ class OrdersCartItemsProfilesCreateTables extends Migration
         });
 
         Schema::create('orders', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
@@ -46,6 +48,7 @@ class OrdersCartItemsProfilesCreateTables extends Migration
         });
 
         Schema::create('cart_items', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

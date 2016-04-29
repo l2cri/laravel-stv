@@ -14,6 +14,7 @@ class OrderStatuses extends Migration
     {
         Schema::create('statuses', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->string('color')->nullable();

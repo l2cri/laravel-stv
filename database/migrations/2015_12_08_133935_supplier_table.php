@@ -16,6 +16,7 @@ class SupplierTable extends Migration
         // внешний ключ на профиль ООО добавим позже
         Schema::create('suppliers', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();

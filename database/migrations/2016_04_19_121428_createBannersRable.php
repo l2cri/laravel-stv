@@ -14,6 +14,7 @@ class CreateBannersRable extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             //
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('url')->nullable();

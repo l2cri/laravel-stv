@@ -11,6 +11,7 @@ class CreateRatingTable extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
             $table->integer('rating');

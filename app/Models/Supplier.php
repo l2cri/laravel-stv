@@ -24,7 +24,7 @@ class Supplier extends Model
     protected $prefix = "suppliers";
 
     protected $fillable = ['name', 'description', 'conditions', 'responsibility',
-                            'whosale_order', 'whosale_quantity', 'color', 'logo', 'code'];
+                            'whosale_order', 'whosale_quantity', 'color', 'logo', 'code', 'user_id'];
 
     protected $searchFields = ['name', 'description'];
 

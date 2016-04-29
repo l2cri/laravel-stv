@@ -19,6 +19,7 @@ class LocationSupplierPivot extends Migration
         });
 
         Schema::create('location_supplier', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->integer('location_id')->unsigned();
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->integer('supplier_id')->unsigned();

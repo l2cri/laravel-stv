@@ -13,6 +13,7 @@ class CartConditions extends Migration
     public function up()
     {
         Schema::create('conditions', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('conditionable_id')->unsigned();
             $table->string('conditionable_type');

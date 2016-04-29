@@ -14,6 +14,7 @@ class ProductsImagesTables extends Migration
     {
         Schema::create('products', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->boolean('active')->default(true);
             $table->boolean('moderated')->default(false);
@@ -41,6 +42,7 @@ class ProductsImagesTables extends Migration
         });
 
         Schema::create('photos', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('file');
             $table->integer('product_id')->unsigned();
@@ -49,6 +51,7 @@ class ProductsImagesTables extends Migration
         });
 
         Schema::create('product_section', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('section_id')->unsigned();

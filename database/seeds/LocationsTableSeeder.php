@@ -14,7 +14,7 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        $maxLevel = 6;
+        $maxLevel = 3;
         $model = new Location();
         $this->model = $model;
 
