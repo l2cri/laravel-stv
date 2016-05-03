@@ -151,7 +151,9 @@ function localizedFormat ($date){
 // пока в требованиях нет возможности вести несколько поставщиков в одном аккаунте
 function supplierId(){
 
-    if (isset(Auth::user()->suppliers) && count(Auth::user()->suppliers)>0){
+    Auth::user()->suppliers;
+
+    if (Auth::user() && isset(Auth::user()->suppliers) && count(Auth::user()->suppliers)>0){
         return Auth::user()->suppliers[0]->id;
     }
     return 0;

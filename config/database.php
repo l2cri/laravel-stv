@@ -66,10 +66,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => 'marketplace',
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', 'pass'),
+            'host'      => 'localhost',
+            'database'  => 'buy26r72_marketplace',
+            'username'  => 'buy26r72_admin',
+            'password'  => 'wX?w(G4FN=;e',
             'charset'   => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix'    => '',
