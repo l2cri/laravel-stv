@@ -18,10 +18,14 @@ class EloquentOrder implements OrderInterface
 
     protected $model;
     protected $modelStatus;
+    protected $modelDelivery;
+    protected $modelPayment;
 
-    public function __construct(Model $model, Model $modelStatus){
+    public function __construct(Model $model, Model $modelStatus, Model $modelDelivery, Model $modelPayment){
         $this->model = $model;
         $this->modelStatus = $modelStatus;
+        $this->modelDelivery = $modelDelivery;
+        $this->modelPayment = $modelPayment;
     }
 
     public function delete($id){
@@ -42,5 +46,13 @@ class EloquentOrder implements OrderInterface
 
     public function byWhereIn($field, array $array){
         return $this->model->whereIn($field, $array)->get();
+    }
+
+    public function deliveries(){
+        return $this->modelDelivery->all();
+    }
+
+    public function payments(){
+        return $this->modelPayment->all();
     }
 }

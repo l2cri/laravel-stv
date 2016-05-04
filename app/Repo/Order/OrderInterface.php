@@ -15,4 +15,6 @@ interface OrderInterface extends RepoInterface
 {
     public function statuses();
     public function byWhereIn($field, array $array);
+    public function deliveries();
+    public function payments();
 }

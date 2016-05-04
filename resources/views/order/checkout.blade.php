@@ -23,18 +23,22 @@
                         <div class="accordeon-title active"><span class="number">2</span>Доставка</div>
                         <div class="accordeon-entry" style="display: block;">
                             <div class="article-container style-1">
-                                <p>Пока сделать курьером или самовывоз</p>
+                                @foreach($deliveries as $delivery)
+                                    <label class="checkbox-entry radio">
+                                        <input type="radio" name="delivery_id" value="{{ $delivery->id }}"> <span class="check"></span> {{ $delivery->name }}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
 
                         <div class="accordeon-title active"><span class="number">3</span>Оплата</div>
                         <div class="accordeon-entry" style="display: block;">
                             <div class="article-container style-1">
-                                <p>Наличные, безналичные - предусмотреть так,
-                                    чтобы после сохранения заказа платежная система решала, куда отправить пользователя,
-                                    на страницу оплаты или на подтверждение заказа
-                                    - в случае подключения мерчанта
-                                </p>
+                                @foreach($payments as $payment)
+                                    <label class="checkbox-entry radio">
+                                        <input type="radio" name="payment_id" value="{{ $payment->id }}"> <span class="check"></span> {{ $payment->name }}
+                                    </label>
+                                @endforeach
                             </div>
                         </div>
 

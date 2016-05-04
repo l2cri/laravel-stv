@@ -77,7 +77,10 @@ class OrderController extends Controller
 
         if ( !empty( Input::get('profileId') ) ) $profile = $this->profile->byId( Input::get('profileId') );
 
-        return view('order.checkout', compact('profile', 'profiles'));
+        $deliveries = $this->order->deliveries();
+        $payments = $this->order->payments();
+
+        return view('order.checkout', compact('profile', 'profiles', 'deliveries', 'payments'));
     }
 
     public function thanks($orders = null){
