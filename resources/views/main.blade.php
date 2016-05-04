@@ -22,7 +22,10 @@
 
     @yield('headscripts')
 
-    <title>Маркетплейс</title>
+    @section('title')
+        <title>Маркетплейс - лучшие товары от ставропольских производителей - buy26.ru</title>
+    @show
+
 </head>
 <body class="style-2">
 <!-- LOADER -->

@@ -1,5 +1,9 @@
 @extends('main')
 
+@section('title')
+    <title>{{ $currentSection->name }} на buy26.ru - лучшие товары ставропольских производителей!</title>
+@endsection
+
 @section('content')
 
     @section('breadcrumbs', Breadcrumbs::render('section',$currentSection))

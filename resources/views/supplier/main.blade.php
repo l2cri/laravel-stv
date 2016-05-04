@@ -4,6 +4,10 @@
     <a id="logo" href="{{ route('supplier', $supplier->code) }}"><img src="{{ url($supplier->logo) }}" alt="" /></a>
 @endsection
 
+@section('title')
+    <title>{{ $supplier->name }} - каталог товаров на buy26.ru</title>
+@endsection
+
 @section('content')
 
     @section('breadcrumbs', Breadcrumbs::render('supplier',$supplier,@$currentSection))

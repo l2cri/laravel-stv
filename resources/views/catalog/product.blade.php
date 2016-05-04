@@ -27,6 +27,10 @@
 
 @endsection
 
+@section('title')
+    <title>{{ $product->name }}</title>
+@endsection
+
 @section('content')
 
     <?
