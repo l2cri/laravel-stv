@@ -26,7 +26,7 @@
 
         <div class="summary">
             <div class="subtotal">Товаров на: {{ Cart::getTotal() }} <i class="fa fa-rub"></i></div>
-            <div class="grandtotal">С доставкой <span>600,00 <i class="fa fa-rub"></i></span></div>
+            {{--<div class="grandtotal">С доставкой <span>600,00 <i class="fa fa-rub"></i></span></div>--}}
         </div>
         <div class="cart-buttons">
             <div class="column">
