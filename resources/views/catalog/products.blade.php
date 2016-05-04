@@ -38,8 +38,7 @@
                         <div class="bottom-line left-attached">
                             <a class="bottom-line-a square addToCart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i></a>
                             @include('common.favorite',['item'=>$product,'routeName'=>'panel::favorite-product.add','check'=> $check,'type'=>'icon'])
-                            <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                            <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
+
                         </div>
                     </div>
                     <a class="tag" href="{{ url($section->url) }}">{{ $section->name }}</a>
