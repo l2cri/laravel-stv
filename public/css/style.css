@@ -125,7 +125,8 @@ body{font-family: 'Lato', sans-serif; font-weight: 400; font-size: 14px; line-he
 /*table*/
 .table-view{height: 100%; width: 100%; display: table;}
 .row-view{display: table-row;}
-.cell-view{display: table-cell; vertical-align: middle; height: inherit;}
+.cell-view{display: table-cell; vertical-align: middle; height: inherit;
+    vertical-align: bottom; padding-bottom: 50px;}
 /*content block*/
 #content-block{position: relative; overflow: hidden;}
 /*last child margins*/

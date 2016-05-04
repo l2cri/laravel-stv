@@ -8,7 +8,7 @@
                     <div class="navigation-banner-content">
                         <div class="cell-view">
                             @if($slide->name)
-                            <h1 class="title">{{$slide->name}}</h1>
+                            {{--<h1 class="title">{{$slide->name}}</h1>--}}
                             @endif
                             <div class="description"></div>
                             @if($slide->url)
