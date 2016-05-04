@@ -85,8 +85,12 @@ function getPerPage(){
 function evenOddArray($array){
     $odd = $even = array();
     for ($i = 0, $l = count($array); $i < $l;) { // Notice how we increment $i each time we use it below, by two in total
-        $even[] = $array[$i++];
-        $odd[] = $array[$i++];
+        $e = $i++;
+        if (isset($array[$e]))
+            $even[] = $array[$e];
+        $o = $i++;
+        if (isset($array[$o]))
+            $odd[] = $array[$o];
     }
 
     return array('even'=>$even, 'odd'=>$odd);
