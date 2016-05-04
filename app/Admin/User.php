@@ -25,7 +25,9 @@ Admin::model('App\User')->title('Users')->display(function ()
 			return view('form.password_field', ['instance' => $instance]);
 		})->callback(function ($instance)
 		{
-			$instance->password = bcrypt(Input::get('password'));
+			if (!empty(Input::get('password'))){
+				$instance->password = bcrypt(Input::get('password'));
+			}
 		}),
 		FormItem::multiselect('roles', 'Роли')->model('App\Models\Role')->display('name'),
 	]);
