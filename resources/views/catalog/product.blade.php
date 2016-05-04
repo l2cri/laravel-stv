@@ -127,7 +127,11 @@
                     <div class="col-md-12">
                         <div class="information-blocks production-logo">
                             <div class="background">
-                                <div class="logo"><img src="{{ url( $product->supplier->logo ) }}" alt="{{ $product->supplier->name }}" /></div>
+                                <div class="logo">
+                                    <a href="{{ route('supplier', $product->supplier->code) }}">
+                                        <img src="{{ url( $product->supplier->logo ) }}" alt="{{ $product->supplier->name }}" />
+                                    </a>
+                                </div>
                                 <a href="{{ route('supplier', $product->supplier->code) }}">О поставщике</a>
                             </div>
                         </div>
