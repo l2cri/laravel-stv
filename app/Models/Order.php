@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'supplier_id', 'profile_id', 'subtotal', 'total', 'comment', 'innercomment', 'status_id'];
+    protected $fillable = ['user_id', 'supplier_id', 'profile_id', 'subtotal', 'total', 'comment',
+        'innercomment', 'status_id', 'delivery_id', 'payment_id'];
 
     public function user(){
         return $this->belongsTo('App\User');
@@ -33,6 +34,14 @@ class Order extends Model
 
     public function status(){
         return $this->belongsTo('App\Models\Status');
+    }
+
+    public function delivery(){
+        return $this->belongsTo('App\Models\Delivery');
+    }
+
+    public function payment(){
+        return $this->belongsTo('App\Models\Payment');
     }
 
     public function messages(){
