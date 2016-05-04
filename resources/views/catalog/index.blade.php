@@ -34,10 +34,9 @@
                         <? $section = $product->sections[0];
                         $check = $product->favorite->first()?>
                         <div class="col-md-3 col-sm-4 shop-grid-item">
-                        <div class="product-slide-entry shift-image">
+                        <div class="product-slide-entry">
                             <div class="product-image">
                                 <img src="{{ @url($product->photos[0]->file) }}" alt="" />
-                                <img src="{{ @url($product->photos[1]->file) }}" alt="" />
 
                                 @if($product->action_id && $product->action_price)
                                     <div class="product-image-label type-2">

@@ -1,11 +1,3 @@
-{{--@if ($currentSection->parent instanceof \App\Models\Section)--}}
-    {{--<div class="catalog-parent-section">--}}
-        {{--<a href="{{ url($currentSection->parent->url) }}"> {{$currentSection->parent->name}} </a>--}}
-        {{--<i class="fa fa-level-up"></i>--}}
-    {{--</div>--}}
-{{--@endif--}}
-
-{{--<div class="block-title size-3 active">{{ $currentSection->name }}</div>--}}
 
 <div class="accordeon">
 

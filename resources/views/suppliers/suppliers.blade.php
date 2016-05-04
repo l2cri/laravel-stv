@@ -23,17 +23,9 @@
     @foreach($suppliers as $supplier)
 
         <div class="col-md-3 col-sm-4 shop-grid-item">
-            <div class="product-slide-entry shift-image">
+            <div class="product-slide-entry">
                 <div>
                     <img src="{{ @url($supplier->logo) }}" alt="{{ $supplier->name }}" />
-                    {{--<img src="{{ @url($product->photos[1]->file) }}" alt="" />--}}
-
-                    {{--<div class="bottom-line left-attached">--}}
-                        {{--<a class="bottom-line-a square addToCart" data-id="{{ $product->id }}"><i class="fa fa-shopping-cart"></i></a>--}}
-                        {{--<a class="bottom-line-a square"><i class="fa fa-heart"></i></a>--}}
-                        {{--<a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>--}}
-                        {{--<a class="bottom-line-a square"><i class="fa fa-expand"></i></a>--}}
-                    {{--</div>--}}
                 </div>
                 {{--<a class="tag" href="{{ url($section->url) }}">{{ $section->name }}</a>--}}
                 <a class="title" href="{{ route('supplier', $supplier->code) }}">{{ $supplier->name }}</a>
