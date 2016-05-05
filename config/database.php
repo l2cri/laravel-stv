@@ -67,9 +67,9 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'buy26r72_marketplace',
-            'username'  => 'buy26r72_admin',
-            'password'  => 'wX?w(G4FN=;e',
+            'database'  => 'cd09041_buy26',
+            'username'  => 'cd09041_buy26',
+            'password'  => 'c3sprWhD',
             'charset'   => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix'    => '',
