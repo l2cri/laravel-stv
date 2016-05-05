@@ -816,7 +816,7 @@ body:not(.mobile) #content-block .sidebar-navigation .entry:hover .fa{color: #ff
 /* 04.07 - navigation banner */
 .navigation-banner-swiper{margin-bottom: 30px;}
 .navigation-banner-wrapper{position: relative; background-size: cover;}
-.navigation-banner-wrapper.align-1{background-position: right top;}
+/*.navigation-banner-wrapper.align-1{background-position: right top;}*/
 .navigation-banner-wrapper.align-2{background-position: left top; }
 .navigation-banner-content{width: 57%; padding: 0 50px 0 50px; height: 505px; position: relative;}
 .navigation-banner-content .cell-view{width: 1500px;}
