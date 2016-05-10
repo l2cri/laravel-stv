@@ -75,6 +75,10 @@
                             <i class="fa fa-search"></i><span>Поиск</span>
                         </a>
 
+                        @section('supplier_contacts')
+
+                        @show
+
                         @if (!Auth::check())
                         <div class="drop-hover header-functionality-entry">
                             <a href="{{route('register')}}" >

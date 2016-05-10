@@ -8,6 +8,16 @@
     <title>{{ $supplier->name }} - каталог товаров на buy26.ru</title>
 @endsection
 
+@section('supplier_contacts')
+    <? $company = $supplier->company; ?>
+    @if(!empty($company))
+        <div class="header-functionality-entry">
+            <i class="fa fa-phone"></i> {{ $company->phone }} &nbsp; &nbsp; |
+            &nbsp; &nbsp; <i class="fa fa-envelope-o"></i> <a href="mailto:{{ $company->email }}">{{ $company->email }}</a>
+        </div>
+    @endif
+@endsection
+
 @section('content')
 
     @section('breadcrumbs', Breadcrumbs::render('supplier',$supplier,@$currentSection))
