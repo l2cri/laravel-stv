@@ -304,3 +304,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .container-404 .title, .container-404 .description {color: #0f51a3}
 
 .side-square-wrapper .information-blocks h3{font-size: 16px; line-height: 24px; color: #2e2e2e; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; padding-left: 10px;}
+
+.navigation .cell-view {padding-bottom: 0px}
