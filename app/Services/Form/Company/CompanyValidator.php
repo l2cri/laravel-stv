@@ -23,6 +23,7 @@ class CompanyValidator extends AbstractLaravelValidator
         'kpp' => 'string',
         'rs' => 'string',
         'ks' => 'string',
+        'bik' => 'string',
         'ceo' => 'string',
         'phone' => 'string',
         'email' => 'email',

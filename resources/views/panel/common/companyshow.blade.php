@@ -26,6 +26,10 @@
         <td>{{ $company->ks }}</td>
     </tr>
     <tr>
+        <th>БИК</th>
+        <td>{{ $company->bik }}</td>
+    </tr>
+    <tr>
         <th>Генеральный директор</th>
         <td>{{ $company->ceo }}</td>
     </tr>

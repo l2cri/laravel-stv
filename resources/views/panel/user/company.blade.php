@@ -54,6 +54,13 @@
                            value="{{ $company->ks }}">
                     <div class="clear"></div>
 
+                    <label>БИК </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="bik"
+                           value="{{ $company->bik }}">
+                    <div class="clear"></div>
+
                     <label>Генеральный директор </label>
                     <input type="text"
                            class="simple-field"
