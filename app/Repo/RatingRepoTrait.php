@@ -24,7 +24,7 @@ trait RatingRepoTrait
         $modelRating = new Rating();
 
         $issetUserRating = $modelRating ->where('user_id',$user_id)
-            ->where('ratable_id',$id)
+            ->where('rateable_id',$id)
             ->first();
 
         if($issetUserRating){
