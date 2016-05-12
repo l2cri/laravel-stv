@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Facades\AuthUser;
 
 class AuthController extends Controller
 {
@@ -110,7 +111,9 @@ class AuthController extends Controller
              * TODO: Hack to enter SleepingOwl Admin - done
              */
 
-            \AdminAuth::login(\Auth::user());
+            if ( \AuthUser::can('admin') ) {
+                \AdminAuth::login(\Auth::user());
+            }
 
             return $this->handleUserWasAuthenticated($request, $throttles);
         }

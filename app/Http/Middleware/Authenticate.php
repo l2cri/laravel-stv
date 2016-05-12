@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Facades\AuthUser;
 
 class Authenticate
 {
@@ -34,26 +35,38 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-//        var_dump($request->root());
-//        var_dump($request->url());
-//        var_dump($request->fullUrl());
-//        var_dump($request->path());
-//        var_dump($request->decodedPath());
-//        var_dump($this->auth->user());
-//        var_dump(\AdminAuth::user());
 
-        //die();
+        if (! $this->checkAdmin())
+            return redirect()->guest('/auth/login');
 
         if ($this->auth->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                return redirect()->guest('/auth/login');
             }
         }
 
-        //\AdminAuth::login($this->auth->user());
-
         return $next($request);
+    }
+
+    public function checkAdmin(){
+
+        // проверяем что это админка
+        $is_backend = (strpos($_SERVER['REQUEST_URI'], "/admin") === 0);
+        if (!$is_backend) return true;
+
+        // если пользователь не залогинен в AdminAuth - возврат
+        $adminUser = \AdminAuth::user();
+        if (!$adminUser) return false;
+
+        // если залогинен, проверяем имеет ли доступ в админку, если нет - выкидываем
+        if ( !AuthUser::can('admin') )
+        {
+            \AdminAuth::logout();
+            return false;
+        }
+
+        return true;
     }
 }
