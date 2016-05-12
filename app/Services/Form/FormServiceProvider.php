@@ -34,6 +34,8 @@ use App\Services\Form\Section\SectionForm;
 use App\Services\Form\Section\SectionValidator;
 use App\Services\Form\Supplier\SupplierForm;
 use App\Services\Form\Supplier\SupplierValidator;
+use App\Services\Form\User\UserForm;
+use App\Services\Form\User\UserValidator;
 use Illuminate\Support\ServiceProvider;
 class FormServiceProvider extends ServiceProvider
 {
@@ -165,6 +167,15 @@ class FormServiceProvider extends ServiceProvider
 
             return new LocationForm(new LocationValidator($app['validator']),
                 $app->make('App\Repo\Location\LocationInterface'));
+        });
+
+        /*
+         * User accaunt settings
+         */
+        $app->bind('App\Services\Form\Location\UserForm', function ($app){
+           return new UserForm(new UserValidator(),
+               $app->make('App\Repo\User\UserInterface')
+           );
         });
     }
 }
