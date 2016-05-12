@@ -6,7 +6,7 @@
  * Time: 16:51
  */
 
-if (AuthUser::isAdmin()) {
+if (AuthUser::can('supplier_admin')) {
     Admin::model('App\Models\Supplier')
         ->title('Поставщики')
         ->display(function ()

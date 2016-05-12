@@ -7,13 +7,16 @@ Admin::menu()->url('/')->label('Главная')->icon('fa-dashboard');
  */
 if (AuthUser::isAdmin()){
     Admin::menu()->url('users')->label("Пользователи")->icon('fa-user');
-    Admin::menu('App\Model\Supplier')->icon('fa-users')->label('Поставщики');
     Admin::menu('App\Model\Role')->icon('fa-male')->label('Роли');
     Admin::menu('App\Model\Ability')->icon('fa-unlock')->label('Возможности');
     Admin::menu('App\Model\Status')->icon('fa-shopping-cart')->label('Статусы заказов');
     Admin::menu('App\Model\Location')->icon('fa-location-arrow')->label('Локации');
     Admin::menu('App\Model\Delivery')->icon('fa-truck')->label('Службы доставки');
     Admin::menu('App\Model\Payment')->icon('fa-credit-card')->label('Службы оплаты');
+}
+
+if (AuthUser::can('supplier_admin')) {
+    Admin::menu('App\Model\Supplier')->icon('fa-users')->label('Поставщики');
 }
 
 if (AuthUser::can('infopage_admin')) {
