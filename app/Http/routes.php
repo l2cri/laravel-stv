@@ -140,6 +140,10 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/zones', 'LocationController@locationsTree')->name('location.zones');
     Route::post('/panel/supplier/zones', 'LocationController@saveDeliveryZone')->name('location.zones.save');
     Route::get('/panel/supplier/zones/ajax', 'LocationController@ajax')->name('location.zones.ajax');
+
+    // User accaunt settings
+    Route::get('/panel/user/account', 'UserController@index')->name('account');
+    Route::post('/panel/user/account', 'UserController@update')->name('account.update');
 });
 
 /*

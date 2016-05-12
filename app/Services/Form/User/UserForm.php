@@ -26,11 +26,21 @@ class UserForm
     }
 
     public function update(array $input){
-        if ( ! $this->valid($input) ) return false;
 
         $userId = userId();
         if (!empty($userId)){
             unset($input['_token']);
+
+            if (isset($input['password']) && !empty($input['password'])){
+
+                $input['password'] = bcrypt($input['password']);
+                $input['password_confirmation'] = bcrypt($input['password_confirmation']);
+            }
+
+            if ( ! $this->valid($input) ) return false;
+
+            unset($input['password_confirmation']);
+
             $this->user->update($input, $userId);
         }
         return false;

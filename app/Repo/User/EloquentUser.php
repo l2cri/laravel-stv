@@ -8,7 +8,7 @@
 
 namespace App\Repo\User;
 
-
+use Illuminate\Database\Eloquent\Model;
 use App\Repo\RepoTrait;
 
 class EloquentUser implements UserInterface

@@ -165,6 +165,7 @@ return [
         App\Providers\FavoriteServiceProvider::class,
         App\Providers\OrderByRandomServiceProvider::class,
         App\Providers\BannerServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
 
         /*
          * Sleeping-Owl Admin
