@@ -31,7 +31,7 @@ class ProductForm
         if ( ! $this->valid($input) ) return false;
 
         $input['regular_price'] = $input['price'];
-        $input['supplier_id'] = $this->getSupplierId();
+        $input['supplier_id'] = supplierId();
 
         $product = $this->product->create($input);
         $product->sections()->attach($input['section_ids']);
@@ -142,15 +142,6 @@ class ProductForm
         if (count($filtered->all() > 0)) return true;
 
         return false;
-    }
-
-    /**
-     * Возвращает айди поставщика если он явно в форме не указан - сделано с учетом будующих требований,
-     * когда один пользователь сможет иметь несколько компаний на аккаунте
-     * @return mixed
-     */
-    protected function getSupplierId(){
-        return Auth::user()->suppliers[0]->id;
     }
 
     public function deleteimg($id){
