@@ -164,10 +164,11 @@ $(function() {
 				autoplay: autoPlayVar,
 				slidesPerView: slidesPerViewVar,
 				keyboardControl: true,
-				calculateHeight: true, 
+				calculateHeight: false,
 				simulateTouch: simVar,
 				centeredSlides: centerVar,
 				roundLengths: true,
+				setWrapperSize: true,
 				onSlideChangeEnd: function(swiper){
 					var activeIndex = (loopVar===true)?swiper.activeIndex:swiper.activeLoopIndex;
 					if($t.closest('.navigation-banner-swiper').length || $t.closest('.parallax-slide').length){

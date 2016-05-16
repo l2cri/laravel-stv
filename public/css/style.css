@@ -815,7 +815,7 @@ body:not(.mobile) #content-block .sidebar-navigation .entry:hover .fa{color: #ff
 
 /* 04.07 - navigation banner */
 .navigation-banner-swiper{margin-bottom: 30px;}
-.navigation-banner-wrapper{position: relative; background-size: cover;}
+.navigation-banner-wrapper{position: relative; background-size: contain; background-repeat: no-repeat}
 /*.navigation-banner-wrapper.align-1{background-position: right top;}*/
 .navigation-banner-wrapper.align-2{background-position: left top; }
 .navigation-banner-content{width: 57%; padding: 0 50px 0 50px; height: 505px; position: relative;}
@@ -849,11 +849,14 @@ body:not(.mobile) #content-block .sidebar-navigation .entry:hover .fa{color: #ff
 	#content-block .navigation-banner-content .title{font-size: 40px; line-height: 40px; letter-spacing: -4px;}
 	#content-block .navigation-banner-content .subtitle{font-size: 25px; line-height: 25px; margin-bottom: 10px;}
 	#content-block .navigation-banner-content .description{color: #3c3c3c; padding-right: 0;}
-	#content-block .navigation-banner-content{height: 300px; padding: 0 15px; width: auto; text-align: center; float: none;}
+	#content-block .navigation-banner-content{height: 100%; padding: 0 15px; width: auto; text-align: center; float: none;}
     #content-block .navigation-banner-content .cell-view{width: 800px;}
 	#content-block .navigation-banner-image{opacity: 0.2;}
 	/*#content-block .navigation-banner-wrapper{background-image: none!important;}*/
-    #content-block .navigation-banner-wrapper:before{position: absolute; width: 100%; height: 100%; left: 0; top: 0; background: rgba(255, 255, 255, 0.7); content: "";}
+    #content-block .navigation-banner-wrapper:before{
+        position: absolute; width: 100%;
+        /*height: 100%; */
+        left: 0; top: 0; background: rgba(255, 255, 255, 0.7); content: "";}
     #content-block .navigation-banner-wrapper.light-text:before{background: rgba(93, 93, 93, 0.7);}
     #content-block .navigation-banner-wrapper.light-text .description{color: #fff!important;}
 	#content-block .navigation-banner-content .button{margin: 0 1%; width: 48%; float: left; min-width: 0;}
