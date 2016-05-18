@@ -20,7 +20,7 @@ if (AuthUser::can('section_admin')) {
                 Column::string('name')->label('Название'),
                 Column::string('code')->label('Код в URL'),
                 Column::string('parent.name')->label('Родительская'),
-                Column::image('icon'),
+                Column::string('icon'),
                 Column::custom()->label('Активная')->callback(function ($instance)
                 {
                     return $instance->active ? '&check;' : '-';
@@ -41,7 +41,7 @@ if (AuthUser::can('section_admin')) {
                 FormItem::checkbox('active', 'Активная'),
                 FormItem::checkbox('moderated', 'Проверенная'),
                 FormItem::select('parent_id', 'Родительская')->model('\App\Models\Section')->display('name')->nullable(),
-                FormItem::image('icon', 'Иконка'),
+                FormItem::text('icon', 'Иконка'),
                 FormItem::ckeditor('description', 'Описание'),
             ]);
             return $form;

@@ -20,10 +20,13 @@ class LocationsTableSeeder extends Seeder
 
         // сначала сделаем для первого уровня
 
-        for ($l = 1; $l <= $maxLevel; $l++) {
+        for ($l = 1; $l <= 3; $l++) {
+            echo $l;
             // достаем из базы данных fias (mysql), connection mysql_fias
             $fiasLocations = DB::connection('mysql_fias')->table('d_fias_addrobj')
                             ->where('actstatus', 1)->where('aolevel', $l)->get();
+
+            var_dump($fiasLocations);
 
 
             // локации уровня 1 и записываем их в базу данных.

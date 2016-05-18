@@ -46,13 +46,16 @@ class LocationRepo implements LocationInterface
 
     public function getTree($level)
     {
-        return $this->model->where('level', '<=', $level)->defaultOrder()->get()->toTree();
+        $tree = $this->model->where('level', '<=', $level)->defaultOrder()->get()->toTree()->sortBy('name');
+
+        return $tree;
     }
 
     public function getJson($parentId, $supplierId)
     {
         $json = array();
         $parent = $this->model->find($parentId);
+        $parent->children = $parent->children->sortBy('name');
         foreach ($parent->children as $child) {
             $json[] = array(
                 'id' => $child->id,
