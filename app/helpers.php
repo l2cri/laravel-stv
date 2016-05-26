@@ -6,6 +6,9 @@
  * Time: 19:55
  */
 
+define ("ARRAY_FILTER_USE_BOTH", 1);
+define ("ARRAY_FILTER_USE_KEY", 2);
+
 /*
  * возвращает все возможные действия в системе
  */
@@ -40,11 +43,11 @@ function treeSymbol($q, $sign){
 
 function removeEmptyValues(array $array){
 
-    return array_filter($array, function($v, $k) {
+    return array_filter($array, function($v) {
 
         if (is_array($v)) return count($v);
         return strlen(trim($v));
-    }, ARRAY_FILTER_USE_BOTH);
+    });
 }
 
 /**
