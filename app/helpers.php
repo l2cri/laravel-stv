@@ -6,8 +6,8 @@
  * Time: 19:55
  */
 
-define ("ARRAY_FILTER_USE_BOTH", 1);
-define ("ARRAY_FILTER_USE_KEY", 2);
+//define ("ARRAY_FILTER_USE_BOTH", 1);
+//define ("ARRAY_FILTER_USE_KEY", 2);
 
 /*
  * возвращает все возможные действия в системе
