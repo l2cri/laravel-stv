@@ -16,6 +16,7 @@ if (AuthUser::isAdmin()) {
             $display->columns([
                 Column::string('id')->label('ID'),
                 Column::string('name')->label('Название'),
+                Column::string('type')->label('Обработчик'),
                 Column::string('description')->label('Описание'),
             ]);
             return $display;
@@ -25,6 +26,7 @@ if (AuthUser::isAdmin()) {
             $form->items([
                 FormItem::checkbox('active', 'Активная'),
                 FormItem::text('name', 'Название'),
+                FormItem::text('type', 'Обработчик'),
                 FormItem::textarea('description', 'Описание'),
             ]);
             return $form;
