@@ -28,6 +28,8 @@ class OrderServiceProvider extends ServiceProvider
         $this->app->bind('App\Repo\Order\OrderInterface', function($app){
             return new EloquentOrder( new Order(), new Status(), new Delivery(), new Payment() );
         });
+
+        $this->app->bind('App\Services\Delivery\DeliveryServiceInterface', 'App\Services\Delivery\DeliveryService');
     }
 
 }
