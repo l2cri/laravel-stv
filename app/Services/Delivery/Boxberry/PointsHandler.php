@@ -17,6 +17,6 @@ class PointsHandler extends AbstractHandler implements DeliveryHandlerInterface
 
     public function getDeliveryWays()
     {
-        // TODO: Implement getDeliveryWays() method.
+        return false;
     }
 }

@@ -24,6 +24,8 @@ abstract class AbstractHandler implements DeliveryHandlerInterface
                      // пока не будем задавать вообще, неизвестно какие будут коробки
     protected $zip;    // индекс города для курьерской доставки
 
+    protected $url;
+
     public function __construct(Model $model, $locationId, $sum, $deliverysum = 0, $paysum = 0, $weight, $volume, $zip) {
         $this->model = $model;
         $this->locationId = $locationId;
@@ -33,6 +35,8 @@ abstract class AbstractHandler implements DeliveryHandlerInterface
         $this->weigth = $weight;
         $this->volume = $volume;
         $this->zip = $zip;
+
+        $this->url = 'http://api.boxberry.de/json.php?token='.config('marketplace.boxberry_token');
     }
 
     public function getModel()

@@ -26,17 +26,6 @@ class BoxberryCourierCities extends Seeder
         }
         else
         {
-            // все отлично, ответ получен, теперь в массиве $data,
-            // список доступных для курьерской доставки городов в формате:
-            /*
-            $data[0...n]=array(
-              'City'=>'Населенный пункт',
-              'Region'=>'Регион',
-              'Area'=>'Область',
-               'DeliveryPeriod' => '8.00'
-            );
-	           */
-
             foreach ($data as $city) {
                 $name = $city['City'];
                 $time = $city['DeliveryPeriod'];

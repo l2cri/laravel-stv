@@ -18,8 +18,12 @@ abstract class AbstractWay implements DeliveryWayInterface
     private $time;
     private $data;
 
-    public function __construct() {
+    public function __construct($name, $cost, $time, $data = false) {
         // пока не понятно, что сюда задавать
+        $this->name = $name;
+        $this->cost = $cost;
+        $this->time = $time;
+        $this->data = $data;
     }
 
     public function getName()
