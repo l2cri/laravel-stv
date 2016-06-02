@@ -29,4 +29,7 @@ return [
     'emailOrderReturned' => 'BUY26.RU: возврат заказа!',
     'emailOrderStatusChanged' => 'BUY26.RU: новый статус заказа - ',
     'emailUserRegistered' => 'BUY26.RU: спасибо за регистрацию!',
+
+    // boxberry
+    'boxberry_token' => '16630.pbpqceaf',
 ];
