@@ -23,11 +23,28 @@
                         <div class="accordeon-title active"><span class="number">2</span>Доставка</div>
                         <div class="accordeon-entry" style="display: block;">
                             <div class="article-container style-1">
-                                @foreach($deliveries as $delivery)
-                                    <label class="checkbox-entry radio">
-                                        <input type="radio" name="delivery_id" value="{{ $delivery->id }}"> <span class="check"></span> {{ $delivery->name }}
-                                    </label>
+
+                                @foreach( $deliveries as $delivery )
+                                    <? $deliveryWays = $delivery->getDeliveryWays(); ?>
+                                    @if ($deliveryWays)
+                                        <? $inc = 0; ?>
+                                        @foreach($deliveryWays as $dWay)
+                                            <input type="hidden" name="dataWays['{{ $inc }}']"
+                                                   value="{{ serialize([$dWay->getName(), $dWay->getCost(), $dWay->getTime(), $dWay->getData()]) }}">
+                                            <label class="checkbox-entry radio">
+                                                <input type="radio" name="delivery_id" value="{{ $delivery->getModel()->id }}_{{ $inc }}"> <span class="check"></span>
+                                                {{ $dWay->getName() }} - <i class="fa fa-rub"></i> {{ $dWay->getCost() }}
+                                            </label>
+                                            <? $inc++; ?>
+                                        @endforeach
+                                    @endif
                                 @endforeach
+
+                                {{--@foreach($deliveries as $delivery)--}}
+                                    {{--<label class="checkbox-entry radio">--}}
+                                        {{--<input type="radio" name="delivery_id" value="{{ $delivery->id }}"> <span class="check"></span> {{ $delivery->name }}--}}
+                                    {{--</label>--}}
+                                {{--@endforeach--}}
                             </div>
                         </div>
 

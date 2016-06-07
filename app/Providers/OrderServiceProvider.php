@@ -14,6 +14,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Status;
 use App\Repo\Order\EloquentOrder;
+use App\Services\Delivery\DeliveryService;
 use Illuminate\Support\ServiceProvider;
 
 class OrderServiceProvider extends ServiceProvider
@@ -29,7 +30,9 @@ class OrderServiceProvider extends ServiceProvider
             return new EloquentOrder( new Order(), new Status(), new Delivery(), new Payment() );
         });
 
-        $this->app->bind('App\Services\Delivery\DeliveryServiceInterface', 'App\Services\Delivery\DeliveryService');
+        $this->app->bind('App\Services\Delivery\DeliveryServiceInterface', function ($app) {
+            return new DeliveryService( new Delivery());
+        });
     }
 
 }

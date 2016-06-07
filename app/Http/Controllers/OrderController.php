@@ -7,13 +7,17 @@ use App\DataTables\UserOrdersDataTable;
 use App\Events\OrderMade;
 use App\Events\OrderReturned;
 use App\Events\OrderStatusChanged;
+use App\Repo\Cart\CartInterface;
+use App\Repo\Location\LocationInterface;
 use App\Repo\Message\MessageInterface;
 use App\Repo\Order\OrderInterface;
 use App\Repo\Profile\ProfileInterface;
+use App\Services\Delivery\DeliveryServiceInterface;
 use App\Services\Form\Cart\CartForm;
 use App\Services\Form\Order\OrderForm;
 use App\User;
 use Illuminate\Http\Request;
+use Cart;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -28,13 +32,21 @@ class OrderController extends Controller
     protected $order;
     protected $cartForm;
     protected $message;
+    protected $deliveryService;
+    protected $location;
+    protected $cart;
 
-    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm, MessageInterface $message) {
+    public function __construct(OrderForm $form, ProfileInterface $profile, OrderInterface $order, CartForm $cartForm,
+                                MessageInterface $message, DeliveryServiceInterface $deliveryService,
+                                LocationInterface $location, CartInterface $cart) {
         $this->form = $form;
         $this->profile = $profile;
         $this->order = $order;
         $this->cartForm = $cartForm;
         $this->message = $message;
+        $this->deliveryService = $deliveryService;
+        $this->location = $location;
+        $this->cart = $cart;
 
         $this->middleware('auth', ['except' => ['auth']]);
     }
@@ -77,7 +89,22 @@ class OrderController extends Controller
 
         if ( !empty( Input::get('profileId') ) ) $profile = $this->profile->byId( Input::get('profileId') );
 
-        $deliveries = $this->order->deliveries();
+        /**
+         * достаем доставки боксберри
+         */
+        //$locationId = isset($profile) ? $profile->location_id : $this->location->getSessionLocation();
+        $location = $this->location->getSessionLocation();
+        $zip = isset($profile) ? $profile->zip : false;
+        $deliveries = $this->deliveryService->getDeliveries(
+            $location->id,
+            Cart::getTotal(), // это из корзины возвращать
+            0, // сумма доставки неизвестна - 0
+            Cart::getTotal(), // сумма к оплате пока равна общей сумме, без доставки
+            $this->cart->weight(), // вес из корзины
+            0, // объем из корзины
+            $zip);   // зип из профиля, а если профиль пуст, то взять любой зип из города, второй, первый основной индекс - лагает
+
+        //$deliveries = $this->order->deliveries();
         $payments = $this->order->payments();
 
         return view('order.checkout', compact('profile', 'profiles', 'deliveries', 'payments'));

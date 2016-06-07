@@ -27,7 +27,7 @@ class DeliveryService implements DeliveryServiceInterface
     {
         // достать из базы все обработчики
         $handlers = $this->getHandlers([
-            $locationId, $sum, $deliverysum = 0, $paysum = 0, $weight, $volume, $zip
+            $locationId, $sum, $deliverysum, $paysum, $weight, $volume, $zip
         ]);
         uasort($handlers, function($a, $b){
            /* @var $a \App\Services\Delivery\DeliveryHandlerInterface

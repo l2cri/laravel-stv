@@ -33,4 +33,5 @@ return [
     // boxberry
     'boxberry_token' => '16630.pbpqceaf',
     'boxberry_courier' => 'Курьерская доставка Boxberry',
+    'boxberry_weight' => 500,
 ];

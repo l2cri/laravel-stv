@@ -13,7 +13,7 @@ use App\Services\Delivery\DeliveryHandlerInterface;
 
 class PointsHandler extends AbstractHandler implements DeliveryHandlerInterface
 {
-    private $sort = 2;
+    protected $sort = 2;
 
     public function getDeliveryWays()
     {

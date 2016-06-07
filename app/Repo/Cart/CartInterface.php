@@ -21,4 +21,5 @@ interface CartInterface extends RepoInterface
     public function addOrderCartItem($userId, $orderId, $data);
     public function cartConditions($item, $cart);
     public function deleteCondition($orderId, $conditionId, $userId);
+    public function weight();
 }

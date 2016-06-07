@@ -20,11 +20,13 @@ class CartRepo implements CartInterface
 
     protected $model;
     protected $conditionModel;
+    protected $product;
 
-    public function __construct(Model $model, Model $conditionModel) {
+    public function __construct(Model $model, Model $conditionModel, Model $product) {
         $this->app = app();
         $this->model = $model;
         $this->conditionModel = $conditionModel;
+        $this->product = $product;
     }
 
     public function add($data)
@@ -185,5 +187,20 @@ class CartRepo implements CartInterface
         $this->update($data, $cartItemId);
 
         return $cart;
+    }
+
+    /**
+     * @return вес в граммах
+     */
+    public function weight() {
+        $weight = 0;
+
+        $items = Cart::getContent();
+        foreach ($items as $item) {
+            $product = $this->product->find($item->id);
+            $weight += $product->weight;
+        }
+
+        return $weight;
     }
 }

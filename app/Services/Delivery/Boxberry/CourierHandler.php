@@ -17,16 +17,24 @@ class CourierHandler extends AbstractHandler implements DeliveryHandlerInterface
 {
     public function getDeliveryWays()
     {
-        if ( empty($this->zip) || empty($this->locationId) ) return false;
+        // если zip пустой, то возьмем второй zip из всех доступных zip этого города
+
+        if ( empty($this->locationId) ) return false;
 
         // есть locationId - посмотреть, есть ли связанный с этим location город (таблица боксберри)
         // если нет, return false;
         $bLocation = BCities::where('location_id', $this->locationId)->first();
         if (!$bLocation) return false;
 
+        if ( empty($this->zip) ) $this->zip = $this->getZip($bLocation->name);
+
+        if ( empty($this->zip) ) return false;
+
         // проверяем в таблице индексов для доставки, есть ли такой индекс, нет - return false;
         $bZip = BZips::where('zip', $this->zip)->first();
         if (!$bZip) return false;
+
+        if (!$this->weigth) $this->weigth = config('marketplace.boxberry_weight');
 
         $url = $this->url. '&method=DeliveryCosts'.
                             '&weight='.$this->weigth.
@@ -46,6 +54,13 @@ class CourierHandler extends AbstractHandler implements DeliveryHandlerInterface
 
         // возвращаем коллекцию
         return collect([$dWay]);
+    }
+
+    public function getZip($name){
+        $bZip = BZips::where('city', $name)->skip(2)->take(1)->get();
+
+        if ( count($bZip) ) return $bZip[0]->zip;
+        return false;
     }
 
 }

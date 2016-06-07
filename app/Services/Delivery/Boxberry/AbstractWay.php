@@ -33,7 +33,7 @@ abstract class AbstractWay implements DeliveryWayInterface
 
     public function getCost()
     {
-        return $this->cost;
+        return roundPrice($this->cost);
     }
 
     public function getTime()

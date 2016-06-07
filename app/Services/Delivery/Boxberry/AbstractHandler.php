@@ -9,6 +9,7 @@
 namespace App\Services\Delivery\Boxberry;
 
 use App\Services\Delivery\DeliveryHandlerInterface;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class AbstractHandler implements DeliveryHandlerInterface
 {
