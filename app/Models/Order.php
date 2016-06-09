@@ -47,4 +47,8 @@ class Order extends Model
     public function messages(){
         return $this->hasMany('App\Models\Message');
     }
+
+    public function conditions(){
+        return $this->morphMany('App\Models\Condition', 'conditionable');
+    }
 }

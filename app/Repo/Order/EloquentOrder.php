@@ -55,4 +55,29 @@ class EloquentOrder implements OrderInterface
     public function payments(){
         return $this->modelPayment->all();
     }
+
+    public function create(array $data) {
+
+        // сохраняем данные доставки в отдельный массив
+        $deliveryArr = $data['delivery'];
+        unset($data['delivery']);
+        $data['delivery_id'] = $deliveryArr['id'];
+
+        // создаем заказ
+        $order = $this->model->create($data);
+
+        // сохранение доставки в виде Condition morph
+        // сохраняем Condition
+        $attr = serialize($deliveryArr);
+
+        $order->conditions()->create([
+            'name' => $deliveryArr['name'],
+            'type' => 'delivery',
+            'target' => 'order',
+            'value' => -$deliveryArr['price'],
+            'attributes' => $attr
+        ]);
+
+        return $order;
+    }
 }

@@ -50,8 +50,10 @@ class OrderForm
         $profileId = $this->handleProfile($input);
         $bySuppliersArray = $this->devideBySuppliers();
 
+        $deliveryArr = $this->getDeliveryArray($input);
+
         // если что-то пойдет не так, то бросит исключение
-        $orders = $this->saveBySuppliers($bySuppliersArray, $profileId);
+        $orders = $this->saveBySuppliers($bySuppliersArray, $profileId, $deliveryArr);
 
         // поэтому смело чистим корзину
         $this->cart->clear();
@@ -75,7 +77,7 @@ class OrderForm
         return $changed;
     }
 
-    protected function save($supplierId, $profileId, $cart){
+    protected function save($supplierId, $profileId, $cart, $deliveryArr){
         $subtotal = 0;
         $total = 0;
 
@@ -91,6 +93,9 @@ class OrderForm
             'subtotal' => $subtotal,
             'total' => $total
         );
+
+        // добавляем доставку
+        $data['delivery'] = $deliveryArr;
 
         $order = $this->order->create($data);
 
@@ -111,12 +116,17 @@ class OrderForm
         $this->message->create($input);
     }
 
-    protected function saveBySuppliers($arr, $profileId) {
+    protected function saveBySuppliers($arr, $profileId, $deliveryArr) {
 
         $orders = array();
 
+        // цену доставки делим на разные заказы
+        $supplierCount = count($arr);
+        $deliveryPrice = roundPrice($deliveryArr['price'] / $supplierCount);
+        $deliveryArr['price'] = $deliveryPrice;
+
         foreach ($arr as $supplierId => $cart) {
-            $orderId = $this->save($supplierId, $profileId, $cart);
+            $orderId = $this->save($supplierId, $profileId, $cart, $deliveryArr);
             $this->cart->save($cart, $orderId, $this->user->id);
             $orders[] = $orderId;
         }
@@ -207,5 +217,23 @@ class OrderForm
 
     public function returnOrder($orderId){
         $this->order->update(['returned' => true], $orderId);
+    }
+
+    /**
+     * все что связано с доставкой
+     * @return array массив вида delivery_id для заказа и data для создания condition на заказ
+     */
+    private function getDeliveryArray($input) {
+
+        $deliveryArr = explode('_', $input['delivery_id']);
+        $deliveryId = $deliveryArr[0];
+        $dataWays = $input['dataWays'];
+
+//        var_dump($dataWays); die();
+
+        $deliveryData = unserialize( $dataWays[$deliveryArr[1]] );
+        $deliveryPrice = $deliveryData[1];
+
+        return ['id' => $deliveryId, 'price' => $deliveryPrice, 'data' => $deliveryData, 'name' => $deliveryData[0]];
     }
 }

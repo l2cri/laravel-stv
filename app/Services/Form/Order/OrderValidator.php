@@ -18,8 +18,9 @@ class OrderValidator extends AbstractLaravelValidator
         'phone' => 'required|string',
         'profile_id' => 'numeric',
         'address' => 'required|string',
-        'delivery_id' => 'numeric',
+        'delivery_id' => 'string',
         'payment_id' => 'numeric',
+        'dataWays' => 'array',
 
         // TODO:: добавить location_id, delivery_id, delivery_price(hidden), payment_id
     );

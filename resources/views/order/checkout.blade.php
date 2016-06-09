@@ -29,7 +29,7 @@
                                     @if ($deliveryWays)
                                         <? $inc = 0; ?>
                                         @foreach($deliveryWays as $dWay)
-                                            <input type="hidden" name="dataWays['{{ $inc }}']"
+                                            <input type="hidden" name="dataWays[{{ $inc }}]"
                                                    value="{{ serialize([$dWay->getName(), $dWay->getCost(), $dWay->getTime(), $dWay->getData()]) }}">
                                             <label class="checkbox-entry radio">
                                                 <input type="radio" name="delivery_id" value="{{ $delivery->getModel()->id }}_{{ $inc }}"> <span class="check"></span>
