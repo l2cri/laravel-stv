@@ -41,6 +41,8 @@
         <tr>
             <th colspan="2"></th>
             <th colspan="2"><span class="pull-right">Итого: <i class="fa fa-rub"></i> {{ $order->total }}</span></th>
+
+            @include('order.conditions', ['order' => $order])
         </tr>
 
     </table>
