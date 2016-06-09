@@ -33,7 +33,7 @@
                                                    value="{{ serialize([$dWay->getName(), $dWay->getCost(), $dWay->getTime(), $dWay->getData()]) }}">
                                             <label class="checkbox-entry radio">
                                                 <input type="radio" name="delivery_id" value="{{ $delivery->getModel()->id }}_{{ $inc }}"> <span class="check"></span>
-                                                {{ $dWay->getName() }} - <i class="fa fa-rub"></i> {{ $dWay->getCost() }}
+                                                {{ $dWay->getName() }}, {{ $dWay->getTime() }} дней - <i class="fa fa-rub"></i> {{ $dWay->getCost() }}
                                             </label>
                                             <? $inc++; ?>
                                         @endforeach
