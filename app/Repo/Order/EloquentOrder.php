@@ -74,7 +74,7 @@ class EloquentOrder implements OrderInterface
             'name' => $deliveryArr['name'],
             'type' => 'delivery',
             'target' => 'order',
-            'value' => -$deliveryArr['price'],
+            'value' => $deliveryArr['price'],
             'attributes' => $attr
         ]);
 
