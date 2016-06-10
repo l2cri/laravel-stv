@@ -28,6 +28,8 @@
                 </tr>
             </table>
 
+            @include('order.pvz', ['order' => $order])
+
             <h1>{{ $order->profile->person }} <span class="small">({{ $order->profile->name }})</span></h1>
 
             <table class="table table-striped panel">

@@ -32,6 +32,8 @@
                 </tr>
             </table>
 
+            @include('order.pvz', ['order' => $order])
+
             <h1>Клиент {{ $order->profile->person }}</h1>
 
             <table class="table table-striped panel">
