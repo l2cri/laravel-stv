@@ -308,3 +308,5 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .navigation .cell-view {padding-bottom: 0px}
 
 .deliveryWay {margin-top: 20px; margin-bottom: 20px}
+.deliveryRadio {
+	max-height: 200px; overflow: scroll; position: relative; margin-bottom: 20px}

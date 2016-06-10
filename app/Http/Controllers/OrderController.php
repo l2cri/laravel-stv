@@ -107,7 +107,7 @@ class OrderController extends Controller
         //$deliveries = $this->order->deliveries();
         $payments = $this->order->payments();
 
-        return view('order.checkout', compact('profile', 'profiles', 'deliveries', 'payments'));
+        return view('order.checkout', compact('profile', 'profiles', 'deliveries', 'payments', 'location'));
     }
 
     public function thanks($orders = null){

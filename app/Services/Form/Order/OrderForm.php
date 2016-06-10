@@ -231,7 +231,7 @@ class OrderForm
 
 //        var_dump($dataWays); die();
 
-        $deliveryData = unserialize( $dataWays[$deliveryArr[1]] );
+        $deliveryData = unserialize( base64_decode($dataWays[$deliveryArr[1]]) );
         $deliveryPrice = $deliveryData[1];
 
         return ['id' => $deliveryId, 'price' => $deliveryPrice, 'data' => $deliveryData, 'name' => $deliveryData[0]];
