@@ -19,6 +19,10 @@
                     <td>{{ $order->total }} <i class="fa fa-rub"></i></td>
                 </tr>
                 <tr>
+                    <th>Доставка</th>
+                    <td>@include('order.conditions', ['order' => $order])</td>
+                </tr>
+                <tr>
                     <th>Комментарий</th>
                     <td>{{ $order->comment }}</td>
                 </tr>

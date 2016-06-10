@@ -244,3 +244,30 @@ function getJSONbyUrl($url) {
 
     return $data;
 }
+
+function implode_assoc(array $array) {
+    $str = '';
+    $terms = count($array);
+    foreach ($array as $field => $value)
+    {
+        $terms--;
+        $str .= $field . '===>' . $value;
+        if ($terms)
+        {
+            $str .= '|||';
+        }
+    }
+
+    return $str;
+}
+
+function explode_assoc($str) {
+    $assoc = array();
+    $kvArr = explode('|||', $str);
+
+    foreach ($kvArr as $v) {
+        $vArr = explode('===>', $v);
+        $assoc[$vArr[0]] = $vArr[1];
+    }
+    return $assoc;
+}

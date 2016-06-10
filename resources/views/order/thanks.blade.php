@@ -35,6 +35,8 @@
                 </div>
             </div>
         </div>
+
+        @include('order.pvz', ['order' => $ordersCollection[0]])
     </div>
 
 @endsection

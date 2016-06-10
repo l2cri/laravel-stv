@@ -52,7 +52,7 @@ class PointsHandler extends AbstractHandler implements DeliveryHandlerInterface
             $ways[] = app('App\Services\Delivery\Boxberry\PointsWay', [ $name,
                                                                         $data['price'],
                                                                         $data['delivery_period'],
-                                                                        serialize($point->attributes)
+                                                                        implode_assoc($point->toArray())
                                                                     ]);
         }
 
