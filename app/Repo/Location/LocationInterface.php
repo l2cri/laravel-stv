@@ -9,7 +9,9 @@
 namespace App\Repo\Location;
 
 
-interface LocationInterface
+use App\Repo\RepoInterface;
+
+interface LocationInterface extends RepoInterface
 {
     public function saveDeliveryZone(array $locationIds, $supplierId);
     public function getByName($locationName);

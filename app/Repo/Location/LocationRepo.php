@@ -8,12 +8,15 @@
 
 namespace App\Repo\Location;
 
+use App\Repo\RepoTrait;
 use Illuminate\Http\Request;
 use SimpleXMLElement;
 use Illuminate\Database\Eloquent\Model;
 
 class LocationRepo implements LocationInterface
 {
+    use RepoTrait;
+
     protected $model;
     protected $supplier;
     protected $request;

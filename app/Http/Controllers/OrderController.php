@@ -93,7 +93,12 @@ class OrderController extends Controller
          * достаем доставки боксберри
          */
         //$locationId = isset($profile) ? $profile->location_id : $this->location->getSessionLocation();
-        $location = $this->location->getSessionLocation();
+//        $location = $this->location->getSessionLocation();
+
+        if (isset($profile) && !empty($profile->location_id)){
+            $location = $this->location->byId($profile->location_id);
+        } else $location = $this->location->getSessionLocation();
+
         $zip = isset($profile) ? $profile->zip : false;
         $deliveries = $this->deliveryService->getDeliveries(
             $location->id,
