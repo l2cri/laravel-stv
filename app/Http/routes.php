@@ -97,6 +97,7 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/user/profiles/update/{id}', 'ProfileController@updateform')->name('profile.show.update');
     Route::get('/panel/user/profiles/show/{id}', 'ProfileController@show')->name('profile.show');
     Route::get('/panel/user/profiles/delete/{id}', 'ProfileController@delete')->name('profile.delete');
+    Route::post('/panel/user/profiles/setLocation', 'ProfileController@setLocation')->name('profile.setLocation');
 
     // company for corporate users
     Route::get('/panel/user/company', 'CompanyController@company')->name('company');

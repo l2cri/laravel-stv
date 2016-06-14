@@ -69,4 +69,18 @@ class ProfileController extends Controller
         $this->profile->delete($id);
         return Redirect::to(route('panel::profiles'));
     }
+
+    public function setLocation(Request $request){
+
+        $this->validate($request, [
+            'location_id' => 'required|numeric',
+            'profileId' => 'required|numeric',
+        ]);
+
+        $profile = $this->profile->byId($request->get('profileId'));
+        if ($profile->user->id == $this->userId){
+            $input['location_id'] = $request->get('location_id');
+            $this->profile->update($input, $request->get('profileId'));
+        }
+    }
 }

@@ -150,7 +150,7 @@ class OrderForm
     protected function handleProfile($input) {
 
         $collection = collect($input);
-        $filtered = $collection->only(['person', 'phone', 'address']);
+        $filtered = $collection->only(['person', 'phone', 'address', 'location_id']);
         $arr = $filtered->all();
 
         if ( isset($input['profile_id'])  && !empty($input['profile_id']) ) {

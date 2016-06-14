@@ -46,6 +46,32 @@
                     });
         });
 
+        // для изменения локации профиля при оформлении заказа
+        $('#locationsTypeheadProfile').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 3
+
+        }, {
+            name: 'locations',
+            source: locations,
+            display: 'path'
+
+        }).on('typeahead:selected',function(evt,data){
+
+            var params = {}
+            params.location_id = data.id;
+            params.profileId = $('#profileIdForType').val();
+            var url = '{{ route('panel::profile.setLocation') }}';
+
+            submitFormByAjax(url, params).done(function(data) {
+                location.reload();
+            })
+                    .fail(function(jqXHR) {
+                        $('.error-content').html("Ошибка: "+jqXHR.responseText);
+                    });
+        });
+
         // для других полей: профили, может быть еще где-то
         $('#locationsTypeheadClass').typeahead({
             hint: true,
@@ -61,17 +87,6 @@
 
             $('#locationsTypeheadClassHidden').val(data.id);
             $('#locationsTypeheadClass').val(data.name);
-
-            {{--var params = {}--}}
-            {{--params.locationId = data.id;--}}
-            {{--var url = '{{ route('setLocation') }}';--}}
-
-            {{--submitFormByAjax(url, params).done(function(data) {--}}
-            {{--location.reload();--}}
-            {{--})--}}
-            {{--.fail(function(jqXHR) {--}}
-            {{--$('.error-content').html("Ошибка: "+jqXHR.responseText);--}}
-            {{--});--}}
         });
     });
 </script>
