@@ -39,6 +39,13 @@
                         value="{{ $profile->phone }}">
                 <div class="clear"></div>
 
+                <label>Город или населенный пункт <span>*</span></label>
+                <input id="locationsTypeheadClassHidden" name="location_id" value="{{ @$profile->location->id }}" type="hidden">
+                <input id="locationsTypeheadClass" class="simple-field typeahead" type="text"
+                       value="{{ @$profile->location->name }} {{ @$profile->location->shortname }}"
+                       placeholder="Город или населенный пункт">
+                <div class="clear"></div>
+
                 <label>Адрес</label>
                 <textarea rows="2" class="simple-field" name="address" style="height: 70px">{{ $profile->address }}</textarea>
 
@@ -53,3 +60,5 @@
     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
     <button type="button" class="btn btn-primary" id="submit_update">Сохранить</button>
 </div>
+
+@include('geojs')

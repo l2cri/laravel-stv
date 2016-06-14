@@ -19,7 +19,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{{ route('panel::profile.add') }}" method="post" id="form_create">
+                        <form action="{{ route('panel::profile.add') }}" method="post" id="form_create" class="geoForm">
                             {{ csrf_field() }}
 
                             <div class="row">
@@ -46,6 +46,13 @@
                                     <input type="text" required=""
                                            class="simple-field"
                                            name="phone">
+                                    <div class="clear"></div>
+
+                                    <label>Город или населенный пункт <span>*</span></label>
+                                    <input id="locationsTypeheadClassHidden" name="location_id" value="{{ $currentLocation->id }}" type="hidden">
+                                    <input id="locationsTypeheadClass" class="simple-field typeahead" type="text"
+                                           value="{{ $currentLocation->name }} {{ $currentLocation->shortname }}"
+                                           placeholder="Город или населенный пункт">
                                     <div class="clear"></div>
 
                                     <label>Адрес <span>*</span></label>

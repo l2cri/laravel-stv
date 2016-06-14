@@ -44,7 +44,7 @@ class ComposerServiceProvider extends ServiceProvider
             ['cart.updateForm', 'cart.dropdown', 'cart.checkout'], 'App\Http\ViewComposers\CartUpdateFormComposer'
         );
 
-        view()->composer('common.geo', function($view){
+        view()->composer(['common.geo', 'panel.user.profiles.index'], function($view){
             /**
              * geoLocation
              */

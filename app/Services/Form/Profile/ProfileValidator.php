@@ -19,6 +19,7 @@ class ProfileValidator extends AbstractLaravelValidator
         'phone' => 'required|string',
         'profile_id' => 'numeric',
         'address' => 'required|string',
+        'location_id' => 'numeric'
 
         // TODO:: добавить location_id, default(bool), company_id(for corporate)
     );
