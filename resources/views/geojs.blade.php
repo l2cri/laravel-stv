@@ -54,8 +54,9 @@
 
         }, {
             name: 'locations',
+            limit: 10,
             source: locations,
-            display: 'path'
+            display: 'path',
 
         }).on('typeahead:selected',function(evt,data){
 

@@ -35,7 +35,7 @@
 
     <label>Город или населенный пункт <span>*</span></label>
     <input id="locationsTypeheadClassHidden" name="location_id" value="{{ $currentLocation->id }}" type="hidden">
-    <input id="locationsTypeheadClass" class="simple-field typeahead" type="text"
+    <input id="locationsTypehead" class="simple-field typeahead" type="text"
            value="{{ $currentLocation->name }} {{ $currentLocation->shortname }}"
            placeholder="Город или населенный пункт">
     <div class="clear"></div>

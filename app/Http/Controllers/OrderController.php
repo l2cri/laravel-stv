@@ -97,6 +97,18 @@ class OrderController extends Controller
 
         if (isset($profile) && !empty($profile->location_id)){
             $location = $this->location->byId($profile->location_id);
+
+            // если локация - не город, то выбираем ближайший город
+            if ($location->shortname !== 'г'){
+                $city = $location->parent->children->filter( function ($value) {
+                    return $value->shortname == 'г';
+                });
+
+                $location = $city->first();
+
+                // если это область а не город, города нет, то берем из сессии
+                if ( !$location || (!empty($location) && $location->shortname !== 'г')) $location = $this->location->getSessionLocation();
+            }
         } else $location = $this->location->getSessionLocation();
 
         $zip = isset($profile) ? $profile->zip : false;
