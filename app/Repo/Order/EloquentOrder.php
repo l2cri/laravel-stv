@@ -36,6 +36,7 @@ class EloquentOrder implements OrderInterface
             $item->delete();
         }
 
+        $order->conditions()->delete();
         $order->delete();
     }
 
