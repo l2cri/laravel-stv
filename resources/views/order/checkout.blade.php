@@ -42,9 +42,9 @@
                                                    value='{{ base64_encode(serialize([$dWay->getName(), $dWay->getCost(), $dWay->getTime(), $dWay->getData()])) }}'>
                                             <label class="checkbox-entry radio">
                                                 <input type="radio" name="delivery_id"
-                                                       value="{{ $delivery->getModel()->id }}_{{ $inc }}"> <span
+                                                       value="{{ $delivery->getModel()->id }}_{{ $inc }}"
+                                                        data-price = "{{ $dWay->getCost() }}"> <span
                                                         class="check"></span>
-                                                Самовывоз
                                                 {{ $dWay->getName() }} <b class="pull-right">{{ $dWay->getTime() }} дней, <i
                                                         class="fa fa-rub"></i> {{ $dWay->getCost() }}</b>
                                             </label>
@@ -105,10 +105,18 @@
                                             var radio = $('input[value='+value+']').parent('label');
                                             var parentDiv = $('input[value='+value+']').parent('label').parent('.deliveryRadio');
 
-                                            //alert(parentDiv.attr('class'));
-
                                             parentDiv.scrollTop(parentDiv.scrollTop() + radio.position().top);
                                         }
+
+                                        $('.checkbox-entry.radio').click(function(){
+                                            var label = $(this);
+                                            var price = label.children('input[type="radio"]').first().attr('data-price');
+                                            var priceWithDelivery = parseFloat(price) + parseFloat('{{ Cart::getTotal() }}');
+
+                                            $('#cartTotal>.sub-total').css('display', 'block').html('Доставка: ' + price + ' <i class="fa fa-rub"></i>');
+                                            $('.grand-total.total-delivery').css('display', 'block')
+                                                    .html('Итого с доставкой: ' + priceWithDelivery + ' <i class="fa fa-rub"></i>' )
+                                        });
 
                                     </script>
                                 @endif

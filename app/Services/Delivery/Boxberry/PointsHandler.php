@@ -49,7 +49,7 @@ class PointsHandler extends AbstractHandler implements DeliveryHandlerInterface
             $name = $point['name'];
             $name .= (!empty($point['metro'])) ? ', м. '.$point['metro'] : '';
 
-            $ways[] = app('App\Services\Delivery\Boxberry\PointsWay', [ $name,
+            $ways[] = app('App\Services\Delivery\Boxberry\PointsWay', [ 'Самовывоз '.$name,
                                                                         $data['price'],
                                                                         $data['delivery_period'],
                                                                         implode_assoc($point->toArray())
