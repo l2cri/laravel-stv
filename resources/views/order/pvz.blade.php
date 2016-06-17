@@ -9,60 +9,62 @@
 
         @if($condition->type == 'delivery')
             @if($condition->attributes)
-                <?
-                $attrs = unserialize($condition->attributes);
-                $data = explode_assoc($attrs['data'][3]);
-                ?>
+                <?$attrs = unserialize($condition->attributes);?>
 
-                <div class="row deliveryWay">
+                @if($attrs['data'][3])
 
-                    <div class="col-md-8">
-                        <div id="map{{ $order->id }}" style="width: 100%; height: 400px"></div>
+                    <?$data = explode_assoc($attrs['data'][3]);?>
+
+                    <div class="row deliveryWay">
+
+                        <div class="col-md-8">
+                            <div id="map{{ $order->id }}" style="width: 100%; height: 400px"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <dl>
+                                <dt>{{ $data['office_type'] }}</dt>
+                                <dd>{{ $data['name'] }}</dd>
+
+                                <dt>Метро</dt>
+                                <dd>{{ $data['metro'] }}</dd>
+
+                                <dt>Телефон</dt>
+                                <dd>{{ $data['phone'] }}</dd>
+
+                                <dt>Время работы</dt>
+                                <dd>{{ $data['work_schedule'] }}</dd>
+
+                                <dt>Адрес</dt>
+                                <dd>{{ $data['address'] }}</dd>
+
+                                <dt>Как добраться</dt>
+                                <dd>{{ $data['trip_description'] }}</dd>
+                            </dl>
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <dl>
-                            <dt>{{ $data['office_type'] }}</dt>
-                            <dd>{{ $data['name'] }}</dd>
+                    <script type="text/javascript">
 
-                            <dt>Метро</dt>
-                            <dd>{{ $data['metro'] }}</dd>
+                        ymaps.ready(init{{ $order->id }});
+                        var myMap{{ $order->id }};
 
-                            <dt>Телефон</dt>
-                            <dd>{{ $data['phone'] }}</dd>
+                        function init{{ $order->id }}() {
+                            myMap{{ $order->id }}  = new ymaps.Map("map{{ $order->id }}", {
+                                center: [{{ $data['gps'] }}],
+                                zoom: 15
+                            });
 
-                            <dt>Время работы</dt>
-                            <dd>{{ $data['work_schedule'] }}</dd>
+                            myPlacemark{{ $order->id }}  = new ymaps.Placemark([{{ $data['gps'] }}], {
+                                hintContent: '{{ $data['office_type'] }}',
+                                balloonContent: '{{ $data['address'] }}'
+                            });
 
-                            <dt>Адрес</dt>
-                            <dd>{{ $data['address'] }}</dd>
+                            myMap{{ $order->id }}.geoObjects.add(myPlacemark{{ $order->id }});
+                        }
 
-                            <dt>Как добраться</dt>
-                            <dd>{{ $data['trip_description'] }}</dd>
-                        </dl>
-                    </div>
-                </div>
-
-                <script type="text/javascript">
-
-                    ymaps.ready(init{{ $order->id }});
-                    var myMap{{ $order->id }};
-
-                    function init{{ $order->id }}(){
-                        myMap{{ $order->id }} = new ymaps.Map("map{{ $order->id }}", {
-                            center: [{{ $data['gps'] }}],
-                            zoom: 15
-                        });
-
-                        myPlacemark{{ $order->id }} = new ymaps.Placemark([{{ $data['gps'] }}], {
-                            hintContent: '{{ $data['office_type'] }}',
-                            balloonContent: '{{ $data['address'] }}'
-                        });
-
-                        myMap{{ $order->id }}.geoObjects.add(myPlacemark{{ $order->id }});
-                    }
-
-                </script>
+                    </script>
+                @endif
             @endif
         @endif
 

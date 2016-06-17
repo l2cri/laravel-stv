@@ -4,10 +4,10 @@
 
         @if($condition->type == 'delivery')
 
-            <div class="row">
-                <div class="col-md-12" style="text-align: right">
-                    Доставка: <i class="fa fa-rub"></i> {{ $condition->value }} <br>
-                    Итого с доставкой: <i class="fa fa-rub"></i> {{ $order->total + $condition->value }}
+            <div class="row no-gutter order-conditions">
+                <div class="col-md-12 no-gutter" style="text-align: right">
+                    <b>Доставка: <i class="fa fa-rub"></i> {{ $condition->value }} <br>
+                    <span class="red">Итого с доставкой: <i class="fa fa-rub"></i> {{ $order->total + $condition->value }}</span> </b>
                 </div>
             </div>
 

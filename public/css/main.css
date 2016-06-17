@@ -310,3 +310,6 @@ input[type="file"].simple-field {padding: 0px; border: none}
 .deliveryWay {margin-top: 20px; margin-bottom: 20px}
 .deliveryRadio {
 	max-height: 200px; overflow: scroll; position: relative; margin-bottom: 20px}
+.no-gutter {margin-right: 0; margin-left: 0; padding-left: 0; padding-right: 0;}
+.order-conditions {color: #343434}
+.red {color: #d14242}

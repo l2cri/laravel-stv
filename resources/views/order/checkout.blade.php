@@ -43,8 +43,9 @@
                                             <label class="checkbox-entry radio">
                                                 <input type="radio" name="delivery_id"
                                                        value="{{ $delivery->getModel()->id }}_{{ $inc }}"
-                                                        data-price = "{{ $dWay->getCost() }}"> <span
-                                                        class="check"></span>
+                                                        data-price = "{{ $dWay->getCost() }}"
+                                                       @if($inc == 0) checked = "checked" @endif>
+                                                <span class="check"></span>
                                                 {{ $dWay->getName() }} <b class="pull-right">{{ $dWay->getTime() }} дней, <i
                                                         class="fa fa-rub"></i> {{ $dWay->getCost() }}</b>
                                             </label>
