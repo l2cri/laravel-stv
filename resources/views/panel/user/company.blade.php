@@ -1,4 +1,18 @@
 @extends('panel.index')
+
+@section('headscripts')
+
+    @parent
+
+    <link href="https://cdn.jsdelivr.net/jquery.suggestions/16.5.3/css/suggestions.css" type="text/css" rel="stylesheet" />
+    <!--[if lt IE 10]>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.suggestions/16.5.3/js/jquery.suggestions.min.js"></script>
+
+
+@endsection
+
 @section('breadcrumbs', Breadcrumbs::render('common.panel-sub','Реквизиты'))
 @section('panel_content')
     <div class="information-blocks">
@@ -40,11 +54,18 @@
                            value="{{ $company->kpp }}">
                     <div class="clear"></div>
 
-                    <label>Расчетный счет </label>
+                    <label>Банк </label>
                     <input type="text"
                            class="simple-field"
-                           name="rs"
-                           value="{{ $company->rs }}">
+                           name="bank"
+                           value="">
+                    <div class="clear"></div>
+
+                    <label>БИК </label>
+                    <input type="text"
+                           class="simple-field"
+                           name="bik"
+                           value="{{ $company->bik }}">
                     <div class="clear"></div>
 
                     <label>Корреспондентский счет </label>
@@ -54,11 +75,11 @@
                            value="{{ $company->ks }}">
                     <div class="clear"></div>
 
-                    <label>БИК </label>
+                    <label>Расчетный счет </label>
                     <input type="text"
                            class="simple-field"
-                           name="bik"
-                           value="{{ $company->bik }}">
+                           name="rs"
+                           value="{{ $company->rs }}">
                     <div class="clear"></div>
 
                     <label>Генеральный директор </label>
@@ -98,4 +119,35 @@
         </form>
     </div>
 
+    <script type="text/javascript">
+        $("input[name='name']").suggestions({
+            serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
+            token: "f669934ea60094ba7614da553bb69070b8019558",
+            type: "PARTY",
+            count: 5,
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function(suggestion) {
+
+                $("input[name='ogrn']").val(suggestion.data.ogrn);
+                $("input[name='inn']").val(suggestion.data.inn);
+                $("input[name='kpp']").val(suggestion.data.kpp);
+                $("input[name='ceo']").val(suggestion.data.management.name);
+                $("textarea[name='law_address']").val(suggestion.data.address.value);
+                $("textarea[name='fact_address']").val(suggestion.data.address.value);
+            }
+        });
+
+        $("input[name='bank']").suggestions({
+            serviceUrl: "https://suggestions.dadata.ru/suggestions/api/4_1/rs",
+            token: "f669934ea60094ba7614da553bb69070b8019558",
+            type: "BANK",
+            count: 5,
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function(suggestion) {
+                console.log(suggestion);
+                $("input[name='bik']").val(suggestion.data.bic);
+                $("input[name='ks']").val(suggestion.data.correspondent_account);
+            }
+        });
+    </script>
 @endsection
