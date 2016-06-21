@@ -100,9 +100,16 @@ class OrderController extends Controller
 
             // если локация - не город, то выбираем ближайший город
             if ($location->shortname !== 'г'){
-                $city = $location->parent->children->filter( function ($value) {
-                    return $value->shortname == 'г';
-                });
+
+                if ($location->parent){
+                    $city = $location->parent->children->filter( function ($value) {
+                        return $value->shortname == 'г';
+                    });
+                } else {
+                    $city = $location->children->filter( function ($value) {
+                        return $value->shortname == 'г';
+                    });
+                }
 
                 $location = $city->first();
 
@@ -235,5 +242,11 @@ class OrderController extends Controller
         $this->form->saveSupplierMessage($request->all());
 
         return redirect()->back();
+    }
+
+    public function invoice($orderId){
+        return $this->order->getInvoice($orderId);
+
+//        return view('panel.invoice');
     }
 }

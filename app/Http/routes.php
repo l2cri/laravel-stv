@@ -89,6 +89,8 @@ Route::group(['as' => 'panel::','middleware' => 'auth'], function () {
     Route::get('/panel/supplier/settings', 'SupplierController@settings')->name('supplier.settings');
     Route::post('/panel/supplier/settings/update', 'SupplierController@updateSettings')->name('supplier.settings.update');
 
+    Route::get('/panel/invoice/{orderId}', 'OrderController@invoice')->name('invoice');
+
     // profiles
 
     Route::get('/panel/user/profiles', 'ProfileController@index')->name('profiles');

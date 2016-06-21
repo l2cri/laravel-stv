@@ -57,7 +57,8 @@
                                                 </div>
                                     @endif
 
-                                @if($delivery->getModel()->type == 'App\Services\Delivery\Boxberry\PointsHandler')
+                                @if( ($delivery->getModel()->type == 'App\Services\Delivery\Boxberry\PointsHandler')
+                                && $deliveryWays )
 
                                     <div id="map" style="width: 100%; height: 400px"></div>
 
@@ -122,6 +123,10 @@
                                     </script>
                                 @endif
                             @endforeach
+
+                                    @if(!$inc)
+                                        Для Вашего местоположения доставка пока не поддерживается. Приносим свои извенения!
+                                    @endif
 
 
                             {{--@foreach($deliveries as $delivery)--}}

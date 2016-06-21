@@ -193,6 +193,11 @@ return [
 
         // Search
         App\Providers\SearchServiceProvider::class,
+
+        // DomPdf
+//        Barryvdh\DomPDF\ServiceProvider::class,
+//        Barryvdh\Snappy\ServiceProvider::class,
+        Vsmoraes\Pdf\PdfServiceProvider::class,
     ],
 
     /*
@@ -277,6 +282,10 @@ return [
         //search
         'Search' => App\Facades\Search::class,
 
+        // DomPdf
+        //'PDF' => Barryvdh\DomPDF\Facade::class,
+//        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'PDF' => 'Vsmoraes\Pdf\PdfFacade',
     ],
 
 ];

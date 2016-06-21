@@ -14,7 +14,10 @@
         "yajra/laravel-datatables-oracle": "~6.0",
         "jenssegers/date": "^3.2",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "mexitek/phpcolors": "dev-master"
+        "mexitek/phpcolors": "dev-master",
+        "barryvdh/laravel-dompdf": "0.6.*",
+        "barryvdh/laravel-snappy": "^0.3.0",
+        "vsmoraes/laravel-pdf": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

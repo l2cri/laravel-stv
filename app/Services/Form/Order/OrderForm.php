@@ -225,6 +225,10 @@ class OrderForm
      */
     private function getDeliveryArray($input) {
 
+        if (!isset($input['delivery_id'])){
+            return ['id' => config('marketplace.nodelivery_id'), 'price' => 0, 'data' => '', 'name' => ''];
+        }
+
         $deliveryArr = explode('_', $input['delivery_id']);
         $deliveryId = $deliveryArr[0];
         $dataWays = $input['dataWays'];

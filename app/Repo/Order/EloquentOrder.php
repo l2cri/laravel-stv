@@ -10,7 +10,8 @@ namespace App\Repo\Order;
 
 use App\Repo\RepoTrait;
 use Illuminate\Database\Eloquent\Model;
-
+use PDF;
+use App;
 
 class EloquentOrder implements OrderInterface
 {
@@ -79,6 +80,36 @@ class EloquentOrder implements OrderInterface
             'attributes' => $attr
         ]);
 
+//        $this->makeInvoice($order);
+
         return $order;
     }
+
+    public function makeInvoice($order) {
+        $html = view('panel.invoice')->render();
+
+        $filename = $this->invoceFileNameWithPath($order);
+        $pdf = PDF::load($html)->output();
+        file_put_contents($filename, $pdf);
+
+        return response()->download($filename);
+    }
+
+    public function invoceFileNameWithPath($order){
+        $filename = md5($order->created_at).'_'.$order->id.'.pdf';
+        $path = getMultiplePath(config('marketplace.invoices'), $filename, 2);
+        return $path.'/'.$filename;
+    }
+
+    public function getInvoice($orderId)
+    {
+        $order = $this->model->find($orderId);
+        $filename = $this->invoceFileNameWithPath($order);
+
+        if (!file_exists($filename))
+            return $this->makeInvoice($order);
+        else return response()->download($filename);
+    }
+
+
 }

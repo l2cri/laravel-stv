@@ -34,4 +34,8 @@ return [
     'boxberry_token' => '16630.pbpqceaf',
     'boxberry_courier' => 'Курьерская доставка Boxberry',
     'boxberry_weight' => 500,
+    'nodelivery_id' => 3,
+
+    // директория для загрузки счетов
+    'invoices' => 'storage/invoices',
 ];
