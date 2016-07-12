@@ -245,8 +245,8 @@ class OrderController extends Controller
     }
 
     public function invoice($orderId){
-        return $this->order->getInvoice($orderId);
-
-//        return view('panel.invoice');
+        //return $this->order->getInvoice($orderId);
+        $order = $this->order->byId($orderId);
+        return view('panel.invoice', compact('order'));
     }
 }

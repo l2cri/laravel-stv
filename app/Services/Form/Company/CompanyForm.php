@@ -21,6 +21,7 @@ class CompanyForm
     protected $company;
     protected $profile;
     protected $supplier;
+    protected $fileDir;
 
     use FormTrait;
 
@@ -30,16 +31,19 @@ class CompanyForm
         $this->company = $company;
         $this->profile = $profile;
         $this->supplier = $supplier;
+        $this->fileDir = config('marketplace.company_dir');
     }
 
     public function save(array $data){
         if ( ! $this->valid($data) ) return false;
 
-
-
         if ( empty ($data['companyId']) ) {
             // сохранить
             $data['user_id'] = userId();
+
+            if (array_key_exists('stamp', $data)){
+                $data['stamp'] = process_upload_file($data['stamp'], false, $this->fileDir);
+            }
 
             $this->company->create($data);
 
@@ -48,6 +52,13 @@ class CompanyForm
             $companyId = $data['companyId'];
             unset($data['companyId']);
             unset($data['_token']);
+
+            if (!array_key_exists('nds', $data)) $data['nds'] = 0;
+
+            if (array_key_exists('stamp', $data)){
+                $company = $this->company->byId($companyId);
+                $data['stamp'] = process_upload_file($data['stamp'], $company->stamp, $this->fileDir);
+            }
 
             $this->company->update($data, $companyId);
             return true;

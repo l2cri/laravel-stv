@@ -14,7 +14,6 @@ use App\Services\Validation\AbstractLaravelValidator;
 class CompanyValidator extends AbstractLaravelValidator
 {
     protected $rules = array(
-
         'user_id' => 'numeric',
         'supplier_id' , 'numeric',
         'name' => 'string',
@@ -29,6 +28,10 @@ class CompanyValidator extends AbstractLaravelValidator
         'email' => 'email',
         'law_address' => 'string',
         'fact_address' => 'string',
-        'company_id' => 'numeric'
+        'company_id' => 'numeric',
+        'bank' => 'string',
+        'nds' => 'string',
+        'invoice_days' => 'string',
+        'stamp' => 'image',
     );
 }

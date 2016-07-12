@@ -9,3 +9,4 @@ storage/database.sqlite
 test.html
 /public/images/products
 storage/database.sqlite-journal
+public/storage

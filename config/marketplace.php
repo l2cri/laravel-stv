@@ -38,4 +38,7 @@ return [
 
     // директория для загрузки счетов
     'invoices' => 'storage/invoices',
+
+    // директория для загрузки файлов компании - печать, подписи
+    'company_dir' => 'storage/company',
 ];

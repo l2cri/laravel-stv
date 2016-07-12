@@ -271,3 +271,13 @@ function explode_assoc($str) {
     }
     return $assoc;
 }
+
+function process_upload_file(\Symfony\Component\HttpFoundation\File\UploadedFile $file, $oldFile, $dir){
+
+    if (is_null($file) || empty($file)) return;
+
+    $imgFile = uploadFileToMultipleDirs( $file, $dir );
+    if ($oldFile) removefile($oldFile);
+
+    return $imgFile;
+}
