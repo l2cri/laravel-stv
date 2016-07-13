@@ -133,12 +133,13 @@
 
     <? $i = 1; $orderQuantity = 0; ?>
     @foreach($order->cartItems as $item)
+
         <tr>
             <td align="center">{{ $i }}</td>
             <td align="left">{{ $item->product_id }}</td>
             <td align="left">{{ $item->name }}</td>
             <td align="right">{{ $item->quantity }}</td>
-            <td align="left">{{ $item->product->unit }}</td>
+            <td align="left">{{ @$item->product->unit }}</td>
             <td align="right">{{ $item->final_price }}</td>
             <td align="right">{{ $item->total }}</td>
         </tr>
