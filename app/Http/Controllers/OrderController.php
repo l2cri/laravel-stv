@@ -98,6 +98,8 @@ class OrderController extends Controller
         if (isset($profile) && !empty($profile->location_id)){
             $location = $this->location->byId($profile->location_id);
 
+            if (!$location) $location = $this->location->getSessionLocation();
+
             // если локация - не город, то выбираем ближайший город
             if ($location->shortname !== 'г'){
 
@@ -245,8 +247,8 @@ class OrderController extends Controller
     }
 
     public function invoice($orderId){
-        //return $this->order->getInvoice($orderId);
-        $order = $this->order->byId($orderId);
-        return view('panel.invoice', compact('order'));
+        return $this->order->getInvoice($orderId);
+//        $order = $this->order->byId($orderId);
+//        return view('panel.invoice', compact('order'));
     }
 }

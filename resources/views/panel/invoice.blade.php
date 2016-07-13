@@ -1,5 +1,10 @@
+<?
+    $company = $order->supplier->company;
+    $companyClient = $order->profile->company;
+    $supplier = $order->supplier;
+?>
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Бланк "Счет на оплату"</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,21 +17,10 @@
     </style>
 </head>
 <body>
-<table>
-    <tr>
-        <td>&nbsp;</td>
-        <td style="width: 585px;">
-            <div style="width:585px; ">Внимание! Оплата данного счета означает согласие с условиями поставки товара. Уведомление об оплате  обязательно, в противном случае не гарантируется наличие товара на складе. Товар отпускается по факту прихода денег на р/с Поставщика, самовывозом, при наличии доверенности и паспорта.</div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div style="text-align:center;  font-weight:bold;">
-                Образец заполнения платежного поручения</div>
-        </td>
-    </tr>
-</table>
 
+<img src="{{ public_path($supplier->logo) }}">
+</br>
+</br>
 
 <table cellpadding="2" cellspacing="2" class="invoice_bank_rekv" style="width: 1190px;">
     <tr>
@@ -34,7 +28,7 @@
             <table border="0" cellpadding="0" cellspacing="0" style="height: 50px;">
                 <tr>
                     <td valign="top">
-                        <div>Укажите название банка</div>
+                        <div>{{ $company->bank }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -48,8 +42,8 @@
             <div>БИK</div>
         </td>
         <td rowspan="2" style="vertical-align: top; width: 227px;">
-            <div style=" height: 27px; line-height: 27px; vertical-align: middle;">Бик банка</div>
-            <div>Счет банка</div>
+            <div style=" height: 27px; line-height: 27px; vertical-align: middle;">{{ $company->bik }}</div>
+            <div>{{ $company->ks }}</div>
         </td>
     </tr>
     <tr>
@@ -59,16 +53,16 @@
     </tr>
     <tr>
         <td style="min-height: 23px; height:auto; width: 150px">
-            <div>ИНН 0000000</div>
+            <div>ИНН {{ $company->inn }}</div>
         </td>
         <td style="min-height:23px; height:auto; width: 50%">
-            <div>КПП </div>
+            <div>КПП {{ $company->kpp }}</div>
         </td>
         <td rowspan="2" style="min-height:72px; height:auto; vertical-align: top; width: 95px;">
             <div>Сч. №</div>
         </td>
         <td rowspan="2" style="min-height: 72px; height:auto; vertical-align: top; width: 227px;">
-            <div>Расчетный счет</div>
+            <div>{{ $company->rs }}</div>
         </td>
     </tr>
     <tr>
@@ -77,7 +71,7 @@
             <table border="0" cellpadding="0" cellspacing="0" style="height: 50px;">
                 <tr>
                     <td valign="top">
-                        <div>Название организации</div>
+                        <div>{{ $company->name }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -92,8 +86,10 @@
 </table>
 <br/>
 
+<? $date = localizedFormat($order->created_at) ?>
+
 <div style="font-weight: bold; font-size: 16pt; padding-left:5px;">
-    Счет № 0 от 20.06.2016</div>
+    Счет № {{ $order->id }} от {{ mb_convert_case($date->format('d F Y'), MB_CASE_TITLE, "UTF-8") }}</div>
 <br/>
 
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
@@ -105,7 +101,8 @@
         </td>
         <td>
             <div style="font-weight:bold;  padding-left:2px;">
-                Укажите полной название продающей организации            </div>
+                {{ $company->name }}, ИНН {{ $company->inn }}, КПП {{ $company->kpp }}, {{ $company->law_address }}
+            </div>
         </td>
     </tr>
     <tr>
@@ -114,11 +111,11 @@
         </td>
         <td>
             <div style="font-weight:bold;  padding-left:2px;">
-                Укажите полной название покупающей организации            </div>
+                {{ $companyClient->name }}, ИНН {{ $companyClient->inn }}, КПП {{ $companyClient->kpp }}, {{ $companyClient->law_address }}
+            </div>
         </td>
     </tr>
 </table>
-
 
 <table class="invoice_items" width="100%" cellpadding="2" cellspacing="2">
     <thead>
@@ -133,33 +130,21 @@
     </tr>
     </thead>
     <tbody >
-    <tr>
-        <td align="center">1</td>
-        <td align="left">1</td>
-        <td align="left">товар 1</td>
-        <td align="right">1</td>
-        <td align="left">шт</td>
-        <td align="right">1'000.00</td>
-        <td align="right">1'000.00</td>
-    </tr>
-    <tr>
-        <td align="center">2</td>
-        <td align="left">2</td>
-        <td align="left">товар 2</td>
-        <td align="right">1</td>
-        <td align="left">шт</td>
-        <td align="right">2'000.00</td>
-        <td align="right">2'000.00</td>
-    </tr>
-    <tr>
-        <td align="center">3</td>
-        <td align="left">3</td>
-        <td align="left">товар 3</td>
-        <td align="right">1</td>
-        <td align="left">шт</td>
-        <td align="right">3'000.00</td>
-        <td align="right">3'000.00</td>
-    </tr>
+
+    <? $i = 1; $orderQuantity = 0; ?>
+    @foreach($order->cartItems as $item)
+        <tr>
+            <td align="center">{{ $i }}</td>
+            <td align="left">{{ $item->product_id }}</td>
+            <td align="left">{{ $item->name }}</td>
+            <td align="right">{{ $item->quantity }}</td>
+            <td align="left">{{ $item->product->unit }}</td>
+            <td align="right">{{ $item->final_price }}</td>
+            <td align="right">{{ $item->total }}</td>
+        </tr>
+        <? $i++; $orderQuantity += $item->quantity; ?>
+    @endforeach
+
     </tbody>
 </table>
 
@@ -167,33 +152,50 @@
     <tr>
         <td>&nbsp;</td>
         <td style="width:103px; font-weight:bold;  text-align:right;">Итого:</td>
-        <td style="width:103px; font-weight:bold;  text-align:right;">6 000.00</td>
+        <td style="width:103px; font-weight:bold;  text-align:right;">{{ $order->total }}</td>
     </tr>
-    <tr>
-        <td colspan="2" style="font-weight:bold;  text-align:right;">В том числе НДС:</td>
-        <td style="width:103px; font-weight:bold;  text-align:right;">915.25</td>
-    </tr>
+
+    <? $total = 0; ?>
+    @if($company->nds)
+        <? $total = roundPrice(0.18 * $order->total) + $order->total; ?>
+        <tr>
+            <td colspan="2" style="font-weight:bold;  text-align:right;">В том числе НДС:</td>
+            <td style="width:103px; font-weight:bold;  text-align:right;">{{ roundPrice(0.18 * $order->total) }}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-weight:bold;  text-align:right;">Всего к оплате:</td>
+            <td style="width:103px; font-weight:bold;  text-align:right;">{{ $total }}</td>
+        </tr>
+    @else
+        <? $total = $order->total; ?>
+        <tr>
+            <td colspan="2" style="font-weight:bold;  text-align:right;">Без налога (НДС):</td>
+            <td style="width:103px; font-weight:bold;  text-align:right;"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-weight:bold;  text-align:right;">Всего к оплате:</td>
+            <td style="width:103px; font-weight:bold;  text-align:right;">{{ $total }}</td>
+        </tr>
+    @endif
 </table>
 
 <br />
+
+<?
+$intpart = floor($total);    // results in 3
+$fraction = $total - $intpart // results in 0.75
+?>
 <div>
-    Всего наименований 3 на сумму 6'000.00 рублей.<br />
-    Шесть тысяч рублей 00 копеек</div>
+    Всего наименований {{ $orderQuantity }} на сумму {{ $order->total }} рублей.<br />
+    {{ mb_ucfirst(number2string($intpart)) }} {{ str_replace('0.', '', $fraction) }} копеек</div>
 <br /><br />
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
 <br/>
 
-<div>Руководитель ______________________ (Фамилия И.О.)</div>
-<br/>
+<img src="{{ public_path($company->stamp) }}" width="500">
 
-<div>Главный бухгалтер ______________________ (Фамилия И.О.)</div>
-<br/>
-
-<div style="width: 322px;text-align:center;">М.П.</div>
-<br/>
-
-
-<div style="width:800px;text-align:left;font-size:10pt;">Счет действителен к оплате в течении трех дней.</div>
-
+@if( !empty($company->invoice_days) )
+    <div style="width:800px;text-align:left;font-size:10pt;">Счет действителен к оплате в течении {{ $company->invoice_days }} дней.</div>
+@endif
 </body>
 </html>

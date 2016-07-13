@@ -11,7 +11,7 @@
             @if($condition->attributes)
                 <?$attrs = unserialize($condition->attributes);?>
 
-                @if(isset($attrs['data'][3]))
+                @if(isset($attrs['data'][3]) && !empty($attrs['data'][3]))
 
                     <?$data = explode_assoc($attrs['data'][3]);?>
 

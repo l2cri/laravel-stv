@@ -86,7 +86,7 @@ class EloquentOrder implements OrderInterface
     }
 
     public function makeInvoice($order) {
-        $html = view('panel.invoice')->render();
+        $html = view('panel.invoice', compact('order'))->render();
 
         $filename = $this->invoceFileNameWithPath($order);
         $pdf = PDF::load($html)->output();

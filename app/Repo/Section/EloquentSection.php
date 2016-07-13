@@ -68,9 +68,8 @@ class EloquentSection implements SectionInterface
             $results = $this->section->withDepth()->defaultOrder()->descendantsOf($id);
         } else {
             $results = $this->section->withDepth()->defaultOrder()->get();
+            $results->linkNodes();
         }
-
-        $results->linkNodes();
 
         return $results;
     }
