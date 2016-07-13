@@ -7,6 +7,10 @@
 
             <h1>Заказ № {{ $order->id }}
 
+                @if(!empty($order->profile->company_id))
+                    <a href="{{ route('panel::invoice', $order->id) }}">скачать счет</a>
+                @endif
+
                 @if($order->returned)<span class="pull-right left20">ВОЗВРАТ</span>@endif
                 <span class="pull-right" style="color: {{ @$order->status->color }}">{{ @$order->status->name }}</span>
             </h1>
