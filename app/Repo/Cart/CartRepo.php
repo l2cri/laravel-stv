@@ -198,7 +198,7 @@ class CartRepo implements CartInterface
         $items = Cart::getContent();
         foreach ($items as $item) {
             $product = $this->product->find($item->id);
-            $weight += $product->weight;
+            $weight += $product->weight * $item->quantity;
         }
 
         return $weight;
