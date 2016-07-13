@@ -18,7 +18,11 @@
 </head>
 <body>
 
-<img src="{{ public_path($supplier->logo) }}">
+
+@if(!empty($supplier->logo))
+    <img src="{{ public_path($supplier->logo) }}">
+@endif
+
 </br>
 </br>
 
@@ -193,7 +197,9 @@ $fraction = $total - $intpart // results in 0.75
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
 <br/>
 
-<img src="{{ public_path($company->stamp) }}" width="500">
+@if(!empty($company->stamp))
+    <img src="{{ public_path($company->stamp) }}" width="500">
+@endif
 
 @if( !empty($company->invoice_days) )
     <div style="width:800px;text-align:left;font-size:10pt;">Счет действителен к оплате в течении {{ $company->invoice_days }} дней.</div>
