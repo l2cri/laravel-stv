@@ -38,5 +38,10 @@ CKEDITOR.editorConfig = function (config) {
 	CKEDITOR.config.language = window.admin.locale;
 	config.filebrowserImageUploadUrl = '/' + window.admin.prefix + '/assets/images/upload';
 
+	config.filebrowserBrowseUrl = '/packages/JASFinder/index.html';
+	//config.filebrowserImageBrowseUrl ='/ckfinder/ckfinder.html?type=Images';
+	//config.filebrowserUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
+	//config.filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+
 	$.extend(config, window.admin.ckeditor_cfg);
 };
