@@ -161,6 +161,12 @@ $.urlParam = function(name){
 // contextual menu option in list views. 
 // NOTE: closes the window when finished.
 var selectItem = function(data){
+
+	if(data['Url'].length > 0){
+		if (data['Url'].charAt(0) == '.') data['Url'] = data['Url'].substr(1);
+		if ( data['Url'].indexOf(window.location.hostname) < 0 ) data['Url'] = window.location.hostname + data['Url'];
+	}
+
 	if(window.opener){
 		if($.urlParam('CKEditor')){
 			// use CKEditor 3.0 integration method
