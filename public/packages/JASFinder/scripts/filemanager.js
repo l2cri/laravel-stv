@@ -465,6 +465,8 @@ function getACL(acl, bit){
 	if(acl){
 		output = (acl >> bit) % 2 == 1;
 	}
+
+	return true;
 	
 	return output;
 }
