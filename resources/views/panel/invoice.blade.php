@@ -1,7 +1,12 @@
 <?
     $company = $order->supplier->company;
+    if (empty($company)) $company = new stdClass();
+
     $companyClient = $order->profile->company;
+    if (empty($companyClient)) $companyClient = new stdClass();
+
     $supplier = $order->supplier;
+    if (empty($supplier)) $supplier = new stdClass();
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -21,6 +26,8 @@
 
 @if(!empty($supplier->logo))
     <img src="{{ public_path($supplier->logo) }}">
+@else
+     <span style="color: red"> Ошибка: рекомендуем добавить логотип компании </span>
 @endif
 
 </br>
@@ -32,7 +39,13 @@
             <table border="0" cellpadding="0" cellspacing="0" style="height: 50px;">
                 <tr>
                     <td valign="top">
-                        <div>{{ $company->bank }}</div>
+                        <div>
+                            @if(isset($company->bank) && !empty($company->bank))
+                                {{ $company->bank }}
+                            @else
+                                <span style="color: red"> Ошибка: у поставщика не заполнены реквизиты банка - название банка </span>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -46,8 +59,20 @@
             <div>БИK</div>
         </td>
         <td rowspan="2" style="vertical-align: top; width: 227px;">
-            <div style=" height: 27px; line-height: 27px; vertical-align: middle;">{{ $company->bik }}</div>
-            <div>{{ $company->ks }}</div>
+            <div style=" height: 27px; line-height: 27px; vertical-align: middle;">
+                @if(isset($company->bik) && !empty($company->bik))
+                    {{ $company->bik }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не заполнены реквизиты банка - БИК банка </span>
+                @endif
+            </div>
+            <div>
+                @if(isset($company->ks) && !empty($company->ks))
+                    {{ $company->ks }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не заполнены реквизиты банка - Корреспондентский счет </span>
+                @endif
+            </div>
         </td>
     </tr>
     <tr>
@@ -57,16 +82,34 @@
     </tr>
     <tr>
         <td style="min-height: 23px; height:auto; width: 150px">
-            <div>ИНН {{ $company->inn }}</div>
+            <div>ИНН
+                @if(isset($company->inn) && !empty($company->inn))
+                    {{ $company->inn }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не заполнен ИНН </span>
+                @endif
+            </div>
         </td>
         <td style="min-height:23px; height:auto; width: 50%">
-            <div>КПП {{ $company->kpp }}</div>
+            <div>КПП
+                @if(isset($company->kpp) && !empty($company->kpp))
+                    {{ $company->kpp }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не заполнен КПП </span>
+                @endif
+            </div>
         </td>
         <td rowspan="2" style="min-height:72px; height:auto; vertical-align: top; width: 95px;">
             <div>Сч. №</div>
         </td>
         <td rowspan="2" style="min-height: 72px; height:auto; vertical-align: top; width: 227px;">
-            <div>{{ $company->rs }}</div>
+            <div>
+                @if(isset($company->rs) && !empty($company->rs))
+                    {{ $company->rs }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не указан Расчетный счет </span>
+                @endif
+            </div>
         </td>
     </tr>
     <tr>
@@ -75,7 +118,13 @@
             <table border="0" cellpadding="0" cellspacing="0" style="height: 50px;">
                 <tr>
                     <td valign="top">
-                        <div>{{ $company->name }}</div>
+                        <div>
+                            @if(isset($company->name) && !empty($company->name))
+                                {{ $company->name }}
+                            @else
+                                <span style="color: red"> Ошибка: у поставщика не указано название компании </span>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -105,7 +154,17 @@
         </td>
         <td>
             <div style="font-weight:bold;  padding-left:2px;">
-                {{ $company->name }}, ИНН {{ $company->inn }}, КПП {{ $company->kpp }}, {{ $company->law_address }}
+                @if( (isset($company->name) && !empty($company->name))
+                    && (isset($company->inn) && !empty($company->inn))
+                    && (isset($company->kpp) && !empty($company->kpp))
+                    && (isset($company->law_address) && !empty($company->law_address))
+                    )
+                    {{ $company->name }}, ИНН {{ $company->inn }}, КПП {{ $company->kpp }}, {{ $company->law_address }}
+                @else
+                    <span style="color: red"> Ошибка: у поставщика не указано одно из следующих полей -
+                        название компании, ИНН, КПП, Юридический адрес
+                    </span>
+                @endif
             </div>
         </td>
     </tr>
@@ -115,7 +174,17 @@
         </td>
         <td>
             <div style="font-weight:bold;  padding-left:2px;">
-                {{ $companyClient->name }}, ИНН {{ $companyClient->inn }}, КПП {{ $companyClient->kpp }}, {{ $companyClient->law_address }}
+                @if( (isset($companyClient->name) && !empty($companyClient->name))
+                    && (isset($companyClient->inn) && !empty($companyClient->inn))
+                    && (isset($companyClient->kpp) && !empty($companyClient->kpp))
+                    && (isset($companyClient->law_address) && !empty($companyClient->law_address))
+                    )
+                    {{ $companyClient->name }}, ИНН {{ $companyClient->inn }}, КПП {{ $companyClient->kpp }}, {{ $companyClient->law_address }}
+                @else
+                    <span style="color: red"> Ошибка: у покупателя не указано одно из следующих полей -
+                        название компании, ИНН, КПП, Юридический адрес
+                    </span>
+                @endif
             </div>
         </td>
     </tr>
@@ -161,7 +230,7 @@
     </tr>
 
     <? $total = 0; ?>
-    @if($company->nds)
+    @if(isset($company->nds) && !empty($company->nds))
         <? $total = roundPrice(0.18 * $order->total) + $order->total; ?>
         <tr>
             <td colspan="2" style="font-weight:bold;  text-align:right;">В том числе НДС:</td>
@@ -199,10 +268,14 @@ $fraction = $total - $intpart // results in 0.75
 
 @if(!empty($company->stamp))
     <img src="{{ public_path($company->stamp) }}" width="500">
+@else
+    <span style="color: red"> Ошибка: рекомендуем добавить печать и подпись Поставщику </span>
 @endif
 
 @if( !empty($company->invoice_days) )
     <div style="width:800px;text-align:left;font-size:10pt;">Счет действителен к оплате в течении {{ $company->invoice_days }} дней.</div>
+@else
+    <span style="color: red"> Ошибка: рекомендуем добавить сколько дней действителен счет в настройках Поставщика </span>
 @endif
 </body>
 </html>
