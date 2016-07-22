@@ -35,9 +35,20 @@
                     <div class="clear"></div>
                 @endif
 
-                <label class="checkbox-entry">
-                    <input type="checkbox" checked name="active" value="1"> <span class="check"></span> Активный
-                </label>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="checkbox-entry">
+                            <input type="checkbox" checked name="active" value="1"> <span class="check"></span> Активный
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Сортировка</label>
+                        <input type="text" value="{{ Input::old('sort') }}"
+                               class="simple-field"
+                               name="sort">
+                    </div>
+                </div>
                 <div class="clear"></div>
 
                 <label>Название <span>*</span></label>

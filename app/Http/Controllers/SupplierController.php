@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Repo\Action\ActionInterface;
 use App\Repo\Comment\CommentInterface;
+use App\Repo\Criteria\Product\Sort;
 use App\Repo\Criteria\Supplier\LocationOnly;
 use App\Repo\Product\ProductInterface;
 use App\Repo\Section\SectionInterface;
@@ -50,6 +51,9 @@ class SupplierController extends Controller
         // назначаем поставщика
         $this->product->pushCriteria( new SuppliersOnly([$supplier->id]) );
 
+        // сортировка
+        $this->product->pushCriteria( new Sort());
+
         // вытаскиваем товары по категориям
         if (isset($currentSection) && !empty($currentSection)) {
             $sectionIds = [$currentSection->id];
@@ -75,6 +79,9 @@ class SupplierController extends Controller
 
         // назначаем поставщика всегда
         $this->product->pushCriteria( new SuppliersOnly([$supplier->id]) );
+
+        // сортировка
+        $this->product->pushCriteria( new Sort());
 
         // секции - одна или много
         if (isset($currentSection) && !empty($currentSection))

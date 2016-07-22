@@ -50,9 +50,19 @@
 
                     <div class="clear"></div>
 
-                    <label class="checkbox-entry">
-                        <input type="checkbox" checked name="active" value="{{ $product->active }}"> <span class="check"></span> Активный
-                    </label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="checkbox-entry">
+                                <input type="checkbox" checked name="active" value="{{ $product->active }}"> <span class="check"></span> Активный
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Сортировка</label>
+                            <input type="text" value="{{ $product->sort }}"
+                                   class="simple-field"
+                                   name="sort">
+                        </div>
+                    </div>
                     <div class="clear"></div>
 
                     <label>Название <span>*</span></label>

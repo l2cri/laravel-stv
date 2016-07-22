@@ -123,6 +123,7 @@ class ProductsDataTable extends DataTable
     {
         return [
             'id',
+            'sort' => ['title' => 'Сорт'],
             'name' => ['title' => 'Название'],
             'created_at' => ['title' => 'Добавлен'],
             'sections.name' => ['title' => 'В категориях', 'orderable' => 'false']
