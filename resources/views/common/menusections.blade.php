@@ -12,7 +12,11 @@
             <ul class="list-type-1 toggle-list-container">
 
                 @for($i = 0; $i < $promHalf; $i++)
-                    <li><a href="{{ url($promSections[$i]->url) }}"><i class="fa fa-angle-right"></i>{{ $promSections[$i]->name }}</a></li>
+                    <li> {{ treeSymbol($promSections[$i]->depth, '&nbsp;&nbsp;&nbsp;') }} <a href="{{ url($promSections[$i]->url) }}">
+                            @if($promSections[$i]->depth > 1)
+                            <i class="fa fa-angle-right"></i>
+                            @endif
+                                {{ $promSections[$i]->name }}</a></li>
                 @endfor
 
             </ul>
@@ -21,7 +25,11 @@
             <ul class="list-type-1 toggle-list-container">
 
                 @for($i = $promHalf; $i < $promCount; $i++)
-                    <li><a href="{{ url($promSections[$i]->url) }}"><i class="fa fa-angle-right"></i>{{ $promSections[$i]->name }}</a></li>
+                    <li> {{ treeSymbol($promSections[$i]->depth, '&nbsp;&nbsp;&nbsp;') }} <a href="{{ url($promSections[$i]->url) }}">
+                            @if($promSections[$i]->depth > 1)
+                            <i class="fa fa-angle-right"></i>
+                            @endif
+                                {{ $promSections[$i]->name }}</a></li>
                 @endfor
 
             </ul>
@@ -35,7 +43,11 @@
             <ul class="list-type-1 toggle-list-container">
 
                 @for($i = 0; $i < $potrebHalf; $i++)
-                    <li><a href="{{ url($potrebSections[$i]->url) }}"><i class="fa fa-angle-right"></i>{{ $potrebSections[$i]->name }}</a></li>
+                    <li> {{ treeSymbol($potrebSections[$i]->depth, '&nbsp;&nbsp;&nbsp;') }} <a href="{{ url($potrebSections[$i]->url) }}">
+                            @if($potrebSections[$i]->depth > 1)
+                            <i class="fa fa-angle-right"></i>
+                            @endif
+                                {{ $potrebSections[$i]->name }}</a></li>
                 @endfor
 
             </ul>
@@ -44,7 +56,11 @@
             <ul class="list-type-1 toggle-list-container">
 
                 @for($i = $potrebHalf; $i < $potrebCount; $i++)
-                    <li><a href="{{ url($potrebSections[$i]->url) }}"><i class="fa fa-angle-right"></i>{{ $potrebSections[$i]->name }}</a></li>
+                    <li> {{ treeSymbol($potrebSections[$i]->depth, '&nbsp;&nbsp;&nbsp;') }} <a href="{{ url($potrebSections[$i]->url) }}">
+                            @if($potrebSections[$i]->depth > 1)
+                            <i class="fa fa-angle-right"></i>
+                            @endif
+                                {{ $potrebSections[$i]->name }}</a></li>
                 @endfor
 
             </ul>
