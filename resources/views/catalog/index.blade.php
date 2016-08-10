@@ -93,7 +93,12 @@
             <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
                 <div class="information-blocks categories-border-wrapper">
                     <div class="block-title size-3">Каталог</div>
-                    @include('common.sectionaccordion')
+
+                    {{--@include('common.sectionaccordion')--}}
+                    @include('common.saccordion', ['sections' => $sections,
+                     'currentSection' => $currentSection,
+                      'mainRoute' => route('catalog')])
+
                 </div>
 
                 @include('catalog.filter', ['filterRoute' => '/catalog/ajax'])
