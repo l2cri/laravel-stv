@@ -23,7 +23,7 @@
     @yield('headscripts')
 
     @section('title')
-        <title>Маркетплейс - лучшие товары от ставропольских производителей - buy26.ru</title>
+        <title>Маркетплейс - Лучшие товары  от  производителей Юга России - stavo.ru</title>
     @show
 
 </head>
@@ -193,11 +193,11 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <img class="footer-logo" src="/img/logo-small.png" alt="" />
-                                <div class="footer-description">Лучшие товары от ставропольских производителей.
+                                <div class="footer-description">Лучшие товары  от  производителей Юга России.
                                 </div>
-                                <div class="footer-address">г. Ставрополь, пр. Мира, д. 1<br/>
+                                <div class="footer-address">г. Ставрополь, пр. Кулакова 16В, ТДЦ "Нептун", оф 507<br/>
 
-                                    Email: <a href="mailto:info@buy26.ru">info@buy26.ru</a><br/>
+                                    Email: <a href="mailto:info@stavo.ru">info@stavo.ru</a><br/>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -245,7 +245,7 @@
                                     <a href="#">Политика конфиденциальности</a>
                                     <a href="#">Контакты</a>
                                 </div>
-                                <div class="copyright">2015-2016 <a href="#">www.buy26.ru</a>. Все права защищены.</div>
+                                <div class="copyright">2015-2016 <a href="http://www.stavo.ru">www.stavo.ru</a>. Все права защищены.</div>
                             </div>
                             <div class="cell-view">
                                 <div class="payment-methods">
