@@ -9,6 +9,7 @@
         <ul class="dropdown-menu">
             @can('supplier_panel')
                 @include('panel.menu.supplier')
+                <li><a href="{{ route('logout') }}">Выйти</a></li>
             @else
                 @include('panel.menu.user')
             @endcan
