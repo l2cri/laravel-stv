@@ -65,9 +65,14 @@
                                value="{{ $supplier->whosale_quantity }}">
                         <div class="clear"></div>
 
-                        <label>Логотип</label>
+                        <label>Логотип для каталога</label>
                         <input type='file' name="logo" class="simple-field">
                         @if(!empty($supplier->logo)) <img src="{{ url($supplier->logo) }}" class="img-responsive"> @endif
+                        <div class="clear"></div>
+
+                        <label>Логотип для магазина</label>
+                        <input type='file' name="logo_store" class="simple-field">
+                        @if(!empty($supplier->logo_store)) <img src="{{ url($supplier->logo_store) }}" class="img-responsive"> @endif
                         <div class="clear"></div>
 
                         <br>

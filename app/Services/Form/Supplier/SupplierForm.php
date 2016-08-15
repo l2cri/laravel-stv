@@ -17,12 +17,15 @@ class SupplierForm
 {
     protected $supplier;
     protected $validator;
+    protected $currentSupplier;
 
     use FormTrait;
 
     public function __construct(ValidableInterface $validableInterface, SupplierInterface $supplierInterface){
         $this->supplier = $supplierInterface;
         $this->validator = $validableInterface;
+
+        $this->currentSupplier = $this->supplier->byId(supplierId());
     }
 
     public function update(array $input) {
@@ -33,6 +36,11 @@ class SupplierForm
 
         if (array_key_exists('logo', $input)){
             $input['logo'] = $this->processLogo($input['logo']);
+        }
+
+        if (array_key_exists('logo_store', $input)){
+            $input['logo_store'] = process_upload_file($input['logo_store'],
+                $this->currentSupplier->logo_store, config('marketplace.supplierDir'));
         }
 
         $this->supplier->update($input, supplierId());

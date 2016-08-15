@@ -1,7 +1,9 @@
 @extends('main')
 
 @section('logo')
-    <a id="logo" href="{{ route('supplier', $supplier->code) }}"><img src="{{ url($supplier->logo) }}" alt="" /></a>
+    <a id="logo" href="{{ route('supplier', $supplier->code) }}">
+        <img src="{{ url( $supplier->logo_store ? $supplier->logo_store : $supplier->logo ) }}" alt="" />
+    </a>
 @endsection
 
 @section('title')

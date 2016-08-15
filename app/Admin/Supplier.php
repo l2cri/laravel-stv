@@ -26,7 +26,8 @@ if (AuthUser::can('supplier_admin')) {
 
                 // TODO: на будущее переделать на поиск по фио автокомплитом и выбор айдишника - как в битриксе
                 FormItem::select('user_id', 'Пользователь')->model('App\User')->display('name'),
-                FormItem::image('logo', 'Логотип'),
+                FormItem::image('logo', 'Логотип для каталога'),
+                FormItem::image('logo_store', 'Логотип магазина'),
                 FormItem::text('color', 'Цвет шаблона'),
                 FormItem::text('name', 'Название'),
                 FormItem::text('code', 'Код никнэйм'),
