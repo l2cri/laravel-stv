@@ -225,12 +225,11 @@
                             <div class="col-md-3 col-sm-5">
                                 <h3 class="column-title">Часы работы call-центра</h3>
                                 <div class="footer-description">
-                                    Тел: 8 800 111 22 33
+                                    Тел: 8-800-777-82-73
                                 </div>
                                 <div class="footer-description">
-                                    <b>Пн-Пт:</b> 9.00 - 18.30<br/>
-                                    <b>Суббота:</b> 9.00 - 14.00<br/>
-                                    <b>Воскресенье:</b> Выходной
+                                    <b>Пн-Пт:</b> 9.00 - 18.00<br/>
+                                    <b>Суббота, Воскресенье:</b> Выходной
                                 </div>
                                 <div class="clear"></div>
                             </div>
