@@ -23,13 +23,12 @@
             $section->depth = (int)($section->depth - $currentSection->depth);
         }?>
 
-        @if( ($section->depth == 1) && count($section->children) > 0 )
-
-            <?
-                $children = $sections->filter(function ($item) use ($section) {
-                    return $item['parent_id'] == $section->id;
-                });
-            ?>
+        <?
+            $children = $sections->filter(function ($item) use ($section) {
+                return $item['parent_id'] == $section->id;
+            });
+        ?>
+        @if( ($section->depth == 1) && count($children) > 0 )
 
             <div class="accordeon-title">{{ $section->name }}</div>
                 <div class="accordeon-entry">
@@ -37,7 +36,7 @@
                         <ul>
 
                             @foreach($children as $child)
-                                <li><a href="{{ url( $mainRoute.'/'.$section->code ) }}">{{ $section->name }}</a></li>
+                                <li><a href="{{ url( $mainRoute.'/'.$child->code ) }}">{{ $child->name }}</a></li>
                             @endforeach
 
                         </ul>

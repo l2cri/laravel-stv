@@ -168,7 +168,7 @@ input[type="file"].simple-field {padding: 0px; border: none}
 	right: -100px; /* Size */
 
 	/* Styles */
-	/*background: #fff;*/
+	background: #fff;
 	font-weight: normal; /* Overwrites previous font-weight: bold; */
 
 	/* Hiding */
