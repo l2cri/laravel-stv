@@ -26,13 +26,18 @@ CKEDITOR.editorConfig = function (config) {
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
-	config.removeButtons = 'Anchor,Table,SpecialChar,HorizontalRule,Underline,Subscript,Superscript,Strike';
+	//config.removeButtons = 'Table,SpecialChar,HorizontalRule,Underline,Subscript,Superscript,Strike';
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
+	//config.allowedContent =
+	//	'h1 h2 h3 p[id,name] blockquote strong em;' +
+	//	'a[!href];' +
+	//	'img(left,right)[!src,alt,width,height];';
+	//config.extraAllowedContent = 'p[name,id];h1[name,id];h2[name,id];h3[name,id];pre[name,id]';
 
 	// Simplify the dialog windows.
-	config.removeDialogTabs = 'image:advanced;link:advanced';
+	config.removeDialogTabs = '';
 
 	CKEDITOR.config.simpleImageBrowserURL = '/' + window.admin.prefix + '/assets/images/all';
 	CKEDITOR.config.language = window.admin.locale;
@@ -42,6 +47,8 @@ CKEDITOR.editorConfig = function (config) {
 	//config.filebrowserImageBrowseUrl ='/ckfinder/ckfinder.html?type=Images';
 	//config.filebrowserUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 	//config.filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+
+	//config.extraPlugins = 'link';
 
 	$.extend(config, window.admin.ckeditor_cfg);
 };

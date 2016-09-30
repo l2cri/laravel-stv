@@ -208,6 +208,7 @@
                                     <li><a href="{{ route('infopage', 'about') }}">О проекте</a></li>
                                     <li><a href="{{ route('infopage', 'regvendor') }}">Для поставщиков</a></li>
                                     <li><a href="{{ route('infopage', 'howtoorder') }}">Как заказать?</a></li>
+                                    <li><a href="{{ route('infopage', 'obmen-vozvrat') }}">Обмен/Возврат</a></li>
                                 </ul>
                                 <div class="clear"></div>
                             </div>

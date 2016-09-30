@@ -58,5 +58,7 @@ return [
 	 *
 	 * Checkout http://docs.ckeditor.com/#!/api/CKEDITOR.config for more information.
 	 */
-	'ckeditor' => [],
+	'ckeditor' => [
+		'extraPlugins' => 'link',
+	],
 ];
